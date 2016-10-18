@@ -1,0 +1,24 @@
+            -- Commands and Options --
+
+Please choose one of the following online help files:
+
+    (1) Using Commands             (playing.txt)
+    (2) Commands Descriptions      (cmddesc.txt)
+    (3) Original Command Keys      (cmdorig.txt)
+    (4) Roguelike Command Keys     (cmdrogue.txt)
+    (5) Macros and Keymaps         (macro.txt)
+    (6) Options                    (option.txt)
+
+
+
+
+ ?  : return to previous menu
+ ESC: leave help
+
+***** [1] playing.txt
+***** [2] cmddesc.txt
+***** [3] cmdorig.txt
+***** [4] cmdrogue.txt
+***** [5] macro.txt
+***** [6] option.txt
+

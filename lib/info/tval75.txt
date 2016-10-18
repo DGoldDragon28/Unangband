@@ -1,0 +1,12 @@
+=== A Brief Overview of Potions ===
+
+It looks like you've found yourself a magical potion in your
+travels recently.  These can be very useful items, and be sure 
+to keep yourself in good supply of whatever potions you find
+most useful.  The most common way of using potions is to quaff
+them using the quaff command ('q').  This will allow the
+potion to apply its effects immediately to yourself.
+
+Most potions will have an beneficial effect when quaffed, some
+may only have an effect if you are injured or otherwise
+incapacitated, and some may have negative effects.

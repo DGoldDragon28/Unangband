@@ -1,0 +1,129 @@
+=== Schools ===
+
+    There are a number of different schools of thought as to how magic should
+    be instructed, and these are reflected in seven different schools of magic
+    that can be learnt by those classes who use Magic books.
+    
+    The Magic book you start with, and the magic books you find stocked in
+    the shops will be based on the school of magic you select, although you
+    are capable of learning spells from any school.  Think of the schools more
+    as a methodology and complementing set of spells than a particular
+    requirement, although each school does have its strengths and weaknesses
+    and secrets they keep from each other.
+
+    Note to Angband players: For a 'vanilla' mage experience, it is recommended
+    that you choose the school of Wizardry to start with.
+        
+***** <Wizardry>
+        Wizardry
+           The school of Wizardry contains the most flexible spell selection
+           for defense and a broad and powerful range of direct offensive
+           spells.  Wizardry has few weaknesses: no reliable method of
+           satisfying a wizard's hunger and few spells that can be used to
+           attack an enemy without putting the wizard in harm's way.  Wizards
+           should be thoughtful in offense and quick to escape or evade an
+           enemy that exhausts the resources at their disposal.
+           
+           Aspiring Wizards start with the book of Cantrips.
+        
+***** <Druidry>
+        Druidry
+           The school of Druidry contains a wide variety of different spells,
+           include a good low level offense, but is hampered by difficult to
+           use defensive spells and offensive magic that takes a while to get
+           going and may leave the Druid in close proximity to harm should 
+           they fail to work.  A Druid operates best when he is able to
+           prepare the ground upon which he fights, and works best in open
+           spaces: conjuring trees, calling forth lightning and fire and so
+           on.  This is also the Druid's weakness: he must operate in the
+           open, and takes a while to prepare his magic, which means he can
+           be overwhelmed before his magic can be used. 
+
+           Novice Druids start with the book of Hedges.
+
+***** <Mastery>
+        Mastery
+          The school of Mastery contains some useful low-level magics, but at
+          higher levels is heavily reliant on the ability to summon and control
+          minions for the great part of both offense and defense.  This is
+          a double-edged sword: while the minions are more than capable of
+          providing the Master protection and dealing out damage, he has a
+          heavy investment in them, and will have to pay a 'mana debt' or
+          'blood debt' should they be destroyed.  This reliance on minions
+          means that the tables can turn very quickly on the Master and get
+          out of control.
+          
+          Wouldbe Masters start with the book of Curses.
+        
+***** <Sorcery>
+        Sorcery
+          The school of Sorcery is both deceptively weak and strong.  A 
+          Sorcerer lacks the immediate damage dealing capacity of the Wizard
+          and the long term damage capability of the Druid, and does not have
+          the same range of minions as the Master.  The Sorcerer's spells and
+          minions are useful in preparing the ground like the Druid, in
+          particular with a range of traps and mimics, and enraging and
+          drawing in the enemy.  But his abilities to ensorcle perhaps any
+          enemy, will give him opportunities and gambits far greater than
+          the Master is capable of.
+          
+          Neophyte Sorcerers start with the book of Glamours.
+        
+***** <Thaumaturgy>
+        Thaumaturgy
+          The school of Thaumaturgy contains the widest range of direct
+          offensive spells, to allow a thaumaturgist to find and exploit the
+          weakness of any opposition.  The Thaumaturgical energies at his
+          disposal randomly vary from individual to individual, and as a 
+          result, the exact spell selection will vary.  The weakness of the
+          Thaumaturgist is a distinct lack of flexibility in defense: with
+          limited and hard to use escapes and utility magics.
+               
+          Latent Thaumaturges start with the book of Fireworks.
+
+***** <Science>
+        Science
+          The school of Science concentrates on sensing and divining the
+          nature of threats around the Scientist and defusing and neutralising
+          those threats before they are realised.
+
+          The school of Science has particular affinity for Artisans and
+          Artisans should usually choose this school in order to get the best
+          selection of spells in the least number of different books.
+          Mages or Warrior Mages who specialise in this school will find that
+          it has no offensive spells at early levels, which makes it a very
+          difficult school for them to adopt.
+          
+          Amateur Scientists start with the book of Trades. 
+
+***** <Statecraft>
+        Statecraft
+          The school of Statecraft concentrates on supplementing the natural
+          abilities of the Statesman, to allow him to track the enemy,
+          entrap and encircle them, and ultimately wage cruel war on them
+          if required.
+
+          The school of Statecraft has particular affinity for Rangers and
+          Rangers should usually choose this school in order to get the best
+          selection of spells in the least number of different books.
+          Mages or Warrior Mages who specialise in this school will find that
+          it has no offensive spells at early levels, which makes it a very
+          difficult school for them to adopt.
+
+          Beginning Statesmen start with the book of Trailcraft.
+
+***** <Spellstealing>
+        Spellstealing
+          The school of Spellstealing concentrates on misdirection and
+          manipulation of enemies, allowing the spell caster to avoid those
+          they don't wish to confront, while thieving from and disposing of
+          those that are more lucrative prospects. 
+          
+          The school of Spellstealing has particular affinity for Rogues and
+          Rogues should usually choose this school in order to get the best
+          selection of spells in the least number of different books.
+          Mages or Warrior Mages who specialise in this school will find that
+          it has no offensive spells at early levels, which makes it a very
+          difficult school for them to adopt.
+
+          Apprentice Spellstealers start with the book of Tricks.

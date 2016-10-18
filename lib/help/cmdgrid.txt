@@ -1,0 +1,49 @@
+=== Targetting Command Summary - 'Grid' Mode ===
+
+ ESC, q        Cancel targetting
+ 1,2,3,4...    Move the cursor to an adjacent grid using the numpad
+ h,j,k,l...    Move the cursor to an adjacent grid using roguelike commands
+ SPACE         Show next 'interesting thing' in the current grid
+ *, +          Advance to the next 'interesting thing' in line of sight
+ -             Advance to the 'interesting thing' in line of sight
+ ?             Show this file
+
+ m             Change to 'look'/'kill' mode [1]
+ x             Allow targetting of allies in 'kill' mode
+ p             Advance to the players position
+ ., 5, 0, t    Target the current grid/monster [2]
+ @             Target as above, but allows the player to be a target
+ r             Recall details of this 'interesting thing' (toggle on/off)
+
+ g             Go to the grid currently targetted [3] 
+ a             'Assault' the grid under a monster [4]
+ s             Select target monsters of the same race (toggle on/off) [5]
+
+ [1] 'Kill' mode allows you to scroll between monsters to target one of
+ them. 'Look' mode allows you to scroll between 'interesting things' to
+ target one of them. Which mode you select depends on which mode you started
+ looking/targetting with.
+ 
+ [2] If you have allies, they will attack this monster.  Allies with
+ ranged attacks will stand back from the monster and attack it with their
+ ranged attacks.  Allies without ranged attacks will go to the monster. If
+ the monster moves, allies will continue to follow it, as long as the
+ monster stays visible to you.
+ 
+ If you target a grid without a monster, allies will go to the grid.
+ Note the difference between this and 'a' assaulting a grid.
+ 
+ [3] This computes the lowest cost path to the grid, and then begins
+ 'running' the player towards the grid. If the path is too long, or no
+ current path can be computed, you will hear a 'beep' and nothing will
+ happen.
+ 
+ [4] If you have allies, they will 'assault' this grid.  Allies with
+ ranged attacks will stand back from the grid and attack monsters near
+ it with their ranged attacks.  Allies without ranged attacks will go to
+ the grid.
+ 
+ [5] If you have allies, they will seek out monsters of the same race as
+ this monster, in preference to all others.
+ 
+ 

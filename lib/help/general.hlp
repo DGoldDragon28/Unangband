@@ -1,0 +1,21 @@
+             -- General Information --
+     
+Please choose one of the following online help files:
+
+    (1) Introduction                (welcome.txt)
+    (2) Using the Online Help       (usehelp.txt)
+    (3) Getting Information in Game (gameinfo.txt)  
+    (4) Angband History             (version.txt)
+    (5) The Old Welcome             (oldwelc.txt)
+
+
+
+
+ ?  : return to previous menu
+ ESC: leave help
+
+***** [1] welcome.txt
+***** [2] usehelp.txt
+***** [3] gameinfo.txt
+***** [4] version.txt
+***** [5] oldwelc.txt

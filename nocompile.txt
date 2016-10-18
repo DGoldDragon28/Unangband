@@ -1,0 +1,6 @@
+Compiling Angband
+=================
+
+You have downloaded the wrong file in order to compile Angband. This
+is a precompiled executable. Please visit http://unangband.blogspot.com
+and download the source file distribution.

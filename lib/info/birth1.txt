@@ -1,0 +1,29 @@
+=== Welcome to Unangband ===
+
+You begin your adventure on the town level where you may acquire supplies,
+weapons, armor, and magical devices by bartering with various shop owners.
+Then you descend into the depths of Unangband, where you will explore the
+many levels of the dungeon, gaining experience by killing fierce creatures,
+collecting powerful objects and valuable treasure, and returning to town to
+barter for new supplies.  Eventually, as you become more experienced, you
+may attempt to win the game by defeating Morgoth, the Lord of Darkness,
+who resides far below the surface.
+
+Note that Unangband is a very complex game, and it may be difficult to grasp
+everything at first, especially if you have never played a "roguelike" game
+before.  To assist you, notes like this will occasionally appear around the
+dungeon, explaining various aspects of the game.  To get additional
+help and advice, you can press ? when the game is waiting for a command
+and browse through all of the "online help files".
+
+You can begin the game by pressing ESC to leave this screen, and using the
+movement keys to move around the town. Depending on the choice you made at
+the start of the game, you'll either use the number pad or certain letter
+keys on your keyboard to move, as follows:
+
+        Original Keyset Directions       Roguelike Keyset Directions
+        (Desktop)                        (Laptop)
+
+                 7  8  9                           y  k  u
+                 4     6                           h     l
+                 1  2  3                           b  j  n

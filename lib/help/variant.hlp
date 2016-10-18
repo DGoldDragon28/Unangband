@@ -1,0 +1,20 @@
+Welcome to the Angband Online Help System.
+
+Please choose one of the following online help files:
+
+    (1) General Information          (variant.txt)
+    (2) Command Changes              (varcmds.txt)
+    (3) Combat Changes               (varattk.txt)
+    (4) New Options                  (varopt.txt)
+
+
+
+
+ ?  : return to previous menu
+ ESC: leave help
+
+***** [1] variant.txt
+***** [2] varcmds.txt
+***** [3] varattk.txt
+***** [4] varopt.txt
+***** [0] help.hlp

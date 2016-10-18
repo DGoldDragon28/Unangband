@@ -1,0 +1,56 @@
+=== Targetting Command Summary - 'Look' Mode ===
+
+ ESC, q        Cancel targetting
+ SPACE         Show next 'interesting thing' in the current grid
+ *, +          Advance to the next 'interesting thing' in line of sight
+ -             Advance to the 'interesting thing' in line of sight
+ ?             Show this file
+
+ o             Change to 'grid' mode [1]
+ p             Advance to the player; change to 'grid' mode [1]
+ ., 5, 0, t    Target the current grid/monster [2]
+ r             Recall details of this 'interesting thing' (toggle on/off)
+
+ g             Go to the grid currently targetted [3] 
+ a             'Assault' the grid under a monster [4]
+ s             Select target monsters of the same race (toggle on/off) [5]
+ 
+ [1] 'Grid' mode allows you to select any target using the movement keys.
+ 
+ [2] If you have allies, they will attack this monster.  Allies with
+ ranged attacks will stand back from the monster and attack it with their
+ ranged attacks.  Allies without ranged attacks will go to the monster. If
+ the monster moves, allies will continue to follow it, as long as the
+ monster stays visible to you.
+ 
+ If you target a grid without a monster, allies will go to the grid.
+ Note the difference between this and 'a' assaulting a grid.
+ 
+ [3] This computes the lowest cost path to the grid, and then begins
+ 'running' the player towards the grid. If the path is too long, or no
+ current path can be computed, you will hear a 'beep' and nothing will
+ happen.
+ 
+ [4] If you have allies, they will 'assault' this grid.  Allies with
+ ranged attacks will stand back from the grid and attack monsters near
+ it with their ranged attacks.  Allies without ranged attacks will go to
+ the grid.
+ 
+ [5] If you have allies, they will seek out monsters of the same race as
+ this monster, in preference to all others.
+ 
+
+=== Definitions of 'Interesting Things' ===
+ 
+Monsters are always interesting.
+ 
+Objects are always interesting.
+ 
+Features are interesting if they have the NOTICE flag in terrain.txt.
+
+Rooms are interesting if you have seen the full description of the room.
+The room description will be shown as the last 'interesting thing' in a
+grid. So you can see a room description again by looking at the a grid
+in the room, using space bar to scroll through all other 'interesting
+things' in the grid and then 'r' recalling the room description.
+

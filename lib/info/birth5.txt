@@ -1,0 +1,22 @@
+=== Stores and Shopping ===
+
+Once inside a store, you will see the name and race of the store owner, the
+name of the store, the maximum amount of cash that the store owner will pay
+for any one item, and the store inventory, listed along with the prices. If 
+auto-haggle is on, the price listed is the price you pay: if you are haggling 
+manually, the price listed is his starting offer, which you can haggle 
+downwards.
+
+You will also see an (incomplete) list of available commands.  Note that
+many of the commands which work in the dungeon work in the stores as well,
+but some do not, especially those which involve "using" objects.
+
+Stores do not always have everything in stock.  As the game progresses,
+they may get new items so check from time to time.  Also, if you sell them
+an item, it may get sold to a customer while you are adventuring, so don't
+always expect to be able to get back everything you have sold.  Note that
+the inventory of a store will not change while you are in town, even if you
+save the game and return.  You must spend time in the dungeon if you wish
+the store owner to clear out his stock and acquire new items.  If you have
+a lot of spare gold, you can purchase every item in a store, which will
+induce the store owner to bring out new stock, and perhaps even retire.

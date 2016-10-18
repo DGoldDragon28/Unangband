@@ -1,0 +1,129 @@
+# Thrones are equivelent of non-directional rods, that are used.
+
+# Candles are lights that are destroyed when their pval is used up, and
+# have powers equivelent to various rings. Lanterns are similar, but made
+# be refuelled to allow power to continue.
+
+# All objects with sval = 0 are a non-magical version of the object that
+# could be of any flavor?
+
+# Also have a tval file containing:
+
+# Format for display.
+# I: slot (special one for weapons/diggers)
+# F: flags from below
+# S: shoots tval ammo / fills with tval item
+
+# ATTACK: can make attacks with this
+# WEAPON: allowed to use in off-hand
+# BACKSTAB: can make backstab attacks
+# TWO-WEAPON: allowed to use light weapons of this kind in off-hand
+# FEATURE: never get
+# TRAP: use pval for trap
+# FOOD: use pval for food value
+# FIRE: use sval for multiplier when shooting correct ammo
+# QUAFF
+# USE
+# ZAP
+# AIM
+# READ
+# STUDY
+# BROWSE
+
+# eg
+
+
+#We record monster drops eg drop1, and two flavors flav1 and flav2.
+
+#This allows us combinations like:
+
+#Uruk-Hai Teeth
+#Wormtongue's Ornate Silver Ring of Protection [+7]
+#Fine Bronze Longsword of Westernesse (+3,+6) (+1)
+
+#Flavor1 is a quality, flavor2 is color.
+#We also modify item properties with flavors.
+
+#Demon magic, including summoning and abjuration.
+
+N:532:of Demonology
+G:?:r
+I:90:14:0
+W:70:0:30:18000
+A:70/2
+P:0:1d1:0:0:0
+F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
+
+#Dark magic/balls/bolts/invisibility.
+
+N:532:of Shadows
+G:?:r
+I:90:14:0
+W:70:0:30:18000
+A:70/2
+P:0:1d1:0:0:0
+F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
+
+#Shapechanging.
+
+N:532:of Shapes
+G:?:r
+I:90:14:0
+W:70:0:30:18000
+A:70/2
+P:0:1d1:0:0:0
+F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
+
+#Nexus.
+
+N:532:of Interstices
+G:?:r
+I:90:14:0
+W:70:0:30:18000
+A:70/2
+P:0:1d1:0:0:0
+F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
+
+#Unsummon.
+
+N:532:of Counter Magic
+G:?:r
+I:90:14:0
+W:70:0:30:18000
+A:70/2
+P:0:1d1:0:0:0
+F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
+
+#The Fifth Element
+
+N:532:of Aether
+G:?:r
+I:90:14:0
+W:70:0:30:18000
+A:70/2
+P:0:1d1:0:0:0
+F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
+
+N:567:& Faerie Fire spell~
+G:~:B
+I:10:10:3
+W:0:0:0:0
+P:0:1d1:0:0:0
+F:EASY_KNOW | IGNORE_FIRE | IGNORE_ACID | IGNORE_ELEC | IGNORE_COLD |
+F:SEE_INVIS | INFRA
+
+N:567:& Dancing Lights spell~
+G:~:B
+I:10:10:0
+W:0:0:0:0
+P:0:1d1:0:0:20
+F:EASY_KNOW | IGNORE_FIRE | IGNORE_ACID | IGNORE_ELEC | IGNORE_COLD
+
+N:567:& Palmfire spell~
+G:~:B
+I:10:10:0
+W:0:0:0:0
+P:0:1d1:0:0:20
+F:EASY_KNOW | IGNORE_FIRE | IGNORE_ACID | IGNORE_ELEC | IGNORE_COLD
+F:RES_COLD
+

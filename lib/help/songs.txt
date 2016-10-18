@@ -1,0 +1,73 @@
+=== Song Specialists ===
+
+    There are two types of song book specialists: those who specialise in
+    instruments, and those who specialise in improvisation from a single
+    song book.  Each song book has an accompanying instrument which
+    benefits the bard if they are wielding the instrument at the same time
+    as they cast from the song book, but instrument specialists gain much
+    greater benefit in doing so.
+    
+    Improvisation specialists gain their benefits only for a limited number
+    of songs - those which are cast from the song book they have chosen.
+    These books can only be located in the dungeon, or certain stores which
+    can only be found late in the game.
+
+=== Improvisations ===
+
+***** <Tunes>
+        Tunes
+        
+          Tunes provide information about the world around the singer.
+
+***** <Progressions>
+        Progressions
+
+          Progressions provide transportation and travel for the singer.
+          
+***** <Soothing>
+        Soothing
+        
+          Soothing songs provide healing and respite to the singer.
+
+***** <Drills>
+        Drills
+
+          Drills provide enhancement to the singer's prowess in battle.
+          
+***** <Snake Charming>
+        Snake Charming
+
+          Snake Charming songs charm or summon animals or reptiles, or
+          allow the singer to take on aspects of reptiles or dragons.
+          
+***** <Shanties>
+        Shanties
+
+          Shanties are songs of the sea and storms: raising a sqaull,
+          summoning spirits of the air, and protecting against lightning.
+          
+***** <Dirges>
+        Dirges
+
+          Dirges are songs of death: animating or protecting against the
+          dead, summoning spirits or restoring the effects of brushing
+          near death's door.
+          
+***** <Pandemonium>
+        Pandemonium
+
+          Pandemonium songs conjure confusion and fear, changing the world
+          around the singer or driving them wild with passions.
+          
+***** <Discordance>
+        Discordance
+        
+          Discordant songs are the thunder of a volcano and the shudder of
+          an earthquake, a crescendo of noise which damages those around
+          the singer.
+          
+***** <Beats>
+        Beats
+        
+          Beats are the slaps on the thighs and the stamping of feet in
+          time with the singing, damaging blows and incredible throws.

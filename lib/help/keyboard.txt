@@ -1,0 +1,27 @@
+            -- Welcome to Unangband --
+
+You will be asked a number of questions to help you customise
+your in-game experience. Please answer them to the best of
+your ability.
+
+The keyboard layout you choose will determine which keys you
+use to control your in-game character. If you choose the
+desktop layout, you will use what is called the 'original'
+command keys. You will use the number pad to navigate around
+in the directions you choose.
+
+If you choose the laptop layout, you will use what is called
+the 'roguelike' command keys. You will use the letters h, j,
+k, l, y, u, b and n to navigate around in the directions you
+choose as follows:
+
+   y k u
+    \|/
+   h-@-l
+    /|\
+   b j n
+
+You can get a full list of commands you can use at at any
+time by pressing Enter on your keyboard. Pressing ? can also
+be used to access the in-game help system, which provides
+further information about playing the game.

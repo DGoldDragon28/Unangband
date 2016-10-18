@@ -1,0 +1,392 @@
+# The following is derived from NPPAngband and Sangband.
+#
+# There are several implementation differences between here and NPPAngband.
+#
+# Traps in Unangband are all implemented as features. However, the effects
+# code herein is used to configure a projection function that is tested every
+# turn to see if a trap that is the source of the projection should be fired.
+#
+# e.g. ^xxxxxx checks the areas marked x from the trap ^. If the player enters
+# this region and fails the trap test (see below)
+#
+#  discoloured sport - cool down after activation; thrown objects activate this
+#  gas trap - effect is delayed a turn
+#  loose rock - searching avoids
+#  deadfall - takes several turns to hit targets; charging on the first turn avoids
+#  siege engine - fired by an adjacent creature; doesn't activate otherwise
+#  clockwork mechanism - fires regularly; cool down after activation
+#
+#  We want to try to do the following:
+#
+#  Sangband style seeker vortices, moving walls,
+#
+#  NPPAngband waves, glaciers.
+#
+#  Spell effects that bombard to/from a particular location, round by round.
+#  Spell effects that try to pick a distant target and then affect it...
+#  e.g. chain lightning.
+
+# Region.txt entry format
+
+# N: number : name
+# G: char : attr
+# I: delay between blows
+# B: blow method
+# C: child region : child lasts scalar
+# F: flags
+
+# D: description
+
+# TRIGGER_MOVE: Trigger attack when moving into region
+# LINGER: Trigger one grid when moving into region
+# SPAWN: Instead of apply an attack, spawn a new region
+# AUTOMATIC: Automatically apply effect every update
+# MANUAL: Region effect only applied to 'newly affected' regions
+# WALL: Advancing 'wall' of effect
+# SEEKER: Seeker effect which hunts down targets
+# PROJECTION: Grids affected are defined and updated as a projection
+# SCALAR_FEATURE: Region scalar encodes a feature
+# SCALAR_DAMAGE: Region scalar encodes damage
+# SCALAR_VECTOR: Region scalar encodes direction and speed
+# SCALAR_DISTANCE: Region scalar encodes distance
+# CLOSEST_MON: Use closest monster as a target
+# PLATFORM: As region moves, it pushes stuff around
+# HIT_TRAP: Avoid triggering source as if a trap (requires trigger)
+# RANDOM: Target a random grid in the region
+# AGE_INCREASE: Damage increases with age. If DECREASE defined, damage peaks at 1/2 lifespan, then drops.
+# AGE_DECREASE: Damage decreases with age. If INCREASE defined, damage peaks at 1/2 lifespan, then drops.
+# INVERSE: Invert source and target when attacking
+# NOTICE: Noticed region?
+# CHAIN: Set region source and destination to source and target determined when attacking
+
+# Version stamp (required)
+
+
+V:0.6.4
+
+
+N:0:nothing
+
+# Regions 1 - 28 correspond to traps, where the trap attr is the region number.
+
+N:1:trap door
+G:x:w
+F:TRIGGER_MOVE | HIT_TRAP
+
+N:2:silent watcher
+G:x:s
+B:STARE
+F:PROJECTION | TRIGGER_MOVE | HIT_TRAP | FIXED
+
+N:3:strange rune
+G:x:o
+B:8WAY
+F:TRIGGER_MOVE | HIT_TRAP | FIXED
+
+N:4:spring-loaded trap
+G:x:r
+B:ARC_40_SHORT
+F:PROJECTION | TRIGGER_MOVE | HIT_TRAP | RANDOM
+
+N:5:gas trap
+G:x:g
+B:AREA
+I:40
+F:PROJECTION | TRIGGER_MOVE | HIT_TRAP | TRIGGER_DROP | FIXED
+
+N:6:explosive trap
+G:x:b
+B:BALL
+F:PROJECTION | TRIGGER_MOVE | HIT_TRAP | TRIGGER_DROP | FIXED
+
+N:7:discolored spot
+G:x:u
+I:30
+B:ARC_40_SHORT
+F:PROJECTION | TRIGGER_MOVE | HIT_TRAP | TRIGGER_DROP
+
+N:8:pit
+G:x:D
+F:TRIGGER_MOVE | HIT_TRAP | ROOM
+F:SOURCE_FEATURE | TRIGGER_OPEN | TRIGGER_CLOSE
+
+N:9:stone visage
+G:x:W
+F:PROJECTION | TRIGGER_MOVE | HIT_TRAP
+B:LINE_WIDE
+
+N:10:loose rock
+G:x:P
+B:SCATTER
+F:TRIGGER_MOVE | HIT_TRAP
+
+N:11:tripwire
+G:x:y
+B:HANDS
+F:TRIGGER_MOVE | HIT_TRAP
+
+N:12:murder hole
+G:x:R
+F:PROJECTION | TRIGGER_MOVE | HIT_TRAP
+B:BEAM_MINOR
+
+N:13:ancient hex
+G:x:G
+B:ADJACENT
+F:PROJECTION | TRIGGER_MOVE | HIT_TRAP
+
+N:14:magic symbol
+G:x:B
+C:30:3+1/10
+I:5
+B:ARC_40_SHORT
+F:PROJECTION | TRIGGER_MOVE | HIT_TRAP
+
+N:15:shallow pit
+G:x:U
+
+N:16:surreal painting
+G:x:p
+B:ARC_40_SHORT
+F:PROJECTION | TRIGGER_MOVE | HIT_TRAP
+
+#Terrain glows.
+
+N:17:ever burning eye
+G:x:v
+F:CLOCKWISE | COUNTER_CLOCKWISE | SHINING
+F:AUTOMATIC | LINGER | HIT_TRAP
+B:BEAM
+
+N:18:upwards draft
+G:x:t
+I:20
+F:CLOCKWISE | COUNTER_CLOCKWISE | RANDOM
+F:PROJECTION | TRIGGER_MOVE | HIT_TRAP
+B:ARC_40_SHORT
+
+N:19:deadfall
+G:x:m
+C:28:20
+F:PROJECTION | TRIGGER_MOVE | HIT_TRAP
+B:ARC_30
+
+#Terrain doesn't glow - this allows trap to be avoided in darkness
+#also makes room filled with these more dangerous if completely lit.
+
+N:20:shaft of light
+G:x:Y
+F:PROJECTION | TRIGGER_MOVE | HIT_TRAP | SHINING
+B:HANDS
+
+N:21:clockwork mechanism
+G:x:i
+I:30
+B:BEAM
+F:PROJECTION | HIT_TRAP
+
+N:22:demonic sign
+G:x:T
+C:38:20
+I:15
+B:ARC_20
+F:PROJECTION | TRIGGER_MOVE | HIT_TRAP
+
+N:23:Radagast's snare
+G:x:V
+F:TRIGGER_MOVE | HIT_TRAP
+
+N:24:siege engine
+G:x:I
+F:PROJECTION | FIXED | HIT_TRAP | TRIGGER_OPEN
+B:BEAM
+
+#Terrain glows
+
+N:25:glowing glyph
+G:x:M
+I:15
+F:CLOCKWISE | COUNTER_CLOCKWISE
+F:PROJECTION | TRIGGER_MOVE | HIT_TRAP | SHINING
+B:LINE_WIDE
+
+N:26:mark of a white hand
+G:x:z
+B:HANDS
+F:PROJECTION | HIT_TRAP | TRIGGER_MOVE
+
+#Fixed source and destination.
+
+N:27:shimmering portal
+G:x:Z
+F:PROJECTION | SHINING | HIT_TRAP | TRIGGER_MOVE
+
+# Debri is released by a deadfall and act as slow
+# moving projections towards the target.
+N:28:debri
+G:*:u
+I:3
+F:SCALAR_VECTOR | AUTOMATIC | RANDOM
+
+# Blasts of narrow forked lightning - used by Call Lightning
+N:29:storm
+G:*:Z
+I:12
+F:AUTOMATIC | INVERSE | RANDOM | PROJECTION | ACCELERATE | DECELERATE
+B:BEAM
+
+# Seeker vortex - used by Ignite Blaze
+N:30:vortex
+G:*:o
+I:4
+F:AUTOMATIC | LINGER | SHINING | SEEKER
+F:ATTR_EFFECT
+
+# Mass of randomly moving creeps - Used by Creeping Death
+N:31:creep
+I:6
+G:*:p
+F:AUTOMATIC | SEEKER | RANDOM | SPREAD
+F:ATTR_EFFECT
+
+# Lingering cloud of damage - Used by Miasma
+N:32:miasma
+G:*:v
+I:6
+F:AUTOMATIC | LINGER | SPREAD
+F:ATTR_EFFECT
+
+# Wandering cloud - used by Blizzard
+
+N:33:blizzard
+G:*:B
+I:12
+F:AUTOMATIC | LINGER | SPREAD | MOVE_SOURCE | PROJECTION
+F:ATTR_EFFECT
+
+# Wandering arc - used by Twister
+
+N:34:twister
+G:*:W
+I:3
+F:AUTOMATIC | LINGER | PROJECTION | CLOCKWISE | COUNTER_CLOCKWISE
+F:MOVE_SOURCE | SPREAD
+F:ATTR_EFFECT
+
+# Slowly advancing wave - used by Tsunami
+# TODO: Randomly advancing wall should only sometimes advance... and do
+# so in a wave-like pattern...
+
+N:35:wave
+G:*:t
+I:1
+F:AUTOMATIC | WALL | RANDOM | DECELERATE
+F:ATTR_EFFECT
+
+# Hail of accerating explosions - used by Volcano
+
+N:36:eruption
+G:*:r
+I:64
+F:AUTOMATIC | ACCELERATE | RANDOM
+B:BALL_MINOR
+F:ATTR_EFFECT | MOVE_SOURCE
+
+# Chains of monster seeking attacks - Used by Chain Lightning
+
+N:37:chain
+G:*:y
+I:5
+F:AUTOMATIC | CHAIN | INVERSE | SEEKER
+F:ATTR_EFFECT
+
+# Advancing wall - Used by the wall spells
+
+N:38:wall
+G:*:w
+I:5
+F:AUTOMATIC | LINGER | WALL
+F:ATTR_EFFECT
+
+# Scattered dust - used by Dust of Sneezing
+
+N:39:dust
+G:*:s
+I:6
+F:AUTOMATIC | LINGER | SPREAD | SHINING
+F:ATTR_EFFECT
+
+# Persistent area of effect - Used by tangle
+
+N:40:persistent effect
+G:*:w
+I:10
+F:AUTOMATIC | LINGER
+F:ATTR_EFFECT
+
+# Slow, intermittent effect - Used by pyrokinesis/cyrokinesis
+
+N:41:kinetic region
+G:*:w
+I:20
+F:AUTOMATIC
+F:ATTR_EFFECT
+
+# Projection which acts somewhat 'like' a trap - Used by spell trap
+
+N:42:trap
+G:x:w
+F:PROJECTION | TRIGGER_MOVE
+
+# Delayed spell effect - Used by spell trap
+
+N:43:delayed spell
+G:*:w
+F:AUTOMATIC | PROJECTION | ATTR_EFFECT
+
+# Haze - used by chill
+
+N:44:haze
+G:*:z
+I:7
+F:AUTOMATIC | ATTR_EFFECT
+F:LINGER
+
+# Zap - used by zap
+
+N:45:zap
+G:*:Y
+I:30
+F:AUTOMATIC | ATTR_EFFECT | PROJECTION
+B:ZAP
+
+# Spring - used by Find Water
+
+N:46:spring
+G:*:b
+I:3
+F:AUTOMATIC | ATTR_EFFECT | PROJECTION
+B:SCATTER
+
+# Flash - used by ????
+
+N:47:flash
+G:*:R
+I:3
+F:SCALAR_VECTOR | AUTOMATIC | RANDOM | INVERSE
+
+# Zone - used by freeze
+
+N:48:zone
+G:*:T
+I:3
+F:SCALAR_VECTOR | AUTOMATIC | RANDOM | INVERSE
+
+# Rime - used by hoar frost
+
+N:49:rime
+G:*:T
+I:12
+F:AUTOMATIC | INVERSE | RANDOM | SPREAD
+B:CROSS
+

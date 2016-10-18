@@ -1,0 +1,299 @@
+=== Frequently Asked Questions ===
+
+Most of these questions have been taken from the newsgroup
+rec.games.roguelike.angband. If something isn't answered here
+feel free to either post a question to the newsgroup or email
+the mailing list unangband@yahoogroups.com. If you have any
+suggestions for questions that should appear here, please
+feel free to e-mail me suggestions at andrewdoull@hotmail.com.
+
+Please put [Un] at the start of the subject so that people are
+aware that this is a question about Unangband. Yahoo Groups
+will automatically prepend this to e-mails you send to the
+mailing list.
+
+=== [Section 1] General/Development Questions ===
+
+[Q1.1]   What is Unangband?
+
+Unangband is a roguelike game based on Angband. For further
+information about roguelikes, I can recommend the newsgroups
+rec.games.roguelike.angband and rec.games.roguelike.developer.
+
+Over the years Unangband has accumulated features from many
+other variants of Angband. The credits screen at the opening of
+the game should point you in the direction of other variants
+which I have used features from. I highly recommend all of them.
+
+Unangband features have been also picked up by other variants:
+room descriptions in Eyangband, the visual edit mode and display
+of unsafe grids in Hengband, terrain features in NPPAngband and
+Hengband, clouds surrounding monsters in Sangband. I'm sure more
+features will be picked up in the not so distant future.
+
+
+[Q1.2]   Why write another variant of Angband?
+
+Unangband is my variant. It's been around longer than many: it
+predates NPPAngband and FAAngband for instance.
+
+As for why I write it, I enjoy coding, particularly coding for
+Angband.
+
+It scratches an itch I have...
+
+As for why you should play it, I'm not entirely sure. Some
+people like the 'atmosphere' of Unangband. Some people like the
+campaign mode, which is now why this is the default. Some
+people like the underlying code...
+
+
+[Q1.3]   Why don't you adopt (feature from variant-x)?
+
+This is my biggest problem as a variant maintainer. I'm working
+off an old Angband version (2.9.2), and I'm chasing the feature
+tail on at least 3 variants (Sangband, NPPAngband and vanilla).
+In addition, I have my own ideas to implement.
+
+Feel free to implement the feature from that variant against the
+latest SVN version and send me a patch file. I mean, the source
+code is all there...
+
+
+[Q1.4]   Why isn't there a compile of the latest release for
+(platform-x)?
+
+Why isn't there? I'd love for someone, maybe yourself, to go
+ahead and compile a version for your platform. I haven't modified
+the source files far from the Angband platform base, so its more
+than likely the compile instructions for Angband will work. I'm
+also good at minimising the number of compiler warnings generated
+so I'd expect it not to be too painful a job. Only the main-win.c
+file has been modified so you'll probably need to do some work if
+you want to use the latest main-xxx.c file from Angband.
+
+If you want isometric graphics, you'll need to spend a bit more
+time working on things. You'll probably do a better job than me.
+
+
+[Q1.5]   Where do you intend Unangband to end up?
+
+Good question. Read the todo.txt file, which is a dumping ground
+for ideas. I have plenty of those, but I know I need to work on
+balancing the game better.  Since I'm too impatient to play
+Unangband that much, since I always end up coming with more ideas,
+I've instead been working on algorithmic balancing of the game,
+such as using a monster power evaluation function.  The problem
+with these kinds of functions, is that they tell you more about
+issues with the function, than necessarily how well the game is
+balanced.  That's why my favorite variant is Sangband, because
+Leon Marrick has done such a good job getting the balance and
+feature set right with it.
+
+
+[Q1.6]   Why is (x) spelt wrong or formatted wrong?
+
+I use Notepad in Windows for all my editting. It doesn't have a
+spell checker or white space display of any kind.
+
+
+[Q1.7]   Why does the game crash at point (x)?
+
+Probably because I haven't initialised a global variable, and I
+haven't adopted a debugger or automated testing yet.  Other
+variant maintainers will frown at these kinds of comments.  Its
+on a rather large to do list.
+
+If you encounter a crasher bug, please report it on the website.
+If possible, a save file right before the bug crash would be ideal.
+
+
+[Q1.8]   Why don't you throw the code away and start off with
+(more recent variant x)?
+
+I end up thinking that on the bad days.  But then I've done a lot
+of work on this code base.  And I kind of like it, even though it
+can be a little funky in places...
+
+
+=== [Section 2] Gameplay Questions ===
+
+I highly recommend you don't spoil your knowledge of the game with
+this section.  However, many veterans of other variants of Angband
+have asked these, so I'll answer them here.
+
+[Q2.1]   What are corpses for?
+
+They are there for flavor. And some monsters deep in the dungeon
+come back to life if you don't destroy their bodies in time. Some
+monsters reanimate the dead and feed on corpses to regain their 
+strength. When I get the quest code working, you will also 
+occasionally have to collect trophies to complete quests. And 
+shopkeepers will restock items for you if you collect the body parts 
+of the appropriate monster.
+
+Additionally, you can re-assemble golems and have them fight on your 
+side.
+
+
+[Q2.2]   What are room descriptions for?
+
+The biggest problem with room descriptions, and to a lesser extent
+interesting rooms from Sangband, is that you usually come across said
+room after it's emptied itself of the monsters that relate to the room,
+and you get to go 'hmm... interesting, that's where the fast and highly
+dangerous monster I just fought lives'.
+
+I'm sure it would work much better if you entered the room, read the
+description and went 'hmm... interesting. I need to look out a fast and
+highly dangerous monster that happens to be immune to fire. I'll put
+away my trusty fire brand sword and pull out my slightly less reliable
+frost brand axe I've been saving for this occasion...'
+
+Of course, coming up with a technical solution that allows this is
+tricky. I am considering restricting the total number of different
+monster races on a level, and making all room descriptions relate to
+these monsters in some way.
+
+That's why quests are so successful in many variants. You know what to
+expect (Even if its just a name) and can mentally prepare yourself for
+the challenge... even if it is fighting 15 of the toughest level 8
+monsters on level 1.
+
+
+[Q2.3]   What are instruments for?
+
+Instruments with no abilities are useless unless you are a bard. But
+they do come in ego-flavors, so it is possible to find a useful 
+instrument if you are a spell caster or archer, that you would favour
+over a weapon that provides less of a benefit.
+
+
+[Q2.4]   Why do stat-potions only provide a temporary stat increase?
+
+Using the current random algorithm, you'll end up with 'near-maximum'
+stats of between 18/40 and 18/100. You can test this in wizard mode by
+editting your experience to a high number and watching the stats
+improve. The algorithm is weighted to choose stats prefers the least
+improved stats over the most improved.
+
+I wanted to make more than the Angband 'resistance-lock' the key to
+winning the game, and was inspired by Quickband's choice to remove stat
+potions completely (For admittedly what is a much shorter game).
+
+It is easy enough to create permanent stat gain potions using the edit
+files. Just create a gain stat potion without a duration...
+
+
+[Q2.5]   What are altars / shrines / magic circles for?
+
+Study at them and see.  In the next version, you'll also be able to
+take away a copy of the spell(s) you've studied, as an object that
+takes up 1 inventory slot per spell.
+
+And trying applying a shrine to an item (y) or engraving it (^G)
+(depending on your keyset). Shrines act just like runes, so they should
+be able to improve your equipment in various ways (Or destroy it).
+
+
+[Q2.6]   Why is identify so rare?
+
+Its actually not, its more common.  Oh, you mean that ability to see
+what an item is actually called.  Its still free - you just have to sell
+your equipment to a store like you always did.
+
+Seriously, I have been experimenting somewhat with the identify system
+to see what impact it has on the game.  Its generally been derided,
+except by Eddie Grove, and I've got a very sophisticated object lore
+code in the game, so that tracks which equipment has abilites, which
+does not, and deduces automatically for you when you can tell certain
+equipment has an ability.  In the newer versions, classes each have
+their own sensing ability on items. For instance, shamans are able
+to read the runes on various objects, which should give you a clue to
+both the objects nature, and the function of runes on known items.
+
+And the variety of identify scrolls will be rationalised as a part of
+the whole object rationalisation I intend for a future version.
+
+
+[Q2.7]   I keep getting lost in the wilderness! Help?
+
+There is an ascii map of the various paths you can
+take through the locations of the (northern) Middle Earth.
+See file "memap.txt".
+
+
+[Q2.8]   Why don't shops rotate their stock?
+
+Shopkeepers only restock in your home town. Visit your home building
+in the town you want shopkeepers to treat as your home and they
+will restock (quite often, in fact).
+
+
+[Q2.9]   Why do forests and other surface locations keep hiding and
+showing the map at random?
+
+This is because you are stepping 'inside' and 'outside' the cover of tree
+branches. Unangband displays the surface map two different ways when you
+are on the surface, depending on whether you are inside or outside, which
+is controlled by the type of terrain you are standing on.
+
+When you are inside, the graphics are displayed exactly as if you were in
+the dungeon. You see known locations, and unknown locations are either
+displayed with a grey 'x' or an empty space, depending on what options you
+have set.
+
+When you are outside, a 'fake' terrain is displayed in unknown locations.
+This is similar to how Angband lites the whole town during day time, but
+allows you to discover paths and other interesting features by exploring,
+without making them automatically visible. The fake terrain is usually
+correct, but not always e.g. smoke is displayed in locations that are either
+filled with smoke or on fire. When you discover that the particular location
+is on fire the smoke graphic will be replaced with a fire graphic.
+
+Terrain covered by tree branches is considered 'inside' for these purposes.
+This allows an area which is heavily covered by tree branches to be treated
+as a dungeon location - the sun will only light the edges of the branches,
+for instance.
+
+Prior to this release of Unangband, you would not see the tree branches at
+all if you knew what the terrain underneath was. This has been changed to
+help 'clarify' when this graphical update occurs.
+
+
+[Q2.10]   Why can I not get back to Hobbiton after I travel to Bree or
+Buckland?
+
+This is a deliberate design decision. You can stay in Hobbiton and get
+a very special and lucrative first dungeon, and a useful guardian to kill 
+at the end of it. (It is mostly intended for overpowered characters.)
+Or you can travel to Bree and start the Book of Red March quest, which
+involves the events from the Hobbit taking place (Such as encountering
+stone trolls in Trollshaw forest, passing through the Misty Mountains and
+so on).
+
+If you do stay in Hobbiton, and complete the dungeon under Farmer Maggot's
+farm, you can take a much harder path from then on, as you will be
+travelling down the path that leads to the Lord of the Rings quests,
+including encounters with Tom Bombadil. Somewhere later the paths
+converge. Anyway, you won't be getting back to Hobbiton for a long time.
+
+There is a home in Bree for you to pick up your stuff that you may have 
+left behind in Hobbiton. In fact, most towns now have a home ready for you.
+
+
+[Q2.11]   Where is the dungeon guardian for (any wilderness dungeon)?
+
+Guardians for surface and towns on the surface will only appear at night.
+To determine how long until sunset, you can use the new time of day command.
+This is (^T) or (') in the roguelike keyset.
+
+
+[Q2.12]   The quest screen says I have to talk to Farmer Maggot. How do I
+do this?
+
+Quests are not enabled yet.  You can still use the quest command, but its
+only for testing purposes.  I expect to have quests implemented about
+version 0.7.0.
+
+

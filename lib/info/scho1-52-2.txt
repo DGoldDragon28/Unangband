@@ -1,0 +1,52 @@
+=== A crocheted woollen bookmark inserted in your first spell book ===
+
+This incongrous object appears poorly made until you notice the warp and
+weft of the weave corresponds to the dashes and dots of the Wizard Code.
+It is slow work translating the hidden message:
+
+The noblest responsibility of a wizard is to care for and guide those
+around him, much like a shepherd cares for his flock but if you lie
+amongst the lambs too long, you will get fleas, just as we are all fleas
+on the back of Arda, except those who are like a wolf in sheep's clothing
+which is the mother of necessity to the hunter who seeks his prey...
+
+Hmm... that doesn't make much sense and the translation work is giving
+you a headache. Luckily you managed to stay awake enough during wizard
+school to make some notes:
+
+- Detect Monsters will find all monsters around you, except those which
+are invisible to normal sight.
+
+- Magic Missile will be your main magical attack.
+
+- Which combined with Phase Door will allow you to stay away from targets
+and pepper them with damage from a distance.
+
+- Light Area lights up everything within line of sight of a certain
+radius around you. It will also magically light up rooms, except those
+which have been affected by certain gloomy magics.
+
+- Wizard Lock will allow you to magically lock doors so that they are
+much harder to open. This can help you escape monsters, even slowing
+those which can open or bash doors, if there is a door between you and
+them.
+
+- Torch is your alternative magical attack: it does higher damage but
+with a limited range and will be ineffective against monsters which
+are immune to fire damage. You can also use Torch to start fires, or
+burn through some locked doors.
+
+- Mend Light Wounds isn't effective against healing potions but should
+keep you alive long enough to survive most minor cuts and poisons.
+
+- Stinking Cloud is an effective damage over time attack that is
+especially useful against breeding monsters as all poison affecting
+the parent will be passed on to their spawn. Be careful not to use it up
+close or you will poison yourself.
+
+- Confused monsters will be highly inaccurate with their ranged
+attacks which may cause them to accidentally hit those around them.
+
+Good luck!
+
+(Thing seemed a lot easier on graduation day).

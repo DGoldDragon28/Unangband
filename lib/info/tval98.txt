@@ -1,0 +1,20 @@
+=== A Crumpled up Note ===
+
+Ah, so you've found a magical bag.  These are one of the most
+useful objects you can have in a dungeon, because they let you
+carry virtually an unlimited amount of items in them, without
+getting any heavier than they already are.
+
+Each magical bag has twenty pockets or so, and each pocket is
+designed for one kind of item.  So you might find magical
+bags for various kinds of wands, or useful supplies, or scrolls
+and so on.  The bag will automatically swallow any such items
+that you have in your inventory or which you pick up.
+
+To see what you have in a bag, just inspect or examine it, just
+as you would any other item. And to use the contents of a bag,
+just select the bag when you would any other item.
+
+Good luck with your new find,
+
+G.

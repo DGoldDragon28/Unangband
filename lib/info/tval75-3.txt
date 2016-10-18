@@ -1,0 +1,28 @@
+=== On Coating Sharp Weapons with Potions ===
+
+The various harmful potions you find can be used 
+by applying them to edged weapons using the apply command 
+('y' or '^G' in the roguelike command set).  Not every 
+weapon can be so coated: in particular most magical weapons 
+will repell the potion's coating.  The potion coating also
+makes the weapon slightly harder to use, so there is
+a slight risk that you may cut yourself on the
+envenomed edge and therefore have the potion coating
+effects apply to you.
+
+The coating, once applied, will have 20% of the effect-
+iveness of the original potion with each successful
+hit against the monster.  The coating will have
+only so many charges before it becomes ineffective, so
+you'll probably want to carry additional potions with
+you to reapply the coating as and when required.
+
+Potion coatings are 'blood agents' in that they are only
+effective against monsters with circulatory systems.
+You can tell these monsters as they bleed when cut.
+Monsters without blood are not affected by potion
+coatings.  In addition, the monster's usual resistances
+will apply.  Often, the most effective coating users are
+archers or throwing specialists who are able to fill
+their quiver with a selection of coated weapons for use
+against differing monsters.

@@ -1,0 +1,223 @@
+=== Styles ===
+
+        Each classes may choose to specialise in a particular style for a
+        10% additional experience penalty in return for getting a bonus in
+        differing situations.
+        
+        Note to Angband players: Some classes, notably Rangers and Priests
+        are less powerful than the Vanilla Angband characters but may choose
+        to regain their former abilities through particular choices of styles.
+        To match the Angband classes, you must choose the Hafted speciality
+        for Priests and the Bow speciality for Rangers. 
+        To compensate, non-specialised Rangers and Priests have less of an
+        experience penalty than their Vanilla counterparts.
+
+        The styles confer a number of different benefits as explained below.
+        The rate of progress of these abilities can vary with each class.
+
+***** <Unarmed>
+        Unarmed
+                The Unarmed specialist has an un-equalled unarmed fighting
+                prowess.
+                When fighting with their bare hands (No weapon or shield
+                worn), they gain to hit and damage bonuses, improved armour
+                class and at higher levels, attack with multiple blows and
+                additional critical damage.
+
+***** <One-handed>
+        One-handed
+                The One-handed specialist is a flashy fighter, capable of
+                targetting their attacks with precision. When not using 
+                a shield, a one-handed specialist gets additional to hit 
+                bonuses, improved natural armour class and can cause 
+                additional critical damage at higher levels.  One-handed 
+                weapons have up to 15 lbs in weight.
+
+***** <Two-handed>
+        Two-handed
+                The Two-handed specialist is a honorable and deadly warrior.
+                When not using a shield, a Two-handed specialist gets
+                additional to hit and damage with their weapon, 
+                and gains additional blows in melee at higher levels.  
+                Two-handed weapons are any weapons that weigh more than 10 lbs.
+
+***** <Dual-wield>
+        Dual-wield
+                The Dual-wield specialist is a savage and brutal warrior,
+                capable of using a weapon in each hand to confuse and injure
+                his opponents.  When wielding two weapons at a time, 
+                a Dual-wield specialist can use the 2nd weapon to provide 
+                additional armour class and at higher levels, attack with it 
+                in addition to their primary weapon.  Weapons that can be 
+                dual wielded include any weapon under 15 lbs, as long as both 
+                weapons are identical types, and any weapon under 20lb may be 
+                paired with a secondary throwing weapon.
+
+***** <Shield & weapon>
+        Shield & weapon
+                The Shield & weapon specialist is a valiant defender of the
+                weak and vigilant upholder of chivalry and smiter of evil. 
+                When using a weapon and shield, this specialist gains 
+                additional armour class and can gain additional blows 
+                at higher levels.
+
+***** <Hafted weapons>
+***** <Polearms>
+***** <Swords>
+        Hafted weapons/Swords/Polearms
+                This style specialises in a particular style of weapons
+                preferring them to all others. With their preferred weapon
+                type (Either hafted or polearm weapons or swords), they
+                may gain an advantage to hit and damage and additional blows
+                at higher levels.
+
+***** <Thrown weapons>
+        Thrown weapons
+                The thrown weapon specialist has perhaps the widest variety of
+                ranged attack options, but the weight of his ammunition usually
+                exceeds that of archers.  When throwing well-balanced throwing
+                weapons, the throwing specialist achieves increasing accuracy,
+                rate of hurls and damage multiplier at higher levels.
+
+***** <Slings>
+        Slings
+                The sling specialist can sling a wide variety of shots and
+                thrown weapons in his sling to good effect.  With a sling 
+                equipped, these weapons can be fired with increasing accuracy,
+                rate of fire and damage multiplier at higher levels.
+
+***** <Bows>
+        Bows
+                The bow specialist prefers to pincushion his target with many
+                arrows.  With a bow equipped, arrows can be fired with 
+                increasing accuracy and rate of fire at higher levels.
+
+***** <Cross-bows>
+        Cross-bows
+                The cross-bow specialist prefers to pinning his target to a
+                conveniently located wall or other surface, with the metal 
+                bolts that his weapon fires.  With a cross-bow equipped, 
+                bolts can be fired with increasing accuracy and damage 
+                multiplier at higher levels.
+
+***** <Slay Orcs>
+***** <Slay Giants>
+***** <Slay Trolls>
+***** <Slay Dragons>
+***** <Slay Animals>
+***** <Slay Undead>
+***** <Slay Demon>
+***** <Slay Evil>
+        Slay Orcs/Giants/Trolls/Dragons/Animals/Undead/Demon/Evil
+
+                These specialists have devoted a life long training regime to
+                the fighting styles required to defeat a particular creation
+                of Morgoth. Dwarves in particular prefer to learn the ways
+                to combat other races. When fighting their hated type of
+                creature, specialists gain to hit and damage bonuses and can
+                cause additional critical damage at higher levels.  
+                In addition, they gain a sixth sense about the presence 
+                of these creatures.
+ 
+***** <Magic books>
+***** <Prayer books>
+        Magic Books / Prayer Books
+
+                Many spell casters devote an themselves to the in depth pursuit
+                of a particular magical type. Styling themselves Geomancers,
+                Necromancers, Illusionists or otherwise, they have
+                a deep understanding of a particular style of magic. Each
+                spell book contains the creations of the greatest mages in
+                the particular field.
+                
+                Others have no natural spell casting ability, but have been
+                gifted with an ability or have a natural talent for 
+                a particular type of magic, and limited mastery of magic 
+                in this particular area only.
+
+                If the character would not normally have the ability to cast
+                spells, they instead gain a limited amount of mana 
+                and the ability to learn and cast spells from a single 
+                magic book or school of magic.  Specialised spell casters 
+                who could normally cast spells, can instead cast spells 
+                from their specialised book or school of magic at roughly 
+                twice the effective power of a non-specialised mage, 
+                and learns them approximately 20% earlier.
+
+***** <Amulets>
+        Amulets
+                Amulet specialists have a thorough knowledge of magical
+                talismans and the relationship between the materials used in
+                these devices and the magic they manifest.  Amulet specialists
+                may identify simple amulets as they see them, and slowly
+                improve in the range of magical amulets identified at higher
+                levels.  They can also wear a second amulet and activate 
+                the magic contained in their amulets for bigger effect.
+                Fighters are known to set up amulets as an extra protection 
+                for their chests.
+
+***** <Wands>
+        Wands
+                Wand specialists have a working knowledge of wands of various
+                types and the magics they invoke.  A wand specialist will
+                be able to identify simple wands as they see them, and slowly
+                improve in the types of wands identified at higher levels.  In
+                addition, the effects of wands they use or set in traps is
+                increased at up to 3 times the damage that a non-specialist
+                benefits from.
+
+***** <Staffs>
+        Staffs
+                Staff specialists have a working knowledge of staves of various
+                types and the magics they invoke.  A Staff specialist will
+                be able to identify simple staves as they see them, and slowly
+                improve in the types of wands identified at higher levels.  In
+                addition, the effects of staves they use or set in traps is
+                increased at up to 3 times the damage that a non-specialist
+                benefits from, and they may gain an advantage to hit and damage
+                and additional blows at higher levels when using a staff in
+                combat.
+
+***** <Potions>
+        Potions
+                Potion specialists have a sound understanding of the physical
+                and magical principles behind the reagents required for magic
+                potions. They may identify simple potions as they encounter
+                them, and slowly improve in the complexity of potions
+                identified at higher levels.  In addition, potion specialists
+                have access to a system of alchemical formulas that allows them
+                to re-write the effects of potions effects when using a potion
+                as a grenade.  This system of alchemical formulas requires
+                significant study and experimentation.
+
+***** <Scrolls>
+        Scrolls
+                Scroll specialists have a deep knowledge of ancient and modern
+                magical writings and how they relate to the underlying spell
+                processes. They may identify simple scrolls as they see
+                them, and slowly improve in the range of magical scrolls
+                identified at higher levels.  In addition, the effects of
+                scrolls they use or set in traps is increased at up to 3 times
+                the damage that a non-specialist benefits from.
+
+***** <Rings>
+        Rings
+                Ring specialists have a refined knowledge of the interactions
+                of metals, minerals and settings required for magical jewelry
+                such as rings.  Jewelers may identify simple rings, improving
+                in the number of types identified at higher levels. 
+                They can also wear three rings at once and activate the magic
+                of some rings with greater power.  Fighters used to magic rings
+                on their fingers will find their grip on weapons less sure 
+                when no rings are worn.
+
+***** <Instruments>
+        Instruments
+                Instrument specialists may wield musical instruments of a
+                variety of types to improve the power of particular songs. It
+                is believed that there is one effective musical instrument for
+                each type of bardic song book, that can be used in conjunction
+                with any spell cast from either the song book or the equivalent
+                magic or prayer book that also contains it.
+
+

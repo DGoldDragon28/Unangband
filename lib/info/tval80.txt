@@ -1,0 +1,17 @@
+=== On Food and Related Victuals ===
+
+You'll need to be well-fed in order to be a succesful adventurer - if
+you look at your inventory ('i') you'll see that you started with some
+food, and perhaps 'one for the road'.  You can use the eat command
+('E') to eat food and drink wine to satisfy your hunger.  Some foods
+have additional properties that you can take advantage of, especially
+the delicious mushrooms that are available at Farmer Maggot's mushroom
+store.  Other mushrooms are not so tasty, even if you just have a
+nibble, so be sure of what you eat first.  If it's poisonous, you'll
+remember for later.
+
+Keep an eye on your food levels.  If you don't eat properly, you'll
+become weak with hunger, faint from lack of food and eventually
+starve to death.  Many a noble adventurer has succumbed to the oversight
+of not carrying enough food to allow them to journey safely through
+wilderness.

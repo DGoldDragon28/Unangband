@@ -1,0 +1,200 @@
+
+
+=== Stats ===
+***** <Str>
+          Strength
+               Strength is important in fighting with weapons and in melee
+               combat.  A high strength can improve the amount of damage
+               done with each hit.  Characters with low strengths may
+               receive penalties.  Strength is also useful in tunnelling
+               and in carrying heavy items.  You may find some weapons
+               too hard to use if your strength is not equal to or greater
+               than the weapon weight in pounds.  Finally, strength improves
+               the range of thrown weapons and firing from slings and bows.
+               The firing speed from crossbows can be improved with a
+               sufficiently high strength.
+
+***** <Int> 
+          Intelligence
+               Intelligence is important in improving your accuracy with
+               weapons both in melee combat and fired or thrown attacks as
+               well. A high intelligence can also reduce the chance of
+               breaking thrown weapons or fired ammunition, so is very
+               useful for archers and particularly for thrown weapon
+               specialists.
+               Intelligence also affects the spellcasting abilities of many
+               spellcasters.  Intelligence will affect the number of spells
+               you may learn each level. A good intelligence can also help
+               with using magic devices, picking locks, and disarming traps.
+ 
+***** <Wis>
+          Wisdom
+               Wisdom is important in both physical and magical defense. 
+               A high wisdom will increase your overall armour class, whilst
+               a low wisdom will penalise it.  A good wisdom can also help
+               to improve your chances of resisting magical spells cast upon
+               you by monsters.  A high wisdom will increase the number of
+               spell points you earn at each level for the majority of spell
+               casting classes.
+ 
+***** <Dex>
+          Dexterity
+               Dexterity represents your manual dexterity and coordination.
+               A high dexterity may allow a character to get multiple blows
+               with lighter weapons, thus greatly increasing his kill power,
+               and will increase his chances of hitting with any weapon, both
+               in melee combat and at range.  Dexterity is also useful in
+               picking locks and disarming traps.
+               Magical spell casters, such as mages, artisans, rangers and
+               warrior mages require dexterity to assist in the casting of
+               their spells - a high dexterity will decrease the overall
+               failure chance of spell casting for these classes.  Wearing
+               gloves will however penalize magical spell casters however.
+ 
+***** <Con>
+          Constitution
+               Constitution is a character's ability to resist damage to his
+               body, and to recover from damage received.  Therefore a
+               character with a high constitution will receive more hit
+               points and also recover them faster while resting.  Spell
+               casters will also notice their mana increase with increasing
+               constitution.  This mana reserve can be drawn on in times of
+               danger to allow the caster to cast additional spells.  This
+               extra reserve of mana poses the risk of temporarily draining
+               or damaging the caster's overall health, so should not be
+               used too often.
+ 
+***** <Chr>
+          Charisma
+               Charisma represents a character's personality and physical
+               magnetism.  A character with a high charisma will receive
+               better prices from store owners, whereas a character with a
+               very low charisma may be robbed blind.  A high charisma
+               character will cause monsters to flee from him sooner, and
+               makes it less likely for monsters to use their ranged attacks
+               or to summon their fellow monsters - this makes charisma an
+               ideal 'crowd control' ability.  Finally, charisma assists in
+               the control of summoned monsters and in the use of magics
+               that charm or influence monsters, whether the magic is from
+               a spell or magical device that the player uses, or from
+               the abilities of their allies.
+               Priestly spell casters, such as priests and paladins require
+               charisma to assist in the casting of their spells - a high
+               charisma will decrease the overall failure chance of spell
+               casting for these classes.
+               
+***** <Agi>
+          Agility
+               Agility is a measure of your quickness and overall altheticism.
+               A high agility will increase your overall speed, and a very low
+               agility will slow you down, even if you are not currently
+               encumbered. Agility also increases your overall defence against
+               physical attacks and helps greatly with protecting yourself from
+               some of the thieves that inhabit the dungeons. Indeed, if 
+               the character has a high enough agility, thieves will
+               never be successful in stealing from the player.
+
+***** <Siz>
+          Size
+               Size is a numeric representation of the character's height and
+               weight.  It directly influences these two abilities, and the
+               resulting benefit of larger height and weight also increases
+               the character's overall hit points.  Size also greatly benefits
+               your ability to charge with heavy weapons, and can allow you
+               to achieve large amounts of damage with the heaviest of weapons.
+               Note: size cannot exceed your strength without slowing you down.
+               For every 2 points your size is over your strength, your agility
+               is lowered by one.
+
+=== Abilities ===
+
+          Characters possess some different abilities which can help them
+          to survive.  The starting abilities of a character are based upon
+          race and class.  Abilities may be adjusted by high or low stats,
+          and may increase with the level of the character.
+
+          Infra-vision
+               Infra-vision is the ability to see heat sources. Since  most
+               of the dungeon is cool or cold, infra-vision will not allow
+               the player to see walls and objects.  Infra-vision will allow
+               a  character  to see any warm-blooded creatures up to a cer-
+               tain distance.  This ability works equally well with or with
+               out a light source.  However, many of Angband's creatures are
+               cold-blooded, and will not be detected unless lit up by a
+               light source. All non human races have innate infra-vision
+               ability.  Humans (including Dunedain) cannot gain infra-vision 
+               unless it is magically enhanced. Infravision does not increase
+               with character level, and is purely dependent on race and on 
+               magical equipment.
+ 
+          Fighting
+               Fighting is the ability to hit and do damage with weapons or
+               fists.  Normally a character gets a single blow from any
+               weapon, but if his dexterity and strength are high enough,
+               he may receive more blows per round with lighter weapons.
+               Strength and dexterity both modify the ability to hit an
+               opponent.  This skill increases with the level of the char-
+               acter.
+ 
+          Shooting Ability
+               Using ranged missile weapons such as bows, slings and cross-
+               bows is included in this skill.  Different stats apply to
+               different weapons, but this ability may modify the distance an
+               object is fired, the amount of damage done, and the ability
+               to hit a creature.  This skill increases with the level of
+               the character.
+ 
+          Throwing Ability
+               Pretty much every object in the dungeon can be thrown and this
+               ability governs the skill, number of hurls and damage that can
+               be achieved.  Well-balanced throwing weapons are preferable -
+               such as daggers, spears and potions.  The effects of thrown
+               weapons vary wildly - from exploding flasks, potions and spores
+               to trick throws of well-balanced weapons from the main weapon 
+               equipment slot that take a whole turn but hit multiple targets.
+               This skill increases with the level of the character.
+ 
+          Saving Throws
+               A Saving Throw is the ability of a character to resist the
+               effects of a spell cast on him by another person/creature.
+               This does not include spells cast on the player by his own
+               stupidity, such as quaffing a nasty potion.  This ability
+               increases with the level of the character, but then most
+               high level creatures are better at casting spells, so it
+               tends to even out.  A high wisdom also increases this abil-
+               ity.
+ 
+          Stealth
+               The ability to move silently about is very useful.  Charac-
+               ters with good stealth can usually surprise their opponents,
+               gaining the first blow.  Also, creatures may fail to notice
+               a stealthy character entirely, allowing a player to avoid
+               certain fights.  This skill is based entirely upon race and
+               class, and will never improve unless magically enhanced.
+ 
+          Disarming
+               Disarming is the ability to remove traps safely, and also
+               includes picking locks on traps and doors.  A successful
+               disarming will gain the character some experience.  A trap
+               must be found before it can be disarmed.  Dexterity and
+               intelligence both modify the ability to disarm, and this
+               ability increases with the level of the character.
+ 
+          Magical Devices
+               Using a magical device such as a wand or staff  requires
+               experience and knowledge.  Spell users such as mages and
+               priests are therefore much better at using a magical device
+               than say a warrior.  This skill is modified by intelligence,
+               and increases with the level of the character.
+
+          Searching Ability
+               To search is to actively look for secret doors, floor traps,
+               and traps on chests, as well as notice many other secrets in
+               the dungeon.  This skill is modified by intelligence,
+               and increases with the level of the character.
+
+          Digging Ability
+               This allows you to tunnel out sections of the dungeon, which
+               can reward you with buried treasure, and a safe place to hide.
+               This skill is modified by strength, but does not increase
+               with the level of the character.

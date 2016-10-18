@@ -1,0 +1,46 @@
+=== Getting Information in Game ===
+
+By far the best source of information about the world around you can be
+found within the game itself.
+
+At any time, you can bring up a list of what monsters aware of by pressing
+the '[' key. Pressing this key again allows you to cycle through various ways
+to display this information, sorting by distance or depth (difficulty) and
+either hiding or showing objects you are aware of in addition to monsters.
+This menu will hide if it would overlap your character's location on screen.
+
+You should frequently use the 'l'ook command, or e'x'amine in the roguelike
+keyset to see what is around you.   This will allow you to look around at
+grids and examine them in more detail.  Press ESC to exit the look mode,
+use the direction keys to cycle between interesting grids, and the space bar
+to cycle between items in a single grid. You can press 'p' while looking to
+change the mode to allow you to look at any grid, as opposed to just
+interesting ones. The 'r' key (for recall) will allow you to recollect the
+information you have learned so far about whatever you are now looking at.
+
+You can also recall things that you can't currently see in one of two ways.
+Firstly, you can recall based on the letter that is used to represent it by
+default, by pressing the '/' key followed by the letter you wish to recall.
+You will then be able to cycle through a list in the main display. Pressing
+'r' at any point will provide more details about the currently shown item.
+
+By far the most useful repository of information is the knowledge menus
+which you can access by pressing '~'. This is a veritable encyclopaedia of
+everything you have encountered so far incorporating what you and your
+ancestors have learned. The knowledge menus should be straight forward to
+navigate using your movement keys. Again, pressing the 'r' key will recall
+more information about the currently selected item.
+
+Under the options menu you have the ability to redirect many of the useful
+subscreens out to separate windows by using the 'W' command from the options
+menu accessed through the '=' key. This gives you the ability to rearrange
+the display of useful information to ensure you are up to date with what is
+around you in the game.
+
+If you do want to spoil yourself, there are various options that will mark
+you as a cheater, as well as the ability to generate spoiler files should
+you want to refer to information that could be learned by time, trial and
+error. And for the ultimate up to date information, you can refer to the
+source code of the game, although that will require an understanding of C
+code and the idiom used by the various developers who have contributed to
+Unangband and its predecessors.

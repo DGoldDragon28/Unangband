@@ -1,0 +1,207 @@
+# File: d_info.txt
+
+
+# This file is used to initialize the "lib/data/d_info.raw" file, which is
+# used to describe rooms in the dungeon.
+
+# Do not modify this file unless you know exactly what you are doing,
+# unless you wish to risk possible system crashes and broken savefiles.
+# After modifying this file, delete the "lib/data/d_info.raw" file.
+
+# Room descriptions (see below)
+
+# XXX XXX XXX This table *must* be correct or drastic errors may occur!
+
+#All S:SEEN descriptions start 'You have entered a/an name1 name2. ' This is
+#why we provide name entries at the end without a description.
+
+#All descriptions are supplied if the character is not blind, and
+#enters a lit room or lights a dark room. Without the SEEN flag,
+# descriptions are supplied if the character enters a dark room or a
+#room while blind.
+
+# Note that the "spacing" in the "description" lines is very important!
+
+# N: this: next : percentage : minimum level
+# A: name of room
+# B: type of room
+# D: description
+
+# F: feature
+# Generate extra features for this room
+
+# G: graphic
+# Generate extra creatures with this graphic for this room.
+
+# K: item
+# Generate extra items of this tval for this room.
+
+# L: ACID | OIL | CHASM | LAVA | ICE | WATER
+# Only generate on levels marked as this.
+# NORTH: Line north wall of this room with items | feature.
+# SOUTH: Line south wall of this room with items | feature.
+# EAST: Line east wall of this room with items | feature.
+# WEST: Line west wall of this room with items | feature.
+# CENTRE: Fill centre (Excluding walls) of this room with items | feature.
+
+
+# R: flag
+# Generate extra monsters with this flag for this room.
+
+# S:SEEN | ICKY
+# Room special flags as follows:
+# SEEN: This description is only given if room is lit.
+# ICKY: This is an anti-teleport room
+
+# Placement of monsters, features, objects, treasure.
+
+# INNER: Generate inner room. This will be occasionally
+# a double inner room, or four small rooms, or some inner
+# rooms as per type 4 (If large enough).
+# FILLED: Fill inner with this.
+# PIT: As filled, but ordered monsters.
+# NORTH: Along north wall.
+# SOUTH: Along south wall.
+# EAST: Along east wall.
+# WEST: Along west wall.
+# EDGE: All edges.
+# CENTRE: Single instance in centre.
+# CHECK: Checkerboard pattern. (Every 2nd, even on even rows, odd on odd)
+# PILLAR: Pillar patten (Every 2nd, only on even rows).
+# SCATTER: Scattered around the room.
+# RANDOM: Random occurence.
+# MONSTER: Any monster
+# OBJECT: Any object.
+# CROSS: Cross shape inner.
+# PINCH: 'Pinch' the inner shut.
+# DOUBLE: Double inner room.
+
+# Existing rooms.
+
+# Type 1: Occasional pillar (1 in 20)
+# F:32
+# S:PILLAR
+
+# Type 1: Occasional ragged edges (1 in 50)
+# F:32
+# S:CHECK | EDGE
+
+# Type 2: Note inner is intersection of 2 rooms only, with 1 space around them.
+#
+# eg.		######
+#               #    #
+#		#    #
+#           #####    #
+#	    #	 ++++#
+#           #    ++++#
+#           #    ++++#
+#           ##########
+
+
+# Type 3: 25%
+
+# Type 3: No feature (25%)
+
+# Type 3: Large solid middle pillar (25%)
+# F:32
+# S:FILLED
+
+# Type 3: Inner treasure vault (25%)
+# S:INNER | MONSTER (4-5) | OBJECT | TRAPS (3-5)
+
+# Type 3: Occasionally 'pinch' centre (8%)
+# S:PINCH
+
+# Type 3: Occasionally cross in centre (8%)
+# S:CROSS
+
+# Type 3: Occasionally pillar in centre (9%)
+# F:32
+# S:CENTRE
+
+# Type 4: 25%
+
+# Type 4: Large room (with inner room) 80%
+# INNER | MONSTER (1)
+
+# Type 4: Large room (with inner maze) 20%
+# F:32
+# INNER | CHECK
+
+
+# Type 3: Occasionally cross in centre (8%)
+# S:CROSS
+
+
+# Type 5: unusual & 25%
+
+# Type 5: Monster nest. We don't necessarily generate
+# these in large rooms anymore.
+
+# Jelly pit (30%)
+# G:ijm,
+# S:FILLED | INNER
+
+# Zoo (20%)
+# R:ANIMAL
+# S:FILLED | INNER
+
+# Graveyard (50%)
+# R:UNDEAD
+# S:FILLED | INNER
+
+# Orc pit (20%)
+# G:o
+# S:PIT | INNER
+
+# Troll pit (20%)
+# G:T
+# S:PIT | INNER
+
+# Giant pit (20%)
+# G:P
+# S:PIT | INNER
+
+# Red Dragon pit (4%)
+# G:ADd
+# R:BR_FIRE
+# S:PIT | INNER
+
+# Green Dragon pit  (4%)
+# G:ADd
+# R:BR_POIS
+# S:PIT | INNER
+
+# Black Dragon pit  (4%)
+# G:ADd
+# R:BR_ACID
+# S:PIT | INNER
+
+# White Dragon pit  (3%)
+# G:ADd
+# R:BR_COLD
+# S:PIT | INNER
+
+# Blue Dragon pit  (3%)
+# G:ADd
+# R:BR_ELEC
+# S:PIT | INNER
+
+# Multi-hued Dragon pit (3%)
+# G:ADd
+# R:BR_FIRE | BR_ACID | BR_COLD | BR_POIS | BR_POIS
+# S:PIT | INNER
+
+# Demon pit (20%)
+# G:U
+# S:PIT | INNER
+
+
+
+
+
+# Type 3:
+
+
+# Type 4: 
+

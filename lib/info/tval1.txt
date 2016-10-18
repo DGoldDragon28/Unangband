@@ -1,0 +1,20 @@
+=== Skeletons & Bones ===
+
+Monster remains litter the dungeon and can be used to hint at what
+creatures inhabit the level you are currently on. Approximately two thirds
+of body parts you find will be from creatures that live on the current
+level. If you find rooms littered with bones, this strongly suggests that
+hungry creatures that gnaw and rend flesh are near.
+
+Occasionally you will find a skeleton from a creature deeper in the
+dungeon - you can 'I'nspect or e'x'amine this to find out some information
+about the creature in question, even if you have not previously encountered
+it. If the most powerful monster on a level is significantly more dangerous
+than other monsters on the level, you will find a lot more remains than you
+would otherwise expect to do so, and far less other creatures.
+
+It is also rumoured that powerful magics and magic-users can animate the
+bones of departed creatures from the dead into powerful skeletal opponents.
+You suspect, with no flesh on their bones, that such creatures would be
+resistant to edged weapons, and magically immune to various weaknesses of
+the flesh such as poison, cold and electricity.

@@ -1,0 +1,194 @@
+=== Playing the Game ===
+
+    Most of your interaction with Unangband will take the form of "commands".
+Every Unangband command consists of an "underlying command" plus a variety of
+optional or required arguments, such as a repeat count, a direction, or the
+index of an inventory object.  Commands are normally specified by typing a
+series of keypresses, from which the underlying command is extracted, along
+with any encoded arguments.  You may choose how the standard "keyboard keys"
+are mapped to the "underlying commands" by choosing one of the two standard
+"keysets", the "original" keyset or the "roguelike" keyset.
+
+    The original keyset is very similar to the "underlying" command set,
+with a few additions (such as the ability to use the numeric "directions" to
+"walk" or the "5" key to "stay still").  The roguelike keyset provides similar
+additions, and also allows the use of the h/j/k/l/y/u/b/n keys to "walk" (or,
+in combination with the shift or control keys, to run or alter), which thus
+requires a variety of key mappings to allow access to the underlying commands
+used for walking/running/altering.  In particular, the "roguelike" keyset
+includes many more "capital" and "control" keys, as shown below.
+
+    Note that any keys that are not required for access to the underlying
+command set may be used by the user to extend the "keyset" which is being
+used, by defining new "keymaps".  To avoid the use of any "keymaps", press
+backslash ("\") plus the "underlying command" key.  This is normally only
+used in "macro" definitions.  You may enter "control-keys" as a caret ("^")
+plus the key (so "^" + "p" yields "^P").
+
+    Some commands allow an optional "repeat count", which allows you to tell
+the game that you wish to do the command multiple times, unless you press a
+key or are otherwise disturbed.  To enter a "repeat count", type '0', followed
+by the numerical count, followed by the command.  You must type "space" before
+entering certain commands.  Skipping the numerical count yields a count of 99.
+An option allows certain commands (open, disarm, alter, etc) to auto-repeat.
+
+    Some commands will prompt for extra information, such as a direction, an
+inventory or equipment item, a spell, a textual inscription, the symbol of a
+monster race, a sub-command, a verification, an amount of time, a quantity,
+a file name, or various other things.  Normally you can hit return to choose
+the "default" response, or escape to cancel the command entirely.
+
+    Some commands will prompt for a spell or an inventory item.  Pressing
+space (or '*') will give you a list of choices.  Pressing "-" (minus) selects
+the item on the floor.  Pressing a lowercase letter selects the given item.
+Pressing a capital letter selects the given item after verification.  Pressing
+a numeric digit '#' selects the first item (if any) whose inscription contains
+"@#" or "@x#", where "x" is the current "underlying command".  You may only
+specify items which are "legal" for the command.  Whenever an item inscription
+contains "!*" or "!x" (with "x" as above) you must verify its selection.
+
+    Some commands will prompt for a direction.  You may enter a "compass"
+direction using any of the "direction keys" shown below.  Sometimes, you may
+specify that you wish to use the current "target", by pressing "t" or "5", or
+that you wish to select a new target, by pressing "*" (see "Target" below).
+
+        Original Keyset Directions       Roguelike Keyset Directions
+
+                 7  8  9                           y  k  u
+                 4     6                           h     l
+                 1  2  3                           b  j  n
+
+
+    Each of the standard keysets provides some short-cuts over the "underlying
+commands".  For example, both keysets allow you to "walk" by simply pressing
+an "original" direction key (or a "roguelike" direction key if you are using
+the roguelike keyset), instead of using the "walk" command plus a direction.
+The roguelike keyset allows you to "run" or "alter" by simply holding the
+shift or control modifier key down while pressing a "roguelike" direction key,
+instead of using the "run" or "alter" command plus a direction.  Both keysets
+allow the use of the "5" key to "stand still", which is most convenient when
+using the original keyset.
+
+    Note that on many systems, it is possible to define "macros" to various
+keys, or key combinations, so that it is often possible to make macros which,
+for example, allow the use of the shift and/or control modifier keys, plus a
+numeric keypad key, to specify the "run" or "alter" command, with the given
+direction, regardless of any keymap definitions, by using the fact that you
+can always, for example, use "\" + "." + "6", to specify "run east".
+
+
+=== Special Keys ===
+ 
+        Certain special keys may be intercepted by the operating system or
+the host machine, causing unexpected results.  In general, these special keys
+are control keys, and often, you can disable their special effects.
+
+        If you are playing on a UNIX or similar system, then Ctrl-C will
+interrupt Unangband.  The second and third interrupt will induce a warning
+bell, and the fourth will induce both a warning bell and a special message,
+since the fifth will quit the game, after killing your character.  Also,
+Ctrl-Z will suspend the game, and return you to the original command shell,
+until you resume the game with the "fg" command.  There is now a compilation
+option to force the game to prevent the "double ctrl-z escape death trick".
+The Ctrl-\ and Ctrl-D and Ctrl-S keys should not be intercepted.
+ 
+        It is often possible to specify "control-keys" without actually
+pressing the control key, by typing a caret ("^") followed by the key.
+This is useful for specifying control-key commands which might be caught
+by the operating system as explained above.
+
+        Pressing backslash ("\") before a command will bypass all keymaps,
+and the next keypress will be interpreted as an "underlying command" key,
+unless it is a caret ("^"), in which case the keypress after that will be
+turned into a control-key and interpreted as a command in the underlying
+Unangband keyset.  The backslash key is useful for creating macro actions
+which are not affected by any keymap definitions that may be in force, for
+example, the sequence "\" + "." + "6" will always mean "run east", even if
+the "." key has been mapped to a different underlying command.
+
+        The "0" and "^" and "\" keys all have special meaning when entered
+at the command prompt, and there is no "useful" way to specify any of them
+as an "underlying command", which is okay, since they would have no effect.
+
+        For many input requests or queries, the special character ESCAPE
+will abort the command.  The "[y/n]" prompts may be answered with "y" or
+"n", or escape.  The "-more-" message prompts may be cleared (after reading
+the displayed message) by pressing ESCAPE, SPACE, RETURN, LINEFEED, or by
+any keypress, if the "quick_messages" option is turned on.
+ 
+
+=== Command Counts ===
+ 
+        Some commands can be executed a fixed number of times by preceding
+them with a count.  Counted commands will execute until the count expires,
+until you type any character, or until something significant happens, such
+as being attacked.  Thus, a counted command doesn't work to attack another
+creature.  While the command is being repeated, the number of times left
+to be repeated will flash by on the line at the bottom of the screen.
+
+        To give a count to a command, type 0, the repeat count, and then
+the command.  If you want to give a movement command and you are using the
+original command set (where the movement commands are digits), press space
+after the count and you will be prompted for the command.
+ 
+        Counted commands are very useful for time consuming commands, as
+they automatically terminate on success, or if you are attacked.  You may
+also terminate any counted command (or resting or running), by typing any
+character.  This character is ignored, but it is safest to use a SPACE or
+ESCAPE which are always ignored as commands in case you type the command
+just after the count expires.
+
+        You can tell Unangband to automatically use a repeat count of 99
+with commands you normally want to repeat (open, disarm, tunnel, bash,
+alter, etc) by setting the "always_repeat" option.
+
+=== Selection of Objects ===
+ 
+        Many commands will also prompt for a particular object to be used.
+For example, the command to read a scroll will ask you which of the
+scrolls that you are carrying that you wish to read.  In such cases, the
+selection is made by typing a letter of the alphabet.  The prompt will
+indicate the possible letters, and will also allow you to type the key
+"*", which causes all of the available options to be described.  The list
+of choices will also be shown in the Choice window, if you are using a
+windows environment and windows are turned on.  Often you will be able to
+press "/" to select an object from your equipment instead of your
+inventory.  Pressing space once will have the same effect as "*", and
+the second time will cancel the command and run the "i" or "e" command.
+ 
+        The particular object may be selected by an upper case or a lower
+case letter.  If lower case is used, the selection takes place
+immediately.  If upper case is used, then the particular option is
+described, and you are given the option of confirming or retracting that
+choice.  Upper case selection is thus safer, but requires an extra key
+stroke.  Also see the "!*" and "!x" inscriptions, below.
+
+        For many commands, you can also use "-" to select an object on the
+floor where you are standing.  This lets you read scrolls or quaff
+potions, for example, off the dungeon floor without picking them up.
+
+        If you enter a number between 0 and 9, the first item engraved
+with "@#" where "#" is the number you entered will be selected.  For example,
+if you have a shovel engraved with "@0" and you type "w" (for wield) and
+then 0, you will wield the shovel.  This is very useful for macros (see
+below), since you can use this to select an object regardless of its
+location in your pack.  For example, Unangband automatically defines a macro
+for the key "X" to do "w0".  If you then engrave both your digging
+instrument and your primary weapon with @0, pressing X will wield
+whichever one is not being currently wielded (letting you quickly switch
+between them).  Multiple numbers can be engraved on the same object; for
+example, if a sword is engraved with @1@0, then either "w1" or "w0" will
+wield it.  Normally, you inscribe "@1@0" on your primary weapon, and
+"@2@0" on your digger or secondary weapon.  Note that an inscription
+containing "@x#" will act like "@#" but only when the current "Angband
+command" is "x".  Thus you can put "@z4" on a rod and "@u4" on a staff,
+and then use both "z4" and "u4" as desired.
+
+        Note that any object containing "!x" in its inscription, where
+"x" is the current "angband command" (or containing "!*" ever) will induce
+"verification" whenever that object is "selected".  Thus, inscribing, say,
+"!f!k!d" on an object will greatly reduce the odds of you "losing" it by
+accident, and inscribing "!*" on an object will allow you to be very paranoid
+about the object.  Note that "selling" and "dropping" both use the "d" command.
+
+

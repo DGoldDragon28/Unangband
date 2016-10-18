@@ -1,0 +1,119 @@
+=== Prayer Specialists ===
+
+    There are two types of prayer book specialists: those who are solely
+    dedicated to a particular religion, and those who specialise in the
+    a more narrow path of devotion than a single religion. Both types of
+    specialists are more effective at making prayers in their specialist
+    area, at the cost of not being able to learn as widely as generalist
+    priests, in addition to the standard experience penalty for specialists.
+    
+    There are a number of different religions in Middle-Earth, or at least, a
+    number of different greater powers which those who practise the religions
+    arts from Prayer Books can dedicate themselves to. The Prayer book you
+    start with, and the prayer books you find stocked in the shops will be
+    based on the religion you select - if you are a religous specialist this
+    will be the same as the religion you specialise in.
+    
+    Those who devote themselvs to a narrower path gain their benefits only
+    for a limited number of prayers in their religion - those which match the
+    particular path of study they have chosen. For instance, a Mandos specialist
+    in Abjuration will get the benefits of speciality from their starting
+    Detect Evil spell, but not towards their Benediction spell. A path
+    specialist is free to choose any religion, but some religions start with
+    more prayers which benefit from the speciality than others.
+    
+    There is one prayer book for each path specialist which contains all of the
+    spells they have specialised in: these books can only be located in
+    the dungeon, or certain stores which can only be found late in the game.
+    
+    Both religious and path specialists are restricted from learning or browsing
+    the books of other religions, although the 'dungeon' books can be learned from
+    by any priest or prayer book user.
+
+    Note that the religions are currently under development and it is
+    strongly recommended that you choose Mandos to start with - if you are
+    presented with a choice at all.  The other religions do not yet have the
+    full, balanced and intended prayer set beyond the starting books.
+
+***** <Mandos>
+        Mandos
+           The followers of Mandos gain the most flexible spell selection
+           for defense and a broad and powerful range of direct offensive
+           spells, without forfeitting either healing or detection arts.
+           
+           Followers of Mandos start with the prayer book of Castigations.
+
+=== The Paths of Religion ===
+
+***** <The Way of God>
+        The Way of God
+
+           The devotees of the Way of God practise movement in all its
+           forms, allowing them to travel from place to place without
+           moving through the intervening space.
+           
+***** <Divine Insights>
+        Divine Insights
+        
+           The devotees of Divine Insights practise divination,
+           detection and prognostication of the unknown, allowing them
+           to sense everything around them.
+           
+***** <Laying of Hands>
+        Laying of Hands
+        
+           The devotees of Laying of Hands prize healing above all else
+           and have the ability to recover from damage and disease that
+           few others can master.
+
+***** <Most Holy Relics>
+        Most Holy Relics
+        
+           The devotees of Most Holy Relics unlock, remove curses, bless,
+           recharge and enchant all objects.
+
+***** <Holy Wrath>
+        Holy Wrath
+           
+           The devotees of Holy Wrath strike down evil, undead and all
+           those who oppose them.
+
+***** <Miracles>
+        Miracles
+        
+           The devotees of Miracles provide protection and resistance to
+           magical and physical attacks.
+
+***** <Battle Hymns>
+        Battle Hymns
+        
+           The devotees of Battle Hymns improve the blows of their weapons
+           and shield themselves on the battle field from the attacks
+           of others.
+
+***** <Retribution>
+        Retribution
+
+           The devotees of Retribution conjure fire, light and the holy
+           words of their god to oppose their enemies.
+           
+***** <the Dead>
+        The Dead
+        
+           The devotees of the Dead pierce the veil between the living
+           and the dead to return the undead to their proper realm or
+           summon restless spirits.
+
+***** <Abjurations>
+        Abjurations
+
+           The devotees of Abjurations detect, protect and ward against
+           curses and evil.
+        
+***** <Accursed Ways>
+        Accursed Ways
+
+           The devotees of Accursed Ways twist healing magic to harm
+           others, or raise the dead from their graves.
+           
+           

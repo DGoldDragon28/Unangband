@@ -1,0 +1,25 @@
+           -- Creating a Character --
+
+Please choose one of the following online help files:
+
+    (1) Character Creation Overview (birth.txt)
+    (2) Stats and Skills            (stats.txt)
+    (3) Character Races             (races.txt)
+    (4) Character Classes           (classes.txt)
+    (5) Character Styles            (styles.txt)
+    (6) Character Magical Studies   (studies.hlp)
+    (7) Options                     (option.txt)
+
+
+
+ ?  : return to previous menu
+ ESC: leave help
+
+***** [1] birth.txt
+***** [2] stats.txt
+***** [3] races.txt
+***** [4] classes.txt
+***** [5] styles.txt
+***** [6] studies.hlp
+***** [7] option.txt
+

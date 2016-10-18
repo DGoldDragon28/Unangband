@@ -1,0 +1,952 @@
+HANDS
+
+If a character is not carrying anything in their hands (no weapon,
+shield, missile weapon or light source), they may swim or climb, 
+allowing them to ignore water damage or falling into terrain. This
+requires a skill test as well for swim or climbing skill as
+appropriate, and is heavily penalised by armour.
+
+
+MONSTER REVISIONS
+
+Template for each monster genus/kind/race.
+Monster races associated with a particular genus/kind (ie Bats, red
+dragons) to allow "proper" pits/summon_same, using rg_idx/rk_idx.
+Have centralised maintenance for rg_idx/rk_idx list if needed.
+Monster r_list editor with attribute inherietence.
+Valid flags listed at start of r_info file to confirm parsing.
+Unimplemented flags ignored.
+Template for monster variables specified at start of r_info file.
+Unimplemented variables ignored.
+
+Allow monsters to have all spells from s_info file.
+Allow monsters to target ball spells next to you/not shoot friends with
+bolts.
+
+NEW MONSTERS
+
+E
+Djinn
+Dao
+Efreet
+Marid
+Jinn
+
+f
+Hell cat
+Demoncat
+Weretiger
+Werelion
+Werepanther
+
+F (move to 'I'nsect and replace with 'F'ish)
+Giant blue fly
+Giant green fly
+Giant black fly
+Giant white fly
+Giant bottle fly
+Giant white butterfly
+Giant yellow butterfly
+Giant orange butterfly
+Giant blue butterfly
+Giant green butterfly
+Giant red butterfly
+Giant white moth
+Giant black moth
+Giant grey moth
+Giant brown moth
+Giant damsel fly
+Giant copper dragon fly
+Giant silver dragon fly
+Giant brass dragon fly
+Giant diamond dragon fly
+Giant topaz dragon fly
+Giant emerald dragon fly
+Giant sapphire dragon fly
+Giant amethyst dragon fly
+Hell fly
+Demonfly
+Werefly
+
+g
+
+Mechanism
+Automaton
+Clockwork avian
+Clockwork beast
+Clockwork mushroom patch
+Clockwork bat
+Clockwork ant
+Clockwork dog
+Clockwork fly
+Clockwork spider
+Clockwork scorpion
+Clockwork worm
+
+G
+Wendigo
+
+h
+Boggle
+Pookah
+Leprachaun
+Gremlin
+Jermalaine
+Faerie
+Sprite
+Brownie
+Pixie
+Pukelman
+Nixie
+Dryad
+Maenad
+Sylph
+Sirine
+Mermaid
+Merman
+Selkie
+
+H
+
+i
+Gelatinous icky thing
+Squelching icky thing
+
+I
+Giant grub
+Giant termite worker
+Giant termite soldier
+Giant termite guardian
+Giant termite queen
+Hell hornet
+Demonbee
+Demonflea
+
+j
+Clear jelly
+Red jelly
+Orange jelly
+Black jelly
+Grey jelly
+Clear pudding
+White pudding
+Grey pudding
+Green pudding
+Yellow pudding
+Brown pudding
+Red ooze
+Pink ooze
+Yellow ooze
+White ooze
+Grey ooze
+Clear ooze
+Silver ooze
+
+K
+Killer borer beetle
+Killer green beetle
+Killer yellow beetle
+Killer copper beetle
+Killer dung beetle
+Killer gold beetle
+Killer black beetle
+
+l
+Giant brown louse
+Giant grey louse
+Giant yellow louse
+Giant green louse
+
+m
+Sticky mold
+Scaly mold
+Spiny mold
+Rotting mold
+
+
+q
+Giant weasel
+Giant stoat
+Giant otter
+Bear cub
+Bear
+Black bear
+Grizzly bear
+Polar bear
+Werebear
+Wild horse
+Werehorse
+Sea horse
+Giant seahorse
+Black mare
+Death mare
+Grey mare
+
+s
+Floating claw
+Floating hand
+Floating head
+Floating skull
+Floating mouth
+Floating body
+Crawling claw
+Crawling hand
+Crawling body
+Headless body
+Headless horseman
+Skeleton centipede
+Skeleton goblin
+Skeleton snake
+Skeleton elf
+Skeleton gnome
+Skeleton dwarf
+Skeleton ogre
+Skeleton horse
+Skeleton bear
+Skeleton dinosaur
+Skeleton dragon
+Skeleton wolf
+Skeleton cat
+Skeleton hydra
+Skeleton naga
+Skeleton lizard
+Skeleton lizardman
+Skeleton troglodyte
+Skeleton frog
+Skeleton ape
+Skeleton giant
+
+S
+Stone spider
+River spider
+Rock spider
+Water spider
+Swamp spider
+Forest spider
+Giant pink tick
+Giant black tick
+Giant grey tick
+Giant yellow tick
+Giant green tick
+Giant black scorpion
+Giant white scorpion
+Giant green scorpion
+
+u
+Night hag
+Green hag
+Black hag
+Cave hag
+Blue hag
+Water hag
+Mountain hag
+Bog hag
+Sea hag
+Gargoyle
+Margoyle
+Kaocinth
+Bird demon
+Snake demon
+Lizard demon
+Frog demon
+Crab demon
+Bee demon
+Fly demon
+Cat demon
+Dog demon
+Pig demon
+Bear demon
+Horse demon
+Goat demon
+Fish demon
+
+U
+Mountain demon
+River demon
+Hill demon
+Ice daemon
+Fire demon
+Lightening demon
+Tunnel demon
+Grave demon
+Pit demon
+Bog demon
+Stone demon
+Forest demon
+Cave demon
+Sea demon
+Swamp demon
+Half demon
+Night demon
+Horned demon
+Wrinkled demon
+Scaly demon
+Toothed demon
+Hooked demon
+Spiny demon
+Fanged demon
+Hairy demon
+Tentacled demon
+Rotting demon
+Warty demon
+Slimy demon
+
+V
+Kobold vampire
+Orc vampire
+Troll vampire
+Elf vampire
+Gnome vampire
+Dwarf vampire
+Ogre vampire
+Goblin vampire
+Cave vampire
+Drowned vampire
+Bog vampire
+Crypt vampire
+Mountain vampire
+Mirkwood vampire
+Cairn vampire
+Tunnel vampire
+Pit vampire
+
+w
+Slimy worm mass
+Rotting worm mass
+Warty worm mass
+Wrinkled worm mass (LOSE_ALL)
+Undead worm mass
+Giant black worm
+Giant earth worm
+Giant red worm
+Giant blue worm
+Giant white worm
+Giant grey worm
+Giant yellow worm
+Giant green worm
+Giant nether worm
+Giant disenchanter worm
+Giant water worm
+Giant sea worm
+Leech
+Giant leech
+Giant black slug
+Giant grey slug
+Giant brown slug
+Giant white slug
+Giant black snail
+Giant grey snail
+Giant white snail
+Giant blue snail
+Giant iridescent snail
+Giant red snail
+Giant green snail
+Giant brown snail
+
+W
+Night wight
+Cave wight
+Black wight
+Green wight
+Drowned wight
+Red wight
+Grey wight
+Bog wight
+Crypt wight
+Mountain wight
+Mirkwood wight
+River wight
+Cairn wight
+Dark wight
+Tunnel wight
+Pit wight
+Green wraith
+Bog wraith
+Red wraith
+Death wraith
+Night wraith
+Cave wraith
+Crypt wraith
+Dark wraith
+Dragon wight
+Nighthunter
+Nightstalker
+Nighthand
+Nightblade
+Nightfist
+Nightslayer
+Nightstealer
+Nightshadow
+Nightrunner
+Nightslither
+Nightswimmer
+Nightcreeper
+Nighttracker
+
+X
+Xerna
+
+y
+Mirkwood goblin
+Cave goblin
+Hill goblin
+Mountain goblin
+Sea goblin
+River goblin
+Black goblin
+Night goblin
+Swamp goblin
+Goblin
+Goblin warrior
+Goblin priest
+Goblin witchdoctor
+Goblin shaman
+Goblin mage
+Goblin archer
+Goblin chieftan
+Goblin sergeant
+Goblin lord
+Goblin mechanic
+Goblin engineer
+Goblin thief
+Goblin assassin
+Half goblin
+Half goblin thief
+
+Y
+Baboon
+Gorilla
+Green monkey
+Brown monkey
+Black monkey
+Winged monkey
+White monkey
+White ape
+Black ape
+Green ape
+Brown ape
+
+z
+Zombie goblin
+Zombie snake
+Zombie elf
+Zombie gnome
+Zombie dwarf
+Zombie ogre
+Zombie horse
+Zombie bear
+Zombie dragon
+Zombie wolf
+Zombie cat
+Zombie hydra
+Zombie naga
+Zombie lizardman
+Zombie troglodyte
+Zombie lizard
+Zombie frog
+Zombie ape
+Zombie giant
+Mummified kobold
+Mummified goblin
+Mummified snake
+Mummified elf
+Mummified gnome
+Mummified dwarf
+Mummified ogre
+Mummified horse
+Mummified bear
+Mummified dragon
+Mummified wolf
+Mummified cat
+Mummified hydra
+Mummified naga
+Mummified lizard
+Mummified lizardman
+Mummified troglodyte
+Mummified frog
+Mummified ape
+Mummified giant
+
+Z
+
+ROOM DESCRIPTIONS
+
+Allow unusually shaped rooms with larger interiors/pillars. 
+Allow other shapes of maze rooms (Spiral/maze generators/tessilated). 
+Allow larger rooms subdivided into smaller areas. 
+Allow wider corridors (2 or 3 width) deep in dungeon, sometimes with pillars 
+or lit. 
+Allow pits/nests to be describe with room descriptions.
+
+EGO OBJECTS:
+
+Have rings/wands/staves/wands/potions defined by a base type, with various
+flavours for enchanted objects. Magical objects have an activation value
+associated with them for magical effects, and are defined just like ego
+items for magical weapons/armour. The base type defines the basic value of
+the non-magical item, and the activations modify the values, just like ego
+weapons.
+
+ie	gold ring	ornate gold ring
+			runed gold ring
+			plain gold ring
+
+
+47 gold rings is a treasure, and is useful for its innate value. 1 ornate
+gold ring is a magical item.
+
+The activations are define for all possible magical items. Each particular
+type defines how the activation is used (ie quaff a potion/read a scroll
+etc.). The flavours are seeded differently for each item so that for
+instance an ornate gold ring has a different ego value from an ornate
+silver ring. However, all ornate gold rings have the same ego type (See
+ego flavours below).
+
+Stacking is possible, per ego ammunition.
+
+TREASURE:
+
+All money is defined as an object, rather than abstracted. Copper, silver,
+gold, platinum, mithril coins etc. are all denominations used. In addition
+there are uncut gems of various types (all mined), nuggets of various
+types (All mined), cut gems, jewelry (toe rings, earrings, anklets, ankhs,
+amulets, braclets, crowns, etc.), ingots, etc.
+
+The coins of the realm (copper half-pennies and pennies, silver shillings,
+gold half-crowns and crowns, pound sterling and pound aurum notes) are
+worth more than unknown coins and have a set (old) gold piece value.
+
+			Weight (1/100ths of pound)
+half-penny	1 gp		1
+penny           2 gp            1
+farthing        6 gp            1
+shilling        12 gp           1
+half-crown      144 gp          1
+crown           288 gp          1
+pound sterling	300 gp		1
+pound aurum	5760 gp		1
+
+The character has a purse, which can contain coins/notes of the realm only
+ie it has 8 slots, reserved for each type of coin/note. The purse is accessed
+with the $ key while in inventory/equipment or the 'p' key (Old prayer key)
+while not in inventory/equipment. The AU value represents the total (set)
+value of the purse. It is possible in this system to carry 576,000 gp in one
+pound of pound aurum notes (Redeemable for a pound of gold crowns).
+
+Therefore store owners will only trade objects for other objects. If an
+object a store owner receives is not sold in their store, they will not
+display it as wares, and value it less.  Treasure of various types (eg gold
+coins, gold nuggets, diamonds, etc.) will never be sold in a store.
+
+Store owners will offer change in addition to objects, in coins of the realm.
+
+Under this system, haggling is the process of offering additional objects to
+reach the agreed value.
+
+
+EGO FLAVOURS:
+
+leather gloves
+gauntlets
+soft leather boots
+hard leather boots
+metal shod boots
+soft leather cap
+hard leather cap
+metal cap
+iron helm
+steel helm
+cloak
+
+fabrics: mink, feather, silk, ermine, cotton, wool, filthy rag, dyed,
+bloodstained, spidersilk,
+
+leather: horse leather, tassled, dyed, skin, catskin, leopard skin,
+lion skin, bloodstained, studded, riveted, polished, enameled,
+dragonhide, mammoth hide, elephant hide,
+
+metals: silver, silver-plated, gold-plated, mithril-plated, jewelled,
+bronze, fine steel, cold iron, rusty, polished steel, broken, dull iron,
+black steel, enamelled, bloodstained, meteroic iron, dwarven, elven,
+glassteel, tarnished, orcish,
+
+steels/irons: fine, goldplated, adamite, meteoric, dull, rusty,
+polished, dented, enamel, bloodstained, silverplated, dwarven, elven,
+broken, barbed, riveted, studded, ribbed, tarnished, runed, orcish,
+
+QUESTS:
+
+From q_info.txt file.
+
+#Quest structure.
+
+#Not implemented yet, but a pool for ideas.
+
+#N:num:name (name is preceeded by 'You have ' in list of quests.)
+#U:race assigning quest
+#T:town:depth
+#Q:quest number completed?
+#A:artifact given by player?
+#K:item given by player?
+#R:race:num killed (0 for seen) (up to 4 lines)
+#G:item:ego item:artifact:experience gifted to player
+#S:summon race (summons this race, done first. Picks a random location on map.)
+#X:execute race (this kills uniques even if not on level)
+#L:leaving race (set to leaving)
+#E:enemy race (set to become enemies)
+#F:friendly race (set to allies)
+#D:description
+
+
+# Random quests need to be balanced somehow... they usually use 3 lines
+# for given, failed and completed, although failed is optional...
+
+# There are spying quests, recover item quests, and kill monster quests...
+
+
+# With creatures killed, we set the kill counter to currently killed +
+# n and the seen counter (For 0 killed) to currently seen + 1.
+
+# Quest recall is:
+
+# You have been told Farmer Maggot's story. Farmer Maggot seems sad
+# about something. Farmer Maggot allied himself with you. You were
+# given 1 experience for this action.
+
+# You have failed the quest for Maggot's missing dogs. Farmer Maggot
+# tells you to get off his land. You killed Grip, Farmer Maggot's dog,
+# Fang, Farmer Maggot's dog and Wolf, Farmer Maggot's dog, after
+# having been given the quest for Maggot's dogs. Farmer Maggot became
+# your enemy and left for elsewhere. You were given nothing for
+# this action.
+
+# You have given the One Ring to Smeagol. Smeagol says 'My precious!'.
+# You gave the plain gold ring of Power 'The One Ring' to Smeagol
+# on level 100 or deeper. Smeagol became your enemy and left for
+# elsewhere. You were given 100000 experience for this action.
+
+
+
+# Farmer Maggot's quests.
+
+# Have we talked to Mr. Maggot? He's sometimes a helpful chap...
+
+N:1:been told Farmer Maggot's story.
+U:14
+D:seems sad about something.
+G:0:0:0:1
+F:14
+
+# More talking...
+
+N:2:been given the quest for Farmer Maggot's missing dogs.
+U:14
+Q:1
+D:asks if you have seen his dogs.
+G:0:0:0:1
+
+# Have we killed all the dogs?
+
+N:3:failed the quest for Farmer Maggot's missing dogs.
+U:14
+Q:2
+R:51:1
+R:52:1
+R:919:1
+D:tells you to get off his land.
+L:14
+E:14
+G:0:0:0:0
+
+# Have we seen the dogs and not killed all of them?
+# Experience equal to that for killing all three dogs...
+
+N:4:been given the quest for Farmer Maggot's mushrooms.
+U:14
+Q:2
+R:51:0
+R:52:0
+R:919:0
+D:mumbles something about mushrooms.
+G:0:0:0:90
+
+# Gifts a potion of restore mana in return for a mushroom of mana
+# Should be D:leaves, his head spinning.... ;-)
+
+N:5:completed the Farmer Maggot quests.
+U:14
+K:28
+D:seems just a little happier.
+F:14
+L:14
+G:266:0:0:120
+
+
+#Gandalf the Grey fights Durin's bane.
+#N::says 'You must not pass. You must not pass!'
+#S:Durin's bane.
+
+#And gets killed, of course.
+
+
+# Death of Boromir
+
+#If we are the ring bearer, he asks us for the ring, and attacks us if we do not give it to him.
+
+#N::asks you for the One Ring.
+#U:xxx
+
+#If we are not, then he staggers out of the forest and dies.
+
+#N::gasps 'Orcs. They came from the forest.' and falls to the ground filled with arrows, and bleeding.
+#U:xxx
+#T:Perth Galen
+#S:Uruk_hai Captain
+#X:xxx (Kill Boromir)
+
+# Faramir, Guardian of Ilithien
+
+#N::says 'You are a trespasser here. Give us one reason, why we should not kill you?'
+#T:Ilithien:1
+#U:xxx
+
+#Attack player if Boromir has the ring, as he is under the influence of the ring.
+
+#N::says 'Boromir was here. He warned us against you.'
+#F:xxx
+
+#N::says 'Boromir dead? This rests heavy on my heart. But any friend of Boromir's is a friend of mine.'
+#U:xxx
+#R:Boromir:1
+#F:xxx
+
+#N::says 'You have freedom to take what supplies you need for the journey ahead.'
+#R:
+#L:xxx
+
+#N::says 'Any friend of Gandalf's is at least to be permitted to live. You have freedom to rest here a while.'
+#R:
+#We don't leave, so stores remain locked.
+
+# Death of Faramir --- happens in Minas Tirith
+
+#N::is carried in grievously injured, by Gandalf.
+#U:xxx
+#S:yyy (Somebody else).
+#X:xxx
+
+# Denethor's grief
+#N::lies weeping over the body of Faramir lain on a wooden pyre. He cries 'My son. My son...'.
+#U:xxx
+#R:xxx
+
+# Denethor's grief
+#N::says 'Give me fire. Give me fire for his body. I must burn him.'
+#U:xxx
+#Q:-1
+
+# Denethor's grief
+#N::says to Gandalf. 'You, you did this. You have killed my sons. I hold you responsible...'
+#U:xxx
+#Q:-1
+#E:xxx
+#S:xxx
+
+# Battle of Five Armies
+# Battle at Hornburg
+
+#Use quests to generate the armies. This way, we have problems if we kill our allied uniques, but
+#it's easier if we kill some enemy uniques.
+
+
+# One Ring quest
+
+#This means we get the ring at the start, and play the quest ourselves.
+#Is it unbalanced having the One Ring all the way through??
+
+#If we give the One Ring to Boromir, or anyone else except Gollum, we end up with a super-Sauron
+#equally tough as Morgoth. Also various other points are triggered. ie under some circumstances
+#Boromir does not die, so Faramir never becomes our friend, and we do not access Ilithien with
+#out killing him. Similiarly, if we kill various uniques, we have problems.
+
+#Beorn should be allowed to become a friendly, and if so, he appears at the Battle of Five Armies
+#as an ally.
+
+#The ring quest also causes us problems at various points on the road.
+
+#N:6:been asked for 'My precious' by Smeagol.
+#U:68
+#D:says 'Where'sss my preciousss... doesss it have it?'
+#G:0:0:0:100
+#F:68
+
+#N:7:given Sting to Frodo.
+#U:xxx
+#A:88
+#D:says 'Its too heavy a burden for me to bear, anymore.'
+#G:0:0:13:10000
+#F:xxx
+#L:xxx
+
+#N:102:given the One Ring to Bilbo.
+#U:xxx
+#A:13
+#D:says 'No, it's not for me. Not now.'
+#G:0:0:13:50000
+#F:xxx
+#L:xxx
+
+#N:103:given the One Ring to Smeagol.
+#U:68
+#A:13
+#L:100
+#D:says 'My precious!'
+#G:0:0:0:100000
+#E:68
+#L:68
+
+
+FRIENDLY MONSTERS/UNIQUES:
+
+Monsters fight other monsters under the following conditions:
+
+* hostile fights you.
+* friendly fight hostile --> hostile fights friendly.
+* anybody fights multipy if not the same race and if there are too many
+multiply creatures --> if there are too many multiply creatures,
+multiply creatures fight those not of the same race
+* mindless fight anything not of the same race
+* kill_body fights anything that is not the same race --> anybody flees
+kill_body if not of the same race or fight if cornered, unless friendly
+when they always fight
+* good fights evil --> evil fights good
+* betrayal monsters fight weak hostile monsters --> weak hostile
+monsters fight betrayal monsters
+
+And possibly:
+* demons fight animals --> animals flee demons or fight if cornered,
+unless friendly when they always fight
+* undead fight living if not summon undead --> living, if not summon
+undead, flee undead or fight if cornered, unless friendly, when they
+always fight
+
+Good monsters are neutral towards you unless marked friendly. Evil
+monsters are always hostile, unless marked betrayal. Demonic monsters
+are almost always betrayal unless summoned by hostiles. Neither good
+nor evil monsters are suspicious. Monsters that surrender because they
+cannot flee, become betrayal monsters, as are those marked BETRAYAL.
+Summoned monsters are always hostile if summoned by hostile, or BETRAYAL
+if summoned by you (Except familiars, which are friendly).
+
+You forget the id of items that a neutral, suspicious or hostile
+monster is carrying. However they use the id flag to mark if they know
+what the item they are carrying is. This enables them to use/value
+items if they are selling them to you.
+
+Friendly uniques (Not pets):
+
+Pippin, Samwise, Frodo Baggins, Bilbo Baggins, Mary, Gandalf, Aragorn,
+Gimlee, Legolas etc.
+
+Friendly monsters will give you useful objects that they carry.
+Friendly monsters will tell you information about unfriendly monsters
+that you encounter. ('Gandalf says "The pseudodragon can breath
+light."') Friendly monsters can tell you about monsters that are common
+on this level or occur deeper in the dungeon ('Gandalf tells you about
+the Dracolich. He says "It can breath nether.") Friendly monsters will
+warn you about out of depth monsters that are present on the level.
+('Gandalf warns you about the Ancient Multi-Hued Dragon on this level.
+He says "It can breath poison."') Monsters that are not smart will warn
+you about out of depth monsters, but not be able to tell you what the
+monster is, just a general description of it. ('The goblin warns you
+about a dangerous monster on this level. He says "It is undead and can
+breath nether."').
+
+Friendly monsters tell you about items that you have ('Gandalf says
+"The Phial of Gladriel activates to call light.") or out of depth items
+or artifacts that occur on this level that you have not found ('Gandalf
+tells you about the Power dragon scale mail on this level. He says "It
+can resist nether.").
+
+Friendly monsters have useful spells at their disposal ('Gandalf
+identifies the silver rod. He says "It is a rod of teleportation."',
+'Gandalf heals you', 'Gandalf is surrounded in bright light.' 'Gandalf
+casts a spell of monster detection. You sense the presence of
+monsters.'). Friendly monsters are never invisible unless you have
+betrayed them.
+
+Friendly monsters fight hostile monsters and help other friendly
+monsters. When you leave a level, friendly monsters perform one last
+action and then depart. Friendly uniques are marked with "You have
+encountered..." rather than "You have killed..." when they depart. This
+requires that you have seen them on the level first. Friendly uniques
+that have become hostile will attempt to leave rather than fight you,
+such as by teleporting away, climbing up or down stairs or fleeing.
+
+If you attack a friendly monster or hit it with spells, it becomes
+suspicious. It will become hostile if you continue to do so.
+
+Neutral monsters will talk to you to determine your intentions. Neutral
+monsters do their own thing. ('The novice mage identifies the silver
+rod.'). They may offer to sell you items that they are carrying or
+offer you services in return for items or money. If you give them
+stuff, they may temporarily help you, but as a rule become suspicious
+of you after a while. Neutral monsters fight other monsters if necessary.
+
+Suspicious monsters that are marked friendly may forgive you after a
+while. Suspicious monsters try to avoid you by staying out of melee
+range (> adjacent).  If you attack, corner or hit neutral / suspicious
+monster with spells, it becomes hostile.
+
+Betrayal monsters appear as friendly but they never give you useful
+information, help you with magic or give you items, except trivially
+('Smeagol tells you about the white worm mass. He says "It crawlsss to
+poison".') They will try to rip you off selling you stuff and so on.
+Bill Ferny, Wormtongue, Smeagol etc. are typical betrayal monsters.
+Typically betrayal monsters use a shortened name (up to the comma) until
+they betray you, at which point they use their long name. eg Wormtongue
+only becomes the Agent of Saruman after he betrays you.
+
+Betrayal monsters will fight weak monsters, but will betray you once
+they have determined your weaknesses or in the presence of tougher
+monsters. If attacked, they immediately become hostile.
+
+Guardian monsters act neutral, but become hostile if you try to 
+get or open anything in their line of sight.
+
+Stalking monsters flee in line of sight and 
+
+MONSTER SPEECH
+
+Hostile monsters communicate information about you amongst themselves
+('The mage says "The human warrior can resist fire.'), and wake others
+up, if afraid or attacking you ('The mage yells out in fear.' 'The mage
+screams in anger.' 'The mage yells out a warning.') Creatures say, cry
+out, yell or scream depending on how much of a threat you are. Some
+creatures whisper (undead), moan (undead), howl (dogs), wail (undead),
+gibber and so forth.
+
+h,p,t,y,o,etc.	UNDEAD		B		C		F
+says		whispers	chirps		growls		purrs
+yells out	gibbers		whistles	barks		miaows
+cries out	moans		caws		bays		hisses
+screams		wails		screeches	howls		catawauls
+
+J,R	R (frogs)	a,I
+hisses	croaks		chitters
+
+
+If you don't understand the language (eg animals/undead) the string is
+replaced by 'something' and you are warned you don't understand it.
+('The master lich whispers something. You don't understand it.')
+
+Monsters may have particular speech strings. Creatures do not have to
+speak to be able to use special strings eg.
+V:Miaow!
+V:Purrr...
+becomes:
+The scruffy cat says "Miaow!".
+
+V:Gol-lummm.
+V:Where's my preciousss?
+V:It hurtsss me!

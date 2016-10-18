@@ -1,0 +1,25 @@
+=== Religions ===
+
+    There are a number of different religions in Middle-Earth, or at least, a
+    number of different greater powers which those who practise the religions
+    arts from Prayer Books can dedicate themselves to.
+    
+    The Prayer book you start with, and the prayer books you find stocked in
+    the shops will be based on the god you worship, although you are capable
+    of learning spells from any religion.  Think of the religions more as a
+    dedication to a particular power and complementing set of spells than a
+    particular requirement, although each god does have its strengths and
+    weaknesses and secrets they keep from each other.
+
+    Note that the religions are currently under development and it is
+    strongly recommended that you choose Mandos to start with - if you are
+    presented with a choice at all.  The other religions do not yet have the
+    full, balanced and intended prayer set beyond the starting books.
+
+***** <Mandos>
+        Mandos
+           The followers of Mandos gain the most flexible spell selection
+           for defense and a broad and powerful range of direct offensive
+           spells, without forfeitting either healing or detection arts.
+           
+           Followers of Mandos start with the prayer book of Castigations.

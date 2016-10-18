@@ -1,0 +1,288 @@
+==== New Commands ====
+
+The following commands are new to Unnamed Angband:
+
+Apply rune (y) or Engrave a rune (^G)
+        Apply a rune from a runestone to an object. Applying runes to
+        objects can have various effects, depending on what type of object it
+	is.  Usually applying 1 or 2 of the same kind of rune to a weapon or
+        armour will have a minor beneficial effect, and 3, 4 or 5 runes will
+        transform the object into a powerful ego-item.  Note that some
+        combinations of runes and objects may result in a cursed object, as
+        opposed to a useful one.
+        Applying a rune to a potion, scroll, wand, staff, rod, ring or
+        amulet will transform it into another kind of object. Some
+        transformations significantly upgrade the power of the object,
+        particularly if you apply multiple runes to an object, or if you
+        apply a rune to an object that can be made from the kind of rune you
+        are applying.
+        Experiment with runes on objects that you don't particularly need
+        until you master the useful combinations.  If an object cannot have a
+        rune applied to it, it is likely to be an magic item, artifact or
+        powerful ego item of some kind.
+
+Assemble a part (Y) or operate a part (^O)
+        Assemble parts of an object together. Some objects you may find in the
+        dungeon come in components that need to be assembled together. You need
+        to assemble the pieces in a logical order, however you can partially
+        build an object to save on inventory space, before you find all the
+        required parts for the whole object.
+        It may be necessary to assemble objects you'd rather not otherwise do,
+        in order that you complete a quest.
+
+Display current quests (^Q) or display current quests ($)
+        This command displays all the quests you character currently knows
+        about, including their rewards and penalties for failure. If you
+        can start a quest by performing a set of actions, that information
+        will be displayed here.
+
+Display time of day (^T) or display time of day (')
+        This command displays the current date and how many hours until either
+        sunrise, midday, sunset or midnight.  This is useful for locating
+        guardian monsters which only appear on the surface at night.
+
+
+==== Changed Commands ====
+
+The following commands act differently from Vanilla Angband:
+
+--- Inventory Commands ---
+
+Destroy an item (k) or Destroy an item (^D)
+        Destroying some items will release whatever is trapped inside.
+
+--- Movement Commands ---
+
+Walk (with pickup) (;)
+Walk (flip pickup) (-)
+        If you walk into a hidden monster, you will push over it, as opposed
+        to attacking it, as you would an invisible monster.
+        If you are moving in water or over slippery or treacherous terrain,
+        or carry a large amount of equipment, you may find yourself becoming
+        tired, and forced to rest. This is affected by your Constitution: a
+        higher Constitution allows you to have to rest less frequently.
+
+Go up staircase or travel (<)
+        If you have a map, or are in campaign mode, you can use the < key to
+        travel to an adjacent location while you are on the surface.
+        This uses some food and adds to the time, and requires that you
+        are Full and near the edge of the wilderness map. You will be
+        required to recover from bleeding, stun or poison damage and other
+        conditions that impair you.
+
+Go down staircase or well (>)
+        You may climb down wells in the dungeon in addition to staircases.
+
+--- Searching Commands ---
+
+Search (s)
+        Searching can spot if water is deep, and identify many other hidden
+        terrain features.
+
+--- Alter Commands ---
+
+Tunnel (T) or Tunnel (^T)
+        You can tunnel into some of the new terrain, although ice will cut
+        you on its sharp edges.
+
+Open a feature (o)
+        Opening can be performed on some types of new terrain, such as
+        curtains and cupboards.
+
+Close a feature (c)
+        Closing can now be used on chests to protect items in the same
+        location as the chest from being stolen by monsters or damaged by
+        magical attacks. Cupboards also provide this benefit. Closing
+        previously locked doors will lock them again, although not as
+        effectively as before.
+
+Bash a feature (B) or Force a feature (f)
+        Trees and other wooden features may be bashed to destroy them.
+
+Disarm a feature (D)
+        Doors may also be trapped, and trapped doors may be disarmed as
+        a consequence.
+
+Jam a door/Set a trap (j) or Spike a door/Set a trap (S)
+        Certain objects can be effectively used to set a trap that can
+        delay, injure or even kill monsters. This command allows you to
+        attempt to set a trap using any object. Some objects will only prove
+        to be a distraction to monsters, however the majority should injure
+        or apply spell effects against a monster. This ability is affected
+        by your disarm skill - in particular you can accidentally set off
+        an object while you are attempting to set a trap with that object,
+        should it be significantly more powerful than your abilities.
+        You can also use spikes to make pit traps more dangerous.
+        This command may take a count, requires a direction, and takes some 
+        energy.
+
+--- Spell Commands ---
+
+
+Browse a book (b) or Peruse a book (P)
+        Browsing now allows you to select a spell in a spell books for
+        a comprehensive list of what effects that spell has.
+        All spell-using classes may read song books, but classes other
+        that bards and shamans will only be able to use some of the spells
+        from the book. 
+
+Gain new spells, prayers or songs (G)
+        You are not limited in Unangband to a maximum of 64 spells: instead
+        your intelligence and books available to you dictate what
+        magic you can learn. Note that priests and paladins may also study
+        at altars in the dungeon to learn spells: these are less useful in
+        that the spells may only cast while standing on the altar until you
+        discover the appropriate book they occur in. The various specialist
+        classes may also learn spells earlier.
+
+Cast a spell (m)
+        You must possess the book or be standing
+        on the appropriate altar to cast a spell. Note that all classes use this
+        command to cast spells. In future versions (p) will be used to prepare
+        items to make new magical items.
+        
+        You can also use this command to cancel singing a song, if you are a
+        bard.
+
+--- Object Manipulation Commands ---
+
+Eat some food (E)
+        You may also eat the fruit from various trees and bushes in the
+        Dungeon.
+
+Fill or fuel an item (F)
+        In addition to filling lanterns and torches, which you may now do to
+        lanterns and torches in your pack or on the floor, you may also fill
+        empty bottles and flasks from pools and fountains in the dungeon, in
+        order to acquire potions and flasks of oil and other items.
+
+Quaff a potion (q)
+        You may quaff from pools of water and from fountains when you are 
+        standing in them. Some of these may even have beneficial effects.
+
+Inscribe an object ({)
+        After inscribing an identified object, with the easy_autos option
+        selected, all such object kinds will be automatically inscribed with
+        the same inscription. If this is an ego item, all such ego items will
+        be inscribed instead.
+
+        The following additional inscriptions are available: =s, which stacks
+        2 items with this inscription together as if all the force_stack options
+        were available, =d which means you will never pick up an object with
+        this inscription, =k which means you will destroy an object with this
+        inscription when you walk over it and =i which means you will never 
+        remember an object with this inscription, so that it will not be
+        displayed on the overhead map.
+
+        In addition, the {good} pseudo-id is extended to include {very good}
+        and {great} inscriptions to indicate that an item is increasingly 
+        powerful but not an ego item, and the {excellent} pseudo-id is extended
+        to include {superb} pseudo-id which indicates the item in question is an
+        ego item with a hidden power (Typically the more powerful ego objects).
+
+        You can inscribe an item with =g5 to mean pick up this item unless I
+        already have 5 of it in my inventory. You can also inscribe it with =d5
+        to mean don't pick up this item if I have 5 or more of it in my
+        inventory.  You can also inscribe it with =k5 to mean destroy it on
+        pick-up if I have 5 or more of it in my inventory. You also inscribe it
+        with =i5 to mean ignore it if I have 5 or more of it in my inventory.
+
+        You can also inscribe an item with <5 to mean confirm if I have less
+        than 5 of this in my inventory and >5 to mean confirm if I have more
+        than 5 of this in my inventory.
+
+Uninscribe an object (})
+        After uninscribing an identified object, with the easy_autos option
+        selected, the automatic inscription will be removed for all objects of 
+        this kind. If this is an ego item, the ego item's auto inscription will
+        be cleared instead.
+
+--- Magical Object Commands ---
+
+Activate an worn object (A)
+        The rings and dragon armours that may be activated may stack with 1
+        instance of a charging item of the same type, if these items would
+        normally stack if charged, or as many instances as required if
+        stacking is forced on the objects.
+
+Aim a wand (a) or Zap a wand (z)
+        With pval stacking, wands do not unstack until they are empty, and
+        will only sometimes unstack if they are used while not identified.
+
+Use a staff (u) or Zap a staff (Z)
+        With pval stacking, staffs do not unstack until they are empty, and
+        will only sometimes unstack if they are used while not identified.
+        Staffs may also be wielded as weapons, for the most part having 1d6
+        damage, and possibly some special powers.
+
+Zap a rod (z) or Activate a rod (a)
+        Rods may stack with 1 instance of a charging rod of the same type
+        if timeout stacking is enabled, or will always stack with uncharged
+        rods if force timeout stacking is enabled.
+
+Fire or throw an item (f) or fire or throw an item (t)
+        Items that can be fired apply the appropriate damage type to the
+        monster they are thrown against, such as burning arrows, and to
+        the ground underneath.  Slings may now be used to lob potions
+        for a much greater distance, as well as improving the damage and
+        damage of throwing weapons, such as javelins or spears.
+
+        Important note: In order to take advantage of throwing weapons such
+        as daggers, batons, darts, javelins and spears, and the additional
+        benefits of throwing styles, you need to 'fire' rather than throw
+        these weapons. This restricts the list of items you may choose to
+        those balanced for throwing, but gives you the additional damage
+        multiplier and shots of your style, and counts the to-hit and damage
+        bonus of the weapon twice.  You cannot be wielding a bow, sling or
+        crossbow in order to do this.
+
+Throw an item (v)
+        This command is not used in Unangband. Use the fire or throw an item
+        command above.
+
+--- Looking Commands ---
+
+Look around (l) or Examine things (x)
+        You can look at yourself to see the room description of the room you are
+        in, and any object, monster or feature in a room other than the one you
+        are in.
+
+--- Game Status Commands ---
+
+Check knowledge (~)
+        This command allows you to ask about the knowledge possessed by
+        your character.  Currently, this includes being able to list all
+        known "artifacts", "uniques", "ego items" and "objects", and the
+        contents of your home. Normally, once an artifact is "generated",
+        and "lost", it can never again be found, and will become 
+	"known" to the player.  An artifact can never be "lost", 
+	until it is "known" to the player.  Any "known" artifacts 
+	not in the possession of the player will never again be 
+        "generated".  The "uniques" are special "unique" monsters which can
+        only be killed once per game.  Certain "objects" come in "flavors",
+        and you must determine the effect of each "flavor" once for each
+        such type of object, and this command will allow you to display all
+        "known" flavors. Other objects and ego items are displayed as you 
+        encounter them in the game.
+        Auto-inscriptions are inscriptions that are automatically created
+        when an item is created or identified. Currently you can set
+        auto-descriptions for all items of a particular type (tval), kind
+        or ego item type. In a future version, this will be expanded to
+        match the auto-squelch functions of other variants.
+        You can also use the knowledge menus
+
+--- Extra Commands ---
+
+Save html screen dump (]) or (^])
+        This command dumps a "snap-shot" of the current screen to the file
+        "dump.htm", including encoded color information. Unlike the above
+        screen shot commands, this screen dump is in html format. Currently
+        Unangband does not have the ability to reload html screen shots
+        dumped in this manner.
+
+        Using ctrl-right-bracket to invoke this command will dump the
+        html file but without any visual feedback as to the success or
+        failure of this command. This method of invoking this command may
+        be used any time Unangband is expecting keyboard input, however it
+        will use the currently set visual prefs, rather than the underlying
+        'ASCII' visuals.

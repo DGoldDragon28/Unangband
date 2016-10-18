@@ -1,0 +1,231 @@
+=== Classes ===
+ 
+          Once a race has been chosen, you will need to pick a class.  For
+          the first few games it  is  suggested that you choose Istari, to
+          allow you to enjoy all aspects of the game without restriction
+          until you know which skills you enjoy using the most.
+ 
+***** <Warrior>
+          Warrior
+               A Warrior is a hack-and-slash character, who solves most  of
+               his  problems  by cutting them to pieces, but will occasion-
+               ally fall back  on the help of a magical device. A Warrior
+               will be good at  Fighting and Throwing/Bows, but bad at most
+               other skills.  Because they rely on melee weapons so much,
+               a Warrior needs to keep alert for monsters that are resist-
+               ant or immune to edged or blunt weapons - to compensate it's
+               probably worth carrying a backup weapon of the other type.
+
+***** <Mage>
+          Mage
+               A Mage must live by his wits.  He cannot hope to simply hack
+               his  way  through the dungeon, and so must therefore use his
+               magic to defeat,  deceive, confuse, and escape.  A Mage is
+               heavily reliant on his magic books, from which he can learn
+               a vast range of spells as he desires, but these do weigh
+               down his often slender frame.  Sometimes it may be worth a
+               Mage looking at a song book, to see if there are secrets
+               that can be gleened from within and various magical circles
+               within the dungeon can also be studied for useful research
+               notes.
+               A mage's Intelligence determines the number of spells that
+               they can learn, Wisdom determines the mana that a mage may
+               safely use and Dexterity determines the failure rate of their
+               magical spells.  Because a mage requires good dexterity for
+               casting their intricate spells, they will be penalised for
+               wearing gloves or impeding themeselves with too heavy armour.
+ 
+***** <Priest>
+         Priest
+               A Priest is a character of holy devotion.  They explore  the
+               dungeon  only  to destroy the evil that lurks within, and if
+               treasure just happens to fall into  their  packs,  well,  so
+               much  more  to  the  glory of their church!  Priests receive
+               their spells from a deity, and therefore do not choose which
+               spells they will learn from prayer books, but may be able to
+               graft their way through song books to learn spells in a
+               guaranteed order.  Various altars within the dungeon can be
+               studied for divine insight and the revelations recalled
+               through prayer beads.
+               A priest's Intelligence determines the number of spells that
+               they can learn, Wisdom determines the mana that a priest may
+               safely use and Charisma determines the failure rate of their
+               priestly spells.
+               While a priest is a fairer fighter than mages, due to their
+               experience working the fields and fallows of their temples,
+               a priest is expressly forbidden from wielding any melee
+               weapon unless it has been first blessed by their god.
+               Certain orders of the priesthood have been granted a papal
+               exemption for weapons that do not have edges to let blood. 
+               
+ 
+***** <Artisan>
+         Artisan
+               An Artisan is the master of traps and locks, no device being
+               impossible for  him  to  overcome, and he puts this to good
+               use setting traps around the dungeon for monsters to fall
+               foul of.  The Artisan is also superior to all other classes
+               for their magical item skills and should rely on them heavily,
+               either directly or by in the traps he is renowned for.  An
+               Artisan can also learn a few spells from magic books or song
+               books, but not the powerful offensive spells that mages can use.
+               An Artisan's Intelligence determines the number of spells that
+               they can learn, Wisdom determines the mana that an artisan may
+               safely use and Dexterity determines the failure rate of their
+               magical spells.  Because an artisan requires good dexterity
+               for casting their intricate spells, they will be penalised
+               for wearing gloves or impeding themeselves with too heavy
+               armour.
+ 
+***** <Ranger>
+         Ranger
+               A Ranger is an archer/mage.  He is a good fighter,  and  the
+               best  of  the  classes aside from an archer with a missile
+               weapon such as a bow.  The ranger learns spells much more
+               slowly than a  mage,  and is not capable of as much
+               offensive magic as a mage, or even warrior mage, but can
+               offset this through clever use of magic to enhance his
+               fighting and archery skills, from both magic books and
+               song books.
+               A ranger's Intelligence determines the number of spells that
+               they can learn, Wisdom determines the mana that a ranger may
+               safely use and Dexterity determines the failure rate of their
+               magical spells.  Because a Ranger requires good dexterity
+               for casting their intricate spells, they will be penalised
+               for wearing gloves or impeding themeselves with too heavy
+               armour.
+                
+***** <Paladin>
+          Paladin
+               A Paladin is a warrior/priest.  He is a very  good  fighter,
+               second  only to the warrior class, but not very good at mis-
+               sile weapons.  He receives prayers at a slower pace then the
+               priest,  but  can even  receive the most  powerful  prayers.
+               Because a paladin is  really  a  dual  class  character,  it
+               requires  more  experience  to advance him.  Paladin's receive
+               their spells from a deity, and therefore do not choose which
+               spells they will learn from prayer books, but may be able to
+               graft their way through song books to learn spells in a
+               guaranteed order.
+               A Paladin's Intelligence determines the number of spells that
+               they can learn, Wisdom determines the mana that a paladin may
+               safely use and Charisma determines the failure rate of their
+               paladin spells.  A Paladin has been granted exemption by
+               their gods to allow them to fight freely without requiring
+               their weapons been blessed.
+ 
+***** <Thief>
+          Thief
+               A Thief is a stealthy and cunning counterpart to the Warrior
+               or Archer.  The thief has the highest stealth of any class,
+               and is the only class to have their stealth improve over the
+               levels.  He is as good a fighter as an Artisan, but does not
+               have the magical item skills or spells that an Artisan may
+               use to get out of tight spots. Instead, he must rely on his
+               cunning and skill, avoiding tougher monsters and hoping to
+               steal the treasure from under their noses or entangle and
+               divert them in traps set throughout the dungeon.
+
+***** <Archer>
+          Archer
+               The archer is to missile weapons, what the warrior is to
+               melee. The archer has the highest missile weapon skills of
+               any class, and must rely in this skill to scoot and shoot
+               to engage enemies, as their melee skills are inadequate
+               for hand to hand fighting. Because the archer does not have
+               magical abilities, they do not require much experience to
+               advance in levels.  An Archer should rely on a variety of
+               ammunition in his quiver, supplemented by enchantments and
+               coatings where possible to use against different monsters.
+               
+***** <Shaman>
+          Shaman
+               The shaman is a multi-class Priest/Mage, capable of casting
+               from both prayer and magic books, as well as supplementing
+               their magic from song books. Because of their highly
+               magical bent, they do not tend to have as many skills as
+               either the priest or mage class, and do not tend to get spells
+               from either class as quickly, except for elemental attack
+               and creature summoning type spells, which they are the equal
+               or superior of the other magic-users.
+               A Shaman's Intelligence determines the number of spells that
+               they can learn, Wisdom determines the mana that a Shaman may
+               safely use and Dexterity determines the failure rate of their
+               shamanic spells.
+               The Shaman is a poor fighter and expressly forbidden from
+               wielding any melee weapon unless it has been first blessed by
+               their god.  Because a Shaman requires good dexterity for
+               casting their intricate spells, they will be penalised for
+               wearing gloves or impeding themeselves with too heavy armour.
+
+***** <Bard>
+          Bard
+               The Bard is a special spellcaster, who uses songs and musical
+               instruments to cast magical spells. The Bard keeps their
+               spells in song books, from where they graft to learn a
+               progression of spells, but are capable of reading both Magic
+               and Prayer books, but may not find all spells (Even similar
+               to their songs) legible in these books. Bards are unique
+               in that many of their songs can be continued from round to
+               round while they perform other activities.  A Bard's
+               Dexterity determines the number of spells that they can
+               learn the complex fingerwork to, their Charisma determines
+               the mana that a Bard may safely use and their Constitution
+               determines the failure rate of their Bardic spells.
+               Because a Bard requires good dexterity for casting their
+               intricate spells, they will be penalised for wearing gloves
+               or impeding themeselves with too heavy armour.
+               
+***** <Warrior Mage>
+          Warrior Mage
+               The Warrior Mage is a mix of the warlike and magic-using arts.
+               While he is a good fighter, his archery and throwing skills
+               suffer through lack of use, as he prefers to use the magical
+               arts to attack at range.  The Warrior Mage learns spells more
+               more slowly than a  mage, but is not restricted in what spells
+               he can learn from Magic Books.
+               A Warrior Mage's Intelligence determines the number of spells
+               that they can learn, Wisdom determines the mana that a ranger
+               may safely use and Dexterity determines the failure rate of
+               their magical spells.  Because a Warrior Mage requires good
+               dexterity for casting their intricate spells, they will be
+               penalised for wearing gloves or impeding themeselves with too
+               heavy armour.
+
+***** <Istari>
+          Istari
+               The Istari are fine warriors who can also use the priestly
+               and magical arts as well as magical devices and bows.  They
+               are intended as an easier class to play in order to learn all
+               about Unangband, but a win with an Istari is not considered
+               as challenging as a win with any other class.   
+               A Istari's Intelligence determines the number of spells
+               that they can learn, Wisdom determines the mana that a Istari
+               may safely use and Dexterity determines the failure rate of
+               their magical and priestly spells.  Because of the divine
+               mandate of the Istari, they may use weapons freely and are
+               not hindered by wearing gloves, although heavy armour can
+               penalise their magic.
+
+***** <Rogue>
+          Rogue
+               A Rogue is a character that prefers to live by his cunning,
+               but is capable of fighting his way out of a tight spot.  A
+               rogue has a high stealth allowing him to sneak around many
+               creatures without having to fight, to rob them blind given
+               half a chance, or sneak up and get the first blow - only a
+               thief is more stealthy.  A rogue's perception is higher
+               than any other class, and many times he will notice a
+               trap or secret door before having to search.  A rogue is
+               better than warriors or paladins with magical devices, but
+               still cannot rely on their performance.  Rogues can also
+               learn a few spells, but not the powerful offensive spells
+               mages can use.
+               An Rogue's Intelligence determines the number of spells that
+               they can learn, Wisdom determines the mana that an rogue may
+               safely use and Dexterity determines the failure rate of their
+               magical spells.  Because a rogue requires good dexterity
+               for casting their intricate spells, they will be penalised
+               for wearing gloves or impeding themeselves with too heavy
+               armour.
+               

@@ -1,0 +1,115 @@
+=== Creating a Character ===
+
+Unangband is a roleplaying game, in which you, the player, control a character
+in the world of Unangband.  Perhaps the most important thing you control is the
+birth of your character, in which you choose or allow to be chosen various
+attributes that will affect the future life of your character.
+
+Character creation, or birth, is controlled through a variety of choices
+as to constraints on the type of character you wish to play, followed by
+a series of random calculations to generate ("roll up") a random character
+matching the appropriate constraints.
+
+Once your character has been generated, you will be given the choice to
+generate a new character obeying the same constraints, and once you have
+generated more than one character, you can switch back and forth between
+the two most recent characters, until you are presented with a personality
+that you feel comfortable with.
+
+You may start the entire process over at any time.
+
+Once you have accepted a character you will asked to provide a name for the
+character.  In general, the actual choice of a name is not important, but do
+keep in mind that it may have some effect on the game itself.  For example,
+on some machines, the character name determines the filename that will be
+used to save the character to disk.  On others, the character name specifies
+special "pref" files.  And the character name is used on the high score list.
+
+
+=== Character Characteristics ===
+
+Each character has three primary attributes, sex, race, and class, that
+are chosen before the character is generated, and which will stay fixed
+for the entire life of that character.  These attributes have many effects,
+which will be mentioned as they come up.
+
+Each character has a few secondary attributes, height, weight, social class,
+and background history, which are randomly determined, but which are affected
+by the sex and race and size of the character.  In general, these attributes
+are only used to provide "flavor" to the character, to assist in the role
+playing, but they do have a few minor effects on the game.  For example,
+background history affects social class, which affects the starting money.
+(Not a lot, in the case of some races, particular the more monstrous ones.) 
+
+Each character also has eight primary "stats", strength, intelligence,
+wisdom, dexterity, constitution, charisma, agility and size which modify the
+abilities of the character in a variety of ways.  Every stat has a numerical
+value, ranging from a minimum of 3, up to a normal maximum of 18, and even
+higher, into the "percentile" range, represented as "18/01" through "18/100"
+or more: this is the maximum that can be achieved intrinsically, for any
+given stat. 
+
+Equipment may add bonuses or penalties to this, and raise the player's stats
+beyond the normal intrinsic limits: the stats may go as high as they like,
+with the right choice of equipment, but the effects of having higher stats
+largely stop at 18/200.
+
+For details on how the stats affect game-play, read the stats.txt helpfile.
+
+Each character also has several primary "skills", disarming, magic devices,
+saving throws, stealth, searching ability, fighting skill, shooting skill and
+thrown weapons skill which are derived from the character's race, class, level,
+stats, and current equipment.  These skills have rather obvious effects, but
+will be described more completely below.
+
+Each character may have one or more "racially intrinsic skills", based on
+the race of the character.  These may include special resistances, or even
+abilities such as infravision.
+
+Each character has experience, which increases as the character becomes more
+experienced, and a level, which is based on experience, and also on race and
+class.  As the experience rises, so does the level, and as the level rises,
+certain other abilities and characteristics rise as well.  Deep down inside,
+the real objective of the game is to increase your experience, and certain
+other characteristics, and also to collect useful items, to give you a decent
+chance against Morgoth.  Certain monsters can "drain" your experience, and
+thus your level, which will cause you to lose all of the effects of the higher
+level.  Luckily, you can restore drained experience through magical means, or
+by simply regaining the experience all over again.
+
+Each character has some gold, which can be used to buy items from the shops
+in the town, and which can be obtained not only from selling items to the
+shops, but also by taking it from dead monsters and by finding it hidden in
+the dungeon.  Each character starts out with some gold, the amount of which
+is based on the characters social class (higher is better), charisma (higher
+is better), and other stats (less powerful characters start with more gold).  
+Each character also starts out with a few useful items, which may be kept, 
+or sold to a shop-keeper for more gold. However, especially valuable items
+will never sell for the full price, as each shopkeeper has a maximum that 
+he is prepared to pay for any item. The more generous shopkeepers may buy 
+your items for up to 30,000 gold pieces: but some are really stingy, and 
+will pay no more than 5,000.
+
+Each character has an armor class, representing how well the character can
+avoid damage.  The armor class is affected by dexterity and the equipment. 
+Armor class on equipment is always denoted in [square brackets], usually as 
+a figure of [X,+Y] where X is the intrinsic AC of the armor in question, and 
+Y is the magical bonus to armor class provided by that item.
+
+Each character has hit points, representing how much damage the character can
+sustain before he dies.  How many hit points a character has is determined by
+level, size and constitution.  A character with high size or constitution will
+get a flat bonus of a certain number of hit points per level (recalculated
+right back to level 1: if you gain an extra hit point per level, and you are
+42nd level, you will suddenly be 42 hit points better off.)
+
+Each character has spell points, or mana, which represents how many spells
+(or prayers) a character can cast (or pray).  The maximum number of spell
+points is derived from your class, level, constitution and the a class
+dependent spell-casting stat, which for all classes except bards is wisdom.
+You can never have more spell points than the maximum.  Spell points may be
+regained by resting, or by magical means.  Warriors, thieves and archers
+never have any spell points unless they have the magic books or prayer books
+speciality.  If a character gains enough wisdom or constitution to get more
+spell points, the result is calculated right back to first level, just as
+with hit points.

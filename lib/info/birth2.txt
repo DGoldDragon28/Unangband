@@ -1,0 +1,33 @@
+=== The Display ===
+
+Symbols appearing on your screen will represent the dungeon's walls, floor,
+objects, features, and creatures lurking about.
+
+Firstly, you are represented by the @ symbol.  The colour of this symbol
+represents your relative health - white for healthy, through to red for
+badly injured.  You'll see at the bottom of the screen your current hit
+points (HP) out of your maximum hit points.  If your current hit points
+fall below 0, you will die and the game will end.
+
+Creatures around you are usually represented by letters.  You can fight
+back at any creature that attacks you through a number of different means.
+Firstly, by walking into an enemy creature, you'll automatically swing at
+it with the weapon you are currently wielding.  You can use the equipment
+command ('e') to see what you are currently wielding and wearing.  
+You can also acquire items to throw, bows to shoot with and magical spells 
+and devices.  The online text provides more details on how to use these 
+various abilities.
+
+Features around you are represented by various types of keyboard symbols.
+You can also find objects, which are usually represented by various types
+of punctuation.  To determine what anything is from a distance, you can
+use the look command ('l' or 'x' on the roguelike keyset).  This will
+allow you to look around at grids and examine them in more detail.  Press
+ESC to exit the look mode, use the direction keys to cycle between
+interesting grids, and the space bar to cycle between items in a single
+grid. You can press 'p' while looking to change the mode to allow you to
+look at any grid, as opposed to just interesting ones. The 'r' key (for
+recall) will allow you to recollect the information you have learned so
+far about whatever you are now looking at.
+
+If you prefer graphics, you can use the menus to select a graphical mode.

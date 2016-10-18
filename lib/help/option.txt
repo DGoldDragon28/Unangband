@@ -1,0 +1,538 @@
+=== Option Descriptions ===
+
+Most of the "options" are accessible through the '=' command, which provides
+an interface to the various "sets" of options available to the player.
+In the decriptions below, each option is listed as the textual summary
+which is shown on the "options" screen, plus the internal name of the
+option in brackets, followed by a textual description of the option.
+
+Note that the internal name of the option can be used in user pref files
+(*.prf) to force the option to a given setting, see "command.txt" 
+for more info. You can save your options to a  file using the 'A' command 
+and load with the 'L' command. The 'R' command resets all your options 
+to defaults (this does not change pref files). 
+
+Various concepts are mentioned in the descriptions below, including "disturb",
+(cancel any running, resting, or repeated commands, which are in progress),
+"flush" (forget any keypresses waiting in the keypress queue, including any
+macros in progress), "fresh" (dump any pending output to the screen), and
+"sub-windows" (see below).
+
+
+=== Interface options ===
+
+***** <use_sound>
+Use sound    [use_sound]
+     Turns on sound effects, if your system supports them.
+
+***** <rogue_like_commands>
+Rogue-like commands    [rogue_like_commands]
+     Selects the "roguelike" command set (see "command.txt" for info).
+
+***** <use_old_target>
+Use old target by default    [use_old_target]
+     Forces all commands which normally ask for a "direction" to use the
+     current "target" if there is one.  Use of this option can be dangerous
+     if you target locations on the ground, unless you clear them when done.
+
+***** <pickup_always>
+Always pickup items                           [pickup_always]
+***** <pickup_inven>
+Always pickup items matching inventory        [pickup_inven]
+     If pickup_always is on, all items are always picked up, providing it is
+     safe to do so.  If pickup_inven is on, then items matching those in your
+     inventory are always picked up.
+
+***** <pickup_detail>
+Be verbose when picking things up     [pickup_detail]
+     If this is off, you get a one-line description of the objects or piles on
+     the floor after the other pickup options have acted.  If this option is
+     on, you get a full list for more than one item, including weights.
+
+     In either case, you can start picking things up by typing "g".
+     When standing still, you are never charged extra time for picking
+     up objects.  When walking, you always take a second partial turn to
+     pick up objects; each object picked up takes 1/10th of a turn.
+
+***** <easy_alter>
+Open/Disarm doors/traps on movement.     [easy_alter]
+     Moving into a closed door will attempt once to open it, and moving
+     into a trap will attempt once to disarm it. If the player ever wishes
+     to leave a known teleport trap as a guaranteed escape route, this
+     option must therefore be off.
+
+***** <easy_open>
+Open/Disarm/Close without direction     [easy_open]
+     If there is only one closed door next to the character, the game will
+     not bother asking for a direction when the player asks to "o"pen
+     something. The same applies for "c"losing doors and "D"isarming traps.
+
+***** <show_lists>
+Always show lists     [show_lists]
+
+***** <easy_autos>
+Automatically inscribe all objects     [easy_autos]
+     Whenever you inscribe or uninscribe an object, all objects of the same
+     kind will be inscribed or uninscribed, including objects that are
+     subsequently created. To edit this, use the ~ command and display the
+     objects or ego items you wish to modify. You can then modify
+     the auto-inscriptions, and save them to a preference file.
+
+***** <easy_search>
+Start searching if not disturbed     [easy_search]
+     After 20 turns without being disturbed, the character will automatically 
+     enter Search mode.
+
+***** <depth_in_feet>
+Show dungeon level in feet     [depth_in_feet]
+     Display dungeon depths in "feet" instead of "levels".
+
+
+=== Display options ===
+
+***** <hilite_player>
+Hilite the player with the cursor     [hilite_player]
+     Place the visible cursor on the player.  This looks fine on some Unix
+     machines, but horrible on most graphics machines.  Note that only some
+     machines are able to *not* show the cursor, but on those machines, hiding
+     the cursor often speeds up the game and looks better.
+
+***** <center_player>
+Center map continuously (very slow)     [center_player]
+     The map always centres on the player with this option on. With it off, it
+     is divided into 25 sections, with coordinates (0,0) to (4,4), and will
+     show one section at a time.
+
+***** <show_piles>
+Show stacks using special attr/character     [show_piles]
+
+***** <show_flavors>
+Show flavors in object descriptions     [show_flavors]
+     Display "flavors" (color or variety) in object descriptions, even for
+     objects whose type is known.  This does not affect objects in stores.
+
+***** <view_flavors>
+Show flavors in object graphics     [view_flavors]
+     Display "flavors" (color or variety) in object descriptions, even for
+     objects whose type is known when using graphical tiles.
+
+***** <show_labels>
+Show labels in equipment listings     [show_labels]
+     Display "labels" (what an object is being used for) for objects in all
+     "equipment" listings.
+
+***** <view_yellow_lite>
+Use special colors for torch-lit grids     [view_yellow_lite]
+     This option causes special colors to be used for "torch-lit" grids in
+     certain situations (see "view_granite_lite" and "view_special_lite").
+     Turning this option off will slightly improve game speed.
+
+***** <view_bright_lite>
+Use special colors for 'viewable' grids     [view_bright_lite]
+    This option causes special colors to be used for non "viewable" grids
+    in certain situations (see "view_granite_lite" and "view_special_lite").
+    When this option is set, floor grids which are normally drawn in "white"
+    but which are not currently "viewable" by the player are instead drawn
+    in "dark gray".  This makes the "viewable" grids to appear "brighter"
+    than the others, allowing the player to easily determine which floor
+    grids are in "line of sight".  Turning this option off will probably
+    increase the speed of the game.
+
+***** <view_granite_lite>
+Use special colors for wall grids (slow)     [view_granite_lite]
+    This option activates a special color scheme for all "wall" grids which
+    are normally drawn in "white" (as walls and rubble normally are).  When
+    the player is blind, we use "dark gray", else if the grid is torch-lit,
+    we use "yellow" (or "white") depending on the "view_yellow_lite" option,
+    else if the "view_bright_lite" option is set, and the grid is not in line
+    of sight, or the grid is dark, or the grid is only "partially" lit, then
+    we use "gray", otherwise we use the normal "white".  Turning this option
+    off will probably increase the speed of the game.  This option may not
+    work well if the attr/char codes for walls/veins have been changed, or
+    if "graphics" are being used.
+
+***** <view_special_lite>
+Use special colors for floor grids (slow)     [view_special_lite]
+    This option activates a special color scheme for all "floor" grids which
+    are normally drawn in "white" (as they normally are).  When the player is
+    blind, we use "dark gray", else if the grid is torch-lit, we use "yellow"
+    (or "white") depending on the "view_yellow_lite" option, else if the grid
+    is "dark", we use "dark gray", else if the "view_bright_lite" option is
+    set, and the grid is not in line of sight, we use "gray", otherwise we
+    use the normal "white".  Turning this option off will probably increase
+    the speed of the game.  This option may not work well if the attr/char
+    codes for walls/veins have been changed, or if "graphics" are being used.
+
+***** <view_perma_grids>
+Map remembers all perma-lit grids     [view_perma_grids]
+    Memorize all perma-lit floor grids which are seen by the player.
+    This option allows you to keep track of which explored floor grids
+    were perma-lit, but does not distinguish between dark floor grids,
+    unexplored floor grids, and unknown grids.  Turning off this option
+    allows the player to always know which lit floor grids are in line
+    of sight, but this is better accomplished by the "view_bright_lite"
+    option.  Note that any non-floor grids which are seen by the player
+    are always memorized, and "object" which is seen by the player is
+    memorized independantly from the memorization of the grid itself.
+
+***** <view_torch_grids>
+Map remembers all torch-lit grids     [view_torch_grids]
+    Memorize all (torch-lit) floor grids which are seen by the player.
+    This option not only allows you to keep track of which floor grids
+    have been explored, but also which ones are "dark", because the use
+    of this option activates a special "color scheme" for the display of
+    floor grids, in which "dark" grids are drawn in "dark gray", "lit"
+    grids are drawn in "white", and (if the "view_bright_lite" option is
+    set) "lit" grids which are also in line of sight are drawn in "orange".
+    Note that grids which are currently "torch-lit" are considered to be
+    "lit", and are thus drawn in "white", unless the "view_yellow_lite"
+    option is set, in which case they are drawn in "yellow".
+
+***** <view_glowing_lite>
+Use special colors for glowing lite (slow)     [view_glowing_lite]
+    This option causes special colors to be used for "glowing" grids in
+    certain situations (see "view_granite_lite" and "view_special_lite").
+    Glowing grids are grids adjacent to permanently glowing features such
+    as torches, magical lights and lava.
+    Turning this option off will improve game speed as the code is somewhat
+    less efficient than the other special color options.
+
+***** <show_sidebar>
+Show attributes in sidebar     [show_sidebar]
+    Display name, race, class, title, statistics, hit points, mana and some
+    status information in the sidebar. Setting this to no increases the area
+    available on the screen to display the map, and moves most of this
+    information to a more compact space at the bottom of the screen.
+
+***** <room_names>
+Display room names     [room_names]
+     When entering a lit room, the name of the room will be displayed as
+     a brief message. Room names can indicate what types of creatures,
+     treasures or traps can be encountered in that room.
+
+***** <room_descriptions>
+Display room descriptions     [room_descriptions]
+     When entering a room, a description of the contents of the room will
+     be displayed. If the room is lit, visible features will be noted, 
+     otherwise only sounds, wind and temperature will be noticed. 
+     The description will not be displayed again, once the room is lit, 
+     except by looking at yourself while in the room, or at the contents 
+     of the room while outside it. The room description will provide 
+     important information about what types of creatures, treasure, 
+     traps or magical effects are in the room.
+
+***** <show_tips>
+Show tips as you explore the dungeon     [show_tips]
+
+
+=== Warning and Disturbance options ===
+
+***** <disturb_move>
+Disturb whenever any monster moves    [disturb_move]
+    Disturb the player when any monster moves, appears, or disappears.
+    This includes monsters which are only visible due to telepathy, so
+    you should probably turn this option off if you want to "rest" near
+    such monsters.
+
+***** <disturb_near>
+Disturb whenever viewable monster moves    [disturb_near]
+    Disturb the player when any viewable monster moves, whenever any
+    monster becomes viewable for the first time, and also whenever any
+    viewable monster becomes no longer viewable.  This option ignores
+    the existance of "telepathy" for the purpose of determining whether
+    a monster is "viewable".
+
+***** <disturb_detect>
+Disturb whenever leaving detected area     [disturb_detect]
+    The game will always prompt you to confirm moving from a 'safe' to an
+    'unsafe' location, or otherwise interact with an 'unsafe' location
+    from a 'safe' location. A 'safe' location is one that has either been
+    detected using a detect trap or detect monster spell with the appropriate 
+    game-play option set. This option enabled will mean that locations you 
+    'notice' will not be marked as safe.
+
+***** <disturb_state>
+Disturb whenever player state changes    [disturb_state]
+    This option causes you to be disturbed whenever the player state
+    changes, including changes in hunger, resistance, confusion, etc.
+
+***** <quick_messages>
+Activate quick messages    [quick_messages]
+    Allows the use of any keypress as a response to the "-more-" prompt
+    (useful for monster farming).  Allows most keys to mean "no" to any
+    "[y/n]" prompt.
+
+***** <auto_more>
+Automatically clear -more- prompts    [auto_more]
+    The game does not wait for a keypress when it comes to a -more-
+    prompt, but carries on going.
+
+***** <ring_bell>
+Audible bell (on errors, etc)    [ring_bell]
+    Attempts to make a "bell" noise when various "errors" occur.
+
+***** <flush_failure>
+Flush input on various failures    [flush_failure]
+    This option forces the game to flush all pending input whenever various
+    "failures" occur, such as failure to cast a spell, failure to use a wand,
+    etc.  This is very useful if you use macros which include "directional"
+    components with commands that can fail, since it will prevent you from
+    walking towards monsters when your spells fail.
+
+***** <flush_disturb>
+Flush input whenever disturbed    [flush_disturb]
+    This option forces the game to flush all pending input whenever the
+    character is "disturbed".  This is useful if you use macros which take
+    time, since it will prevent you from continuing your macro while being
+    attacked by a monster.
+
+***** <easy_corpses>
+Ignore corpses by default     [easy_corpses]
+    The player will not pick up corpses, bones and other junk. Junk can
+    still be inscribed with =g to pick it up automatically if required.
+
+***** <easy_more>
+Minimise '-more-' prompts     [easy_more]
+
+
+***** <auto_monlist>
+Always show visible monsters/objects     [auto_monlist]
+     Automatically show the list of visible monsters and objects whenever
+     there is a monster or object visible.
+	
+***** <easy_monlist>
+Spacebar toggles visible monsters/objects     [easy_monlist]
+     Allows you to press space to toggle the auto_monlist option and show or
+     hide the list of visible monsters and objects.
+
+***** <verify_mana>
+Verify critical mana     [verify_mana]
+     The game will always prompt you to confirm casting a spell if it
+     would leave you with less mana than the Hitpoint warning
+     percentage.
+
+***** <view_unsafe_grids>
+Mark map where you have detected traps     [view_unsafe_grids]
+     Unknown grids that have not been traversed previously, or had a detect
+     trap spell cast on them are marked with a grey 'x'. This allows you to
+     determine where in the dungeon you have cast detect traps, but does not
+     ensure that grids not marked with a grey 'x' are trap free. This option
+     has no effect on surface grids, but outdoor locations cannot be trapped.
+
+***** <view_detect_grids>
+Mark map where you have detected monsters     [view_detect_grids]
+     Unknown grids that have not been traversed previously, or had a detect
+     monster spell of some kind cast on them are marked with a grey 'x'. This
+     allows you to determine where in the dungeon you have cast detect
+     monster spells, but does not ensure that grids not marked with a grey 'x'
+     are monster free. This option has no effect on surface grids.
+
+***** <autosave>
+Create backup savefile before descending     [autosave_backup]
+     Before any dungeon level is generated, an additional savefile is created.
+     The backup savefile can be found in the same directory as the regular
+     savefile and has the additionial '.bkp' suffix.
+
+***** <ally_messages>
+Show detailed combat messages for allies    [ally_messages]
+     Show all attack messages for allies actions.
+
+=== Birth options ===
+
+***** <birth_randarts>
+Randomize some of the artifacts      [birth_randarts]
+     A different set of artifacts will be created, in place of the standard
+     ones. This is intended primarily for people who have played enough to
+     know what most of the standard artifacts do and have got bored with
+     them.  Note that savefiles with random artifacts are not guaranteed
+     to be compatible between different Angband versions!
+
+***** <birth_ironman>
+Restrict the use of stairs/recall     [birth_ironman]
+     This option, not recommended for non-advanced players, prevents the
+     generation of up staircases, and makes the scroll and effect of Word
+     of Recall not function: and teleport-level always goes down, as does
+     the spell of stair-creation, except on the quest levels of Sauron and
+     Morgoth.
+
+***** <birth_no_stores>
+Restrict the use of stores/home     [birth_no_stores]
+     The stores are all closed. The home is someone else's, and locked. You
+     can keep nothing but what you carry with you, and get nothing but what
+     you find in the dungeon. No selling items, or buying potions of
+     restore stat... Not recommended for new players, or indeed for
+     sane players.
+
+***** <birth_no_selling>
+Don't sell to the stores     [birth_no_selling]
+     The storekeepers will not buy anything from you, altough you can still
+     buy stuff from them.
+
+***** <birth_no_artifacts>
+Restrict the creation of artifacts     [birth_no_artifacts]
+     No artifacts will be created. Ever. Just *how* masochistic are you?
+
+***** <birth_no_stacking>
+Don't stack objects on the floor     [birth_no_stacking]
+     Items dropped on the floor will spread out instead of stacking.
+     Normal items will disappear if there is no empty grid within a radius
+     of three squares.
+
+***** <birth_no_stairs>
+Don't generate connected stairs     [birth_no_stairs]
+     Never generate a staircase back to the level you came from, if you used
+     a staircase to get to the level.
+
+***** <birth_no_identify>
+Don't need to identify items     [birth_no_identify]
+     All objects will be found fully identified.
+
+***** <birth_lore>
+Know complete artifact/ego/monster info     [birth_lore]
+
+***** <birth_auto>
+Auto-inscribe items as if known     [birth_auto]
+
+***** <birth_campaign>
+Play in Lord of the Rings campaign     [birth_campaign]
+     The character will start in Hobbiton, instead of Angband, and be able
+     to travel to Rivendell, the Lonely Mountain, Isengard and other
+     locations featured in the Hobbit and the Lord of the Rings books.
+     Be prepared for out of depth uniques (Especially at night), dungeon
+     guardians you have to defeat in order to progress further, quest
+     rewards in set locations, and dangerous battlefields and towers.
+
+***** <birth_haggle>
+Haggle in stores     [birth_haggle]
+     Disable haggling in stores, resulting in a ten percent sales tax
+     on items which you would have otherwise been forced to haggle for.
+     When this option is on, all prices listed in stores will be the
+     actual price that you pay for an item, as opposed to shop-keeper's
+     initial offer.
+
+***** <birth_beginner>
+Start the game with almost no birth choices     [birth_beginner]
+
+***** <birth_intermediate>
+Reduce the number of birth choices     [birth_intermediate]
+
+***** <birth_first_time>
+Ask all birth setup questions at start     [birth_first_time]
+
+***** <birth_reseed_artifacts>
+Reseed random artifacts on death     [birth_reseed_artifacts]
+
+***** <birth_rand_stats>
+Randomize attributes chosen on level gain     [birth_rand_stats]
+     Attributes will be randomly chosen when you level up occationally,
+     instead of choosing which stats to increase yourself.
+
+***** <birth_evil>
+Good monsters attack you     [birth_evil]
+
+***** <birth_gollum>
+Play in gollum mode     [birth_gollum]
+     Start the game in Mordor on the Plains of Gorgoroth, for advanced
+     players only.  (Known as "thrall mode" in some variants.)
+
+=== Cheat options ===
+
+***** <cheat_peek>
+Peek into object creation     [cheat_peek]
+    Cheaters never win.  But they can peek at object creation.
+
+***** <cheat_hear>
+Peek into monster creation     [cheat_hear]
+    Cheaters never win.  But they can peek at monster creation.
+
+***** <cheat_room>
+Peek into dungeon creation     [cheat_room]
+    Cheaters never win.  But they can peek at room creation.
+
+***** <cheat_xtra>
+Peek into something else     [cheat_xtra]
+    Cheaters never win.  But they can see debugging messages.
+
+***** <cheat_know>
+Know complete monster info     [cheat_know]
+    Cheaters never win.  But they can know all about monsters.
+
+***** <cheat_live>
+Allow player to avoid death     [cheat_live]
+    Cheaters never win.  But they can cheat death.
+
+***** <cheat_wall>
+Show false colours for walls     [cheat_wall]
+    Cheaters never win.  But they can see what the walls are made of.
+
+
+=== Subwindow display settings ===
+
+Some platforms support "sub-windows", which are windows which can be used to
+display useful information generally available through other means.  The best
+thing about these windows is that they are updated automatically (usually) to
+reflect the current state of the world.  The "window options" can be used to
+specify what should be displayed in each window.  The possible choices should
+be pretty obvious.
+
+Display inven/equip
+    Display the player inventory (and sometimes the equipment).
+
+Display equip/inven
+    Display the player equipment (and sometimes the inventory).
+
+Display player (basic)
+
+Display player (extra)
+
+Display player (compact)
+
+Display player (status)
+
+Display messages
+    Display the most recently generated "messages".
+
+Display dungeon map
+    Display the area around the player or around the target while
+    targetting.  This allows using graphical tiles in their original
+    size.
+
+Display overhead view
+    Display an overhead view of the entire dungeon.  This is very slow
+    and does not even look very good.
+
+Display monster recall
+    Display a description of the most monster which has been most recently
+    attacked, targetted, or examined in some way.
+
+Display object recall
+    Display a description of the most recently selected object.  Currently
+    this only affects spellbooks and prayerbooks.  This window flag may be
+    usefully combined with others, such as "monster recall".
+
+Display feature recall (not used)
+
+Display room description
+
+Display snap-shot (not used)
+
+Display visible monsters
+
+Display help (not used)
+
+
+=== Left Over Information ===
+
+The "delay_factor" value, if non-zero, will slow down the visual effects used
+for missile, bolt, beam, and ball attacks.  The actual time delay is equal to
+"delay_factor" squared, in milliseconds.
+
+The "hitpoint_warn" value, if non-zero, is the percentage of maximal hitpoints
+at which the player is warned that he may die.  It is also used as the cut-off
+for using the color red to display both hitpoints and mana.
+
+For help on all of the following, see "Macros and Keymaps" in the Help files
+(macro.txt):
+Interact with macros (advanced)
+Interact with visuals (advanced)
+Interact with colours (advanced)

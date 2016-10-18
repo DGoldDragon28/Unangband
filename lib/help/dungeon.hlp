@@ -1,0 +1,26 @@
+             -- Exploring the Dungeon --
+
+Please choose one of the following online help files:
+
+    (1) Exploring the World        (dungeon.txt)
+    (2) Weapons and Armour         (attack.txt)
+    (3) Stats and Skills           (stats.txt)
+    (4) Resistances                (resist.txt)
+    (5) Monster Descriptions       (bestiary.txt)
+    (6) Map Symbols                (symbol.txt)
+    (7) Rumours                    (rumours.hlp)
+    (8) Map of Middle-Earth        (memap.txt)
+
+
+
+ ?  : return to previous menu
+ ESC: leave help
+
+***** [1] dungeon.txt
+***** [2] attack.txt
+***** [3] stats.txt
+***** [4] resist.txt
+***** [5] bestiary.txt
+***** [6] symbol.txt
+***** [7] rumours.hlp
+***** [8] memap.txt

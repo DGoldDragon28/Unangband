@@ -1,0 +1,182 @@
+=== New Options ===
+
+Unangband provides a number of new options.
+
+
+=== New User Interface options ===
+
+***** <stack_force_pvals>
+Merge pvals when stacking    [stack_force_pvals]
+    Force otherwise identical objects to merge, if they have pvals of the
+    same sign. The pval is the object charges for wands or staffs, turns of
+    light remaining for torches, or its stat or skill modifier for rings
+    and amulets. The resulting stack averages the pvals, and rounds up, but
+    keeps an internal record of how many objects have the next lowest pval.
+    You can force this behaviour by inscribing both objects with {=s} even
+    without this option set.
+    This object is the least 'realistic' of all the stacking options.
+
+***** <stack_force_times>
+Merge timeouts when stacking    [stack_force_times]
+    Force otherwise identical objects to merge, if they are timed out or
+    still have a time out running. This allows (charging) and charged
+    objects such as rods and dragon armour to stack completely. The
+    resulting stack has the largest timeout of any item in the stack. You
+    can force this behaviour by inscribing both objects with {=s} even
+    without this option set.
+
+***** <easy_autos>
+Automatically inscribe all objects
+    Whenever you inscribe or uninscribe an object, all objects of the same
+    kind will be inscribed or uninscribed, including objects that are
+    subsequently created. To edit this, use the ~ command and display the
+    objects or ego items you wish to modify. You can then modify the auto-
+    inscriptions, and save them to a preference file.
+
+***** <easy_search>
+Start searching if not disturbed
+    After 20 turns without being disturbed, the character will auto-
+    matically enter Search mode.
+
+***** <easy_corpses>
+Ignore corpses by default          [easy_corpses]
+    The player will not pick up corpses, bones and other junk. Junk can
+    still be inscribed with =g to pick it up automatically if required.
+
+=== Disturbance options ===
+
+***** <verify_safe>
+Verify whenever you leave a safe grid        [verify_safe]
+    The game will always prompt you to confirm moving from a 'safe' to an
+    'unsafe' location, or otherwise interact with an 'unsafe' location
+    from a 'safe' location. A 'safe' location is one that has either been
+    detected using a detect trap or detect monster spell with the appro-
+    priate game-play option set. This option enabled will mean that
+    locations you 'notice' will not be marked as safe.
+
+***** <verify_mana>
+Verify critical mana               [verify_mana]
+    The game will always prompt you to confirm casting a spell if it
+    would leave you with less mana, than the Hitpoint warning
+    percentage.
+
+=== Game-play options ===
+
+***** <view_unsafe_grids>
+Mark map where you have detected traps    [view_unsafe_grids]
+     Unknown grids that have not been traversed previously, or had a detect
+     trap spell cast on them are marked with a grey 'x'. This allows you to
+     determine where in the dungeon you have cast detect traps, but does not
+     ensure that grids not marked with a grey 'x' are trap free. This option
+     has no effect on surface grids, but outdoor locations cannot be trapped.
+
+***** <view_detect_grids>
+Mark map where you have detected monsters    [view_detect_grids]
+     Unknown grids that have not been traversed previously, or had a detect
+     monster spell of some kind cast on them are marked with a grey 'x'. This
+     allows you to determine where in the dungeon you have cast detect
+     monster spells, but does not ensure that grids not marked with a grey 'x'
+     are monster free. This option has no effect on surface grids.
+
+***** <reseed_artifacts>
+Reseed random artifacts on death    [reseed_artifacts]
+     The seed for random artifacts will be re-rolled at character death.
+     Without this option, artifacts in the same save file should remain from
+     game to game, provided neither the monster.txt or artifact.txt info
+     files are modified. Artifact memory will also persist if the artifacts
+     are not reseeded.
+
+
+=== Efficiency options ===
+
+***** <room_names>
+Display room names
+     When entering a lit room, the name of the room will be displayed as
+     a brief message. Room names can indicate what types of creatures,
+     treasures or traps can be encountered in that room.
+
+***** <room_descriptions>
+Display room descriptions
+     When entering a room, a description of the contents of the room will
+     be displayed. If the room is lit, visible features will be noted, other-
+     wise only sounds, wind and temperature will be noticed. The description
+     will not be displayed again, once the room is lit, except by looking
+     at yourself while in the room, or at the contents of the room while
+     outside it. The room description will provide important information
+     about what types of creatures, treasure, traps or magical effects are
+     in the room.
+
+
+=== Display options ===
+
+***** <show_sidebar>
+Show attributes in sidebar     [show_sidebar]
+    Display name, race, class, title, statistics, hit points, mana and some
+    status information in the sidebar. Setting this to no increases the area
+    available on the screen to display the map, and moves this most of this
+    information to a more compact space at the bottom of the screen.
+
+***** <show_flavors>
+Show flavors in object descriptions    [view_flavors]
+    Display "flavors" (color or variety) in object graphics, even for
+    objects whose type is known.
+
+***** <view_player_lite>
+Use special colors for player grid    [view_player_lite]
+    Change the color of the player depending on the percentage of hit points.
+    White is 90-100%, yellow is 70-89%, orange is 50-69%, pink (light red) is
+    30-49% and red is 0% - 29% of maximum hit points.
+
+***** <view_glowing_lite>
+Use special colors for glowing lite (slow)   [view_glowing_lite]
+    This option causes special colors to be used for "glowing" grids in
+    certain situations (see "view_granite_lite" and "view_special_lite").
+    Glowing grids are grids adjacent to permanently glowing features such
+    as torches, magical lights and lava.
+    Turning this option off will improve game speed as the code is somewhat
+    less efficient than the other special color options.
+
+***** <view_surface_lite>
+Use special colors for surface lite (slow)   [view_surface_lite]
+    This option causes special colors to be used for "surface" grids in
+    certain situations (see "view_granite_lite" and "view_special_lite").
+    This will cause locations on the surface that are lit by sunlight but
+    not outside to appear darker.
+    Turning this option off may improve game speed.
+
+
+=== Birth options ===
+
+***** <birth_rand_artifacts>
+Randomize all of the artifacts    [birth_rand_artifacts]
+     A different set of artifacts will be created, in place of the standard 
+     ones. This is intended primarily for people who have played enough to
+     know what most of the standard artifacts do and have got bored with
+     them. Without this option set, the standard artifacts will be used,
+     along with a selection of random artifacts.
+
+***** <birth_campaign>
+Birth: Play in Lord of the Rings campaign    [birth_campaign]
+     The character will start in Hobbiton, instead of Angband, and be able
+     to travel to Rivendell, the Lonely Mountain, Isengard and other
+     locations featured in the Hobbit and the Lord of the Rings books.
+     Be prepared for out of depth uniques (Especially at night), dungeon
+     guardians you have to defeat in order to progress further, quest
+     rewards in set locations, and dangerous battlefields and towers.
+
+***** <birth_no_stacking>
+Birth: Don't stack objects on the floor    [birth_no_stacking]
+     For players used to older versions of Moria and Angband, this option
+     prevents objects stacking together on the floor. This will result in
+     objects spreading out further when dropped by a monster, as well as
+     more objects being 'destroyed' because they cannot fit on the floor.
+     It may cause better objects to be created overall, which is why this
+     is a birth option as it affects game balance.
+
+=== Cheating options ===
+
+***** <cheat_auto>
+Cheat: Auto-inscribe items as if known    [cheat_auto]
+    Cheaters never win. But they squeltch lots.
+
+

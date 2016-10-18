@@ -1,0 +1,23 @@
+=== Advice for Adventurers with a bone to Pick ===
+
+Keep finding yourself attacking monsters with this useful digger instead of
+your nice new shiny sword?
+
+Inscribe it with ^; and you'll be saved the embarrassment of wandering around
+the dungeon with the wrong weapon.
+
+It works because the ^ symbol prevents you doing the following command while
+the item is equipped, and ; is used as the 'internal' command for movement.
+
+Magic!
+                                  -- M.B.
+
+PS: Aside from the fact I have no idea what I just said, don't you find it
+strange that you can't see what weapon you're using while you walk around?
+I'm finding the opposite problem since I've gone through this bag: I've got
+my equipped weapon held up awkwardly in my field of view, while I feel like
+living a Half Life because I can't see my own feet.
+
+PPS: If my post script doesn't make any sense, it's because I'm doing the
+punchline for a gag I haven't set up yet. Come back and re-read this when
+you've found enough magic bags...

@@ -1,0 +1,509 @@
+Contents
+Preamble	2
+Overview of the Lib/Edit Files	3
+Customising the Existing Lib/Edit Files	4
+Creating an New Edit File	6
+Creating an Unangband Variant	6
+Related Source Code Files	6
+Common Edit File Features	7
+Lib/Edit File Specifics	7
+Artifact.txt	7
+Overview	7
+General notes	8
+Artifact.txt entry format	8
+Understanding artifact.txt entries	8
+Customising this file	9
+Credits	9
+Ego_Item.txt	10
+Overview	10
+General notes	11
+Ego_Item.txt entry format	11
+Understanding Ego_Item.txt	11
+Customising this file	12
+Credits	12
+Flavor.txt	13
+Flavor.txt entry format	13
+Understanding Flavor.txt entries	13
+Monster.txt	13
+Overview	13
+Monster.txt entry format	13
+Understanding Monster.txt entries	13
+Understanding Monster Spells and Flags	14
+Object.txt	15
+Object.txt entry format	15
+Understanding object.txt entries	15
+P_Class.txt	16
+P_class.txt entry format	16
+Understanding p_class.txt entries	16
+P_Race.txt	17
+Overview	17
+P_race.txt entry format	17
+Understanding p_race.txt entries	17
+Spell.txt	18
+Spell.txt entry format	18
+Understanding Spell.txt entries	18
+Customising this file	19
+
+Preamble
+This document covers the text configuration files held in the lib/edit directory and how to modify them.
+
+
+Overview of the Lib/Edit Files
+Unangband takes a data driven approach to much of the game design. May game rules are abstracted into external edit files which are contained in the lib/edit subdirectory. These files are parsed in using code within init1.c and then turned into binary data which is then reparsed in init2.c. The binary data is held in the lib/data subdirectory with a .raw file corresponding to each .txt file in lib/edit.
+This allows high performance loading of the data contained in the edit files in a platform independent manner - they are only reparsed in the event the edit file date is newer than the data file date, or the Unangband version number increased. If you change the internal Unangband code to read these files or the type definitions of any data structure used in these files, you should delete the .raw files before reloading - otherwise you may end up with unusual errors due to bad data which could potentially crash the game and/or corrupt save files and other data.
+Although game logic is contained in the edit files, it is not equivalent to scripting. The edit file language is simple, consisting of comment lines, starting with a symbol, blank lines and data definition lines. The data definition lines almost always act as defining part of a row of a data table. This is almost always a large array of elements of a C structure. e.g. the monster.txt file defines a large array of elements of monster_race. The edit files are simply a way of extending the existing tables.c file to include a lot more elements, and should be read in conjunction with the relevant structures defined in types.h and with heavy use of grep to determine where the data and structures are used in the Unangband code.
+The Unangband table based data design would be better supported in a SQL like language, or Lisp or even extended with Lua or another scripting language. Unangband may be rewritten using one of these languages at some point. The paper Scaling Games to Epic Proportions (http://www.cs.cornell.edu/%7Ewmwhite/papers/2007-SIGMOD-Games.pdf) discusses a SQL like language supporting game elements on a massive scale that may be of interest. Avoiding scripting is not without complications in the game design, but at the moment there are no compelling reasons to make Unangband support scripting.
+A data definition line starts with a letter followed by a colon, followed by either one or more colon separated fields, or flags separated by white space and vertical bars (|). There are three basic types of edit file: indexed files, Markov chained files, and table files.
+In the first type of file, the data is organised in blocks starting with a N: data line, which defines data block as corresponding to the nth element of the array, and usually the name of the element. e.g.
+N:1:the first element
+A:1:2:3
+B:4:5
+F:FIRST_FLAG | SECOND_FLAG
+
+N:2:the second element
+etc.
+These are used where the index is important, such as when referring to a particular monster race or character class number.
+The second type consists of array elements that are strung together using a Markov chain approach. The first line of each element usually defines the block number, and a simple algorithm goes through the array, finds elements corresponding to the same block and picks one, then chooses the next block based on selection criteria within the element chosen, and repeats until a block number of 0 is chosen. These files usually build a sentence such as a room description, or character history. Because of the design of these files, the unique element number is not as important, so it is not usually defined in the file.
+The third type is where the file builds a table. Each line corresponds to one row of the table, with numeric values separated by colons corresponding to each column.
+To emphasise: the data structure in all three types is an array of elements of a C structure - it's just a matter of how the information is presented in the file and parsed is slightly different.
+String values in the files are stored as indexes into a separate chunk of contiguous zero byte delimited strings. Each string currently has a unique index even though the string may be potentially duplicated elsewhere in the file. Usually two separate chunks of strings are used for a file: one for names, and one for descriptions. During the parsing process in init1.c, a maximal size chunk is allocated using malloc, the size of which is defined in lib/edit/limits.txt - and then once the size is known, it is written to the .raw file so that the correct size is allocated when the .raw file is read in.
+It is possible to build a distribution of Unangband which does not allow the lib/edit files to be parsed. To do this, disable the ALLOW_TEMPLATES define in config.h and distribute Unangband with the .raw files in lib/data. Note that this distribution is now heavily dependent on the endianess and integer size of the machine it is created on, so you should ensure that this is a binary only distribution.
+There is some in game calculations used in the lib/edit files as well. For instance, level, rarity and experience reward for monsters is algorithmically determined. To output a new copy of the edit files containing the generated values, enable ALLOW_TEMPLATES_OUTPUT and the edit files will be output to the lib/user directory when the game launches. Note that e.g. level is dependent on power, which can depend on level, so that the depths for monsters you have not changed will also vary in the output file.
+Customising the Existing Lib/Edit Files
+The edit files are a gateway drug: they exist to allow players to modify the game without requiring an understanding of coding or compilation. The edit files in Angband are the reason there are so many variants of Angband – it is very easy for a player to modify one or more entries in an edit file to customise the game to their liking, and then progressively change the game so that it becomes a full variant. Outside the Angband community, these would be called mods or total conversions.
+An understanding of the ability to read code is highly recommended if you wish to customise the existing edit files. This is for several reasons:
+* The edit files themselves are incompletely documented. This file is an attempt to rectify part of that issue.
+* Unangband is a work-in-progress and constantly evolving. This means that the SVN repository is the best place to get a view of the developer intentions, and the released source code for the version you are playing the best reference for specific implementation of the edit files.
+* Documentation can at only at best discuss the code at a high level. For an exact understanding of how the edit files interact and features of these files, the source code and generated executables are your primary reference.
+Luckily the Angband code base is well documented, a tradition that Unangband attempts to continue, although has done so in fits and starts. Refer to the ‘Related Source Code Files’ section below for a guide to reading the source code in conjunction with the edit files.
+Customising the edit files is ‘simply’ a matter of making a change to the .txt file, saving it and restarting Angband. This will automatically update the corresponding .raw file as a part of the game start up. Various checks are made to ensure that the changes parse correctly, but not a lot of data bounds checking is enabled, so it is relatively easy to crash the Unangband executable, by putting invalid entries in the edit files.
+If you wish to add entries to the end of a particular edit file, you’ll need to edit limits.txt. This file covers the initialisation of a number of maximum entries in each of the other edit files, as well as upper bounds for dynamically allocated memory for holding the text and descriptions for the majority of these files, and a few other values (e.g. the maximum numbers of monsters and objects on a dungeon level).
+You should familiarise yourself with the game-play first, and then reading the edit files, before you make any changes. This will give you a good feeling for how changing the edit files makes corresponding changes in game. A common first attempt may be to make easy monsters have powerful or valuable drops, by adding various DROP_ flags to the monster type. Equally, Morgoth can be made very weak and easy to defeat as well as appearing much early in the dungeon, allowing you to achieve impressive speed runs.
+You’ll quickly learn (unless you are of a certain frame of mind), that changing the edit files to win the game quickly ruins the experience for you, and you should refrain from trying this, or even peeking at the information contained inside, to discover the surprises ahead. Unfortunately, this temptation is often too great – and a challenge that few open source games are likely to be able to overcome. But with the rise of sites like gamefaqs.com and programs like Glider, the same information sharing challenge is faced by commercial games as well. Luckily, the procedural generation, randomness and other roguelike features such as perma death ensure that Unangband remains a challenge, even with complete knowledge of the game rules.
+The edit files are not as expressive as a full scripting language and you’ll find that there are a number of cases where various values in the edit file have hard-coded dependencies in the game code, or interact in unexpected ways. Unangband has tried to reduce the number of instances where this happens in the ‘core’ Angband edit files, but at the same time feature creep has meant that overall it is probably just as bad, if not worse than Angband itself. This documentation attempts to address this. Each file has a corresponding section in this document, which discusses the specifics of customising a file and how the file interacts with other lib/edit files and the game engine (compiled source code).
+Creating an New Edit File
+The data driven design process often extends to designing new features in an edit file before implementing them in code. The free form data design technique may not be particularly hi-tech, but it does allow concepts to be explored from a data-centric point of view, without requiring any code to be written.
+Creating an Unangband Variant
+Related Source Code Files
+You should download and use the tool grep for determining where in the source code a particular value is used. For historical reasons, the data structure corresponding to an edit file has a different name. The lib/edit file and corresponding data structures and data types are in the table below:
+Lib/Edit file
+Data Structure(s)
+Data Type(s)
+Artifact.txt
+a_info
+artifact_type
+Blows.txt
+blow_info
+blow_type
+Cost_adj.txt
+
+
+Dungeon.txt
+t_info
+town_type
+Ego_item.txt
+e_info
+ego_item_type
+Flavor.txt
+flavor_info
+flavor_type
+Limits.txt
+z_info
+
+Monster.txt
+r_info
+
+Names.txt
+
+
+Object.txt
+k_info
+object_kind, object_type
+P_class.txt
+c_info
+player_class
+P_hist.txt
+h_info
+
+P_race.txt
+p_info
+player_race
+Quest.txt
+q_info
+
+Region.txt
+Region_info
+region_type
+Room.txt
+d_info
+room_info_type
+Rune.txt
+y_info
+
+Shop_own.txt
+
+
+Spell.txt
+s_info
+
+Store.txt
+
+
+Style.txt
+w_info
+
+Terrain.txt
+f_info
+feature_type
+Vault.txt
+v_info
+Vault.txt
+
+
+Common Edit File Features
+Lib/Edit File Specifics
+Artifact.txt
+Overview
+Artifact.txt defines the list of artifacts in the game. An artifact is a unique object that can be found and identified only once in the game. Once the artifact name has learnt and subsequently left on a dungeon level, it can never be found again. Note that this identification requirement corresponds to the old “preserve” mode from Angband.
+Artifacts are typically more powerful than the equivalent object or ego item found on the level (permitted artifact power is twice that of an object and one and a third that of an ego item on the equivalent level – see randart.c for details of how this is computed for artifacts and object_power in object2.c for others). Artifacts are divided into three distinct types: “special” artifacts which consist of items other than armor or weapons, normal artifacts, and random artifacts.
+The random artifact set is generated from the base artifact set at the start of each game, and tops up the total number of artifacts in the game to 255. The random artifact algorithm is complex, and covered in randart.c. You can choose various birth options to allow you to share the same artifact set between multiple games, as well as ensure all artifacts, including the special artifacts, are randomly generated.
+Generation of artifacts in game occurs in two different places in the code in object2.c, depending on whether the artifact is a “special” artifact or not. Special artifacts are created when the ‘base item’ from object.txt is created according to the standard object creation rules, and instantly turned into an artifact. This means that every “special” artifact needs a corresponding unique object defined in object.txt.
+Otherwise, artifacts are created if a created armour or weapon passes several checks, and then all artifacts from this file that match the weapon or armour type must pass a rarity test to see if the object in question converts into an artifact. The match is determined on the tval and sval values specified for the artifact matching a generated base object, so that deep artifacts which depend on shallow base objects are less likely to be created than their rarity suggests.
+Note that monsters with DROP_GOOD and particularly DROP_GREAT are much more likely to carry artifacts than other monsters.  This has led to various types of artifact scumming behaviour in the past which relies on the fact that artifacts cannot be destroyed or picked up by monsters. While cloned and breeding monster offspring no longer carry additional objects to restrict many of this type of exploit, it is still possible with various summoned monsters.
+The player can determine an object is an artifact in a number of ways: examples include sensing that it is an artifact or special item, noting that it cannot be destroyed, seeing that it has a Unique rune and identifying the name and recognising it as a name of an artifact that they have seen or heard of previously. It is important to be careful of the interaction between item sensing and artifact “preservation” so that the name of an artifact is not learned prior to the player actively identifying the artifact, and therefore allowing the artifact to be lost.
+General notes
+Note for historical reasons the misspelling of artefact as artifact throughout Unangband, that has been inherited from Angband.
+The artifact indexes are defined in "defines.h", and must not be changed (This may no longer apply).
+Hack -- "Grond" and "Morgoth" MUST have a rarity of one, or they might not be dropped when Morgoth is killed.  Note that they, like the "special" artifacts, are never created "accidentally".
+Artifact.txt entry format
+N: serial number : item name
+I: tval : sval : pval
+W: depth : rarity : weight : cost
+P: base armor class : base damage : plus to-hit : plus to-dam : plus to-ac
+F: flag | flag | etc
+A: activation : recharge time : recharge time dice
+D: description
+Understanding artifact.txt entries
+'N' indicates the beginning of an entry. The serial number must increase for each new item.
+'I' is for basic information. The tval is for the type of item, the sval identifies the subtype and the pval indicates the amount of effect the item has, if applicable.
+'W' is for extra information. Depth is the depth the object is normally found at, rarity determines how common the object is, weight is in tenth-pounds and cost is the item's value.
+'P' is for power information. The items base armor class, its base damage and pluses to-hit, to-dam and to-ac.
+'F' is for flags. These are common to the object.txt, artifact.txt and ego_item.txt files. As many F: lines may be used as are needed to specify all the flags and flags are separated by the '|' symbol. Note that all artifacts cannot be destroyed and so implicitly have the IGNORE_ type flags.
+'A' is for activation.  Activation is the effect the artifact activates for, referring to an entry number in spell.txt. The recharge time calculates from the recharge time plus a random value between 1 and the recharge time dice (if not 0). If an activation is given then the artifact must also have the ACTIVATE flag. Artifact weapons with activations can also be inscribed with =A by the player which will mean that the activation is used against the monster that the artifact hits, provided the activation has recharged.
+‘D’ is for description. The artifact description should provide information about the history and/or owner of the artefact, as opposed spoilerish information about its powers. Contrast this with e.g. the artifact descriptions in T.o.M.E.
+Customising this file
+Any changes or additions to the file will have influence on randarts and may break savefile compatibility for old savegames with randarts.  If using random artifacts, finish your existing game before making any changes to the artifact.txt file at all.
+Removing any artifact, or changing its "base" type (as defined by the tval and sval entries in the "I:" line), will break savefile compatibility for ALL savefiles.
+Adding a new artifact, or changing the powers of existing ones, will NOT affect savefile compatibility for games with the standard artifact set: it is perfectly safe to do this. (If your new artifact is a new kind of object, or a new one at the end of the file, you must also amend object.txt or limits.txt.)
+“Special” artifacts are artefacts that are not weapons or armor. Only the first 15 artifacts may be of these types currently: artifacts from index number 16 onwards must be Armor or Weapons. (This may no longer apply).
+Note a few entries are used in hard-coded ways: namely the entries for Grond and the Iron Crown of Morgoth are dropped specifically.
+When designing an artifact, consider strongly how it will be uniquely useful in the game. There are probably already too many artifacts in Angband and Unangband, and additions are likely to be either overpowered or not distinguishable from the large selection already available, or lesser powered ego or magic items. Artifacts with a mixture of good abilities with some negative side effects, or interesting activations, are worth considering, as are artifact staffs or diggers, and armour other than body armour.
+Credits
+7: The Palantir of Westernesse (original creation by JLE)
+14: The Elfstone 'Elessar'
+15: The Jewel 'Evenstar'
+18: The Balance Dragon Scale Mail 'Mediator' (original JLE creation)
+26: The Hard Leather Armor of Himring (adapted from OAngband)
+29: The Shield of Deflection of Gil-galad (adapted from OAngband)
+33: The Metal Cap of Celebrimbor (suggested by Matthias Kurzke)
+43: The Jewel-Encrusted Crown of Numenor (adapted from OAngband)
+51: The Gauntlets of Eol (adapted from OAngband)
+63: The Soft Leather Boots of Wormtongue (original JLE creation)
+92: The Spear of Melkor (adapted from KAngband)
+110: The Beaked Axe of Hurin (adapted from KAngband)
+123: The Whip of Gothmog (original JLE creation)
+127: The Heavy Crossbow of Umbar (adapted from OAngband)
+128, 129: The Short Bows of Amrod and Amras (original JLE creations)
+130: The Mattock of Nain (original JLE creation)
+131: The Dwarven Pick of Erebor (adapted from SAngband)
+132: The Ball-and-Chain of Fundin Bluecloak (suggested by Skylar Thompson)
+133: The Main Gauche of Azaghal (adapted from KAngband)
+134: The Large Leather Shield of the Haradrim (suggested by Skylar Thompson)
+135: The Broken Sword 'Narsil' (original JLE creation)
+136: The Bastard Sword of Eowyn (original JLE creation)
+Ego_Item.txt
+Overview
+Ego_item.txt defines the list of ego items in the game. An ego item is an object that has additional flags applied to it beyond that possible by applying runes or spells to the item, without having the power of an artifact. It is possible to use runes to upgrade an item to an ego item.
+Ego items are typically more powerful than the equivalent object or found on the level (permitted ego item power is one and a half times that of a equivalent object – see object_power in object2.c for details). There is also code to ensure that the ego item reaches a minimum power level if generated, including selection of the appropriate random ego ability and boosting the to hit, to damage, to ac and item pval as appropriate.
+Generation of ego items in game occurs in object2.c, and occur if a created armour or weapon passes several checks, and then all ego items from this file that match the weapon or armour type must pass a rarity test to see if the object in question converts into the ego item. The match is determined on the tval and sval ranges specified for the ego item matching a generated base object, so that deep ego items which depend on the creation of shallow base objects are less likely to be created than their rarity suggests.
+Note that monsters with DROP_GOOD are much more likely to carry ego items than other monsters, and weapons or armour generated by a DROP_GREAT monster will always at least be an ego item, if there is a corresponding match for that weapon or armour tval and sval in this file.
+The player can determine an object is an ego item in a number of ways: examples include sensing that it is an excellent, superb, ego item or high ego item, or using Rune Magic to determine the number of runes on a weapon or armour. Superb and high ego items are distinguished from excellent and regular ego items, by having a random extra flag as specified in the corresponding ego_item.txt entry. This means that in addition to the flags specified here, that the ego item has a randomly chosen flag from a possible list in tables.c, corresponding to the value of xtra.
+There is a tier below egos for many items, including weapons, armour and lights, called magic items. Magic items are normal items which have the random extra flag only, and no ego abilities. Magic items will sense as excellent items, and appear to be mini-ego items. But they do not have a corresponding entry in the ego_item.txt file, and will be generated based on object boost code to ensure that they reach the mandated object power level for the particular level (see object2.c for details). Magic items are used to try to ensure that all weapon, armour and light drops are useful for the current level.
+Some magic items will be generated as racial ego items. These are intermediate again between magic items and ego items. These are distinguished by having an xtra flag of 16. Racial ego items are part of an unfinished racial drop system. They have the random flag of a magic item but the negative racial flag they have allows the item to boost its power beyond what is normally permitted on the dungeon level. The racial drop system is intended to have e.g. orcs drop orcish weapons, armour and ego items, but causes too much of an impact on what equipment is found in the dungeon at this stage.
+General notes
+The ego-item indexes are defined in "defines.h", and must not be changed. (This is probably no longer correct).
+Ego-items 1-63 are "armor", and 64-127 are "weapons" for historical reasons, but no other requirement.
+Note that every "ego-item" type has a different "index", and can only be created from items that belong to a certain "slot" in the equipment, if one assumes that "ammo" belongs to an imaginary slot (23). (Note that the above is not true and was not true even before my patch. The 'slot' seems very useless to me right now. -MWK-)
+Note that several "ego-item" types may share the same "textual name", such as with "Armor of Resistance" and "Shield of Resistance". (This may no longer be true, although duplicate names are permitted).
+Ego_Item.txt entry format
+N: serial number : ego type
+X: inventory slot : rating : xtra
+C: max to-hit : max to-dam : max to-ac : pval
+W: depth : rarity : weight : cost
+T: tval : min_sval : max_sval
+F: flag | flag | etc
+Y:rune type : rune count
+A: activation : recharge time : recharge time dice
+Understanding Ego_Item.txt
+'N' indicates the beginning of an entry. The serial number must increase for each new item.
+'X' is for extra information - inventory slot and rating. Slots range from 23 (for ammunition) to 35 (for boots). Rating affects level feelings.  The xtra value determines random extra flags for the ego-item.  Nothing happens with a value of 0, 1 stands for "one random extra sustain", 2 is "one random extra resist", and 3 is "one random extra ability". For a full list of xtra abilities, see tables.c.
+'C' is for creation bonuses - maximum to-hit, to-dam, to-ac, and pval. Cursed ego-items will negate the given value.
+'W' is for extra information. Depth is the depth the object is normally found at, rarity determines how common the object is, weight is in tenth-pounds and cost is the items value.
+'F' is for flags. These are common to the object.txt, artifact.txt and ego_item.txt files. As many F: lines may be used as are needed to specify all the flags and flags are separated by the '|' symbol.
+‘O’ is for Obvious flags. These are flags that are learned when the ego item is ‘named’ e.g. when the IDENT_NAME flag is applied. The Obvious flags should be obvious from the ego item name, and be a subset of the ‘F’ flags. As many O: lines may be used as are needed to specify all the flags and flags are separated by the '|' symbol.
+'T' is for possible 'tval' and 'sval' values of the base-item. Up to three 'T' entries are possible for a single object. The ego-item can only be generated from items of this tval, with sval in the specified range.
+‘Y’ is for runes. When count number of type of runes are applied to an object, that is permitted to appear as an ego item of the corresponding type, then the object will be converted to this ego item. Objects and ego items which already have a count listed for the number of runes, are treated as having that many runes already, when a rune of the same type is applied. This allows runes in particular to be used to upgrade e.g. a weapon of Frost to a ‘Frostbite’ using two runes of Frost. Note that post conversion, the runes are stripped off, so that the additional rune abilities specified in rune.txt do not apply until a further rune is added again. Ego items will identify as having so many runes of a particular type as listed here even if they do not ‘internally’ have the runes applied.
+'A' is for activation.  Activation is the effect the ego item activates for, referring to an entry number in spell.txt. The recharge time calculates from the recharge time plus a random value between 1 and the recharge time dice (if not 0). If an activation is given then the ego item must also have the ACTIVATE or UNCONTROLLED flag. Ego item weapons with activations can also be inscribed with =A by the player which will mean that the activation is used against the monster that the ego item hits, provided the activation has recharged.
+Customising this file
+There are probably already too many ego items, especially weapons, in Unangband, exaggerated by the addition of magic items. Care should be taken when adding additional ego types, that the ego type does not match or exceed the power of an equivalent artifact. Note that many top end ego items, particularly weapons, do this already. Consider restricting an ego type to a particular subset of armour or equipment that make it less useful.
+Note that due to the way ego items are created, that ego item dragon armour is highly likely, and therefore no ego items for dragon armour should be created.
+Credits
+Credits listed here are JLE unless otherwise noted. All other credits are either noted in the file or from Angband.
+10: Armor of Vulnerability (cursed ego-type for armor)
+12: Dwarven Armor (heavy metal armor only)
+21: Shield of Elvenkind (returning from Angband 2.7.8 and previous versions)
+22: Shield of Preservation
+23: Shield of Vulnerability (cursed ego-type for shields)
+36: Crown of Serenity (adapted from OAngband: replaces Helm of Stupidity)
+37: Crown of Night & Day (partially adapted from an OAngband ego-item)
+43: Cloak of the Magi
+52: Gloves of Thievery (leather gloves only)
+53: Gauntlets of Combat (gauntlets and cesti only)
+60: Boots of Stability (from OAngband)
+61: Boots of Elvenkind (replaces Boots of Noise - too many cursed types of boot)
+67: Weapon of Gondolin (rarer and more powerful than Westernesse)
+70: Weapon of Fury (nastier than a Weapon of Extra Attacks, but also aggravates)
+76: Weapon of Venom (Poison Brand: does NOT, however, provide poison resist)
+101: Shovel/Pick of Impact
+106: Bow of Lothlorien
+107: Crossbow of the Haradrim
+110: Sling of Buckland
+111: Bow/Crossbow of the Nazgul (cursed bow ego-type)
+120: Ammo of Holy Might (seeker, silver and mithril stuff only)
+121: Ammo of Venom
+Flavor.txt
+Overview
+Flavours are used to describe a sub set of possible objects so that it is possible to distinguish different unidentified objects that would otherwise appear to be an identical object type. For instance, flavours are used to distinguish all different types of unidentified potions so that the player sees more than a) 3 Potions b) a Potion in their inventory – in this example a) 3 Brown Potions b) 1 Yellow Potion. Early on in the game, this information is strictly flavour text, with the key exception that a very limited number of item types are generated with a fixed flavour. Later on in the game, the fact that an item is flavoured can be used to identify it as one of a limited number of items remaining to be identified of that object type.
+General notes
+There must be at least one flavour entry for every flavoured object in object.txt or the flavour assignment code will fail horribly.
+The flavour.txt file is used to identify whether an item is a fixed flavour (by specifying an exact tval, sval combination), or a random flavour (by not specifying an sval), and to provide a related graphic which matches the descriptive text. Note that if two different object types have the same descriptive flavour text (e.g. a Green Staff and a Green Wand), we require two different flavour.txt entries because the staff and wand graphics will be different.
+The scroll flavours are placeholders, and code in object1.c is used to randomly assign a title for each scroll type.
+The mushroom flavours are fixed for all ‘harmful mushrooms’ which have a corresponding mushroom type that they drop. The type dropped is set by get_food_type in xtra2.c and depends on the mushroom patch monster name. At the moment the name is only ‘coincidentally’ like the flavour – this could be changed so that the mushroom patch name must contain the flavour of the mushroom dropped. 
+Flavor.txt entry format
+N:<index>:<tval>:<sval>
+G:<char>:<attr>
+D:<text>
+Understanding Flavor.txt entries
+'N' indicates the beginning of an entry. The serial number must increase for each new item. The tval must match the object tval in object.txt that the flavour belongs to. If specified, the sval indicates a ‘fixed’ object flavour and must match the object sval in object.txt that the flavour belongs to. Note that internally an sval of 0 is used to indicate a random flavour assignment which means that objects with an sval of 0 cannot have a fixed flavour.
+'G' is for graphics - symbol and color, which is used to represent the object either when the object is unknown or the view_flavours option is set to false. There are currently 28 colors, as follows:
+D - Dark Gray	w – White	s – Gray		o - Orange
+r – Red		g – Green	b – Blue		u - Brown
+d – Black	W - Light Gray	v – Violet	y - Yellow
+R - Light Red	G - Light Green	B - Light Blue	U - Light Brown
+p – Purple	P – Light Purple	t – Teal		m – mud
+Y – Light Yellow	i – Dark Pink	T – Light Teal	V – Light Violet
+M – Mustard	I – Light Pink	z – Blue Slate	Z – Deep Light Blue
+Note that "black" is the same color as the screen background, and thus the monster will appear to be an empty black space if its color is "d".
+'D' is for descriptive text. This text is added to the object name; if the show_flavours option is set to false this occurs when the object type is unknown. 
+
+Monster.txt
+Overview
+Monster.txt defines the list of monster races in the game. Each monster is of a particular monster race, which determines the powers and abilities it has and can use. The monster races are therefore central to the game design, and careful selection of powers and abilities for these races results in interesting game play.
+Uniques are an instance of a monster race that has only one member. Once killed, a unique will not reappear in the game.
+Monster.txt entry format
+N: serial number : monster name
+G: symbol : color
+I: speed : hit points : vision : armor class : alertness
+W: depth : rarity : group index : experience for kill
+M: innate frequency : spell frequency : spell power : mana
+B: attack method : attack effect : damage
+S: spell type | spell type | etc
+F: flag | flag | etc
+D: Description
+Understanding Monster.txt entries
+'N' indicates the beginning of an entry. The serial number must increase for each new item. Entry 0 is used for the player. The vertical bar is used to separate |male|female|plural| monster names in the event a monster could be generated male or female or has a non-standard pluralisation.
+'G' is for graphics - symbol and color. There are currently 28 colors, as follows:
+D - Dark Gray	w – White	s – Gray		o - Orange
+r – Red		g – Green	b – Blue		u - Brown
+d – Black	W - Light Gray	v – Violet	y - Yellow
+R - Light Red	G - Light Green	B - Light Blue	U - Light Brown
+p – Purple	P – Light Purple	t – Teal		m – mud
+Y – Light Yellow	i – Dark Pink	T – Light Teal	V – Light Violet
+M – Mustard	I – Light Pink	z – Blue Slate	Z – Deep Light Blue
+Note that "black" is the same color as the screen background, and thus the monster will appear to be an empty black space if its color is "d".
+'I' is for information - speed, health, vision in tens of feet, armor class, and alertness. 110 is normal speed. Alertness ranges from 0 (ever vigilant for intruders) to 255 (prefers to ignore intruders).
+'W' is for more information - level, rarity, group index and experience for killing.  The group index is index to associate monsters of a particular type together. Monsters with the same group index will often be generated on the same level together.  Group indexes if defined will also be used for escorts and for the summon group summoning spell.  The current group indexes in use are:
+1  Apprentices
+10 Mimic
+11 - 19 Elementals
+20 Golem
+21 Phantom
+22 Spirit
+23 Soul
+24 Faerie
+25 Ant
+26 Termite
+27 Shadow
+
+'B' is for blows - method of attack, effect of attack, and damage from attack. There may be up to four of these lines; effect and damage are optional. See blows.txt for a definition of blow methods, and defines.h for a definition of blow effects, which are preceded by GF_ in this file.
+'M' is for magic information - cast innate, cast spell, spell power, and mana.  All breath weapons and a few other spells are 'innate' and use the innate percentage chance to determine how frequently they are cast. In addition, some blow types may be used at range (such as arrow, lash, spit and so on) and also use the cast innate to determine how frequently they may be used.
+All other spells use the cast spell percentage chance to determine their frequency. In addition, the spell power determines the damage multiplier for these spells (but not breath weapons, which depend on hit points).
+Monster mana determines how many spells may be cast before having to rest to recover mana, or cast a spell to add mana. Each monster spell has a mana cost that is associated with this.
+'S' is for spells. These are explained in more detail below. As many S: lines may be used as are needed to specify all the spells, spells are separated by the '|' symbol.
+'F' is for flags. These are explained in more detail below. As many F: lines may be used as are needed to specify all the flags, flags are separated by the '|' symbol.
+'D' is for description. As many D: lines may be used as are needed to describe the monster. The vertical bar is used to separate |male|female|plural| monster descriptions in the event a monster could be generated male or female or has a non-standard pluralisation.
+Understanding Monster Spells and Flags
+To understand the additional monster flags, and spells, which are treated internally as flags, you should grep the code base using the regular expression RF[0-9]_ followed by the monster flag or spell as shown in the monster.txt file.
+Brief explanations of a number of flags follow:
+UNIQUE monsters are just "special" monster races, with the requirement that only one monster of that race can exist at a time, and when it is killed, it can never again be generated.
+QUESTOR monsters are monsters that are temporarily or permanently marked as a quest objective. QUESTOR monsters are placed by the quest code, and will never be randomly encountered on levels which they exist as a quest objective.
+MALE monsters use the masculine pronoun.
+FEMALE monsters use the feminine pronoun.
+If a monster race is marked as both male and female, 50% of generated monsters will be male and 50% female. The vertical bar is used to separate |male|female|plural| monster name and descriptions in the event a monster could be generated male or female or has a non-standard pluralisation.
+CHAR_CLEAR monsters are totally invisible: the symbol shown on the screen is the same as the floor (or other terrain feature) below it, or the item that is lying on that floor. These monsters can currently be targetted as normal monsters: perhaps this can be changed so that the player must KNOW the monster is there (by bumping into it, or having the monster wake up and attack the player?)
+CHAR_MULTI monsters are those which look like objects, and use the symbols of objects. They are in plain sight, but the character should not know that a monster is there. At the moment, such monsters can be targetted normally (which means that this flag currently has no effect), but this may change in the future, as with CHAR_CLEAR monsters.
+(Note that currently both CHAR_CLEAR and CHAR_MULTI monsters are treated as normal monsters that are just a little hard to see... if you "l"ook for them, you will find them unless they are invisible and you cannot see invisible, and if you use the * command for targetting mode you can pick them as a target.)
+ATTR_CLEAR monsters appear the same color as the floor, terrain feature or object underneath them.
+ATTR_MULTI monsters are "multi-hued" - they change color, every player turn, to one of the twenty eight possible graphic colours, except black.
+ATTR_METAL monsters have a occasionally "flickering" attr which is one step lighter than their base color.
+FORCE_DEPTH indicates the monster is only generated at the listed depth or below, never ‘out of depth’. This might be deprecated at some point.
+FORCE_MAXHP indicates that the monster is generated with a fixed number of hit points. This should be renamed as FIXED_HP at some point.
+FORCE_SLEEP indicates that the monster is generated ‘asleep’ to try to reduce the incidence of the monster killing the player on its first move (usually the turn the player enters a new level). This might be no longer necessary and should be deprecated at some point.
+GUARDIAN are monsters that are the end of dungeon or mid-dungeon guardians of a particular dungeon (see dungeon.txt). GUARDIAN monsters are placed by the guardian placement code, and will never be randomly encountered
+FRIEND monsters are generated in pairs – one initially placed monster and up to one additional monster of the same race. If a UNIQUE, the additional monster placed is instead of the same graphic attr and char and also UNIQUE.
+FRIENDS monsters are generated in groups – one initially placed monster and two to four additional monster of the same race. The number of monsters is adjusted upwards or downwards depending on the depth the monster is placed at relative to its native depth. If a UNIQUE, the additional monsters placed are instead of the same graphic attr and char and also UNIQUE.
+ESCORT monsters are generated with four to six additional monster placements. The additional placements will be of the same group index as the escort if it has a group index defined, otherwise they will be of the same graphic char. The placement honours the FRIEND or FRIENDS flag of the placed monsters - if the ESCORT monster is too shallow for the current depth, the additional monsters placements will be done as if the FRIEND flag was set, for 4 levels too shallow or more, or the FRIENDS flag was set, for 9 levels too shallow or more.
+NEVER_BLOW monsters have no melee attacks and do not attempt to make them. The monster AI tries to keep NEVER_BLOW monsters a minimum distance from the player.
+NEVER_MOVE monsters never move from their current location except by casting spells or being pushed around by other monsters.
+RAND_25 monsters have a 25% chance of going in a random direction when they move unless they are adjacent to a monster they are attempting to attack.
+RAND_50 monsters have a 50% chance of going in a random direction when they move unless they are adjacent to a monster they are attempting to attack.
+RAND_25 and RAND_50 are additively cumulative – both set implies a 75% chance.
+ONLY_GOLD indicates that the monster only drops gold or gems when killed, never other items unless these were carried before death.
+ONLY_ITEM indicates that the monster only drops items when killed, never gold or gems.
+DROP_30 indicates a 30% chance of dropping 1 item or gold or gems when killed.
+DROP_60 indicates a 60% chance of dropping 1 item or gold or gems when killed.
+DROP_90 indicates a 90% chance of dropping 1 item or gold or gems when killed.
+The drop chances are checked separately e.g. a DROP_30 | DROP_60 | DROP_90 monster could carry up to 3 items, gold or gems.
+DROP_1D2 indicates the monster drops 1-2 items, gold or gems when killed.
+DROP_1D3 indicates the monster drops 1-3 items, gold or gems when killed.
+DROP_1D4 indicates the monster drops 1-4 items, gold or gems when killed.
+The drop items are added together e.g. a DROP_30 | DROP_1D2 | DROP_1D3 monster could carry up to 6 items, gold or gems.
+DROP_GOOD indicates that items dropped by a monster must pass a ‘goodness’ check which ensures that they are especially useful. In addition, the likelihood of an item being generated as a magic item, ego item or artifact is greatly increased. Gold or gems are boosted somewhat in value. See object2.c for details.
+DROP_GREAT indicates that items dropped by a monster must pass a ‘goodness’ check which ensures that they are especially useful. In addition, the item will be a guaranteed magic item or ego item, if it can be so, and the likelihood of it being an artifact is greatly increased. Gold or gems are greatly boosted in value. See object2.c for details.
+DROP_USEFUL is not currently used.
+DROP_CHOSEN indicates that specific items are dropped by the monster. These items are currently hard coded. See xtra2.c for details.
+STUPID monsters use less of the monster AI (artificial intelligence) routines than other monsters. When choosing a spell, a STUPID monster picks one at random after eliminating a few spells which will never be effective e.g. recovering mana when already at full mana. To compensate, STUPID monsters never fail when casting a spell. A STUPID monster also disregards traps when choosing where to move.
+SMART monsters take full advantage of the monster AI (artificial intelligence) routines instead of merely sometimes doing so. SMART monsters note the player race, and deduce basic resistances from the player race selection. SMART monsters will also disarm traps when choosing where to move. SMART monsters which are not undead will attempt to consume potions and mushrooms they carry (which have the EAT_SMART flag set) in order to recover hit points and mana.
+Monsters which CAN_DIG can move through and hide in terrain which has the CAN_DIG flag. The monster must be immune to the damage caused by the terrain to do so, and cannot move this way through terrain with the COVERED flag unless entering from another terrain while already hidden – but if this terrain has the BASH flag and the monster CAN_BASH, it will do so to create a hole in the terrain. Hidden monsters cannot be affected by projectiles including spells and missile weapons, and are not normally visible to the player.
+A monster which HAS_LITE always lights up the dungeon around it to a radius of 2.
+INVISIBLE monsters cannot be seen by the player without the SEE_INVIS ability from either equipment, racial abilities or temporary effects, unless the INVISIBLE monster lacks the COLD_BLOOD flag and it is within the radius of the player’s infravision. It may be possible to deduce the presence of a monster from its interactions with terrain or attacks on the player however. INVISIBLE monsters will also not be detected by detect monster spells, but other detection spells should reveal them.
+COLD_BLOOD monsters cannot be seen by the player with infravision. If lit by other light sources and not INVISIBLE, the player will still be able to see the monster.
+EMPTY_MIND monsters cannot be detected by telepathy or detect mind spells.
+WEIRD_MIND monsters cannot be detected by telepathy or detect mind spells 80% of the time. This is based on the monster index so that whether an individual monster is detected remains constant over the life of the monster.
+MULTIPLY monsters have a chance of creating an identical monster in an adjacent empty grid every turn. The resulting monster will not drop any items, gold or gems when killed. The rate of reproduction is reduced in crowded areas and stopped when the number of reproducing monsters on a level reaches a threshold (See melee2.c for details).
+REGENERATE allows a monster to recover hit points and mana faster than other monsters of the same speed. When killed, the body of a REGENERATE monster will eventually turn back into a monster of the same race unless the body is destroyed. The resulting monster will not drop any items, gold or gems when killed.
+Monsters which CAN_SWIM can move through and hide in terrain which has the CAN_SWIM flag. The monster must be immune to the damage caused by the terrain to do so, and cannot move this way through terrain with the COVERED flag unless entering from another terrain while already hidden  – but if this terrain has the BASH flag and the monster CAN_BASH, it will do so to create a hole in the terrain. Hidden monsters cannot be affected by projectiles including spells and missile weapons, and are not normally visible to the player.
+Monsters which MUST_SWIM can only move through terrain which has the CAN_SWIM flag. They are treated as drowning on any other terrain.
+POWERFUL monsters are more effective at casting certain spells: their breath weapons are twice as wide and spells which the player must save against may overcome otherwise 100% effective resistance.
+Object.txt
+Object.txt entry format
+N: serial number : & object name~
+G: symbol : color
+I: tval : sval : pval
+W: depth : charges : weight : cost
+P: base armor class : base damage : plus to-hit : plus to-dam : plus to-ac
+A: depth/rarity : depth/rarity : etc
+F: flag | flag | etc
+Y: rune type | rune count
+Understanding object.txt entries
+'N' indicates the beginning of an entry. The serial number must increase for each new item. The '&' and '~' symbols are use to include articles and pluralization as necessary to ensure grammatical  correctness in object descriptions. See object2.c for the full parsing rules for these strings.
+'G' is for graphics - symbol and color. There are currently 28 colors, as follows:
+D - Dark Gray	w – White	s – Gray		o - Orange
+r – Red		g – Green	b – Blue		u - Brown
+d – Black	W - Light Gray	v – Violet	y - Yellow
+R - Light Red	G - Light Green	B - Light Blue	U - Light Brown
+p – Purple	P – Light Purple	t – Teal		m – mud
+Y – Light Yellow	i – Dark Pink	T – Light Teal	V – Light Violet
+M – Mustard	I – Light Pink	z – Blue Slate	Z – Deep Light Blue
+Note that "black" is the same color as the screen background, and thus the monster will appear to be an empty black space if its color is "d".
+'I' is for basic information. The tval is for the type of item, the sval identifies the subtype and the pval indicates the amount of effect the item has, if applicable. 
+'W' is for extra information. Depth is the depth the object is normally found at, rarity determines how commoAn the object is, weight is in tenth-pounds and cost is the items value.
+'P' is for power information. The items base armor class, its base damage and pluses to-hit, to-dam and to-ac.
+'A' is for allocation - depth and rarity, in pairs. This allows an item to have multiple natural depths and rarities. It is used to ensure that certain vital items such as food and identify scrolls are found throughout the dungeon.
+'F' is for flags. These are fairly self-explanatory. As many F: lines may be used as are needed to specify all the flags and flags are separated by the '|' symbol.
+
+P_Class.txt
+P_class.txt entry format
+N:class number:class name
+S:str:int:wis:dex:con:chr:agi:siz
+C:dis:dev:sav:stl:srh:dig:tht:thn:thb
+X:dis:dev:sav:stl:srh:dig:tht:thn:thb
+I:exp:sense_base:sense_div:sense_type:sense_squared
+A:max_attacks:min_weight:att_multiply:chg_weight
+M:spellbook tval:spell-stat-study:spell-stat-mana:spell-stat-fail:first-level:max weight:high-power
+B:spell number:level:mana:fail:exp
+T:title
+E:tval:sval:min:maxef
+F:school flags
+Understanding p_class.txt entries
+'N' indicates the beginning of an entry. The serial number must increase for each new class.
+'S' is for the stat modifiers - strength, intelligence, wisdom, dexterity, constitution, charisma, agility, size.
+'C' is for the base skills - disarming, magic devices, saving throws, stealth, searching ability, digging, to hit (throws), to hit (normal), to hit (bows).
+'X' is for the skill modifiers - disarming, magic devices, saving throws, stealth, searching ability, digging, to hit (throws), to hit (normal), to hit (bows).  The modifiers are added to the base skill every ten levels.
+'I' is for extra info - experience factor in percent, base chance for pseudo-id (smaller is better), level dependent divisor for the pseudo-id chance, type of sensing (see object2.c), sense squared.
+
+'A' is for attack info - maximum possible number of attacks, minimum weapon weight for calculating the number of attacks, multiplier for attack calculations, weight divisor for charging.
+'M' is for magic info - tval of the used spellbook, number of the spell-stat, level of the first spell, weight that hurts spells.
+'T' is for class titles (Up to 10 entries).
+'E' is for starting equipment - tval of the item, sval of the item, minimum amount, maximum amount.
+'F' is for class flags. These are fairly self-explanatory. As many F: lines may be used as are needed to specify all the flags and flags are separated by the '|' symbol.
+P_Race.txt
+Overview
+This file is also used to define possible shapes that a player can shape change into as an effect, in addition to their starting race. To define that a race is selectable as a starting race, it must have an index less than the number of 'playable' races defined in the limits.txt file.
+P_race.txt entry format
+N:race number:race name
+S:str:int:wis:dex:con:chr:agi:siz
+R:dis:dev:sav:stl:srh:dig:tht:thn:thb
+X:expbase:infra:monster race equivalent
+I:history:agebase:agemod:hometown
+H:hgtmale:modhgtmale:hgtfemale:modhgtfemale
+W:wgtmale:wgtfemale
+F:racial flags
+C:classes (numeric)
+O:wield:bow:left_ring:right_ring:neck:lite:body:outer:arm:head:hands:feet
+D:adjective
+Understanding p_race.txt entries
+'N' indicates the beginning of an entry. The serial number must increase for each new race.
+'S' is for the stat modifiers - strength, intelligence, wisdom, dexterity, constitution, charisma, agility, size.
+'R' is for the base skills - disarming, magic devices, saving throws, stealth, searching ability, digging, to hit (throws), to hit (melee), to hit (bows).
+'X' is for extra info - experience factor in percent, range of infra-vision in 10 feet increments.
+'I' is for info - starting point of the player history, base age, random age modifier, home town.
+'H' is height info - base height (males), mod height (males), base height (females), mod height (females).
+'W' is weight info - base weight (males), base weight (females).
+'F' is for racial flags. These are fairly self-explanatory. As many F: lines may be used as are needed to specify all the flags and flags are separated by the '|' symbol.
+'C' is for class choices. This defines a | separated list of classes that can be chosen for this race with the birth_intermediate option. These will be greyed out, but still selectable with the birth_advance option. Each number refers to the index of the class in p_class.txt.
+'O' is for objects. This defines if the class has a built in object in a particular equipment slot. The value refers to the index of the object in object.txt.
+Spell.txt
+Spell.txt entry format
+N: number : name
+A: tval : sval : slot
+C: class : level : mana : failure : min failure
+F: flags
+B: attack method : attack effect : damage
+L: duration
+S: other effect : parameter
+D: description
+Understanding Spell.txt entries
+'N' indicates the beginning of an entry. The serial number must increase for each new item.
+'A' is indicates which objects the spell appears in, referenced by object tval and sval – see object.txt for details. Slot should be unique for objects which have multiple spells associated with them, and slots must be numbered from 1 upwards. However slots are renumbered as a part of reading this file in, and usually just leaving slot set to 1 will result in the correct in-game behaviour.
+The exception is rune stones, where the slot corresponds to the second ('verb') rune stone sval. This allows spells to be cast from rune stones by combining a ‘noun’ and a ‘verb’ rune stone. This is done implicitly when multiple rune stones are carried by the player.
+'C' indicates the casting details listed by class. Note that currently no more than 8 classes can cast a particular spell, as defined in defines.h.
+'F' flags indicating some of the effects that take place when the spell is cast. These are fairly self-explanatory. As many F: lines may be used as are needed to specify all the flags and flags are separated by the '|' symbol.
+'B' - method of attack, effect of attack, and damage from attack. There may be up to four of these lines; effect and damage are optional. See blows.txt for a definition of blow methods, and defines.h for a definition of blow effects, which are preceded by GF_ in this file.
+The blow damage can here be specified in a format 1d2+3+(4d5+6)/7 to indicate that the base damage is 1d2+3 and 4d5+6 damage is added to this every 7 levels. Various shorter permutations of this format are permitted, and the brackets are only required to disambiguate 1d2+3/4 from (1d2+3)/4.
+'L' indicates how long the duration component of the spell lasts.
+'S' indicates another spell effect, determined by the numeric parameter. The parameter value depends on the effect in question. See spells2.c for details.
+'D' description indicates the description display when the spell takes effect. If an item has a description, it will be identified as a part of the activation of the item.
+Customising this file
+Note that if you are applying blows to a player, you should apply the blow that blinds them last, if possible, because they will not know the results of the other blows.
+

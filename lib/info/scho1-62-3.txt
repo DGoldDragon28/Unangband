@@ -1,0 +1,51 @@
+=== A carefully folded letter, sealed with an impressive signet 'S' ===
+
+When you break the seal, some of the blood red wax drips out, as if it
+had never set. The hand writing inside is stern and angular:
+
+As a master, your summoned creatures you command will follow you and
+fight intelligently when you are nearby.  Archers and spell casters
+will stand off of targets and bombard them with spells and arrows.
+However, archers and spell casters will take a guide from your
+current position, and move towards that position if they are too
+close to the target.  This may mean they foolishly follow you into
+battle.  Target a grid to hold, as I outline below, in order to
+avoid this.
+
+Your summons will take also take lead from targets that you specify,
+as follows:
+
+If you specify a monster target, your summons will move towards that
+monster if they are not engaged in direct combat.  Archers and spell-
+casters will keep a distance from the target.
+
+If you specify a race of monsters, using the 's' key while targetting,
+your summons will preferentially target that race against all others,
+ignoring other targets and direct combat if they can see one of the
+race you specify.
+
+If you specify a grid target, your summons will move towards that
+position and hold it if they are not engaged in direct combat.
+Archers and spell-casters will also move up to the position: you can
+use this to specify your archers and spell casters stay back while
+you engage in melee with the enemy.
+
+You can also specify a grid position with the 'a' key, whilst
+targetting. This will cause your summons to assault the target grid.
+Summons in an assault will disregard nearby combat in favour of
+attacking monsters near the grid that you are assaulting.  Archers
+and spell casters will also seek out targets near the grid that you
+are assaulting, but will prefer to move back towards your position
+if they are too close to the target in question.
+
+Once you have specified a grid target, either to hold or assault it,
+your troops will continue to prefer that location. To cancel the
+orders, you must either specify another target, or hit the Escape
+key whilst targetting.  At that point they will begin to follow you again.
+
+Beware: You must keep your summons alive or you will incur a mana
+debt if they are killed or destroyed. Make sure that you have the
+mana available to pay this debt, or the price will be extracted in
+blood instead.
+
+                                               -- S.

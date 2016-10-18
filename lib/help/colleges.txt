@@ -1,0 +1,6 @@
+=== Colleges ===
+
+    There is only one song book college at present: the code supports adding
+    additional colleges by creating song books with tvals 57 and upwards but
+    I don't have enough of a rational to do so at this stage.
+    

@@ -1,0 +1,24 @@
+      -- Choosing your Magical Studies --
+
+Please choose one of the following online help files:
+
+  For mages and magic book users:
+    (1) Magic Speciality            (magic.txt)
+    (2) Schools                     (schools.txt)
+  For priests and prayer book users:
+    (3) Prayer Speciality           (prayers.txt)
+    (4) Religions                   (religions.txt)
+  For bards and song book users:
+    (5) Song Speciality             (songs.txt)
+    (6) Colleges	                (colleges.txt)
+
+ ?  : return to previous menu
+ ESC: leave help
+
+***** [1] magic.txt
+***** [2] schools.txt
+***** [3] prayers.txt
+***** [4] religions.txt
+***** [5] songs.txt
+***** [6] colleges.txt
+

@@ -1,0 +1,23 @@
+=== An Addendum to the Overview of Potions ===
+
+Potions come in a variety of colours and flavours, which can
+change with every game. You'll usually need to relearn which
+flavour or colour corresponds to which type of potion every
+game you play.  You can learn this information in several
+ways: by starting the game with that type of potion, by buying
+or selling the potion to or from the shop or by quaffing the
+potion and noticing its effects.
+
+You could also experiment with throwing potions using the throw
+command ('t' or 'v' in the roguelike commands) or by applying
+them to weapons using the apply command ('y' or '^G' in the
+roguelike command set).  These uses of potions are probably best
+reserved for any harmful potions that you may find.
+
+Finally, you may be able to learn spells or find items with
+the ability to provide more information about unknown potions.
+Identify or Analyze Magic spells will let you learn the type
+of potion outright.  Sense Magic will let you learn which of
+several types of category the potion falls into.  Keep an eye
+out for items with these abilities to help you identify the
+potions you encounter without having to use them up.

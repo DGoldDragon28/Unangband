@@ -1,0 +1,50 @@
+=== A large dried leaf from the front of your first spellbook ===
+
+There are words printed impossibly finely on the inside of this
+leaf:
+
+The challenge of a druid is looking beyond the sparks of lightning
+which you can so easily conjure from your finger tips. The spells
+you find herein echo the mysteries of nature in their subtlety.
+Pay attention to the following useful notes I have made for you:
+
+ - Detect Life will find all living things around you. But the
+ monsters most likely to resist lightning are also the most
+ likely to be constructed of dead things, undetectable to your
+ magic. So beware!
+
+ - A Dryad's Embrace requires you be next to natural things or
+running water and will only transport you to similar areas.
+If you are not standing in such a region, attempting to cast
+this spell will not cost you time or mana. 
+
+ - Moonlight does no damage to monsters vulnerable to sunlight,
+ except for the shards of random starlight it casts around you.
+It is, however, more effective at lighting natural areas than
+wizardly magics, but less useful in lighting the interiors of
+buildings and rooms.
+
+ - Find Water will locate nearby sources of water, as well as
+cause a spring to bubble up under you which may flood the area
+nearby. You'll find this useful to assist a number of druidic
+magics that rely on the presence of running water. But also:
+
+ - Lightning Spark, in fact all electrical attacks, do twice the
+damage if the target is standing in water. Cold and frost
+attacks are likewise improved, but the potency of acid and fire
+attacks are halved in the same situation.
+
+ - Stinging a target may initially appear less effective than
+your Lightning Sparks. But in a situation when you are running
+low on mana, a well delivered set of stings will be a much more
+efficient use of this resource against a single target.
+
+- Warping Wood may initially appear to provide little use beyond
+breaking open doors and wooden objects. But a cunning druid will
+note that arrows are made of wood, and archers are much more
+vulnerable with their ammunition depleted.
+
+You will need to master a reliable path of escape should trouble
+ensue - scrolls of Phase Door may assist you in this regard.
+
+                                    - Radagast the Brown

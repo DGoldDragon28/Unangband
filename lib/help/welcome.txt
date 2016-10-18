@@ -1,0 +1,27 @@
+=== Welcome to Unangband ===
+
+I want to welcome you with open arms to Unangband, a variant of Angband which
+I have spent some not inconsiderable time and effort developing over more
+than 10 years.
+
+Unangband attempts to create a place of mystery, that you will grow to know
+and understand, while still leaving you surprised and intrigued at every
+unexpected turn.  You will fail in your quest to kill Morgoth many times, but
+I hope every failure is at least interesting and different from the last,
+and provides a sense of enlightenment about the underlying mechanics of the
+game. To quote another game developer 'Failure is fun!' and it is this sense
+of slow, but fruitful accomplishment that I hope this game provides you.
+
+And should you finish in your quest, and hold Melkor's iron crown in your
+grip, you should realise that this game is infinitely replayable, but also
+that I have never come close to the victory you now feel.
+
+Good luck! And good hunting.
+                                                     - Andrew Doull
+
+PS: From here, you should find useful game play tips as you travel through
+the towns, wilderness and dungeons of this world. Also peruse the help files
+accessible at almost any time with the ? key. Feel free to report any bugs
+or unexpected behaviour on the website at http://unangband.blogspot.com
+where you will also find many informative links and a like-minded community
+of fellow players.

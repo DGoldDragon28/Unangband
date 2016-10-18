@@ -1,0 +1,15 @@
+=== Rolling up Stats ===
+
+You will now have the oppotunity to determine your stats in more
+detail.  If you choose to just roll, you'll be able to simulate
+a sequence of dice rolls to generate your stats.  Unangband
+ensures that there is a minimum and maximum cut off so that just
+rolling will provide a useful range.
+
+Alternately, you can use a point based method, where you trade
+stats amongst each other, and can sacrifice or earn starting
+gold instead.  Finally, you can use the auto-roller to specify
+minimum stats.  Note that the stat rolls are not independent of
+each other due to the cutoff calculations made earlier, so it
+may be that the stat range you specify in the auto-roller may
+not be achievable no matter how many iterations you run.

@@ -1,0 +1,58 @@
+=== A leaf which arrived perspicuously ===
+
+This leaf blew past you, spun elegantly in the air in front of you and landed
+neatly on your open palm. You immediately noticed it was covered in impossibly
+fine writing:
+
+I do not agree with the path you are following, but it appears I will not be
+able to dissuade you from it.  Since you have chosen to bend nature to your
+beck and call, the least I can do is advise you on the care and feeding of
+your familiar. Be warned: this is a gift from nature and you should not
+abuse it. You will only receive one familiar this life time, so choose wisely
+and protect it ahead of yourself.
+
+Your familiar may initially appear to be a small and hapless animal - more
+agile than most, able to move quickly around the dungeon and evade many
+attacks. It can be summoned when it leaves by recasting the Find Familiar
+spell, and if nearby casting this spell again will locate the familiar for you.
+It has a measure of innate toughness that exceeds its apparent size, but will
+die if left unprotected in a dangerous situation.
+
+Each type of animal or insect has some innate abilities that will assist you.
+There are 3 basic types of familiars to start with: those immediately able
+to attack your enemies, those which are better suited for sniffing out and
+spying on them, and those which can pick up and carry useful objects for you
+around the dungeon.
+
+As you gain in power, you will be able to choose an additional ability for
+your familiar every few levels that will increase it's power. I have made
+notes on some of these choices for you here:
+
+Increase range of senses: This increases the distance at which you will
+learn about monsters that the familiar is aware of.
+
+Dig through dirt and rubble: This allows the familiar to make small tunnels
+and hide in earth and rubble - providing additional protection for itself.
+It does not allow the familiar to make large enough a tunnel for you to
+pass.
+
+Take items from the ground: This will encourage your familiar to seek out
+items and collect them for you. The familiar will prefer more valuable items
+to lesser ones, and at deeper levels in the dungeon will choose to go after
+only the most valuable items.
+
+Track enemies by scent: Normally a familiar will be able to spy on monsters
+which are in its line of sight. This grants the familiar a powerful sense
+of smell which makes it chase monsters out of line of sight, to either spy
+on or attack them as it chooses.
+
+Communicate with you silently: This provides a telepathic bond between you
+and the familiar, so that it can report back to you what monsters it sees
+even if it is not in hearing range. Because objects are less important
+to creatures of the natural world, you will not learn about these.
+
+At higher levels, your familiar will gain powerful physical and magical
+attacks, depending on the choices you make, becoming a useful and trust-
+worthy ally. Be sure to pay it back with kindness and respect.
+
+                                             - Radagast the Brown

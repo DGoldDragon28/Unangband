@@ -1,0 +1,60 @@
+=== The torn out bookplate from the front of your first spell book ===
+
+These are words printed sideways and on top of each other in a crumbling
+ink that resembles dried blood. You struggle to make them out:
+
+You, who are born to be a true Master, hold the very first of your
+great works in your hands.  The spells you find herein do not have the
+overt flamboyance of fire and lightning, but neither will your hands
+and face end up covered in soot, and your hair will remain unfrazzled and
+not stand on its ends like it does some idiot wizzards and others. There
+are, however, important errors which you can make as a Master, and hence
+you should pay attention to the notes I have made:
+
+- Detect evil will find few, if any monsters when you first start out
+on your journey. But the most powerful and dangerous monsters you find
+will be evil, and should you survive long, it will become an invaluable
+tool.
+
+- Darkness will allow you to escape monsters which need lite to find
+you - the spell will also shutter your lantern and smother your torch -
+but you will have to put away your magical staff and any other light
+sources in order to benefit from this effect.
+
+ - Shadowstep requires you be in darkness, and will only transport
+you to similarly dark places. If you are not standing in such a
+region, attempting to cast this spell will not cost you time or mana.
+Since corridors are usually dark, and rooms are usually lit, this is
+a safer method of escape than some alternatives.
+
+ - Chill will be your mainstay spell to start with. It takes several
+turns to apply its damaging effects so is most effective against those
+monsters which are immobile or when there are several moving through
+a corridor towards you. Be careful not to walk into the effects of
+chill yourself!
+
+ - Stinging a target may initially appear less effective than your
+Chill spell. But in a situation when you are running low on mana, a
+well delivered set of stings will be a much more effecient use of
+this resource against a single target.
+
+ - Find Familiar will summon a randomly chosen creature of the wild
+ to be at your side.  The familiar will grow in power with you, and
+ you can dictate the additional powers it gains. Casting the spell
+ again while your familiar is nearby will detect it for you; after
+ a while your familiar will leave your service but it is easily
+ summoned again.
+ 
+ Beware: You will be given only one such gift and should your
+ familiar die, you will not be able to replace it!
+
+ 
+                                     - Saruman the Wise 
+ 
+
+
+
+
+
+
+

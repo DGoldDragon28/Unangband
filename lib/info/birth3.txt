@@ -1,0 +1,28 @@
+=== The Town Level ===
+
+The town level is where you will begin your adventure.  The town consists of
+a number of buildings (each with an entrance), some townspeople, and a wall
+which surrounds the town.  The first time you are in town it will be daytime,
+but note that the sun rises and falls as time passes.
+
+=== Townspeople ===
+
+The town contains many different kinds of people.  There are the street
+urchins, young children who will mob an adventurer for money, and seem to
+come out of the woodwork when excited.  Blubbering idiots are a constant
+annoyance, but not harmful.  Public drunks wander about the town singing,
+and are of no threat to anyone.  Sneaky rogues hang about watching for a
+likely victim to mug.  And finally, no town would be complete without a
+swarm of half drunk warriors, who take offense or become annoyed just for
+the fun of it.
+
+Most of the townspeople should be avoided by the largest possible distance
+when you wander from store to store.  Fights will break out, though, so be
+prepared.  Since your character grew up in this world of intrigue, no
+experience is awarded for killing the town inhabitants, though you may
+acquire treasure.
+
+You'll probably want to go shopping for supplies before you travel any
+where.  Shops entrances are indicated by various numbers on your display.
+To enter a shop, you just need to walk onto the entrance.  To reenter a
+shop, you can use the enter command ('_').

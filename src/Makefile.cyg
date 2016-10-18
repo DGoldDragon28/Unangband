@@ -1,0 +1,71 @@
+# This is a makefile for the Cygwin tools which may
+# be downloaded by following the links from the URL:
+# http://sources.redhat.com/cygwin/
+
+#
+# Standard defines
+#
+
+CC = gcc
+WRES = windres
+LIBS = -s -mno-cygwin -mwindows -e _mainCRTStartup -lwinmm
+CFLAGS = -Wall -W -pedantic -mno-cygwin -O2 -fno-strength-reduce -DWINDOWS
+OBJEXT=.o
+
+default: unangband
+
+include commondefs.inc
+EXOBJS = $(COMMONOBJS) angband.res readdib$(OBJEXT) main-win$(OBJEXT)
+
+# Additional dependencies
+
+readdib.o: readdib.c readdib.h
+	$(CC) $(CFLAGS) -DNEAR= $(INCDIRS) -c -o $@ $<
+
+main-win.o: main-win.c
+	$(CC) $(CFLAGS) -DNEAR= $(INCDIRS) -c -o $@ $<
+
+#
+# Targets
+#
+
+all: unangband movebin
+
+install: unangband movebin cleanobjs
+
+movebin:
+	mv -f unangband.exe ../unangband.exe
+
+cleanobjs:
+	rm -f $(EXOBJS)
+	rm -f $(TOLUAOBJS)
+
+cleanbin:
+	rm -f unangband.exe
+
+clean:	cleanobjs cleanbin
+
+#
+# Dependency rules
+#
+
+unangband: $(EXOBJS)
+	$(CC) -o unangband $(EXOBJS) $(INCDIRS) $(LIBDIRS) $(LIBS)
+
+
+#
+# Compiling angband.rc
+#
+# Note: this format seems to work but the alternative actually used
+# is the one recommended by Cygnus
+#
+# angband.res : angband.rc
+#	$(WRES) angband.rc angband.res
+#
+
+angband.res : angband.rc
+	$(WRES) $< -O coff -o $@
+
+%.o: %.c $(INCS)
+	$(CC) $(CFLAGS) $(INCDIRS) -c -o $@ $<
+

@@ -1,0 +1,16 @@
+=== A Quick Post-script ===
+
+(Oops. You just read the other side of that crumpled note).
+
+PS:
+
+You can use a scroll or spell of Sense Magic to work out which
+type of bag holds an item.  For instance, if you sense magic
+on a scroll of Read Magic, you'll see that it belongs to a bag
+of Scrying.
+
+Similarly, a bag will swallow items that you may not have
+identified yet.  This can clue you in to the nature of the
+item.  You'll also notice that these items always end up in
+the same pockets, something your ancestors may have recorded
+for posterity.

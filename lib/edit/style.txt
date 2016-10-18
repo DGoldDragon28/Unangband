@@ -1,0 +1,766 @@
+# === Understanding style.txt ===
+
+#W:class:level
+#S:styles
+#B:benefit
+
+#An explanation of weapon styles and benefits.
+#(If no style is listed for a given benefit,
+# everybody enjoys the benefit, regardless of style chosen or exercised.
+# This is caught by "w_info[i].styles==0" in the code).
+
+#!!!All below should be somehow moved to help files and removed from here!!!
+
+#NONE: No style. Limited benefits, but available regardless 
+#  of weapon wielded, etc.
+#UNARMED: Not wielding a weapon or shield.
+#ONE-HANDED: Wielding 1 weapon and no shield. 
+#  Prefers light weapons, and nothing over 20 lbs.
+#TWO-HANDED: Wielding 1 weapon and no shield. 
+#  Prefers heavy weapons, and nothing less than 10 lbs.
+#WEAPON&SHIELD: Wielding 1 weapon and shield.
+#TWO-WEAPON: Wielding 2 weapons, one in place of shield. 
+#  Not all combinations work; try it for yourself.
+#  With two weapons, if players get more than one attack,
+#  2nd weapon gets every 2nd attack. Also, when charging,
+#  players with two equipped weapons always get two attacks, instead of one.
+#THROWN: Throwing (not firing) an item.
+#SLING: Firing with a sling.
+#BOW: Firing with a bow.
+#XBOW: Firing with a crossbow.
+#BACKSTAB: Wielding SWORD weapon against sleeping opponent.
+#MAGIC_BOOK: Casting a spell from a magic book.
+#PRAYER_BOOK: Casting a spell from a prayer book.
+#SONG_BOOK: Casting a spell from a song book.
+#INSTRUMENT: Wielding an instrument.
+#RING, AMULET: Wearing a ring or amulet, respectively. Note that they can
+#  be worn also in off-hand with these styles, but having them only 
+#  in the off-hand does not count as an excercise of the style.
+#POTION: Abilities related to potion-use, whether quaffing, picking up, 
+#  throwing, etc. 
+#SCROLL: Abilities related to scroll-use, such as reading and identifying them.
+
+#The benefits are granted only when fighting in the particular style preferred.
+
+#HIT: Gets bonus of (level-level required to get this ability)/2 to hit.
+#  Note that "W:0:10 S:NONE B:HIT" works for melee, launchers and thrown.
+#DAM: Gets bonus of (level-level required to get this ability)/2 to damage.
+#AC: Gets bonus of (level-level required to get this ability)/2 to ac.
+#XTRA_BLOW: Additional blow.
+#XTRA_SHOT: Additional shot. With "S:NONE" works for both launchers and thrown.
+#XTRA_MIGHT: Additional multiple on damage when fired/thrown.
+#CRITICAL: Additional critical damage. With "S:NONE" works for melee, launchers and thrown.
+#POWER: Gets bonus of 10 levels to effective spell level when computing damage, radius
+# etc. and learn spells at 80% of the listed level requirement.
+#ICKY_HANDS: Gets spell casting penalty when wearing non-free action gloves.
+#  A Priest specializing in a single Magic Book
+#  will be penalized with ICKY_HANDS for all his prayers, too.
+#ICKY_WIELD: Gets spell casting penalty when wielding non-blessed weapon.
+#BLESSED: Does not get spell casting penalty from icky wield.
+#HOLD_SPELL: Can continue to cast spell for no energy cost while doing other
+#things.
+#RES_FEAR: Resistance to fear.
+#ID: Automatically id basic type.
+
+# Version stamp (required)
+
+V:0.6.4
+
+W:0:1
+S:RING
+B:ID
+
+W:0:1
+S:RING
+B:POWER
+
+W:0:1
+S:NONE | UNARMED | ONE-HANDED | TWO-HANDED | WEAPON&SHIELD | TWO-WEAPON
+S:HAFTED | SWORD | POLEARM | RING
+B:XTRA_BLOW
+
+W:0:1
+S:SLAY_GIANT | SLAY_ORC | SLAY_DRAGON | SLAY_TROLL
+B:CRITICAL
+
+W:0:1
+S:BOW | THROWN 
+B:XTRA_SHOT
+
+W:0:5
+S:UNARMED | TWO-HANDED | ONE-HANDED | SLAY_GIANT | SLAY_ORC | SLAY_DRAGON | SLAY_TROLL | THROWN | BOW
+B:HIT
+
+W:0:5
+S:UNARMED | SLAY_GIANT | SLAY_ORC | SLAY_DRAGON | SLAY_TROLL
+B:DAM
+
+W:0:5
+S:UNARMED | WEAPON&SHIELD | ONE-HANDED | TWO-WEAPON
+B:AC
+
+W:0:10
+S:MAGIC_BOOK
+B:ICKY_HANDS
+
+W:0:10
+S:PRAYER_BOOK
+
+W:0:10
+S:UNARMED
+B:XTRA_BLOW
+
+W:0:15
+S:UNARMED | ONE-HANDED | SLAY_GIANT | SLAY_ORC | SLAY_DRAGON | SLAY_TROLL
+B:CRITICAL
+
+W:0:15
+S:TWO-HANDED | TWO-WEAPON
+B:XTRA_BLOW
+
+W:0:15
+S:BOW | THROWN
+B:XTRA_SHOT
+
+W:0:15
+S:HAFTED | POLEARM | SWORD
+B:HIT
+
+W:0:15
+S:HAFTED | POLEARM | SWORD
+B:DAM
+
+W:0:20
+S:UNARMED | WEAPON&SHIELD | HAFTED | POLEARM | SWORD
+B:XTRA_BLOW
+
+W:0:30
+B:RES_FEAR
+
+W:0:30
+S:UNARMED | NONE | RING
+B:XTRA_BLOW
+
+W:0:30
+S:UNARMED | ONE-HANDED | SLAY_GIANT | SLAY_ORC | SLAY_DRAGON | SLAY_TROLL
+B:CRITICAL
+
+W:0:30
+S:TWO-HANDED | TWO-WEAPON
+B:XTRA_BLOW
+
+W:0:30
+S:BOW | THROWN
+B:XTRA_SHOT
+
+W:0:40
+S:UNARMED | WEAPON&SHIELD | HAFTED | POLEARM | SWORD
+B:XTRA_BLOW
+
+W:0:45
+S:TWO-HANDED | TWO-WEAPON
+B:XTRA_BLOW
+
+W:0:45
+S:UNARMED | ONE-HANDED | SLAY_GIANT | SLAY_ORC | SLAY_DRAGON | SLAY_TROLL
+B:CRITICAL
+
+W:0:45
+S:BOW | THROWN
+B:XTRA_SHOT
+
+W:1:1
+B:ICKY_HANDS
+
+W:1:1
+S:PRAYER_BOOK
+B:ICKY_WIELD
+
+W:1:1
+S:RING | AMULET | WAND | STAFF | POTION | SCROLL
+B:ID
+
+W:1:1
+S:RING | AMULET | WAND | STAFF | POTION | SCROLL
+B:POWER
+
+W:1:1
+S:MAGIC_BOOK | INSTRUMENT
+B:POWER
+
+W:2:1
+B:ICKY_WIELD
+
+W:2:1
+S:HAFTED
+B:BLESSED
+
+W:2:1
+S:PRAYER_BOOK | INSTRUMENT
+B:POWER
+
+W:2:5
+S:UNARMED
+B:HIT
+
+W:2:5
+S:UNARMED
+B:DAM
+
+W:2:5
+S:UNARMED
+B:AC
+
+W:2:5
+S:MAGIC_BOOK
+B:ICKY_HANDS
+
+W:2:10
+S:SLAY_DEMON | SLAY_UNDEAD | SLAY_EVIL | HAFTED
+B:HIT
+
+W:2:10
+S:SLAY_DEMON | SLAY_UNDEAD
+B:DAM
+
+W:2:10
+S:UNARMED
+B:XTRA_BLOW
+
+W:2:15
+S:UNARMED
+B:CRITICAL
+
+W:2:20
+S:SLAY_EVIL
+B:CRITICAL
+
+W:2:20
+S:UNARMED | NONE
+B:XTRA_BLOW
+
+W:2:30
+S:UNARMED
+B:XTRA_BLOW
+
+W:2:30
+S:UNARMED | SLAY_DEMON | SLAY_UNDEAD
+B:CRITICAL
+
+W:2:40
+S:UNARMED
+B:XTRA_BLOW
+
+W:2:45
+S:UNARMED
+B:CRITICAL
+
+W:3:1
+B:ICKY_HANDS
+
+W:3:1
+S:MAGIC_BOOK
+B:ICKY_HANDS
+
+W:3:1
+S:PRAYER_BOOK
+B:ICKY_WIELD
+
+W:3:1
+S:POTION | SCROLL | RING | AMULET
+B:ID
+
+W:3:1
+S:POTION | SCROLL | RING
+B:POWER
+
+W:3:1
+S:NONE | RING | AMULET
+B:HIT
+
+W:3:10
+S:AMULET
+B:AC
+
+W:4:1
+B:ICKY_HANDS
+
+W:4:10
+S:NONE
+B:AC
+
+W:4:20
+S:BOW
+B:XTRA_SHOT
+
+W:4:20
+S:ONE-HANDED | SLAY_ORC | SLAY_TROLL | SLAY_GIANT | SLAY_ANIMAL
+B:CRITICAL
+
+W:4:20
+S:TWO-WEAPON
+B:XTRA_BLOW
+
+W:4:40
+S:BOW
+B:XTRA_SHOT
+
+W:4:40
+S:ONE-HANDED | SLAY_ORC | SLAY_TROLL | SLAY_GIANT | SLAY_ANIMAL
+B:CRITICAL
+
+W:4:40
+S:TWO-WEAPON
+B:XTRA_BLOW
+
+W:5:1
+B:XTRA_BLOW
+
+W:5:1
+S:PRAYER_BOOK | INSTRUMENT
+B:POWER
+
+W:5:5
+S:ONE-HANDED | SLAY_DRAGON
+B:HIT
+
+W:5:5
+S:SLAY_DRAGON
+B:DAM
+
+W:5:5
+S:WEAPON&SHIELD | ONE-HANDED | NONE
+B:AC
+
+W:5:15
+S:ONE-HANDED | SLAY_DRAGON
+B:CRITICAL
+
+W:5:20
+S:WEAPON&SHIELD
+B:XTRA_BLOW
+
+W:5:30
+S:ONE-HANDED | SLAY_DRAGON
+B:CRITICAL
+
+W:5:40
+B:XTRA_BLOW
+
+W:5:45
+S:ONE-HANDED | SLAY_DRAGON
+B:CRITICAL
+
+W:6:1
+S:SCROLL | RING | POTION | AMULET
+B:ID
+
+W:6:1
+S:SCROLL | RING | POTION | AMULET
+B:POWER
+
+W:6:1
+S:BACKSTAB | ONE-HANDED | UNARMED | TWO-HANDED | TWO-WEAPON | SLAY_DEMON | SLAY_UNDEAD | THROWN | NONE
+B:CRITICAL
+
+W:6:1
+S:RING
+B:XTRA_BLOW
+
+W:6:5
+S:BACKSTAB | ONE-HANDED | UNARMED | THROWN | TWO-HANDED | SLAY_DEMON | SLAY_UNDEAD
+B:HIT
+
+W:6:5
+S:UNARMED | TWO-HANDED | SLAY_DEMON | SLAY_UNDEAD
+B:DAM
+
+W:6:5
+S:UNARMED | ONE-HANDED | TWO-WEAPON | AMULET
+B:AC
+
+W:6:7
+S:MAGIC_BOOK
+B:ICKY_HANDS
+
+W:6:7
+S:SONG_BOOK
+
+W:6:10
+S:UNARMED
+B:XTRA_BLOW
+
+W:6:10
+S:BACKSTAB
+B:CRITICAL
+
+W:6:15
+S:TWO-HANDED | TWO-WEAPON
+B:XTRA_BLOW
+
+W:6:15
+S:UNARMED | ONE-HANDED
+B:CRITICAL
+
+W:6:15
+S:THROWN
+B:XTRA_SHOT
+
+W:6:20
+S:BACKSTAB
+B:CRITICAL
+
+W:6:20
+S:UNARMED
+B:XTRA_BLOW
+
+W:6:30
+S:UNARMED | TWO-HANDED | TWO-WEAPON
+B:XTRA_BLOW
+
+W:6:30
+S:UNARMED | ONE-HANDED | NONE
+B:CRITICAL
+
+W:6:30
+S:THROWN
+B:XTRA_SHOT
+
+W:6:30
+S:BACKSTAB
+B:CRITICAL
+
+W:6:40
+S:UNARMED
+B:XTRA_BLOW
+
+W:6:40
+S:BACKSTAB
+B:CRITICAL
+
+W:6:45
+S:THROWN
+B:XTRA_SHOT
+
+W:6:45
+S:UNARMED | ONE-HANDED
+B:CRITICAL
+
+W:6:45
+S:TWO-HANDED | TWO-WEAPON
+B:XTRA_BLOW
+
+W:7:1
+S:BOW | SLING | XBOW | NONE
+B:XTRA_SHOT
+
+W:7:1
+S:AMULET
+B:ID
+
+W:7:1
+S:AMULET
+B:POWER
+
+W:7:5
+S:AMULET
+B:AC
+
+W:7:5
+S:BOW | SLING | XBOW
+B:HIT
+
+W:7:5
+S:MAGIC_BOOK
+B:ICKY_HANDS
+
+W:7:5
+S:PRAYER_BOOK
+
+W:7:15
+S:BOW | SLING
+B:XTRA_SHOT
+
+W:7:20
+S:XBOW
+B:XTRA_SHOT
+
+W:7:30
+S:BOW | SLING
+B:XTRA_SHOT
+
+W:7:30
+S:SLING
+B:XTRA_MIGHT
+
+W:7:45
+S:BOW | SLING
+B:XTRA_SHOT
+
+W:7:40
+S:XBOW
+B:XTRA_SHOT
+
+W:8:1
+B:ICKY_HANDS
+
+W:8:1
+B:ICKY_WIELD
+
+W:8:1
+S:UNARMED | NONE
+B:BLESSED
+
+W:8:1
+S:MAGIC_BOOK
+B:POWER
+
+W:8:1
+S:PRAYER_BOOK
+B:POWER
+
+W:8:1
+S:AMULET
+B:ID
+
+W:8:1
+S:AMULET
+B:POWER
+
+W:8:5
+S:UNARMED
+B:HIT
+
+W:8:5
+S:UNARMED
+B:DAM
+
+W:8:5
+S:UNARMED
+B:AC
+
+W:8:10
+S:UNARMED
+B:XTRA_BLOW
+
+W:8:15
+S:UNARMED
+B:CRITICAL
+
+W:8:20
+S:UNARMED
+B:XTRA_BLOW
+
+W:8:30
+S:UNARMED
+B:XTRA_BLOW
+
+W:8:30
+S:UNARMED
+B:CRITICAL
+
+W:8:40
+S:UNARMED
+B:XTRA_BLOW
+
+W:9:1
+B:HOLD_SONG
+
+W:9:1
+S:INSTRUMENT
+B:POWER
+
+W:9:1
+S:SONG_BOOK
+B:POWER
+
+W:9:1
+S:RING
+B:ID
+
+W:9:1
+S:RING
+B:POWER
+
+W:9:1
+S:THROWN | UNARMED | NONE | RING
+B:HIT
+
+W:9:5
+S:UNARMED
+B:DAM
+
+W:9:5
+S:UNARMED
+B:AC
+
+W:9:15
+S:THROWN
+B:XTRA_SHOT
+
+W:9:10
+S:UNARMED
+B:XTRA_BLOW
+
+W:9:15
+S:UNARMED
+B:CRITICAL
+
+W:9:20
+S:UNARMED
+B:XTRA_BLOW
+
+W:9:30
+S:UNARMED
+B:XTRA_BLOW
+
+W:9:30
+S:UNARMED
+B:CRITICAL
+
+W:9:30
+S:THROWN
+B:XTRA_SHOT
+
+W:9:40
+S:UNARMED
+B:XTRA_BLOW
+
+W:9:45
+S:THROWN
+B:XTRA_SHOT
+
+W:10:1
+B:ICKY_HANDS
+
+W:10:1
+S:UNARMED | SWORD | HAFTED | POLEARM | NONE | RING
+B:XTRA_BLOW
+
+W:10:1
+S:THROWN 
+B:XTRA_SHOT
+
+W:10:1
+S:THROWN
+B:HIT
+
+W:10:1
+S:RING | AMULET
+B:ID
+
+W:10:1
+S:RING | AMULET
+B:POWER
+
+W:10:5
+S:UNARMED
+B:DAM
+
+W:10:5
+S:UNARMED | AMULET
+B:AC
+
+W:10:10
+S:UNARMED
+B:XTRA_BLOW
+
+W:10:10
+S:THROWN
+B:HIT
+
+W:10:15
+S:UNARMED
+B:CRITICAL
+
+W:10:15
+S:THROWN
+B:XTRA_SHOT
+
+W:10:15
+S:HAFTED | POLEARM | SWORD
+B:HIT
+
+W:10:15
+S:HAFTED | POLEARM | SWORD
+B:DAM
+
+W:10:20
+S:UNARMED | HAFTED | POLEARM | SWORD
+B:XTRA_BLOW
+
+W:10:30
+S:UNARMED | NONE | RING
+B:XTRA_BLOW
+
+W:10:30
+S:UNARMED
+B:CRITICAL
+
+W:10:30
+S:THROWN
+B:XTRA_SHOT
+
+W:10:40
+S:UNARMED | HAFTED | POLEARM | SWORD
+B:XTRA_BLOW
+
+W:10:45
+S:UNARMED
+B:CRITICAL
+
+W:10:45
+S:THROWN
+B:XTRA_SHOT
+
+W:12:1
+B:ICKY_HANDS
+
+W:12:10
+S:NONE | AMULET
+B:AC
+
+W:12:20
+S:BOW
+B:XTRA_SHOT
+
+W:12:20
+S:ONE-HANDED | BACKSTAB
+B:CRITICAL
+
+W:12:20
+S:TWO-WEAPON
+B:XTRA_BLOW
+
+W:12:30
+S:BACKSTAB
+B:CRITICAL
+
+W:12:40
+S:BOW
+B:XTRA_SHOT
+
+W:12:40
+S:ONE-HANDED | BACKSTAB
+B:CRITICAL
+
+W:12:40
+S:TWO-WEAPON
+B:XTRA_BLOW
+
+W:12:1
+S:POTION | SCROLL | RING | AMULET
+B:ID
+
+W:12:1
+S:POTION | SCROLL | RING | AMULET
+B:POWER
+
+W:12:1
+S:NONE | RING | AMULET | BACKSTAB
+B:HIT
+
+W:12:1
+S:BACKSTAB
+B:CRITICAL
+

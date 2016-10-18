@@ -1,0 +1,857 @@
+# File: effect.txt
+
+
+# This file is used to initialize the "lib/data/effect.raw" file, which
+# is used to initialize the "effect" information for the Angband game.
+
+# Do not modify this file unless you know exactly what you are doing,
+# unless you wish to risk possible system crashes and broken savefiles.
+# After modifying this file, delete the "lib/data/effect.raw" file.
+
+# See "lib/docs/modding.rtf" to understand this file and how to modify
+# it and related files.
+
+# Version stamp (required)
+
+
+V:0.6.4
+
+N:0:NOTHING
+I:0
+#D:do||es|:::no effect:::
+T:nothing
+
+N:1:STORM
+I:10
+D:lash||es|:::with wind, rain and lightning:::
+T:storm
+
+N:2:WIND
+I:10
+D:blast~:::with wind::damage against flying or climbing monsters, less against others:
+T:wind
+
+N:3:HELLFIRE
+I:20
+D:blast~:::with hellfire:::
+T:hellfire
+
+N:4:MANA
+I:5
+D:blast~:::with magic:::
+T:mana
+
+N:5:HOLY_ORB
+I:5
+D:blast~:::with holy magic::damage, doubled against evil monsters:
+T:holiness
+
+N:6:LITE_WEAK
+I:5
+D:light~ up:::::damage to monsters vulnerable to light:
+T:light
+
+N:7:DARK_WEAK
+I:5
+D:plunge~:::into darkness::power:pow
+T:darkness
+
+N:8:WATER_WEAK
+I:10
+D:soak~:::with water:::
+T:water
+
+N:9:PLASMA
+I:10
+D:blast~:::with plasma:::
+T:plasma
+
+N:10:METEOR
+I:10
+D:blast~:::with meteors:::
+T:meteors
+
+N:11:ICE
+I:10
+D:cover~:::with ice:::
+T:ice
+
+N:12:GRAVITY
+I:20
+D:crush||es|:::with gravity:::
+T:gravity
+
+N:13:INERTIA
+I:20
+D:slow~:::with inertia:::
+T:inertia
+
+N:14:FORCE
+I:20
+D:impact~:::with force:::
+T:force
+
+N:15:TIME
+I:20
+D:take~:::back in time:::
+T:time
+
+N:16:ACID
+I:0
+D:dissolve~::::::
+T:acid
+
+N:17:ELEC
+I:10
+D:electrif|y|ies|::::::
+T:electricity
+
+N:18:FIRE
+I:10
+D:burn~::::::
+T:fire
+
+N:19:COLD
+I:10
+D:freeze~::::::
+T:cold
+
+N:20:POISON
+I:5
+D:poison~::::::
+T:poison
+
+N:21:ANIM_DEAD
+I:0
+D:animate~::dead::::
+T:animating the undead
+
+N:22:LITE
+I:5
+D:blast~:::with powerful light:::
+T:powerful light
+
+N:23:DARK
+I:5
+D:blast~:::with powerful darkness:::
+T:powerful darkness
+
+N:24:WATER
+I:10
+D:blast~:::with water:::
+T:water
+
+N:25:CONFUSE
+I:10
+D:confuse~::::::
+T:powerful confusion
+
+N:26:SOUND
+I:10
+D:deafen~::::::
+T:sound
+
+N:27:SHARD
+I:10
+D:blast~:::with shards:::
+T:shards
+
+N:28:NEXUS
+I:0
+D:blast~:::with nexus:::
+T:nexus
+
+N:29:NETHER
+I:5
+D:blast~:::with nether:::
+T:nether
+
+N:30:CHAOS
+I:5
+D:blast~:::with chaos:::
+T:chaos
+
+N:31:DISENCHANT
+I:15
+D:blast~:::with disenchantment:::
+T:disenchantment
+
+N:32:EXPLODE
+I:0
+D:explode~:::/:::
+T:explosions
+
+N:33:KILL_WALL
+I:0
+D:remove~:rock from::::damage to monsters made from rock:
+T:rock removal magic
+
+N:34:KILL_DOOR
+I:0
+D:remove~:doors from:::::
+T:door removal magic
+
+N:35:KILL_TRAP
+I:0
+D:remove~:traps from:::::
+T:trap removal magic
+
+N:36:MAKE_WALL
+I:0
+D:create~:walls around:::::
+T:wall creation magic
+
+N:37:MAKE_DOOR
+I:0
+D:create~:doors around:::::
+T:door creation magic
+
+N:38:MAKE_TRAP
+I:0
+D:create~:traps around:::::
+T:trap creation magic
+
+N:39:BRIDGE
+I:0
+D:create~:a stone bridge under:::::
+T:bridge creation magic
+
+N:40:ANIM_ELEMENT
+I:0
+D:animate~::elements::::
+T:animating the elements
+
+N:41:AWAY_UNDEAD
+I:0
+D:teleport~:::away if undead::distance on average:range
+T:turning undead
+
+N:42:AWAY_EVIL
+I:0
+D:teleport~:::away if evil::distance on average:range
+T:teleporting away evil
+
+N:43:AWAY_ALL
+I:0
+D:teleport~:::away::distance on average:range
+T:teleportation
+
+N:44:TURN_UNDEAD
+I:0
+D:turn~:::if undead::power:pow
+T:turning undead
+
+N:45:TURN_EVIL
+I:0
+D:turn~:::if evil::power:pow
+T:turning evil
+
+N:46:FEAR_WEAK
+I:10
+D:scare~:::::power:pow
+T:fear
+
+N:47:DISPEL_UNDEAD
+I:0
+D:dispel~:::if undead:::
+T:dispelling undead
+
+N:48:DISPEL_EVIL
+I:0
+D:dispel~:::if evil:::
+T:dispelling evil
+
+N:49:DISPEL_ALL
+I:0
+D:dispel~::::::
+T:dispelling
+
+N:50:ANIM_OBJECT
+I:0
+D:animate~::objects::::
+T:animating objects
+
+N:51:CLONE
+I:0
+D:clone~:::::power:pow
+T:cloning magic
+
+N:52:POLYMORPH
+I:0
+D:polymorph~:::::power:pow
+T:polymorphing magic
+
+N:53:HEAL
+I:0
+D:heal~:::::hit points:heal
+T:healing
+
+N:54:HASTE
+I:0
+D:hasten~:::::power:pow
+T:hasting
+
+N:55:SLOW_WEAK
+I:10
+D:slow~:::::power:pow
+T:slowing
+
+N:56:CONFUSE_WEAK
+I:10
+D:confuse~:::::power:pow
+T:confusion
+
+N:57:SLEEP
+I:10
+D:send~:::to sleep::power:pow
+T:sleep
+
+N:58:DRAIN_LIFE
+I:20
+D:drain~:life from:::::
+T:life draining
+
+N:59:BWATER
+I:10
+D:scald~:::with boiling water:::
+T:boiling water
+
+N:60:BMUD
+I:10
+D:splash||es|:::with boiling mud:::
+T:boiling mud
+
+N:61:HURT
+I:60
+D:hurt~::::::
+T:pain
+
+N:62:LAVA
+I:10
+D:burn~:::with lava:::
+T:lava
+
+N:63:UN_BONUS
+I:20
+D:disenchant~::$ armour and weapons::::
+T:disenchantment
+
+N:64:UN_POWER
+I:15
+D:drain~:charges from:$ wands and staffs::::
+T:static
+
+N:65:EAT_GOLD
+I:5
+D:steal~:gold from:::::
+T:stealing gold
+
+N:66:EAT_ITEM
+I:5
+D:steal~:items from:::::
+T:stealing items
+
+N:67:EAT_FOOD
+I:5
+D:eat~::$ food::::
+T:eating food
+
+N:68:EAT_LITE
+I:5
+D:absorb~:light from:::::
+T:absorbing light
+
+N:69:FALL
+I:0
+D:drop~:::into a pit:::
+T:pit creation magic
+
+N:70:FALL_MORE
+I:0
+D:drop~:::through the floor:::
+T:trap door creation magic
+
+N:71:FALL_SPIKE
+I:0
+D:drop~:::into a spiked pit:::
+T:spike pit creation magic
+
+N:72:FALL_POISON
+I:0
+D:drop~:::into a poison spiked pit:::
+T:spike pit creation magic
+
+N:73:BLIND
+I:10
+D:blind~:::::damage, doubled against eye monsters:
+T:blindness
+
+N:74:SLOW
+I:10
+D:slow~::::::
+T:slowing
+
+N:75:TERRIFY
+I:10
+D:terrif|y|ies|::::::
+T:terror
+
+N:76:PARALYZE
+I:2
+D:paralyze~::::::
+T:paralyzation
+
+N:77:LOSE_STR
+I:0
+D:reduce~:strength and size from:::::
+T:weakness and smallness
+
+N:78:LOSE_INT
+I:0
+D:reduce~:intelligence from:::::
+T:stupidity
+
+N:79:LOSE_WIS
+I:0
+D:reduce~:wisdom from:::::
+T:naivity
+
+N:80:LOSE_DEX
+I:0
+D:reduce~:dexterity and agility from:::::
+T:clumsiness
+
+N:81:LOSE_CON
+I:0
+D:reduce~:constitution from:::::
+T:unhealth
+
+N:82:LOSE_CHR
+I:0
+D:reduce~:charisma from:::::
+T:ugliness
+
+N:83:LOSE_ALL
+I:0
+D:reduce~:all stats from:::::
+T:ruination
+
+N:84:SHATTER
+I:60
+D:shatter~::::::
+T:earthquakes
+
+N:85:EXP_10
+I:5
+D:drain~:experience (by 10d6+) from:::::
+T:experience drain
+
+N:86:EXP_20
+I:5
+D:drain~:experience (by 20d6+) from:::::
+T:experience drain
+
+N:87:EXP_40
+I:5
+D:drain~:experience (by 40d6+) from:::::
+T:experience drain
+
+N:88:EXP_80
+I:5
+D:drain~:experience (by 80d6+) from:::::
+T:experience drain
+
+N:89:RAISE
+I:0
+D:raise~:water around::::damage to monsters made from water:
+T:raising water
+
+N:90:LOWER
+I:0
+D:lower~:water around::::damage to monsters made from water:
+T:lowering water
+
+N:91:PROBE
+I:60
+D:probe~:::for weaknesses:::
+T:probing
+
+N:92:LOCK_DOOR
+I:0
+D:magically lock~:doors on:::::
+T:door locking
+
+N:93:SALT_WATER
+I:10
+D:soak~:::with salt water:::
+T:salt water
+
+N:94:HALLU
+I:10
+D:cause~:::to hallucinate:::
+T:hallucination
+
+N:95:FEATURE
+I:0
+D:magically create~:::::damage, destroying living monsters that cannot escape to an adjacent grid:
+T:terrain creation
+
+N:96:STEAM
+I:10
+D:scald~:::with steam:::
+T:steam
+
+N:97:VAPOUR
+I:10
+D:dissolve~:::with acidic vapour:::
+T:acidic vapour
+
+N:98:SMOKE
+I:10
+D:burn~:::with smoke:::
+T:smoke
+
+N:99:SUFFOCATE
+I:20
+D:suffocate~::::::
+T:suffocation
+
+N:100:HUNGER
+I:20
+D:starve~::::::
+T:starvation
+
+N:101:DISEASE
+I:2
+D:infect~:::with disease:::
+T:disease
+
+N:102:HURT_MANA
+I:60
+D:drain~:mana from::::damage, plus spell points:dam
+T:mana drain
+
+N:103:WOUND
+I:60
+D:wound~::::::
+T:wounding
+
+N:104:BATTER
+I:60
+D:batter~::::::
+T:battering
+
+N:105:BLIND_WEAK
+I:10
+D:blind~:::::power:pow
+T:blindness
+
+N:106:RAISE_DEAD
+I:0
+D:raise~::dead::::
+T:raising the dead
+
+N:107:GAIN_MANA
+I:0
+D:return~:mana to::::spell points:mana
+T:mana gain
+
+N:108:FORGET
+I:10
+D:cause~:::to forget:::
+T:amnesia
+
+N:109:CURSE
+I:10
+D:curse~::::::
+T:cursing
+
+N:110:DISPEL
+I:10
+D:remove~:enchantments from:::::
+T:dispelling magic
+
+N:111:STASTIS
+I:2
+D:trap~:::in time loops:::
+T:stastis
+
+N:112:PETRIFY
+I:2
+D:petrif|y|ies|::::::
+T:petrification
+
+N:113:WEB
+I:20
+D:build~:webs around:::::
+T:webs
+
+N:114:BLOOD
+I:20
+D:cover~:::in blood:::
+T:blood
+
+N:115:SLIME
+I:20
+D:cover~:::in slime:::
+T:slime
+
+N:116:RESIST_MAGIC
+I:0
+D:resist~:magic:::::
+T:magic resistance
+
+N:117:FALL_LESS
+I:0
+D:rise~:::through the ceiling:::
+T:ceiling exit creation
+
+N:118:AWAY_DARK
+I:0
+D:teleport~:::away only in darkness::distance on average:range
+T:teleporting away in darkness
+
+N:119:AWAY_JUMP
+I:0
+D:jump~:::away to a location still in line of fire::distance on average:range
+T:jumping away
+
+N:120:HURT_WOOD
+I:10
+D:warp~::wood out of shape:::damage to monsters made from wood:
+T:warping wood
+
+N:121:AWAY_NATURE
+I:0
+D:teleport~:::away if adjacent to water or nature::distance on average:range
+T:teleporting away near nature
+
+N:122:AWAY_FIRE
+I:0
+D:teleport~:::away if adjacent to fire, smoke or lava::distance on average:range
+T:teleporting away in fire
+
+N:123:ANIM_TREE
+I:0
+D:animate~::trees::::
+T:animating trees
+
+N:124:CHARM_INSECT
+I:0
+D:charm~::insects:::power:pow
+T:charming insects
+
+N:125:CHARM_ANIMAL
+I:0
+D:charm~::birds or mammals:::power:pow
+T:charming animals
+
+N:126:CHARM_REPTILE
+I:0
+D:charm~::reptiles or amphibians:::power:pow
+T:charming reptiles
+
+N:127:CHARM_MONSTER
+I:0
+D:charm~::living monsters other than dragons:::power:pow
+T:charming living monsters, except dragons
+
+N:128:CHARM_PERSON
+I:0
+D:charm~::elves, dwarves, humans, orcs, trolls or giants:::power:pow
+T:charming people
+
+N:129:BIND_DEMON
+I:0
+D:bind~::demons to a cursed item:::power:pow
+T:binding demons
+
+N:130:BIND_UNDEAD
+I:0
+D:bind~::undead to a cursed item:::power:pow
+T:binding undead
+
+N:131:BIND_DRAGON
+I:0
+D:bind~::dragons to a cursed item:::power:pow
+T:binding dragons
+
+N:132:BIND_FAMILIAR
+I:0
+D:bind~::a familiar to you:::power:pow
+T:binding familiars
+
+N:133:VAMP_DRAIN
+I:20
+D:drain~:health from:::::
+T:stealing health
+
+N:134:MANA_DRAIN
+I:20
+D:drain~:mana from::::spell points:mana
+T:stealing mana
+
+N:135:MENTAL
+I:60
+D:blast~:::with mental energy:::
+T:mental energy
+
+N:136:SNUFF
+I:0
+D:snuff~:the life from::if & has less than a maximum:of:hit points:max hp
+T:snuffing small life
+
+N:137:RAGE
+I:10
+D:enrage~:::::power:pow
+T:rage
+
+N:138:HEAL_PERC
+I:0
+D:heal~:::::percent of hit points:% heal
+T:healing
+
+N:139:GAIN_MANA_PERC
+I:0
+D:return~:mana to::::percent of spell points:% mana
+T:gaining mana
+
+N:140:TANGLE
+I:10
+D:entangle~, then strangle~:::with nearby plants or waterweeds::power, then damage:pow
+T:entangling, then strangling
+
+N:141:POISON_WATER
+I:10
+D:soak~:::with poisonous water:::
+T:poisonous water
+
+N:142:INVISIBILITY
+I:0
+D:turn~:::invisible:::
+T:invisibility
+
+N:143:DELAY_POISON
+I:10
+D:poison~:::with delayed effect:::
+T:delayed poison
+
+N:144:STICKS_TO_SNAKES
+I:0
+D:transmute~::junk, arrows, staffs and wands:into snakes:::
+T:transmuting junk to snakes
+
+N:145:LOSE_MANA
+I:0
+D:drain~:mana from::::spell points:mana
+T:mana drain
+
+N:146:LOSE_MANA_PERC
+I:0
+D:drain~:mana from::::percent of spell points:% mana
+T:losing mana
+
+N:147:DESTROY
+I:60
+D:destroy~::::::
+T:destroying
+
+N:148:QUAKE
+I:60
+D:shake~::the foundations::::
+T:quaking
+
+N:149:POISON_WEAK
+I:10
+D:poison~::::::
+T:poison
+
+N:150:POISON_HALF
+I:5
+D:poison~::::::
+T:poison
+
+N:151:HURT_POISON
+I:20
+D:hurt~ and poison~::::::
+T:poison
+
+N:152:POTS
+I:10
+D:hit~:::with valuable pottery:::
+T:smashing pots
+
+N:153:CHARM_PLANT
+I:0
+D:charm~::plants:::power:pow
+T:charming plants
+
+N:154:TANGLE_WEAK
+I:10
+D:entangle~:::with nearby plants or waterweeds::power:pow
+T:entangling
+
+N:155:LITE_BODY
+D:cause~::bodies and body parts:to glow:::
+T:corpse lighting
+
+N:156:IMAGE_ACID
+I:0
+D:dissolve~::weak-willed, sleeping or hallucinating monsters:without waking them up:::
+T:illusory acid
+
+N:157:IMAGE_ELEC
+I:10
+D:electrif|y|ies|::weak-willed, sleeping or hallucinating monsters:without waking them up:::
+T:illusory electricity
+
+N:158:IMAGE_FIRE
+I:10
+D:burn~::weak-willed, sleeping or hallucinating monsters:without waking them up:::
+T:illusory fire
+
+N:159:IMAGE_COLD
+I:10
+D:freeze~::weak-willed, sleeping or hallucinating monsters:without waking them up:::
+T:illusory cold
+
+N:160:IMAGE_POIS
+I:5
+D:poison~::weak-willed, sleeping or hallucinating monsters:without waking them up:::
+T:illusory poison
+
+N:161:ILLUSION
+I:5
+D:appear~ to be safe ground::all but the wary::::
+T:illusion
+
+N:162:VAMP_DRAIN_FAMILIAR
+I:20
+D:drain~:health from::and give~ it to you:::
+T:stealing health
+
+N:163:MANA_DRAIN_FAMILIAR
+I:20
+D:drain~:mana from::and give~ it to you::spell points:mana
+T:stealing mana
+
+N:164:DRAIN_LIFE_PERC
+I:20
+D:drain~:life from::::percent of hitpoints:% life
+T:life draining
+
+N:165:DRAIN_BLOOD
+I:20
+D:drain~:blood from:::::
+T:stealing blood
+
+N:166:DRAIN_BLOOD_FAMILIAR
+I:20
+D:drain~:blood from::and give~ it to you:::
+T:stealing health
+
+N:167:VAMP_DRAIN_BLOOD
+I:20
+D:drain~:blood from:::::
+T:stealing blood
+

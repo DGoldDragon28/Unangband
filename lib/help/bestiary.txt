@@ -1,0 +1,241 @@
+=== Monsters ===
+
+The surface and depths of Angband are populated with a variety of
+hostile denizens. Monsters are represented by the letters 'a'
+through 'z' and capital letters 'A' through 'Z'. In addition,
+mushroom patches, represented by ',', creeping coins, represented
+by '$' and trees, represented by ':' can be encountered. Rumor
+has it that the objects in the dungeon at deeper levels can
+sometimes be hostile.
+
+Most monsters will move around the dungeon, which is the first
+indication of their presence. You may hear them before you see
+them, when they bash down a door ('You hear a door burst open.'),
+cast a teleportation spell ('It blinks away.'), are injured
+by traps and magic spells ('It cries out in pain.') or when it
+summons monsters ('You hear distant chanting.'). If a monster
+alters a feature you have already learnt about, you will see
+the feature change to an unknown location (' '). Some monsters
+will leave trails of slime or (if injured) blood as they move,
+and monsters moving through or under some types of terrain will
+leave a trail.
+
+Monsters can attack you by moving into you. Monsters can also
+cast a variety of spells, to hurt or hinder you, protect or
+heal themselves or summon allies. The danger of attacks and
+spells increases greatly lower than depth 30 in the dungeon. In
+particular, dragons and some other kinds of monsters have
+breath weapons that can be instantly fatal to even the most
+powerful of characters if they are not forewarned and suitably
+protected. You can use detection magics to determine what
+monsters are located nearby, but out of sight. If a monster is
+visible, but not currently on-screen, there will be the
+label (off-screen) next to the monster name whenever it is
+displayed. In addition, some monsters can use dungeon terrain
+to hide themselves from attacks and spells. If you have
+detected one of these monsters, it will have the label
+(hidden) next to its name. Even though you know about it, you
+will not be able to attack it until it comes out of hiding,
+except with particular kinds of destructive or indirect
+magic.
+
+=== General Tips ===
+
+Monster name and color can be a very useful indicator of
+what powers and danger it represents. If you have not seen
+a monster with the character and color of this kind before,
+proceed very carefully. You can use 'probing' magic to
+determine some additional information about the monster.
+In addition, particular colors of monsters across different
+species will have the same kind of attacks. If you have had
+problems with a monster with a similar name or color before,
+you should be cautious around it. Be particularly wary of
+moving next to an unknown monster. There are a large number
+of different attacks that can cripple or kill you if you
+are not suitably protected. Non-moving monsters specialise in
+these sorts of attacks, and are often much harder to kill than
+an equivelent mobile monster at the same depth.
+
+If a monster has a name or title of some form, then it is more
+powerful than its brethren. In particular, unique monsters are
+much harder to defeat then other monsters at the same depth.
+If you encounter a uniquely named monster, give a lot of thought
+towards preparing for the fight, and the possibility of fleeing.
+Some unique monsters are accompanied by large escorts of their
+fellows: much larger than the equivelent monster groups you
+will initially encounter. The unique may also blend in with its
+fellows, so if you are inattentive, you may find yourself in
+much worse trouble than you expect.
+
+If a monster is slower than you, you can attack it, and then
+step back, preventing it from retalliating. By the same token,
+you will not be able to successfully flee a monster that is
+much faster than you. Try to minimise the number of monsters
+adjacent to you, to lower your risk, and against spell casters,
+minimise the number of monsters that can actually see you.
+Against monsters that summon allies, take this a step further
+and try to minimise all space around you, even to the extent
+of tunnelling into the walls to create a hidey-hole. Both the
+summoner and summoned monsters are not able to call on further
+reinforcements for a short while after summoning, so you may
+wish to take advantage of this period to eliminate as many
+as possible before further help arrives.
+
+Monsters that fly or climb are able to move past each other
+with ease, so even restricting the adjacent space available
+may not help against these enemies. In addition, they are
+able to travel safely over a lot of dangerous terrain that
+you cannot, so be sure to fight these creatures away from those
+locations. Swimming and digging monsters are similiarly
+benefitted by being able to hide in water or earth, preventing
+you from attacking them unless they expose themselves. Tunnelling
+monsters on the other hand can simply destroy walls by moving
+through them, and ghosts and other insubstantial monsters may
+pass through the same walls as if they weren't there.
+ 
+=== Monster Memories ===
+
+There are hundreds of different creatures in the world of Unangband, many of
+which have the same letter symbol and color on the screen.  The exact species
+of a creature can be discovered by looking at it.  It is also very difficult
+to keep track of the capabilities of various creatures.  Luckily, Unangband
+automatically keeps track of your experiences with a particular creature.
+This feature is called the monster memory.  You monster memory recalls the
+particular attacks of each creature (whether or not technically a monster)
+which you have suffered, as well as recalling if you have observed them to
+multiply or move erratically, or drop treasure, etc.  Otherwise you would
+simply have to take notes, which is an unnecessary bother.
+
+If you have killed enough of a particular creature, or suffered enough
+attacks, recalling the monster memory may also provide you with information
+not otherwise available, such as a armor class or hit dice.  These are not
+explained, but may be useful to give the relative danger of each creature.
+This memory can be passed on to a new character even after you die by means
+of a reduced save file.
+
+
+=== Monster Descriptions ===
+
+Creeping Coins ($)
+	These monsters resemble piles of treasure in the dungeon,
+	but they move! It is rumored their bodies remain indistinguishable
+	from treasure after they are killed.
+
+Mushroom Patch (,)
+	These monsters resemble harmless mushrooms, but release spores
+	that affect those nearby in a variety of ways. After they are killed
+	the individual mushrooms in the patch may be consumed. But most
+	mushrooms found this way are poisonous.
+
+Tree (:)
+	Great trees grow deep in the earth, magically sustained and often
+	aware of their surroundings. They are usually immobile, but hard to
+	kill.
+
+Mimic (?=! and maybe others)
+	Monsters that resemble common dungeon objects are rumored to exist
+	deep in the dungeon. Beware trying to pick one of these up, as it
+	will attack you instead!
+
+Giant Ant (a)
+	These ants have grown far beyond their normal size, perhaps breed
+	by Morgoth or hatched from the eggs of a great queen living deep
+	in the earth.
+
+Ancient Dragon (A)
+	Ancient Dragons are the eldest and most knowledgeable and dangerous
+	of their kind. Their breath is deadly, their spells and attacks occur
+	at great speed and they guard powerful treasures. It is rumored that
+	they are held sway over by even an even greater kind.
+
+Giant Bat (b)
+	Giant Bats congregate in large flocks in the dungeon, looking for
+	a tasty morsel on which to feed. There are also hybrids of bat and
+	dragonnish blood, which have the breath of their parent dragon.
+
+Bird (B)
+	Many birds from the ancient bloodlines have fallen under Morgoth's
+	sway, and act as spys and fast moving messengers for him and his
+	minions.
+
+Giant Centipede (c)
+	These multi-legged predators are quick moving and hungry. There are
+	two kinds: centipedes of enormous size, and monstrous crawlers of
+	various sorts, with mouths surrounded by paralyzing tentacles.
+
+Canine (C)
+	Dogs and wolves have both worked alongside and been the bane of
+	mankind. These slavering beasts usually appear in packs, move quickly
+	and attack all at once.
+
+Young Dragon (d)
+	Baby and young dragons struggle down from hatcheries near the surface
+	to feed on the larger prey deeper in the dungeon. Do not dismiss them,
+	they are still dangerous to the unprepared and unskilled.
+
+Mature Dragon (D)
+	These feared beasts of legend have powerful attacks and a deadly
+	breath of some kind. They are also spell casters, when it suits
+	them. Their cousins, the drakes, are a more magical offshoot.
+
+Floating Eye (e)
+	Magical eyes act as spies, guardians and servants. They are
+	powerfully magic, and their gaze can entrap you from across a room.
+
+Elemental (E)
+	Magical beings originating from the elemental planes. The naturally
+	occuring spirits and the more powerful elementals are made of
+	one of the four elements, or a dangerous mix of two. The intelligent
+	sorcerors of these planes, the djinn or genies, may also be encountered
+	as well as invisible servitors constructed from pure elemental force.
+
+Felines (f)
+	Sauron, one of Morgoth's most powerful servants, often appeared in
+	the shape of a cat. And the many felines in Angband are testament
+	to the quickness and deadliness of such a form.
+
+Fish (F)
+	Dangerous fish and marine mammals lurk in the underground waters, silent
+	and deadly predators. Only a few, rare magical forms, are encountered
+	outside these waters, however.
+
+Golems (g)
+	Animated statues of various materials, golems often move slowly
+	and can easily be avoided. Their creators have given some golems
+	the ability to use a few dangerous spells. Do not fall victim to
+	the powerful blows of their stoney limbs.
+
+Ghosts (G)
+	Insubstantial spirits of the damned wandering the dungeon, ghosts come
+	in three varieties: various noisesome spirits, who are invisible,
+	and insubstantial but whose presence is betrayed by the sound of their
+	voice, disturbed souls, who are invisible and insubstantial, and whose
+	touch reflects their fate in life, and various apparitions, who are
+	visible and insubstantial, and whose terrifying appearance often spells
+	a quite fate at hand.
+
+Hobbits, Dwarfs and Gnomes (h)
+	These three races have no great inclination to good or evil, and many
+	have fallen into the pay, or worse, of darker powers. Many different
+	professions of these races may be encountered, but their natural
+	tendencies will predominate.
+
+Hybrids (H)
+	Mixes of mammal, bird and reptile, hybrids include the dangerous
+	mythological beasts of legend, and cross-bred horrors in which
+	so many beasts are intermingled, they become indistinguishable masses
+	of claws, fangs, and flesh.
+
+Icky-things (i)
+	Small, semi-intelligent slimy creatures, these may be under-estimated
+	in their abilities, especially in never-before encountered varieties.
+
+Insects (I)
+	Giant insects and insect swarms threaten you with their painful stings
+	and bites. Be particularly wary of lice and other fast-breeding pests,
+	with can be individually defeated very easily, but which quickly 
+	fill the dungeon with their swarms, and dragonflies, which use 
+	the breath of dragons against you.
+
+
+XXX To be completed.

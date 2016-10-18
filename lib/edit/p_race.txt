@@ -1,0 +1,432 @@
+# File: p_race.txt
+
+
+# This file is used to initialize the "lib/data/p_race.raw" file, which is
+# used to initialize the "player race" information for the Angband game.
+
+# Do not modify this file unless you know exactly what you are doing,
+# unless you wish to risk possible system crashes and broken savefiles.
+# After modifying this file, delete the "lib/data/p_race.raw" file.
+
+# See "lib/docs/modding.rtf" to understand this file and how to modify
+# it and related files.
+
+# P_race.txt entry format
+
+# Many of the race abilities are now defined by the object corresponding to the
+# player race/shape in objects.txt, from N:445 onwards.
+
+# N:race number:race name
+# S:str:int:wis:dex:con:chr:agi:siz
+# R:dis:dev:sav:stl:srh:dig:tht:thn:thb
+# X:expbase:infra:monster race equivalent
+# I:history:agebase:agemod:hometown
+# H:hgtmale:modhgtmale:hgtfemale:modhgtfemale
+# W:wgtmale:wgtfemale
+# G:race cancel flags
+# C:classes (numeric)
+# D:adjective
+
+# Version stamp (required)
+
+
+V:0.6.4
+
+
+
+#Sum = 0. Now observant.
+
+N:0:Man of Bree
+S:0:0:0:0:0:0:0:0
+R:0:0:0:0:15:0:0:0:0
+X:100:0:0
+I:1:14:6:12
+H:72:6:66:4
+W:180:150
+C:0|1|2|3|4|5|6|7|8|9|10|11|12
+
+#TODO: make them understand birds, as per The Hobbit
+#Sum = -2; good abilities
+
+N:1:Wood-Elf
+D:Wood-Elven
+S:-1:2:-5:2:-1:2:3:-1
+R:5:5:7:2:3:-2:10:-10:40
+X:120:3:0
+I:5:75:75:21
+H:60:4:54:4
+W:120:100
+C:0|2|5|10|11
+
+#Sum = 1; good abilities; somewhat easy
+
+N:2:Hobbit
+S:-2:-1:2:4:2:1:-2:-3
+R:15:3:18:4:8:2:40:-40:10
+X:110:3:0
+I:10:21:12:1
+H:36:3:33:3
+W:60:50
+C:0|3|4|6|7|9|10|11|12
+
+#Sum = -3; very low HP; high stealth and cool flag
+
+N:3:Shadow Fairy
+S:-6:3:4:2:-3:0:3:-6
+R:7:20:0:6:5:-3:10:-30:10
+X:140:6:1308
+I:29:200:100:73
+H:80:8:73:8
+W:90:80
+G:AGGRAVATE |
+C:0|3|5|7|12
+
+#Sum = -2; cool resistance; mediocre abilities
+
+N:4:Dwarf
+D:Dwarven
+S:2:3:2:-4:4:-3:-4:-2
+R:0:7:10:-1:2:5:0:20:0
+X:120:5:0
+I:16:35:15:45
+H:48:3:46:3
+W:150:120
+C:0|4|7|9|11
+
+#Sum = 6; high exp
+
+N:5:Dunadan
+S:0:2:2:0:2:0:0:0
+R:5:3:5:2:3:0:10:20:10
+X:180:0:0
+I:1:50:20:49
+H:82:5:78:6
+W:190:180
+C:0|1|2|3|4|5|6|7|8|9|10|11|12
+
+#Sum = 9; high exp
+
+N:6:High-Elf
+D:High-Elven
+S:0:4:-4:3:0:4:2:0
+R:4:13:10:3:0:0:0:10:20
+X:200:3:0
+I:7:100:30:48
+H:90:10:82:10
+W:190:180
+C:0|1|2|4|5|8|10|11
+
+#Sum = 23; munchkin
+
+N:7:Maia
+S:2:3:3:2:4:4:2:3
+R:15:15:15:0:5:0:20:30:20
+X:100:3:0
+I:27:10000:5000:73
+H:130:40:130:50
+W:300:280
+C:0|1|2|3|4|5|6|7|8|9|10|11|12
+
+#U:DIVINE --- not worth it, IMO
+
+# Had tunnel + 8. Has Branches, Barkskin, Ent Roots.
+# We hack the understand plants ability as we do not have a plant flag.
+
+#Sum = 0; mediocre abilities
+
+N:8:Ent
+S:4:0:0:-5:1:-2:-5:7
+R:-5:-10:5:1:-10:20:20:30:-20
+X:130:0:1279
+I:31:120:60:34
+H:80:27:75:25
+W:240:220
+G:IM_FIRE | RES_FIRE |
+G:FEATHER |
+C:0|4|7|12
+
+#F:PLANT --- hacked OK
+#U:WOODEN | POLEARM_UNSKILL --- both not worth it, IMO
+
+#Sum = -4; ESP; high exp
+
+N:9:Druadan
+S:2:-5:3:-2:3:-4:0:-1
+R:-5:-15:7:3:10:3:20:10:0
+X:160:0:528
+I:35:11:4:34
+H:66:1:62:1
+W:150:120
+C:0|1|2|4|8|9|11
+
+#Sum = 5; undead; frightful
+
+N:10:Man of Erech
+S:0:0:0:0:0:5:0:0
+R:0:0:0:0:0:0:0:0:0
+X:130:2:528
+I:45:3000:50:50
+H:72:6:66:4
+W:180:150
+C:0|1|2|3|4|5|6|7|8|9|10|11|12
+
+#TODO: make them understand birds, as per The Hobbit
+#Sum = 0; magic toys
+
+N:11:Man of Dale
+D:Dale-lander
+S:0:0:0:0:0:0:0:0
+R:0:15:0:0:0:0:0:0:0
+X:100:0:0
+I:1:14:6:22
+H:72:6:66:4
+W:180:150
+C:0|1|2|3|4|5|6|7|8|9|10|11|12
+
+#Sum = 3; fast
+
+N:12:Man of Rohan
+D:Rohirrim
+S:0:0:0:0:0:0:3:0
+R:0:0:0:0:0:0:0:0:0
+X:100:0:0
+I:1:14:6:37
+H:72:6:66:4
+W:180:150
+C:0|1|2|3|4|5|6|7|8|9|10|11|12
+
+#Sum = 0; noble
+
+N:13:Man of Gondor
+D:Gondorian
+S:0:0:0:0:0:0:0:0
+R:0:0:15:0:0:0:0:0:0
+X:100:0:0
+I:1:14:6:51
+H:72:6:66:4
+W:180:150
+C:0|1|2|3|4|5|6|7|8|9|10|11|12
+
+#Sum = 0; fearless
+
+N:14:Man of Harad
+D:Haradrim
+S:0:0:0:0:0:0:0:0
+R:0:0:0:0:0:0:0:0:0
+X:100:0:1193
+I:1:14:6:60
+H:72:6:66:4
+W:180:150
+C:0|1|2|3|4|5|6|7|8|9|10|11|12
+
+#Sum = -3; much higher without CHR; huge weight; throwing
+
+N:15:Forge Giant
+S:7:-3:-8:-4:3:-6:-5:13
+R:-10:10:-12:-10:0:5:40:20:-70
+X:120:3:1197
+I:42:20:10:18
+H:144:20:126:12
+W:500:450
+C:0
+
+#Sum = -3; much higher without CHR; huge weight; devices
+
+N:16:Fire Giant
+S:7:-3:-8:-4:3:-6:-5:13
+R:-10:18:-12:-10:0:5:30:20:-70
+X:120:3:209
+I:42:20:10:18
+H:144:20:126:12
+W:500:450
+C:0
+
+#Sum = -3; much higher without CHR; huge weight; cold thinking
+
+N:17:Frost Giant
+S:7:-1:-5:-4:3:-8:-8:13
+R:-10:10:-12:-10:0:5:30:20:-70
+X:120:3:119
+I:42:20:10:18
+H:144:20:126:12
+W:500:450
+C:0
+
+#Sum = -2; shapeshift
+
+N:18:Beorning
+S:2:-2:0:0:2:-3:-2:1
+R:-3:-5:3:1:3:0:0:10:0
+X:140:0:566
+I:33:14:6:19
+H:72:6:66:4
+W:180:150
+C:0|1|3|4|8|9|10|11|12
+
+#U:BEARSKIN
+
+# Currently using Beorning stats. Need to change this.
+# Have tweaked some skills, at least.
+
+#Sum = -2; shapeshift
+
+N:19:Werewolf
+S:2:-2:0:0:2:-3:-2:1
+R:-3:-5:3:1:13:5:-5:10:-10
+X:140:0:245
+I:48:14:6:28
+H:72:6:66:4
+W:180:150
+C:0|1|3|4|8|9|10|11|12
+
+# Currently using Beorning stats. Need to change this.
+
+#Sum = -2; shapeshift
+
+N:20:Vampire
+S:2:-2:0:0:2:-3:-2:1
+R:-3:-5:3:1:3:0:0:10:0
+X:140:3:272
+I:48:14:9:55
+H:72:6:66:4
+W:180:150
+G:RES_LITE |
+C:0|1|3|4|8|9|10|11|12
+
+#Sum = -3; cool resist
+
+N:21:Goblin
+S:-2:1:0:5:-6:-2:3:-2
+R:5:12:0:4:7:0:0:0:10
+X:110:5:25
+I:23:15:10:18
+H:38:4:36:3
+W:70:60
+C:0|3|4|5|7|9|12
+
+#Sum = -3; cool resist
+
+N:22:Goblin-Man
+S:-2:1:0:5:-6:-2:3:-2
+R:5:12:0:4:7:0:0:0:10
+X:130:3:25
+I:41:15:10:31
+H:45:4:40:3
+W:70:60
+C:0|3|4|5|7|9|12
+
+#Sum = -4; much higher without CHR; bad abilities
+
+N:23:Orc
+D:Orcish
+S:3:-3:-1:0:2:-7:2:0
+R:-3:-10:-5:-2:0:2:0:20:0
+X:100:4:98
+I:37:11:4:63
+H:66:1:62:1
+W:150:120
+C:0|9
+
+#Sum = -4; much higher without CHR; bad abilities
+
+N:24:Half-Orc
+D:Half-Orcish
+S:3:-3:-1:0:2:-7:2:0
+R:-3:-10:-5:-2:0:2:0:20:0
+X:120:2:195
+I:19:11:4:44
+H:66:1:62:1
+W:150:120
+C:0|9
+
+# Has Stoneskin. Trolls are larger than Ents, smaller than Giants
+
+#Sum = -5; much higher without INT and CHR; bad abilities; huge HP and weight
+
+N:25:Stone Troll
+S:5:-10:-4:-8:16:-10:-4:10
+R:-10:-20:-10:-3:-10:3:30:30:-50
+X:120:2:278
+I:44:20:10:13
+H:144:20:126:12
+W:350:300
+G:FEATHER |
+C:0
+
+# The following shapes are not startable races.
+# The stats are from Sangband, but could be made a lot more interesting here, 
+# e.g., hounds / wolves bigger, bonus to searching etc.
+
+# Note that the limits.txt 'playable races' value prevents anyone 
+# from entering shops when in the shapes below.
+
+### 26 - Unused ###
+
+### 27 - Unused ###
+
+### 28 - Unused ###
+
+#$# 26 - Unused ###
+
+#$# 27 - Unused ###
+
+#$# 28 - Unused ###
+
+N:29:Goat
+S:0:0:0:0:0:0:0:0
+R:-10:-10:0:0:0:0:0:5:0
+X:0:1:0
+
+N:30:Bear
+S:2:-1:0:0:2:-3:0:0
+R:-10:-10:0:0:0:0:0:5:0
+X:0:1:0
+
+N:31:Mouse
+S:-2:-7:0:0:-1:-5:0:0
+R:0:0:0:7:3:0:0:-15:0
+X:0:2:1036
+G:AGGRAVATE |
+
+# Should implement some kind of superscent instead of ESP.
+
+N:32:Hound
+S:0:-2:0:0:2:-2:0:0
+R:0:-10:0:0:10:3:0:0:0
+X:0:3:0
+
+N:33:Cheetah
+S:0:0:0:0:0:0:2:0
+R:-10:-10:0:0:5:0:0:0:0
+X:0:2:0
+
+N:34:Lion
+S:3:-1:-1:0:0:4:2:0
+R:-10:-10:0:0:0:0:0:0:0
+X:0:2:0
+
+N:35:Dragon
+S:3:0:0:0:2:0:0:0
+R:-10:-10:0:0:0:0:0:0:0
+X:0:3:406
+
+N:36:Wolf
+S:0:0:0:0:0:0:0:0
+R:-10:-10:0:0:0:3:0:0:0
+X:0:3:245
+
+N:37:Bat
+S:-1:-2:-2:0:0:-2:0:0
+R:-10:-10:0:0:0:-10:0:0:0
+X:0:6:723
+
+N:38:Serpent
+S:0:0:0:0:0:0:0:0
+R:-10:-10:0:0:0:0:0:0:0
+X:0:6:934
+
+N:39:Cat
+S:-1:0:0:0:0:0:4:0
+R:0:0:0:3:3:0:0:0:0
+X:0:4:51
+

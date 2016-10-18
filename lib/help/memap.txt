@@ -1,0 +1,56 @@
+=================== "Map" of (northern) Middle Earth =======================
+
+Below is a rough diagram of the linkages between the regions of Middle Earth
+your character can visit.  Dungeons' depths are shown in brackets under 
+the region where the entrance lies.  Note that some wilderness areas have
+no dungeon underneath, but still have a guardian (usually a unique monster), 
+who may or may not block passage to another region.  Only passages 
+that are never blocked are shown on the map.  This is why only (most of) 
+northern Middle Earth is shown --- to get south to where the fate calls, 
+you need to fight your way through.
+
+Some towns of Middle Earth are widely known and these are marked by '*' 
+on the map; the others are for you to discover --- or perhaps help rebuild?  
+The regions change as you shape the fate of Middle Earth by your brave deeds;  
+only the initial situation is shown on this map.  Some passages are initially 
+one-way only; they are marked with an arrow.  For more information 
+about wilderness and dungeons, see "dungeon.txt".
+
+                                         
+                                                   ##            Lonely Mountain
+                                                    ###              (26-42)
+               Trollshaws Forest (4-6)               ##                 | 
+                |                  |                  #                 |
+                |   Midgewater     |            Misty Mountains     Lake-town*
+Hobbiton*       |  / Marshes |     |              path ##              /|
+ | \            | /  (10-17) |     |             (5-13)<---Beorn's    / |
+ |  \          Bree*         |     |            /      #    House    /  |
+ | East Road-->(0-4)    Weathertop |  Rivendell*       ##     \     /   |
+ |                  \     (17-31)  |  /|     \         ##      \   /    |
+ |  Brandywine       \       |  \  | / |      \       ##     Mirkwood   |
+ |  | Ferry  |        \      |   Ford  |       \     ##    Road (13-26) |
+ |  |        V     ?   \     |         |        \    ###         |      |
+ |  V   Buckland*  |    \    |         |         \    ##         |      |
+Farmer    |        V     \   |         |       Redhorn #     Woodmen*   |
+Maggot's  Old Forest-->Barrow Downs    |       Pass (7-37)<--Village    |
+ Farm       (6-10)        (4-23)       |         /  ###      (10-13)    |
+ (2-6)                                 |        /  ####        /        |
+                                       | West Moria ##        /         |
+                                       |  entrance ## East Moria        |
+                                       |   (6-24) #### entrance         |
+                                       |    /    ####   (13-24)         |
+                                       |   /     ##                 Dol Guldur
+                                     Dunland    ##Lorien*          / (42-65)
+                                           \  ###                 /
+                                            \ ####  Fangorn Forest
+                                             \ ##  /
+                                            Isengard
+                                             (3-35)               Parth Galen
+                                                   \             
+                                               ##   \               Dead Marshes
+                                  #################  Edoras*        
+                        ##############            ## (8-27)             
+                                             Paths #####
+                                          of the Dead ######
+                                                          ############## Minas
+                                                                         Tirith*

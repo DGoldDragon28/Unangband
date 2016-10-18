@@ -1,0 +1,6385 @@
+# File: room.txt
+
+
+# This file is used to initialize the "lib/data/room.raw" file, which
+# is used to initialize the "room" information for the Angband game.
+
+# Do not modify this file unless you know exactly what you are doing,
+# unless you wish to risk possible system crashes and broken savefiles.
+# After modifying this file, delete the "lib/data/room.raw" file.
+
+# Room descriptions (see below)
+
+# XXX XXX XXX This table *must* be correct or drastic errors may occur!
+
+#All S:SEEN descriptions start 'You have entered a/an name1 name2. ' This is
+#why we provide name entries at the end without a description.
+
+#All descriptions are supplied if the character is not blind, and
+#enters a lit room or lights a dark room. Without the SEEN flag,
+# descriptions are supplied if the character enters a dark room or a
+#room while blind.
+
+# Note that the "spacing" in the "description" lines is very important!
+
+# N: this: next : chance : min_chance (usually 1 or 0) : minimum level : maximum level
+# A: name of room
+# B: type of room
+# D: description
+
+# F: feature : tunnel feature : doorway feature: trap feature : chasm bridge feature
+# Generate extra features for this room
+
+# G: graphic
+# Generate extra creatures with this graphic for this room.
+
+# K: item tval: min sval : max sval
+# Generate extra items of this tval and sval range for this room.
+
+# L: ACID | OIL | CHASM | LAVA | ICE | WATER | DESTROYED etc.
+# Only generate on levels with these flags.
+
+# DARK - only generate in dark rooms.
+
+# NORTH: Line north wall of this room with items | feature.
+# SOUTH: Line south wall of this room with items | feature.
+# EAST: Line east wall of this room with items | feature.
+# WEST: Line west wall of this room with items | feature.
+# CENTRE: Fill centre (Excluding walls) of this room with items | feature.
+
+
+# R: flag
+# Generate extra monsters with this flag for this room.
+
+# S:SEEN | ICKY
+# Room special flags as follows:
+# SEEN: This description is only given if room is lit.
+# ICKY: This is an anti-teleport room
+
+
+# For all the above, use the first encountered.
+
+# Version stamp (required)
+
+V:0.6.4
+
+# Each room type has a separate N from 1 - 16.
+
+# 'Empty' room.
+
+N:1:107:0:0:1:1:0:128
+A:
+B:
+
+# Wall decorated room.
+
+N:2:117:0:0:1:1:0:128
+A:
+B:
+
+# Central feature room.
+
+N:3:104:0:0:1:1:0:128
+A:
+B:
+
+# Wall decorated large room.
+
+N:4:117:0:0:1:1:0:128
+A:
+B:
+
+# Central feature large room.
+
+N:5:104:0:0:1:1:0:128
+A:
+B:
+
+# Central feature huge room.
+
+N:6:104:0:0:1:1:0:128
+A:
+B:chamber
+
+# Chambers.
+
+N:7:107:0:0:1:1:0:128
+A:
+B:chambers
+
+# Interesting room.
+
+N:8:107:0:0:1:1:0:128
+
+# Lesser vault.
+
+N:9:117:0:0:1:1:0:128
+A:
+B:vault
+
+# Greater vault.
+
+N:10:158:0:0:1:1:0:128
+A:
+B:vault
+D:A 
+
+# Small starburst room.
+
+N:11:107:0:0:1:1:0:128
+A:
+B:
+
+# Small starburst room - central feature.
+
+N:11:104:0:0:1:1:0:128
+A:
+B:
+
+# Small starburst room - wall decorations.
+
+N:11:117:0:0:1:1:0:128
+A:
+B:
+
+# Large starburst room - central feature.
+
+N:12:104:0:0:1:1:0:128
+A:
+B:
+
+# Large starburst room - wall decorations.
+
+N:12:117:0:0:1:1:0:128
+A:
+B:
+
+# Medium fractal room - central feature.
+
+N:13:104:0:0:1:1:0:128
+A:
+B:grotto
+
+# Medium fractal room - wall decorations.
+
+N:13:117:0:0:1:1:0:128
+A:
+B:grotto
+
+# Large fractal room - central feature.
+
+N:14:104:0:0:1:1:0:128
+A:
+B:cave
+
+# Large fractal room - wall decorations.
+
+N:14:117:0:0:1:1:0:128
+A:
+B:cave
+
+# Huge fractal room - central feature
+
+N:15:104:0:0:1:1:0:128
+A:
+B:cavern
+
+# Huge fractal room - wall decorations
+
+N:15:117:0:0:1:1:0:128
+A:
+B:cavern
+
+# Lair.
+
+N:16:107:0:0:1:1:0:128
+A:
+B:lair
+
+# Maze.
+
+N:17:107:0:0:1:1:0:128
+A:
+B:maze
+
+# Large maze.
+
+N:18:117:0:0:1:1:0:128
+A:
+B:labyrinth
+
+# Huge maze.
+
+N:19:117:0:0:1:1:0:128
+A:
+B:labyrinth
+
+# Medium cellular cave - wall decorations.
+
+N:20:117:0:0:1:1:0:128
+A:
+B:grotto
+
+# Large cellular cave - wall decorations.
+
+N:21:117:0:0:1:1:0:128
+A:
+B:cave
+
+# Huge cellular cave - wall decorations
+
+N:22:117:0:0:1:1:0:128
+A:
+B:cavern
+
+# Medium burrows - central feature.
+
+N:23:104:0:0:1:1:0:128
+A:
+B:burrows
+
+# Medium burrows - wall decorations.
+
+N:23:117:0:0:1:1:0:128
+A:
+B:burrows
+
+# Large burrows - central feature.
+
+N:24:104:0:0:1:1:0:128
+A:
+B:warren
+
+# Large burrows - wall decorations.
+
+N:24:117:0:0:1:1:0:128
+A:
+B:warren
+
+# Huge burrows - central feature
+
+N:25:104:0:0:1:1:0:128
+A:
+B:hive
+
+# Huge burrows - wall decorations
+
+N:25:117:0:0:1:1:0:128
+A:
+B:hive
+
+# Monster pit.
+
+N:26:117:0:0:1:1:0:128
+A:
+B:pit
+
+# Monster town.
+
+N:27:117:0:0:1:1:0:128
+A:
+B:pit
+
+# Concave room - small
+
+N:28:104:0:0:1:1:0:128
+A:irregular
+B:
+
+# Concave room - medium
+
+N:29:104:0:0:1:1:0:128
+A:strange
+B:
+
+# Weird room - medium
+
+N:29:104:0:0:1:1:0:128
+A:weird
+B:
+
+# Concave room - large
+
+N:30:104:0:0:1:1:0:128
+A:bizarre
+B:
+
+# Concave room - large and dangerous
+
+N:30:158:0:0:1:1:30:128
+A:
+B:
+
+
+# An inner room of some description
+
+N:102:107:0:0:5:0:3:128
+A:
+B:
+D:the centre of the room. 
+S:SEEN
+P:CENTRE | INNER | PLACE
+
+N:102:107:0:0:15:0:11:128
+A:
+B:
+D:the north of the room. 
+S:SEEN
+P:NORTH | PLACE | INNER
+
+N:102:107:0:0:15:0:11:128
+A:
+B:
+D:the east of the room. 
+S:SEEN
+P:EAST | PLACE | INNER
+
+N:102:107:0:0:15:0:11:128
+A:
+B:
+D:the west of the room. 
+S:SEEN
+P:WEST | PLACE | INNER
+
+N:102:107:0:0:15:0:11:128
+A:
+B:
+D:the south of the room. 
+S:SEEN
+P:SOUTH | PLACE | INNER
+
+# No inner room, just walls
+
+N:102:103:0:0:50:50:0:128
+A:
+B:
+D:
+
+# The walls
+
+N:102:103:0:0:3:0:3:128
+A:
+B:
+D:a nook in 
+S:SEEN
+P:ALLOC | OUTER
+
+N:102:103:0:0:5:0:5:128
+A:
+B:
+D:a recess in 
+S:SEEN
+P:ALLOC | OUTER
+
+N:102:103:0:0:7:0:7:128
+A:
+B:
+D:a cranny in 
+S:SEEN
+P:RANDOM | OUTER
+
+N:102:103:0:0:9:0:9:128
+A:
+B:
+D:an cupboard in 
+S:SEEN
+P:ROWS | COLS | OUTER
+
+N:102:103:0:0:11:0:11:128
+A:
+B:
+D:an alcove in 
+S:SEEN
+P:CHECKER | OUTER
+
+N:103:107:0:0:25:25:0:128
+A:
+B:
+D:the north wall. 
+S:SEEN
+P:NORTH | EDGE | PLACE
+
+N:103:107:0:0:25:25:0:128
+A:
+B:
+D:the east wall. 
+S:SEEN
+P:EAST | EDGE | PLACE
+
+N:103:107:0:0:25:25:0:128
+A:
+B:
+D:the west wall. 
+S:SEEN
+P:WEST | EDGE | PLACE
+
+N:103:107:0:0:25:25:0:128
+A:
+B:
+D:the south wall. 
+S:SEEN
+P:SOUTH | EDGE | PLACE
+
+N:103:107:0:0:10:1:7:128
+A:
+B:
+D:the north and east walls. 
+S:SEEN
+P:EDGE | NORTH | EAST | PLACE
+
+N:103:107:0:0:10:1:7:128
+A:
+B:
+D:the south and east walls. 
+S:SEEN
+P:EDGE | SOUTH | EAST | PLACE
+
+N:103:107:0:0:10:1:7:128
+A:
+B:
+D:the south and west walls. 
+S:SEEN
+P:EDGE | SOUTH | WEST | PLACE
+
+N:103:107:0:0:10:1:7:128
+A:
+B:
+D:the north and west walls. 
+S:SEEN
+P:EDGE | NORTH | WEST | PLACE
+
+N:103:107:0:0:5:1:9:128
+A:
+B:
+D:the walls. 
+S:SEEN
+P:EDGE | NORTH | SOUTH | WEST | PLACE
+
+N:103:107:0:0:5:1:9:128
+A:
+B:
+D:the walls. 
+S:SEEN
+P:EDGE | NORTH | SOUTH | EAST | PLACE
+
+N:103:107:0:0:5:10:9:128
+A:
+B:
+D:the walls. 
+S:SEEN
+P:EDGE | SOUTH | WEST | EAST | PLACE
+
+N:103:107:0:0:5:1:9:128
+A:
+B:
+D:the walls. 
+S:SEEN
+P:EDGE | NORTH | EAST | WEST | PLACE
+
+N:103:107:0:0:15:3:11:128
+A:
+B:
+D:the walls. 
+S:SEEN
+P:EDGE | NORTH | SOUTH | EAST | WEST | PLACE
+
+# Central feature surrounded by stuff.
+
+N:104:119:0:0:5:5:0:128
+A:
+B:
+D:A wooden platform 
+S:SEEN
+F:438:438:56:0:0
+
+N:104:119:0:0:5:5:0:128
+A:
+B:
+D:A stone dais 
+F:136:136:56:0:0
+S:SEEN
+
+N:104:119:0:0:10:10:0:128
+A:sunken
+B:
+D:A sunken pit 
+S:SEEN
+F:457:457:56:0:0
+
+N:104:120:0:0:60:2:0:128
+A:
+B:garden
+D:A garden 
+S:SEEN
+L:LIVING
+F:0:0:831:0:0
+
+N:104:120:0:0:60:2:0:128
+A:
+B:garden
+D:A garden 
+S:SEEN
+L:LIVING
+P:ROWS
+F:0:0:831:0:0
+
+N:104:120:0:0:60:2:0:128
+A:
+B:garden
+D:A garden 
+S:SEEN
+L:LIVING
+P:COLS
+F:0:0:831:0:0
+
+N:104:120:0:0:60:2:0:128
+A:
+B:garden
+D:A garden 
+S:SEEN
+L:LIVING
+P:CHECKER
+F:0:0:831:0:0
+
+N:104:120:0:0:60:2:0:128
+A:
+B:garden
+D:A garden 
+S:SEEN
+L:LIVING
+P:ROWS | COLS
+F:0:0:831:0:0
+
+N:104:120:0:0:60:2:0:128
+A:
+B:garden
+D:A garden 
+S:SEEN
+L:LIVING
+P:MAZE_WALL
+F:0:0:831:0:0
+
+N:104:120:0:0:60:2:0:128
+A:
+B:garden
+D:A garden 
+S:SEEN
+L:LIVING
+P:MAZE_DECOR
+F:0:0:831:0:0
+
+N:104:120:0:0:60:2:0:128
+A:
+B:garden
+D:A garden 
+S:SEEN
+L:LIVING
+P:MAZE_PATH
+F:0:0:831:0:0
+
+N:104:120:0:0:12:2:0:128
+A:
+B:garden
+D:A garden 
+S:SEEN
+L:LIVING
+P:STARBURST
+F:0:0:831:0:0
+
+N:104:119:0:0:12:1:0:128
+A:
+B:festhall
+D:A stone table 
+F:807:0:748:0:0
+S:SEEN
+R:SMART
+
+N:104:119:0:0:12:1:0:128
+A:
+B:dining room
+D:A wooden table 
+F:810:0:730:0:0
+S:SEEN
+R:SMART
+
+N:104:119:0:0:5:5:45:128
+A:
+B:stairs
+D:A staircase 
+F:6:0:0:0:0
+S:SEEN
+P:ALLOC
+
+N:104:119:0:0:5:5:45:128
+A:
+B:stairs
+D:A staircase 
+F:7:0:0:0:0
+S:SEEN
+P:ALLOC
+
+N:104:119:0:0:20:5:45:128
+A:
+B:
+D:A stone pillar 
+F:57:57:57:0:0
+S:SEEN
+P:ALLOC
+R:UNDEAD
+
+N:104:119:0:0:15:3:45:128
+A:
+B:
+D:A limestone pillar 
+F:111:111:111:0:0
+S:SEEN
+P:ALLOC
+L:WATER
+
+N:104:119:0:0:25:2:3:128
+A:
+B:
+D:A shallow grave 
+R:UNDEAD
+S:SEEN
+P:SCATTER
+F:457:457:114:0:0
+
+N:104:119:0:0:25:2:3:128
+A:
+B:
+D:A trench 
+R:WARRIOR
+S:SEEN
+P:MAZE_DECOR
+F:457:457:114:0:0
+
+N:104:119:0:0:25:2:0:128
+A:
+B:plaza
+D:A broken fountain 
+S:SEEN
+F:383:136:764:0:0
+R:STUPID
+
+N:104:119:0:0:30:3:0:128
+A:
+B:plaza
+D:An empty fountain 
+S:SEEN
+F:384:0:764:0:0
+R:STUPID
+
+N:104:119:0:0:30:3:1:128
+A:
+B:plaza
+D:A clear fountain 
+S:SEEN
+F:385:0:744:0:0
+R:SMART
+
+N:104:119:0:0:60:1:10:128
+A:
+B:plaza
+D:A cloudy fountain 
+S:SEEN
+F:386:0:744:0:0
+R:FORGET
+
+N:104:119:0:0:60:1:10:128
+A:
+B:plaza
+D:A bubbling fountain 
+S:SEEN
+F:387:0:744:0:0
+R:HEAL
+
+N:104:119:0:0:60:1:30:128
+A:
+B:plaza
+D:A misty fountain 
+S:SEEN
+F:387:0:744:0:0
+R:CURSE
+
+N:104:119:0:0:60:1:20:128
+A:
+B:plaza
+D:A smoky fountain 
+S:SEEN
+F:387:0:744:0:0
+R:ILLUSION
+
+N:104:119:0:0:60:2:20:128
+A:
+B:cell
+D:An iron cage 
+S:SEEN
+F:314:0:726:0:0
+K:1:0:99
+R:MAN
+
+N:104:119:0:0:15:2:15:128
+A:
+B:cell
+D:A wooden cage 
+S:SEEN
+F:314:0:726:0:0
+K:1:0:99
+R:ORC
+
+N:104:119:0:0:15:0:10:128
+A:
+B:torture room
+D:A torture rack 
+S:SEEN
+F:314:0:726:0:0
+K:6:0:99
+R:EVIL
+
+N:104:119:0:0:30:3:1:128
+A:
+B:
+D:A pile of rubble 
+F:49:49:113:0:0
+S:SEEN
+P:SCATTER
+R:CAN_DIG
+
+N:104:119:0:0:30:3:1:128
+A:
+B:
+D:A pile of rubble 
+F:49:49:113:0:0
+S:SEEN
+R:GIANT
+P:SCATTER
+
+N:104:119:0:0:25:5:5:128
+A:
+B:
+D:A fallen statue 
+K:11:1:1
+F:0:0:732:0:0
+S:SEEN
+R:MAN
+
+N:104:119:0:0:25:5:10:128
+A:
+B:
+D:A statue 
+K:11:2:24
+F:0:0:732:0:0
+S:SEEN
+R:MAN
+
+N:104:119:0:0:75:2:30:128
+A:
+B:chapel
+F:373:0:831:0:0
+R:PRIEST
+D:A wooden altar 
+S:SEEN
+
+N:104:119:0:0:25:1:20:128
+A:
+B:temple
+F:374:0:723:0:0
+R:PRIEST
+D:A stone altar 
+S:SEEN
+
+N:104:119:0:0:25:0:20:128
+A:unholy
+B:temple
+F:375:0:754:0:0
+G:q
+R:EVIL
+D:A blood-stained altar 
+S:SEEN
+
+N:104:119:0:0:20:2:40:128
+A:
+B:mausoleum
+F:376:0:829:0:0
+D:A dusty altar 
+S:SEEN
+R:UNDEAD
+
+N:104:119:0:0:20:2:30:128
+A:magic
+B:
+F:637:0:736:0:0
+D:A magic circle 
+S:SEEN
+R:MAGE
+
+N:104:119:0:0:30:2:40:128
+A:magic
+B:
+F:638:0:736:0:0
+D:A magic triangle 
+S:SEEN
+R:MAGE
+
+N:104:119:0:0:40:2:50:128
+A:magic
+B:
+F:639:0:736:0:0
+D:A magic square 
+S:SEEN
+R:MAGE
+
+N:104:119:0:0:50:2:60:128
+A:magic
+B:
+F:640:0:736:0:0
+D:A magic pentagram 
+S:SEEN
+R:MAGE
+
+N:104:119:0:0:60:2:70:128
+A:magic
+B:
+F:640:0:736:0:0
+D:A magic hexagram 
+S:SEEN
+R:MAGE
+
+N:104:119:0:0:35:2:5:128
+A:
+B:shrine
+F:818:0:736:0:0
+D:A shrine 
+S:SEEN
+R:PRIEST
+P:ALLOC
+
+N:104:119:0:0:25:3:0:128
+A:
+B:well
+F:391:0:764:0:0
+D:A stone well 
+S:SEEN
+R:SMART
+
+N:104:119:0:0:75:1:0:128
+A:
+B:
+F:425:0:759:22:0
+D:A burnt tree 
+S:SEEN
+R:PLANT
+P:SCATTER
+
+N:104:119:0:0:75:1:0:128
+A:tree
+B:
+F:427:0:831:0:0
+K:3:7:7
+D:A fallen tree 
+S:SEEN
+R:PLANT
+P:SCATTER
+
+N:104:119:0:0:50:0:0:128
+A:tree
+B:
+F:420:0:831:0:0
+D:A tree 
+S:SEEN
+L:LIVING
+P:SCATTER
+
+N:104:119:0:0:50:0:40:128
+A:tree
+B:
+F:454:0:831:0:0
+D:A huge tree 
+S:SEEN
+L:LIVING
+P:SCATTER
+
+N:104:119:0:0:50:0:0:128
+A:tree
+B:
+F:421:0:831:0:0
+D:A tree 
+S:SEEN
+L:LIVING
+P:SCATTER
+
+N:104:119:0:0:50:0:0:128
+A:
+B:orchard
+F:426:0:435:0:0
+D:An apple tree 
+S:SEEN
+R:ELF
+P:SCATTER
+
+N:104:119:0:0:50:2:10:128
+A:
+B:pen
+D:A wooden cage 
+S:SEEN
+F:313:0:313:0:0
+K:2:4:4
+R:ANIMAL
+
+N:104:105:107:126:25:2:40:128
+A:
+B:throneroom
+D:A stone throne 
+K:33:12:12
+S:SEEN
+F:807:0:732:0:0
+P:ALLOC
+R:NONLIVING
+
+N:104:105:107:127:25:2:20:128
+A:
+B:throneroom
+D:An iron throne 
+R:WARRIOR
+K:33:10:10
+F:807:0:732:0:0
+S:SEEN
+P:ALLOC
+
+N:104:105:107:127:25:1:30:128
+A:
+B:throneroom
+D:A gold-leafed throne 
+R:MAGE
+K:33:11:11
+F:807:0:732:0:0
+S:SEEN
+P:ALLOC
+
+N:104:105:0:0:50:0:30:128
+A:
+B:nest
+D:A huge nest 
+G:B
+S:SEEN
+K:8:3:3
+P:SCATTER
+
+N:104:105:0:0:50:0:20:128
+A:
+B:hive
+D:A huge hive 
+G:I
+S:SEEN
+K:80:30:30
+P:SCATTER
+
+N:104:105:0:0:50:0:25:128
+A:
+B:cocoon
+G:I
+D:A huge cocoon 
+S:SEEN
+F:306:306:756:0:0
+K:8:1:1
+P:8WAY
+
+N:104:105:0:0:50:0:12:128
+A:
+B:
+D:A huge spiderweb 
+R:HAS_WEB
+S:SEEN
+F:446:447:829:0:0
+P:8WAY
+
+N:104:119:0:0:15:0:4:128
+A:
+B:temple
+D:A sacrificial stone 
+R:EVIL
+S:SEEN
+F:136:0:754:0:0
+K:6:0:99
+P:SCATTER
+
+N:104:119:0:0:25:1:9:128
+A:
+B:tomb
+D:A great sarcophagus 
+F:807:0:732:0:0
+R:UNDEAD
+S:SEEN
+P:ALLOC
+
+N:104:119:0:0:25:3:5:128
+A:
+B:mine
+D:A deep shaft 
+K:20:0:99
+F:64:136:835:0:0
+S:SEEN
+G:$
+
+N:104:119:0:0:75:3:5:128
+A:
+B:mine
+D:A deep shaft 
+K:20:0:99
+F:64:136:835:0:0
+S:SEEN
+R:DWARF
+
+N:104:105:0:0:25:1:2:128
+A:
+B:
+D:A giant stone head 
+S:SEEN
+F:57:0:0:0:0
+R:GIANT
+
+N:104:105:0:0:25:1:2:128
+A:
+B:
+D:A giant stone head 
+S:SEEN
+F:57:0:0:0:0
+R:DWARF
+
+N:104:119:0:0:10:2:0:128
+A:
+B:
+D:A window 
+R:SMART
+F:723:0:0:0:0
+S:SEEN
+P:OUTER | LITE
+
+N:104:119:0:0:10:5:0:128
+A:
+B:
+D:An open window 
+R:SMART
+F:724:0:0:0:0
+S:SEEN
+P:OUTER | LITE
+
+N:104:119:0:0:10:5:0:128
+A:
+B:
+D:A broken window 
+R:NONLIVING
+F:725:0:0:0:0
+S:SEEN
+P:OUTER | LITE
+
+N:104:119:0:0:10:5:0:128
+A:
+B:prison
+D:A locked gate 
+R:SMART
+F:726:0:0:0:0
+S:SEEN
+P:OUTER
+
+N:104:119:107:123:10:5:0:128
+A:portrait
+B:
+D:A painting 
+R:SMART
+F:732:0:732:0:0
+S:SEEN
+P:OUTER
+
+N:104:119:0:0:25:2:0:128
+A:
+B:
+D:A lit fireplace 
+R:NEED_LITE
+F:734:0:734:0:0
+S:SEEN
+P:OUTER
+
+N:104:119:0:0:25:2:0:128
+A:
+B:
+D:An empty fireplace 
+R:NONLIVING
+F:762:0:734:0:0
+S:SEEN
+P:OUTER
+
+N:104:119:0:0:25:2:0:128
+A:
+B:
+D:A burning torch 
+R:NEED_LITE
+F:736:0:736:0:0
+S:SEEN
+P:OUTER | DARK
+
+N:104:105:106:140:25:2:0:128
+A:
+B:
+D:A lever 
+G:g
+F:753:0:753:0:0
+S:SEEN
+P:OUTER | ALLOC
+
+N:104:105:106:140:25:2:30:128
+A:
+B:
+D:A lever 
+G:g
+F:752:0:752:0:0
+S:SEEN
+P:OUTER | ALLOC
+
+N:104:105:106:140:50:2:0:128
+A:
+B:
+D:A lever 
+L:OIL
+F:753:0:753:0:0
+S:SEEN
+P:OUTER | ALLOC
+
+N:104:105:106:140:50:2:30:128
+A:
+B:
+D:A lever 
+L:OIL
+F:752:0:752:0:0
+S:SEEN
+P:OUTER | ALLOC
+
+N:104:119:0:0:10:5:0:128
+A:
+B:washroom
+D:A basin 
+R:SMART
+F:744:547:744:0:0
+S:SEEN
+P:OUTER
+
+N:104:119:0:0:10:5:0:128
+A:
+B:washroom
+D:An empty basin 
+R:STUPID
+F:764:547:764:0:0
+S:SEEN
+P:OUTER
+
+N:104:119:0:0:10:5:0:128
+A:
+B:midden
+D:A midden 
+R:SMART
+F:746:547:744:0:0
+S:SEEN
+P:OUTER
+
+N:104:119:0:0:10:5:0:128
+A:
+B:midden
+D:An empty midden 
+R:STUPID
+F:765:547:764:0:0
+S:SEEN
+P:OUTER
+
+N:104:146:107:105:50:2:20:128
+A:waterfall
+B:
+D:A waterfall 
+L:WATER
+F:126:0:0:0:0
+S:SEEN
+P:ALLOC
+
+N:104:155:107:105:50:2:20:128
+A:toxic
+B:
+D:A poisonous waterfall 
+L:WATER
+F:990:0:0:0:0
+S:SEEN
+P:ALLOC
+
+N:104:147:107:105:50:0:41:128
+A:boiling
+B:
+D:A boiling waterfall 
+L:WATER | LAVA
+F:160:0:0:0:0
+S:SEEN
+P:ALLOC
+
+N:104:148:107:105:50:2:40:128
+A:acidic
+B:
+D:A stream of deadly acid 
+L:ACID
+F:127:0:0:0:0
+S:SEEN
+P:ALLOC
+
+N:104:105:106:152:25:2:5:128
+A:
+B:
+D:A small wooden chest 
+R:SNEAKY
+F:316:0:0:0:0
+S:SEEN
+P:ALLOC
+
+N:104:105:106:152:25:2:15:128
+A:
+B:
+D:A large wooden chest 
+R:SNEAKY
+F:327:0:0:0:0
+S:SEEN
+P:ALLOC
+
+N:104:105:106:152:25:2:25:128
+A:
+B:
+D:A small iron chest 
+R:SNEAKY
+F:336:0:0:0:0
+S:SEEN
+P:ALLOC
+
+N:104:105:106:152:25:2:35:128
+A:
+B:
+D:A large iron chest 
+R:SNEAKY
+F:345:0:0:0:0
+S:SEEN
+P:ALLOC
+
+N:104:105:106:152:25:2:45:128
+A:
+B:
+D:A small steel chest 
+R:SNEAKY
+F:355:0:0:0:0
+S:SEEN
+P:ALLOC
+
+N:104:105:106:152:25:2:55:128
+A:
+B:
+D:A large steel chest 
+R:SNEAKY
+F:345:0:0:0:0
+S:SEEN
+P:ALLOC
+
+N:104:105:0:0:30:3:5:128
+A:
+B:
+D:A chess set 
+R:WARRIOR
+S:SEEN
+K:11:4:4
+P:CHECKER
+F:439:0:732:0:0
+
+# Note: reversed chances to ensure smart monster levels have tidier floors,
+# but more furnishings.
+
+N:104:145:0:0:50:250:0:128
+A:
+B:
+D:The floor is 
+S:SEEN
+R:SMART
+
+N:105:141:0:0:15:15:15:128
+A:
+B:
+D:in the north of the room is 
+S:SEEN
+P:NORTH | PLACE
+
+N:105:142:0:0:15:15:15:128
+A:
+B:
+D:in the east of the room is 
+S:SEEN
+P:EAST | PLACE
+
+N:105:143:0:0:15:15:15:128
+A:
+B:
+D:in the west of the room is 
+S:SEEN
+P:WEST | PLACE
+
+N:105:144:0:0:15:15:15:128
+A:
+B:
+D:in the south of the room is 
+S:SEEN
+P:SOUTH | PLACE
+
+N:105:141:0:0:15:15:0:45
+A:
+B:
+D:against the north wall is 
+S:SEEN
+P:NORTH | PLACE | EDGE
+
+N:105:142:0:0:15:15:0:45
+A:
+B:
+D:against the east wall is 
+S:SEEN
+P:EAST | PLACE | EDGE
+
+N:105:143:0:0:15:15:0:45
+A:
+B:
+D:against the west wall is 
+S:SEEN
+P:WEST | PLACE | EDGE
+
+N:105:144:0:0:15:15:0:60
+A:
+B:
+D:against the south wall is 
+S:SEEN
+P:SOUTH | PLACE | EDGE
+
+N:105:145:0:0:40:40:0:128
+A:
+B:
+D:in the centre of the room is 
+S:SEEN
+P:CENTRE | PLACE
+
+N:106:107:0:0:50:3:0:128
+A:
+B:
+D:covered with food and drink. 
+K:80:30:99
+S:SEEN
+R:DROP_FOOD
+P:PLACE | SCATTER
+
+N:106:107:0:0:25:1:0:128
+A:
+B:
+D:covered with food. 
+K:80:30:40
+S:SEEN
+R:DROP_FOOD
+P:PLACE | SCATTER
+
+N:106:107:0:0:25:1:0:128
+A:
+B:
+D:covered with drink. 
+K:80:40:99
+S:SEEN
+R:DROP_FOOD
+P:PLACE | SCATTER
+
+N:106:107:0:0:15:3:0:128
+A:
+B:
+D:strewn with iron spikes. 
+K:5:0:0
+S:SEEN
+P:PLACE | SCATTER
+R:DROP_TOOL
+
+N:106:107:0:0:75:3:0:128
+A:
+B:
+D:strewn with scales. 
+K:8:2:2
+S:SEEN
+R:HAS_SCALE
+P:PLACE | SCATTER
+
+N:106:107:0:0:75:3:0:128
+A:
+B:
+D:covered in fur. 
+K:8:4:4
+S:SEEN
+R:HAS_FUR
+P:PLACE | SCATTER
+
+N:106:107:0:0:75:3:0:128
+A:
+B:
+D:littered with broken bones. 
+K:1:0:99
+S:SEEN
+R:EAT_BODY
+P:PLACE | SCATTER
+
+N:106:107:0:0:50:2:3:128
+A:rocky
+B:
+D:littered with loose rocks. 
+F:245:0:835:0:0
+S:SEEN
+R:CAN_DIG
+P:PLACE | SCATTER
+
+N:106:107:0:0:50:2:3:128
+A:rocky
+B:
+D:littered with large rocks. 
+F:409:0:835:0:0
+S:SEEN
+R:CAN_DIG
+P:PLACE | SCATTER
+
+N:106:107:0:0:50:2:3:128
+A:pebble
+B:
+D:covered with pebbles. 
+F:410:0:0:0:0
+S:SEEN
+R:CAN_DIG
+P:PLACE | SCATTER
+
+N:106:107:0:0:25:2:0:128
+A:
+B:junkyard
+D:strewn with junk. 
+K:3:1:9
+F:0:0:835:0:0
+S:SEEN
+R:DROP_JUNK
+P:PLACE | SCATTER
+
+N:106:107:0:0:20:1:0:128
+A:
+B:cellar
+D:littered with broken pottery. 
+K:3:3:3
+F:0:0:835:0:0
+S:SEEN
+R:MAN
+P:PLACE | SCATTER
+
+N:106:107:0:0:15:1:45:128
+A:tiled
+B:
+D:decorated with a tile mosaic. 
+F:439:0:732:0:0
+K:11:28:28
+S:SEEN
+R:MAN
+P:PLACE | OUTER
+
+N:106:107:0:0:35:3:0:128
+A:tiled
+B:
+D:decorated with a tile mosaic. 
+F:439:0:732:0:0
+S:SEEN
+R:MAN
+P:PLACE | CHECKER
+
+N:106:107:0:0:35:3:0:128
+A:tiled
+B:
+D:decorated with a tile mosaic. 
+F:439:0:732:0:0
+S:SEEN
+R:MAN
+P:PLACE | MAZE_DECOR
+
+N:106:107:0:0:3:3:0:128
+A:
+B:
+D:covered with broken wood. 
+F:312:0:0:0:0
+S:SEEN
+P:PLACE | RANDOM
+
+N:106:107:0:0:3:3:0:128
+A:
+B:
+D:piled up with wood. 
+F:771:0:0:0:0
+S:SEEN
+P:PLACE | SCATTER
+
+N:106:107:0:0:70:3:0:128
+A:vine-filled
+B:
+D:covered with vines. 
+F:456:0:742:0:0
+L:LIVING
+S:SEEN
+P:PLACE | RANDOM
+
+N:106:107:0:0:35:1:15:128
+A:checkered
+B:
+D:decorated with a checkerboard pattern. 
+F:439:0:732:0:0
+S:SEEN
+R:WARRIOR
+P:PLACE | CHECKER
+
+N:106:107:0:0:35:1:25:128
+A:
+B:
+D:decorated with protective glyphs. 
+F:3:0:750:0:0
+S:SEEN
+R:PRIEST
+P:PLACE | SCATTER
+
+N:106:107:0:0:35:1:14:128
+A:
+B:
+D:inlaid with precious metal. 
+K:100:0:99
+F:0:0:55:0:0
+S:SEEN
+R:DROP_MINERAL
+P:PLACE | SCATTER
+
+N:106:107:0:0:35:3:0:128
+A:sunken
+B:
+D:sunken in places. 
+F:457:457:0:0:0
+S:SEEN
+R:UNDEAD
+P:PLACE | SCATTER
+
+N:106:107:0:0:35:3:15:128
+A:uneven
+B:
+D:broken and uneven in places. 
+F:136:136:0:0:0
+S:SEEN
+R:HUGE
+P:PLACE | SCATTER
+
+N:106:146:0:0:210:3:0:128
+A:damp
+B:
+D:slick with moisture. 
+F:307:0:0:0:0
+L:WATER
+S:SEEN
+P:PLACE
+
+N:106:146:0:0:140:2:0:128
+A:water-filled
+B:
+D:flooded with stagnant water. 
+F:310:0:0:0:0
+L:WATER
+S:SEEN
+P:PLACE
+
+N:106:146:0:0:210:0:18:128
+A:water-filled
+B:
+D:flooded with water. 
+F:153:0:0:0:0
+L:WATER
+S:SEEN
+P:PLACE
+
+N:106:146:0:0:140:0:27:128
+A:water-filled
+B:
+D:flooded with deep water. 
+F:155:0:0:0:0
+L:WATER
+S:SEEN
+P:PLACE
+
+N:106:146:0:0:140:0:27:128
+A:water-filled
+B:
+D:flooded with clear water. 
+F:311:0:0:0:0
+L:WATER
+S:SEEN
+P:PLACE
+
+N:106:146:0:0:70:0:60:128
+A:submerged
+B:
+D:submerged under water. 
+F:121:0:0:0:0
+L:WATER
+S:SEEN
+P:PLACE
+
+N:106:155:0:0:210:0:18:128
+A:toxic
+B:
+D:flooded with toxic water. 
+F:395:0:0:0:0
+L:WATER
+S:SEEN
+P:PLACE
+
+N:106:155:0:0:140:0:27:128
+A:toxic
+B:
+D:flooded with toxins. 
+F:397:0:0:0:0
+L:WATER
+S:SEEN
+P:PLACE
+
+N:106:155:0:0:70:0:60:128
+A:submerged
+B:
+D:submerged under toxins. 
+F:393:0:0:0:0
+L:WATER
+S:SEEN
+P:PLACE
+
+N:106:147:0:0:15:3:51:128
+A:steamy
+B:
+D:surrounded by steam. 
+F:209:173:837:0:0
+S:SEEN
+P:PLACE | RANDOM
+
+N:106:147:0:0:15:0:60:128
+A:steamy
+B:
+D:surrounded by steam. 
+F:206:173:837:0:0
+L:LAVA | WATER
+S:SEEN
+P:PLACE | ALLOC
+
+N:106:150:0:0:15:1:51:128
+A:
+B:
+D:surrounded by gas. 
+F:706:181:0:0:0
+L:LAVA
+S:SEEN
+P:PLACE | ALLOC
+
+N:106:150:0:0:15:1:72:128
+A:
+B:
+D:surrounded by fire. 
+F:707:162:729:0:0
+L:LAVA
+S:SEEN
+P:PLACE | ALLOC
+
+N:106:148:0:0:15:1:51:128
+A:
+B:
+D:surrounded by acidic vapours. 
+F:708:165:728:0:0
+L:ACID
+S:SEEN
+P:PLACE | ALLOC
+
+N:106:146:0:0:15:1:51:128
+A:
+B:
+D:misty with droplets. 
+F:709:307:837:0:0
+L:WATER
+S:SEEN
+P:PLACE | ALLOC
+
+N:106:107:0:0:35:1:10:128
+A:salty
+B:
+D:covered in salt. 
+F:559:0:0:0:0
+S:SEEN
+R:CAN_DIG
+P:PLACE | RANDOM
+
+N:106:107:0:0:35:1:10:128
+A:salty
+B:
+D:covered in salt. 
+F:559:0:0:0:0
+S:SEEN
+L:ACID
+P:PLACE | RANDOM
+
+N:106:107:0:0:70:5:10:128
+A:rubble-strewn
+B:
+D:surrounded by fallen rubble. 
+F:49:49:113:0:0
+S:SEEN
+R:CAN_DIG
+P:PLACE | RANDOM
+
+N:106:149:0:0:140:0:10:128
+A:ice-strewn
+B:
+D:surrounded by fallen ice. 
+F:464:0:0:0:0
+L:ICE
+S:SEEN
+P:PLACE | RANDOM
+
+N:106:148:0:0:140:0:65:128
+A:acidic
+B:
+D:surrounded by acid. 
+F:157:0:0:0:0
+L:ACID
+S:SEEN
+P:PLACE
+
+N:106:148:0:0:70:0:68:128
+A:acidic
+B:
+D:surrounded by deep acid. 
+F:159:0:0:0:0
+L:ACID
+S:SEEN
+P:PLACE
+
+N:106:148:0:0:140:0:75:128
+A:acidic
+B:
+D:surrounded by boiling acid. 
+F:157:0:0:0:0
+L:ACID
+S:SEEN
+P:PLACE
+
+N:106:148:0:0:70:0:78:128
+A:acidic
+B:
+D:surrounded by deep boiling acid. 
+F:159:0:0:0:0
+L:ACID
+S:SEEN
+P:PLACE
+
+N:106:147:0:0:70:0:81:128
+A:boiling
+B:
+D:surrounded by boiling water. 
+F:208:0:0:0:0
+L:ACID
+S:SEEN
+P:PLACE
+
+N:106:149:0:0:70:1:41:128
+A:
+B:falls
+D:surrounded by a curtain of ice. 
+F:125:0:0:0:0
+L:ICE
+S:SEEN
+P:PLACE | INNER
+
+N:106:146:0:0:70:0:41:128
+A:
+B:falls
+D:surrounded by falling water. 
+F:126:0:0:0:0
+L:WATER
+S:SEEN
+P:PLACE | SCATTER
+
+N:106:155:0:0:70:0:41:128
+A:toxic
+B:
+D:surrounded by falling toxins. 
+F:990:0:0:0:0
+L:WATER
+S:SEEN
+P:PLACE | SCATTER
+
+N:106:148:0:0:70:0:79:128
+A:acidic
+B:
+D:surrounded by streams of deadly acid. 
+F:127:0:0:0:0
+L:ACID
+S:SEEN
+P:PLACE | SCATTER
+
+N:106:147:0:0:70:0:82:128
+A:boiling
+B:
+D:surrounded by streams of boiling water. 
+F:160:0:0:0:0
+L:WATER | LAVA
+S:SEEN
+P:PLACE | SCATTER
+
+N:106:150:0:0:70:0:91:128
+A:lava
+B:
+D:surrounded by flows of glowing hot lava. 
+F:161:0:0:0:0
+L:LAVA
+S:SEEN
+P:PLACE | RANDOM
+
+N:106:150:0:0:140:0:84:128
+A:lava
+B:
+D:surrounded by glowing hot lava. 
+F:216:0:0:0:0
+L:LAVA
+S:SEEN
+P:PLACE | RANDOM
+
+N:106:150:0:0:70:0:87:128
+A:lava
+B:
+D:surrounded by deep glowing hot lava. 
+F:217:0:0:0:0
+L:LAVA
+S:SEEN
+P:PLACE | RANDOM
+
+N:106:151:0:0:140:0:60:128
+A:burning
+B:
+D:surrounded by trench filled with burning oil. 
+F:184:0:0:0:0
+L:OIL
+S:SEEN
+P:PLACE | INNER
+
+N:106:151:0:0:70:0:60:128
+A:
+B:furnace
+D:surrounded by burning coal dust. 
+F:185:0:0:0:0
+L:OIL
+S:SEEN
+P:PLACE | RANDOM
+
+N:106:151:0:0:70:0:65:128
+A:burning
+B:
+D:surrounded by a deep trench filled with burning oil. 
+F:189:0:0:0:0
+L:OIL
+S:SEEN
+P:PLACE | INNER
+
+N:106:151:0:0:70:1:50:128
+A:fiery
+B:
+D:surrounded by a wall of fire. 
+F:228:0:0:0:0
+R:MAGE
+S:SEEN
+P:PLACE | INNER
+
+N:106:146:0:0:70:1:20:128
+A:stormy
+B:
+D:surrounded by a storm cloud. 
+F:229:0:0:0:0
+R:MAGE
+S:SEEN
+P:PLACE | RANDOM
+
+N:106:146:0:0:140:0:51:128
+A:fuel
+B:
+D:surrounded by streams of oil. 
+F:190:0:0:0:0
+L:OIL
+S:SEEN
+P:PLACE | INNER
+
+N:106:151:0:0:140:0:45:128
+A:fuel
+B:
+D:submerged in oil. 
+F:225:0:0:0:0
+L:OIL
+S:SEEN
+P:PLACE
+
+N:106:151:0:0:70:0:70:128
+A:
+B:furnace
+D:surrounded by streams of burning oil. 
+F:191:0:0:0:0
+L:OIL
+S:SEEN
+P:PLACE | INNER
+
+N:106:107:0:0:150:1:12:128
+A:
+B:
+D:covered in slime. 
+R:HAS_SLIME
+S:SEEN
+F:306:306:756:0:0
+P:PLACE | RANDOM
+
+N:106:107:0:0:75:0:10:128
+A:
+B:
+D:badly burned by powerful fire. 
+R:BRTH_FIRE
+S:SEEN
+F:308:308:729:0:0
+P:PLACE | RANDOM
+
+N:106:107:0:0:75:0:10:128
+A:poisonous
+B:
+D:covered in poison. 
+R:BRTH_POIS
+S:SEEN
+F:395:308:434:0:0
+P:PLACE | RANDOM
+
+N:106:107:0:0:75:0:11:128
+A:
+B:
+D:badly melted by powerful acid. 
+R:BRTH_ACID
+S:SEEN
+F:309:309:728:0:0
+P:PLACE | RANDOM
+
+N:106:149:0:0:75:0:11:128
+A:
+B:
+D:covered in a thick layer of frost. 
+R:BRTH_COLD
+S:SEEN
+F:2:0:0:132:0
+P:PLACE | RANDOM
+
+N:106:149:0:0:75:0:0:128
+A:
+B:
+D:covered in a thick layer of frost. 
+L:ICE
+S:SEEN
+F:2:0:0:132:0
+P:PLACE | RANDOM
+
+N:106:107:0:0:75:0:3:128
+A:
+B:hatchery
+D:littered with broken egg shells. 
+R:HAS_FEATHER
+S:SEEN
+K:9:1:1
+P:PLACE | SCATTER
+
+N:106:107:0:0:75:0:3:128
+A:
+B:hatchery
+D:littered with broken egg shells. 
+R:HAS_SCALE
+S:SEEN
+K:9:1:1
+P:PLACE | SCATTER
+
+N:106:107:0:0:75:0:3:128
+A:
+B:hatchery
+D:littered with broken egg shells. 
+R:INSECT
+S:SEEN
+K:9:1:1
+P:PLACE | SCATTER
+
+N:106:107:0:0:75:0:4:128
+A:
+B:nest
+D:covered with twigs and feathers. 
+G:B
+S:SEEN
+K:8:3:3
+P:PLACE | SCATTER
+
+N:106:107:0:0:75:1:2:128
+A:broken arrow
+B:
+D:littered with broken arrows. 
+K:17:1:1
+S:SEEN
+R:DROP_MISSILE
+P:PLACE | SCATTER
+
+N:106:107:0:0:75:1:10:128
+A:machine
+B:
+D:covered with machine parts. 
+K:12:0:99
+S:SEEN
+G:g
+P:PLACE | SCATTER
+
+N:106:151:0:0:150:1:1:128
+A:sooty
+B:
+D:covered with soot. 
+S:SEEN
+L:OIL
+
+N:106:151:0:0:150:1:5:128
+A:dusty
+B:
+D:covered with coal dust. 
+F:221:0:0:0:0
+L:OIL
+S:SEEN
+P:PLACE | RANDOM
+
+N:106:151:0:0:150:1:5:128
+A:
+B:
+D:slick with oil. 
+F:219:0:0:0:0
+L:OIL
+S:SEEN
+P:PLACE | RANDOM
+
+N:106:107:0:0:150:1:72:128
+A:
+B:
+D:covered with volcanic ash. 
+F:209:209:729:0:0
+L:LAVA
+S:SEEN
+P:PLACE | RANDOM
+
+N:106:151:0:0:150:1:51:128
+A:
+B:
+D:covered with sulpher deposits. 
+L:LAVA
+F:69:0:0:0:0
+S:SEEN
+P:PLACE | RANDOM
+
+N:106:107:0:0:35:2:8:128
+A:sandy
+B:
+D:covered with sand. 
+F:192:192:112:0:0
+S:SEEN
+R:CAN_DIG
+P:PLACE | RANDOM
+
+N:106:146:0:0:30:0:20:128
+A:quicksand
+B:
+D:surrounded by quicksand. 
+F:197:0:0:0:0
+S:SEEN
+L:WATER
+R:CAN_DIG
+P:PLACE | RANDOM
+
+N:106:151:0:0:150:2:75:128
+A:burning
+B:
+D:burned by fire. 
+F:184:0:0:0:0
+L:OIL
+S:SEEN
+P:PLACE | SCATTER
+
+N:106:148:0:0:150:2:75:128
+A:
+B:
+D:melted by acid. 
+F:157:0:0:0:0
+L:ACID
+S:SEEN
+P:PLACE | SCATTER
+
+N:106:149:0:0:150:1:30:128
+A:icy
+B:
+D:covered in ice. 
+F:145:0:0:0:0
+L:ICE
+S:SEEN
+P:PLACE | RANDOM
+
+N:106:107:0:0:150:0:30:128
+A:
+B:chasm
+D:surrounded by a chasm. 
+F:141:0:0:0:0
+L:CHASM
+P:PLACE
+
+N:106:107:0:0:10:0:0:128
+A:bloody
+B:
+D:spattered with dried blood. 
+S:SEEN
+F:305:305:754:0:0
+R:EVIL
+P:PLACE | SCATTER
+
+N:106:107:0:0:50:0:0:128
+A:bloody
+B:
+D:covered in body parts. 
+S:SEEN
+F:305:305:754:0:0
+K:6:0:99
+R:EAT_BODY
+P:PLACE | SCATTER
+
+N:106:107:0:0:75:1:0:128
+A:dirt-filled
+B:
+D:caked with dirt. 
+F:135:135:0:0:0
+S:SEEN
+R:CAN_DIG
+P:PLACE | RANDOM
+
+N:106:146:0:0:50:1:3:128
+A:muddy
+B:
+D:covered in mud. 
+F:390:0:0:0:0
+L:WATER
+S:SEEN
+P:PLACE | RANDOM
+
+N:106:146:0:0:100:1:21:128
+A:muddy
+B:
+D:covered in mud. 
+F:199:0:0:0:0
+R:OOZE
+L:WATER
+S:SEEN
+P:PLACE | RANDOM
+
+N:106:146:0:0:100:1:54:128
+A:muddy
+B:
+D:surrounded by deep mud. 
+F:201:0:0:0:0
+R:OOZE
+L:WATER
+S:SEEN
+P:PLACE | RANDOM
+
+N:106:147:0:0:100:1:60:128
+A:boiling
+B:
+D:surrounded by boiling mud. 
+F:205:0:0:0:0
+L:WATER | LAVA
+S:SEEN
+P:PLACE | RANDOM
+
+N:106:107:0:0:25:1:0:128
+A:rubble-filled
+B:
+D:covered in rubble. 
+F:49:49:113:0:0
+S:SEEN
+R:KILL_WALL
+P:PLACE | RANDOM
+
+N:106:156:0:0:25:1:20:128
+A:rubble-filled
+B:
+D:covered in rubble. 
+F:96:49:113:0:0
+S:SEEN
+R:KILL_WALL
+P:PLACE | RANDOM
+
+N:106:107:0:0:25:1:1:128
+A:sand-filled
+B:
+D:covered with piles of sand. 
+F:525:193:112:0:0
+S:SEEN
+R:CAN_DIG
+P:PLACE | RANDOM
+
+N:106:107:0:0:25:1:1:128
+A:dirt-filled
+B:
+D:covered with piles of dirt. 
+F:527:135:0:0:0
+S:SEEN
+R:CAN_DIG
+P:PLACE | RANDOM
+
+N:106:107:0:0:75:1:3:128
+A:
+B:
+D:covered with bat guano. 
+G:b
+S:SEEN
+P:PLACE | SCATTER
+
+N:106:107:0:0:75:1:3:128
+A:
+B:
+D:covered with bird guano. 
+G:B
+S:SEEN
+P:PLACE | SCATTER
+
+N:106:151:0:0:100:1:0:128
+A:
+B:garden
+D:planted with bushes. 
+F:435:0:0:0:0
+S:SEEN
+L:LIVING
+P:PLACE | RANDOM
+
+N:106:151:0:0:70:1:30:128
+A:
+B:garden
+D:planted with thorns. 
+F:448:0:0:0:0
+S:SEEN
+L:LIVING
+P:PLACE | RANDOM
+
+N:106:151:0:0:70:1:40:128
+A:
+B:garden
+D:planted with brambles. 
+F:440:0:0:0:0
+S:SEEN
+L:LIVING
+P:PLACE | RANDOM
+
+N:106:124:0:0:20:1:0:128
+A:
+B:
+D:surrounded by curtains. 
+F:443:0:0:0:0
+S:SEEN
+R:SMART
+P:PLACE | INNER
+
+N:106:152:0:0:200:1:0:128
+A:
+B:
+R:SNEAKY
+
+N:106:152:0:0:25:1:0:128
+A:
+B:
+R:MAGE
+
+N:106:124:0:0:20:1:0:128
+A:
+B:
+D:framed by curtains. 
+F:443:0:0:0:0
+S:SEEN
+R:SMART
+P:PLACE | INNER
+
+N:106:107:0:0:35:2:0:128
+A:
+B:
+D:covered in cobwebs. 
+F:447:447:829:0:0
+S:SEEN
+R:NONLIVING
+P:PLACE | 8WAY
+
+N:106:107:0:0:80:8:0:128
+A:torch-lit
+B:
+D:surrounded by torches. 
+F:736:0:736:0:0
+S:SEEN
+R:NEED_LITE
+P:PLACE | SCATTER | ROWS | COLS | DARK
+
+N:106:107:0:0:80:8:0:128
+A:candle-lit
+B:
+D:lit by candles. 
+F:0:0:736:0:0
+S:SEEN
+R:NEED_LITE
+P:PLACE | SCATTER | ROWS | COLS | LITE
+
+N:106:107:0:0:80:4:0:128
+A:magical
+B:
+D:lit by magical light. 
+F:0:0:0:0:0
+S:SEEN
+R:MAGE
+P:PLACE | SCATTER | ROWS | COLS | LITE
+
+N:106:107:0:0:50:2:0:128
+A:dusty
+B:
+D:covered in dust. 
+F:134:134:829:0:0
+S:SEEN
+R:NONLIVING
+P:PLACE | SCATTER
+
+N:106:107:0:0:25:2:0:128
+A:old
+B:
+D:weathered with age. 
+S:SEEN
+R:STUPID
+P:PLACE | SCATTER
+
+N:106:134:0:0:25:2:0:128
+A:grafittied
+B:
+D:covered with crude grafitti. 
+F:817:817:750:0:0
+P:OUTER | PLACE | SCATTER
+S:SEEN
+R:SMART
+
+N:106:134:0:0:5:1:25:128
+A:grafittied
+B:
+D:covered with crude grafitti. 
+F:817:817:750:0:0
+K:11:25:25
+P:OUTER | PLACE | SCATTER
+S:SEEN
+R:SMART
+
+N:106:128:0:0:50:2:0:128
+A:
+B:
+D:covered with hieroglyphics. 
+F:817:817:750:0:0
+P:OUTER | PLACE | SCATTER
+G:z
+S:SEEN
+P:PLACE | SCATTER
+
+N:106:128:0:0:10:1:30:128
+A:
+B:
+D:covered with hieroglyphics. 
+F:817:817:750:0:0
+K:11:26:26
+P:OUTER | PLACE | SCATTER
+G:z
+S:SEEN
+
+N:106:128:0:0:25:2:0:128
+A:written
+B:
+D:covered with writing. 
+F:817:817:750:0:0
+S:SEEN
+R:SMART
+P:PLACE | SCATTER
+
+N:106:128:0:0:25:2:0:128
+A:runed
+B:
+D:covered with runes. 
+F:817:817:750:0:0
+S:SEEN
+R:DWARF
+P:PLACE | SCATTER
+
+N:107:109:0:0:100:1:25:128
+A:magic
+B:
+D:There is a static feeling in the air. 
+S:STATIC
+R:RES_DISEN
+
+# Always notice quality of the air on these levels
+N:107:109:0:0:0:20:0:128
+A:
+B:
+D:
+L:LAVA | ICE
+
+# Generally notice quality of the air on these levels
+N:107:108:0:0:180:80:0:128
+A:
+B:
+D:The air here is 
+P:CENTRE
+L:LAVA | ACID | WATER | ICE
+
+N:108:109:0:0:50:6:51:128
+A:humid
+B:
+D:hot and humid. 
+L:LAVA
+
+N:108:109:0:0:30:3:72:128
+A:hot
+B:
+D:hot and dry. 
+L:LAVA
+
+N:108:109:0:0:50:0:72:128
+A:hot
+B:
+D:stifling hot. 
+L:LAVA
+
+N:108:109:0:0:15:5:0:128
+A:damp
+B:
+D:cool and damp. 
+L:WATER
+
+N:108:109:0:0:30:2:0:128
+A:
+B:
+D:cool and dry. 
+L:ICE
+
+N:108:109:0:0:40:2:0:128
+A:cold
+B:
+D:cold. 
+L:ICE
+
+N:108:109:0:0:50:1:0:128
+A:freezing
+B:
+D:freezing cold. 
+L:ICE
+
+N:108:109:0:0:60:0:0:128
+A:frozen
+B:
+D:frozen. 
+L:ICE
+F:145:145:839:0:0
+P:PLACE | SCATTER
+
+N:108:109:0:0:15:5:1:128
+A:dusty
+B:
+D:thick with dust. 
+F:134:134:829:0:0
+R:NONLIVING
+P:PLACE | SCATTER
+
+N:108:109:0:0:15:3:51:128
+A:steamy
+B:
+D:filled with steam. 
+F:173:173:837:0:0
+P:PLACE | RANDOM
+
+N:108:109:0:0:15:1:51:128
+A:
+B:
+D:filled with gas. 
+F:181:181:0:0:0
+L:LAVA
+P:PLACE | RANDOM
+
+N:108:109:0:0:15:1:72:128
+A:
+B:
+D:filled with smoke. 
+F:162:162:729:0:0
+L:LAVA
+P:PLACE | RANDOM
+
+N:108:109:0:0:15:1:36:128
+A:
+B:
+D:filled with smoke. 
+F:162:162:729:0:0
+L:OIL
+P:PLACE | RANDOM
+
+N:108:109:0:0:15:1:51:128
+A:
+B:
+D:filled with acidic vapours. 
+F:165:165:728:0:0
+L:ACID
+P:PLACE | RANDOM
+
+N:108:109:0:0:15:1:51:128
+A:
+B:
+D:misty with droplets. 
+F:307:307:837:0:0
+L:WATER
+P:PLACE | RANDOM
+
+N:108:109:0:0:15:1:4:128
+A:smokey
+B:
+D:smokey with incense. 
+R:PRIEST
+
+N:108:109:0:0:15:0:4:128
+A:troll
+B:
+D:rank with the stench of troll. 
+R:TROLL
+
+N:108:109:0:0:15:0:4:128
+A:orc
+B:
+D:rank with the stench of orc. 
+R:ORC
+
+N:108:109:0:0:15:0:4:128
+A:dragon
+B:
+D:musky with the stench of dragon. 
+R:DRAGON
+
+N:108:109:0:0:30:1:9:128
+A:infernal
+B:
+D:rank with sulphur. 
+R:DEMON
+
+N:108:109:0:0:30:4:9:128
+A:
+B:
+D:ripe with decay. 
+R:UNDEAD
+
+N:108:109:0:0:15:0:9:128
+A:
+B:
+D:heady with the perfume of flowers. 
+G:PLANT
+
+N:108:109:0:0:15:0:7:128
+A:
+B:
+D:filled with spores. 
+G:,
+K:9:2:2
+P:PLACE | SCATTER
+
+N:108:109:0:0:15:2:0:128
+A:mildewed
+B:
+D:rank with mildew. 
+F:306:306:756:0:0
+G:,
+P:PLACE | RANDOM
+
+N:108:109:0:0:30:1:12:128
+A:
+B:
+D:filled with smoke. 
+F:502:162:729:0:0
+L:OIL
+
+N:108:109:0:0:30:1:55:128
+A:
+B:
+D:filled with acidic vapour. 
+F:157:165:728:0:0
+L:ACID
+P:PLACE | SCATTER
+
+N:108:111:0:0:30:10:10:128
+A:
+B:
+D:stale. 
+R:NONLIVING
+
+N:108:111:0:0:5:5:10:128
+A:
+B:
+D:still. 
+
+N:109:110:0:0:10:5:0:128
+A:
+B:
+D:A warm breeze blows 
+L:LAVA
+
+N:109:110:0:0:10:15:0:128
+A:
+B:
+D:A cool breeze blows 
+L:ICE
+
+N:109:110:0:0:20:0:40:128
+A:
+B:
+D:A hot wind blows 
+L:LAVA
+
+N:109:110:0:0:20:0:30:128
+A:
+B:
+D:A cold wind blows 
+L:ICE
+
+N:109:110:0:0:15:5:10:128
+A:
+B:
+D:A strong wind blows 
+L:CHASM
+
+# Skip noises.
+
+N:109:110:111:115:5:1:40:128
+A:windy
+B:
+D:A howling gale blows 
+L:CHASM
+S:WINDY
+
+#Air tends to move on these levels.
+N:109:111:0:0:10:100:0:128
+A:
+B:
+D:
+L:CHASM | WATER
+
+N:110:111:0:0:15:15:0:128
+A:
+B:
+D:from the north. 
+
+N:110:111:0:0:15:15:0:128
+A:
+B:
+D:from the east. 
+
+N:110:111:0:0:15:15:0:128
+A:
+B:
+D:from the west. 
+
+N:110:111:0:0:15:15:0:128
+A:
+B:
+D:from the south. 
+
+N:110:111:0:0:40:40:0:128
+A:
+B:
+D:around the room. 
+
+N:111:112:0:0:80:80:0:128
+A:
+B:
+D:You hear 
+P:NORTH | SOUTH | EAST | WEST | CENTRE
+
+N:111:115:0:0:20:20:0:128
+A:
+B:
+
+N:112:133:107:115:15:1:15:128
+A:
+B:
+D:a distant voice cry out 
+R:SCARE
+
+N:112:133:107:115:15:1:15:128
+A:
+B:
+D:distant voices wailing 
+R:TPORT
+
+N:112:133:107:115:15:1:15:128
+A:
+B:
+D:a low voice saying 
+R:INVISIBLE
+
+N:112:133:107:115:15:1:15:128
+A:
+B:
+D:a voice cackling evilly 
+R:TRAPS
+
+N:112:133:107:115:15:1:15:128
+A:
+B:
+D:a voice cursing 
+R:CURSE
+
+N:112:133:107:115:15:1:15:128
+A:
+B:
+D:a voice muttering to itself 
+G:h
+
+N:112:133:107:115:15:1:15:128
+A:
+B:
+D:a quiet voice mumbling to itself 
+G:CONF
+
+N:112:133:107:115:15:1:15:128
+A:
+B:
+D:a quiet voice mumbling to itself 
+G:BLIND
+
+N:112:133:107:115:15:1:15:128
+A:
+B:
+D:a voice commanding you 
+G:h
+R:TELE_TO
+
+N:112:133:107:115:15:1:15:128
+A:
+B:
+D:a voice chanting 
+R:S_MONSTER
+
+N:112:133:107:115:15:1:15:128
+A:
+B:
+D:many voices chanting 
+R:S_MONSTERS
+
+N:112:133:107:115:15:1:15:128
+A:
+B:
+D:a voice whisper next to you 
+R:S_UNDEAD
+
+N:112:133:107:115:15:1:15:128
+A:
+B:
+D:many voices whisper next to you 
+R:S_HI_UNDEAD
+
+N:112:133:107:115:15:1:15:128
+A:
+B:
+D:thunderous whispers echoing 
+R:S_WRAITH
+
+N:112:133:107:115:15:1:15:128
+A:
+B:
+D:twisted incantations repeating 
+R:WOUND
+
+N:112:133:107:115:15:1:15:128
+A:
+B:
+D:strange voices shrieking 
+G:G
+
+N:112:133:107:115:15:1:15:128
+A:
+B:
+D:something howling 
+G:C
+
+N:112:133:107:115:15:1:15:128
+A:
+B:
+D:something strange howling 
+G:Z
+
+N:112:133:0:0:15:1:15:128
+A:
+B:
+D:something rustling... 
+R:S_PLANT
+
+N:112:115:0:0:15:1:15:128
+A:
+B:
+D:something chittering... 
+R:S_INSECT
+
+N:112:115:0:0:15:1:15:128
+A:
+B:
+D:something chittering... 
+R:S_SPIDER
+
+N:112:133:107:115:15:1:15:128
+A:
+B:
+D:distant drums beating 
+R:S_ORC
+
+N:112:133:107:115:15:1:15:128
+A:
+B:
+D:distant drums beating... 
+R:S_TROLL
+
+N:112:133:107:115:15:1:15:128
+A:
+B:
+D:loud drums beating 
+R:ORC
+
+N:112:133:107:115:15:1:15:128
+A:
+B:
+D:defeaning drums beating 
+R:TROLL
+
+N:112:115:0:0:15:1:15:128
+A:
+B:
+D:distant thunder... 
+R:S_GIANT
+
+N:112:115:0:0:15:1:15:128
+A:
+B:
+D:thunderous voices... 
+R:GIANT
+
+N:112:115:0:0:15:1:15:128
+A:
+B:
+D:distant roaring... 
+R:S_DRAGON
+
+N:112:115:0:0:15:1:15:128
+A:
+B:
+D:distant roaring of ancient timbre... 
+R:S_HI_DRAGON
+
+N:112:115:0:0:15:1:15:128
+A:
+B:
+D:cacophonous roaring... 
+R:DRAGON
+
+N:112:115:0:0:15:1:15:128
+A:
+B:
+D:the distant chanting of infernal voices... 
+R:S_DEMON
+
+N:112:115:0:0:15:1:15:128
+A:
+B:
+D:the distant chorus of infernal voices... 
+R:S_HI_DEMON
+
+N:112:115:0:0:15:1:15:128
+A:
+B:
+D:infernal voices... 
+R:DEMON
+
+N:112:133:107:115:15:1:15:128
+A:
+B:
+D:distant echoes of an authorative voice saying 
+R:S_UNIQUE
+
+N:112:133:107:115:15:1:15:128
+A:
+B:
+D:a masterful voice saying 
+R:S_HI_UNIQUE
+
+N:112:115:0:0:15:1:15:128
+A:
+B:
+D:distant rumbling... 
+R:A_ELEMENT
+
+N:112:115:0:1:15:1:15:128
+A:
+B:
+D:the clank of machinery... 
+R:A_OBJECT
+
+N:112:153:115:107:15:1:15:128
+A:
+B:
+D:the clank of machinery... 
+F:971:0:0:0:0
+P:PLACE | SCATTER
+
+N:112:115:0:0:15:1:51:128
+A:
+B:
+D:the earth trembling deep beneath you.
+R:KILL_WALL
+
+N:112:115:0:0:15:0:3:128
+A:
+B:kennels
+D:howling... 
+G:C
+
+N:112:115:0:0:15:1:5:128
+A:haunted
+B:
+D:quiet footsteps... 
+G:G
+
+N:112:115:0:0:15:2:3:128
+A:rat-infested
+B:
+D:a sudden scampering... 
+G:r
+
+N:112:115:0:0:15:0:3:128
+A:
+B:
+D:slithering noises... 
+G:J
+
+N:112:115:0:0:15:0:3:128
+A:
+B:
+D:a sudden hissing... 
+G:J
+
+N:112:115:0:0:15:1:5:128
+A:haunted
+B:
+D:something whispering... 
+R:UNDEAD
+
+N:112:115:0:0:15:0:3:128
+A:
+B:antfarm
+D:a faint chittering... 
+G:a
+
+N:112:115:0:0:15:0:4:128
+A:
+B:
+D:a faint chittering... 
+R:INSECT
+
+N:112:115:0:0:15:1:14:128
+A:
+B:
+D:distant chanting... 
+R:MAGE
+
+N:112:115:0:0:15:1:40:128
+A:
+B:
+D:distant echoes... 
+L:CHASM
+
+N:112:115:0:0:10:1:3:128
+A:creepy
+B:
+D:something behind you! 
+R:INVISIBLE
+
+N:112:115:0:0:15:1:10:128
+A:
+B:
+D:the wind whistling through a distant chasm... 
+L:CHASM
+
+N:112:115:0:0:15:0:40:128
+A:
+B:
+D:the wind whistling through a nearby chasm... 
+L:CHASM
+
+N:112:115:0:0:15:3:1:128
+A:
+B:
+D:the drip of water... 
+L:WATER
+
+N:112:115:0:0:15:1:18:128
+A:
+B:
+D:running water. 
+L:WATER
+
+N:112:115:0:0:10:0:27:128
+A:
+B:
+D:rushing water. 
+L:WATER
+
+N:112:115:0:0:10:0:27:128
+A:
+B:
+D:waves lapping against the rocks. 
+L:WATER
+
+N:112:115:0:0:30:1:40:128
+D:the thunder of a distant waterfall... 
+L:WATER | CHASM
+
+N:112:115:0:0:60:0:40:128
+D:the thunder of a nearby waterfall... 
+L:WATER | CHASM
+
+N:112:115:0:0:100:0:60:128
+A:
+B:
+D:bubbling mud. 
+L:LAVA
+
+N:112:115:0:0:250:0:81:128
+A:
+B:
+D:the earth trembling all around you. 
+L:LAVA
+
+N:112:115:0:0:100:0:71:128
+A:
+B:
+D:the roar of a nearby volcano... 
+L:LAVA
+
+N:112:115:0:0:10:1:30:128
+A:silent
+B:
+D:nothing, not even your footsteps. 
+S:SILENT
+R:NONLIVING
+
+N:112:115:0:0:0:15:0:128
+A:quiet
+B:
+D:nothing. 
+L:LAVA
+
+N:113:114:0:0:250:15:0:128
+A:black
+B:
+D:black 
+S:SEEN
+R:EVIL
+
+N:113:114:0:0:150:15:0:128
+A:blue
+B:
+D:blue 
+S:SEEN
+R:IM_ELEC
+
+N:113:114:0:0:150:15:0:128
+A:white
+B:
+D:white 
+S:SEEN
+R:IM_COLD
+
+N:113:114:0:0:150:15:0:128
+A:green
+B:
+D:green 
+S:SEEN
+R:IM_POIS
+
+N:113:114:0:0:150:15:0:128
+A:yellow
+B:
+D:yellow 
+S:SEEN
+R:IM_ACID
+
+N:113:114:0:0:150:15:0:128
+A:grey
+B:
+D:grey 
+S:SEEN
+R:IM_FIRE
+
+N:113:114:0:0:150:15:0:128
+A:red
+B:
+D:red 
+S:SEEN
+R:NO_STUN
+
+N:113:114:0:0:150:15:0:128
+A:brown
+B:
+D:brown 
+S:SEEN
+R:NO_CUTS
+
+N:114:103:107:126:80:16:0:128
+A:
+B:
+D:stonework covers 
+S:SEEN
+R:DWARF
+
+N:114:103:107:127:50:5:20:128
+A:
+B:
+F:921:0:0:0:0
+D:metal covers 
+S:SEEN
+R:WARRIOR
+
+N:114:103:107:125:75:5:0:128
+A:
+B:
+D:wood covers 
+F:841:0:841:0:0 
+S:SEEN
+R:ELF
+
+N:114:103:107:123:100:10:0:128
+A:frescoed
+B:
+D:frescoes cover 
+F:732:0:732:0:0
+P:OUTER
+S:SEEN
+R:MAN
+
+N:114:103:107:123:100:10:0:128
+A:muralled
+B:
+D:mural covers 
+F:732:0:732:0:0
+P:OUTER
+S:SEEN
+R:WARRIOR
+
+N:114:103:107:123:125:10:0:128
+A:painted
+B:
+D:painting covers 
+F:732:0:732:0:0
+P:OUTER
+S:SEEN
+R:SMART
+
+N:114:103:107:123:250:20:0:128
+A:curtained
+B:
+D:curtains cover 
+S:SEEN
+R:MAGE
+F:443:0:443:0:0
+
+N:114:103:107:123:250:20:0:128
+A:tapestry
+B:
+D:tapestries cover 
+S:SEEN
+R:MAGE
+F:443:0:443:0:0
+
+N:115:116:0:0:15:3:0:128
+A:low-ceilinged
+B:
+R:DWARF
+
+N:115:116:0:0:15:3:0:128
+A:high-ceilinged
+B:
+R:GIANT
+
+N:115:116:0:0:15:3:0:128
+A:brightly-lit
+B:
+R:NEED_LITE
+
+N:115:116:0:0:15:2:0:128
+A:gloomy
+B:
+S:GLOOMY
+P:DARK
+R:HURT_LITE
+
+N:115:116:0:0:15:3:0:128
+A:shadowy
+B:
+R:SNEAKY
+
+N:115:116:0:0:15:6:0:128
+A:half-lit
+B:
+R:RES_DARK
+
+N:115:116:0:0:15:6:0:128
+A:dusty
+B:
+F:134:134:829:0:0
+R:NONLIVING
+P:PLACE | SCATTER
+
+N:115:116:0:0:15:6:0:128
+A:forgotten
+B:
+R:UNDEAD
+
+N:115:116:0:0:15:3:0:128
+A:abandoned
+B:
+R:STUPID
+
+N:115:116:0:0:15:3:0:128
+A:cramped
+B:
+R:PASS_WALL
+F:0:547:0:0:0
+
+N:115:116:0:0:15:6:0:128
+A:small
+B:
+G:h
+
+N:115:116:0:0:15:3:0:128
+A:ancient
+B:
+R:UNDEAD
+
+N:115:116:0:0:15:9:0:128
+A:empty
+B:
+R:INVISIBLE
+
+N:116:0:0:0:8:4:1:128
+A:
+B:chamber
+R:MAGE
+
+N:116:0:0:0:12:6:1:128
+A:
+B:antechamber
+R:PRIEST
+
+N:116:0:0:0:14:7:1:128
+A:
+B:foyer
+R:SMART
+
+N:116:0:0:0:26:13:1:128
+A:
+B:hall
+R:GIANT
+
+N:116:0:0:0:26:13:1:128
+A:
+B:grotto
+R:PLANT
+
+N:116:0:0:0:32:16:1:128
+A:
+B:cave
+R:ANIMAL
+F:0:0:835:0:0
+
+N:116:0:0:0:35:25:1:128
+A:
+B:room
+R:STUPID
+
+N:117:102:0:0:30:3:3:128
+A:
+B:graveyard
+D:Skulls line 
+K:1:1:1
+R:HAS_SKULL
+S:SEEN
+P:SCATTER
+
+N:117:102:0:0:30:3:0:128
+A:
+B:graveyard
+D:Skulls line 
+K:1:1:1
+S:SEEN
+R:UNDEAD
+P:SCATTER
+
+N:117:102:0:0:30:3:0:128
+A:
+B:graveyard
+D:Bones line 
+K:1:2:2
+S:SEEN
+R:ANIMAL
+P:SCATTER
+
+N:117:102:0:0:30:3:0:128
+A:
+B:graveyard
+D:Bones line 
+K:1:2:2
+S:SEEN
+R:UNDEAD
+P:SCATTER
+
+N:117:102:0:0:50:2:10:128
+A:
+B:pen
+D:Wooden cages 
+S:SEEN
+F:313:0:0:0:0
+K:2:4:4
+R:ANIMAL
+
+N:117:102:107:134:30:3:0:128
+A:grafittied
+B:
+D:Crude grafitti covers 
+F:750:817:750:0:0
+P:OUTER
+S:SEEN
+R:SMART
+
+N:117:102:0:0:75:3:4:128
+A:
+B:
+D:Claw marks cover 
+F:833:0:833:0:0
+R:HAS_CLAW
+S:SEEN
+
+N:117:102:0:0:25:2:0:128
+A:frescoed
+B:
+D:Faded frescoes cover 
+F:732:0:732:0:0
+P:OUTER
+S:SEEN
+R:MAN
+
+N:117:102:107:123:25:2:0:128
+A:painted
+B:
+D:Faded cave paintings cover 
+F:732:0:732:0:0
+P:OUTER
+S:SEEN
+R:SMART
+
+N:117:102:107:123:25:2:47:128
+A:painted
+B:
+D:Paintings cover 
+P:OUTER | CHECKER
+F:0:0:732:0:0
+S:SEEN
+R:SMART
+K:11:29:29
+
+N:117:102:107:123:25:2:50:128
+A:painted
+B:
+D:Paintings cover 
+P:OUTER | CHECKER
+F:0:0:732:0:0
+S:SEEN
+R:SMART
+K:11:30:30
+
+N:117:102:0:0:50:1:9:128
+A:
+B:
+D:Hieroglyphs cover 
+F:750:817:750:0:0
+P:OUTER
+G:z
+S:SEEN
+
+N:117:102:0:0:10:1:40:128
+A:runed
+B:
+D:Strange runes cover 
+F:20:817:750:0:0
+S:SEEN | CURSED
+R:EVIL
+P:SCATTER
+
+N:117:102:0:0:25:1:0:128
+A:candle-lit
+B:
+D:Candles line 
+F:0:0:736:0:0
+S:SEEN
+R:PRIEST
+P:ROWS | COLS | LITE
+
+N:117:102:107:124:50:2:0:128
+A:curtained
+B:
+D:Thick curtains cover 
+S:SEEN
+F:443:0:443:0:0
+R:MAGE
+
+N:117:102:107:124:25:1:4:128
+A:
+B:
+D:Ornate curtains frame 
+S:SEEN
+F:444:0:444:0:0
+R:MAGE
+
+N:117:102:0:0:75:3:0:128
+A:
+B:
+D:Dusty cobwebs cover 
+F:447:447:829:0:0
+S:SEEN
+R:NONLIVING
+P:8WAY
+
+N:117:102:0:0:75:0:12:128
+A:
+B:
+D:Giant spider webs cover 
+S:SEEN
+F:446:447:829:0:0
+R:HAS_WEB
+P:8WAY
+
+#Note race flag to force only mushroom patches.
+
+N:117:102:0:0:75:1:3:128
+A:
+B:
+D:Delicate mushrooms cover 
+G:,
+R:ONLY_ITEM
+K:79:0:30:0:0
+S:SEEN
+P:SCATTER
+
+N:117:102:0:0:75:2:3:128
+A:moldy
+B:
+D:Mold covers 
+G:m
+S:SEEN
+
+N:117:102:0:0:25:2:0:128
+A:mildewed
+B:
+D:Mildew covers 
+S:SEEN
+F:306:306:756:0:0
+R:NONLIVING
+P:SCATTER
+
+N:117:102:0:0:150:2:0:128
+A:mossy
+B:
+D:Moss covers 
+F:832:0:832:0:0
+P:SCATTER | OUTER
+S:SEEN
+L:LIVING
+
+N:117:121:0:0:60:3:3:128
+A:limestone
+B:
+D:Limestone features cover 
+F:111:0:111:0:0
+L:WATER
+S:SEEN
+P:OUTER
+
+N:117:121:0:0:30:3:3:128
+A:sandstone
+B:
+D:Sandstone covers 
+F:112:0:112:0:0
+R:CAN_DIG
+S:SEEN
+P:OUTER
+
+N:117:121:0:0:30:3:3:128
+A:cracked
+B:
+D:Cracks cover 
+F:113:0:113:0:0
+R:OOZE
+S:SEEN
+P:OUTER | RANDOM
+
+N:117:121:0:0:30:3:1:128
+A:earth
+B:
+D:Earth covers 
+F:114:0:114:0:0
+S:SEEN
+P:OUTER
+R:CAN_DIG
+
+N:117:121:0:0:60:3:1:128
+A:icy
+B:
+D:Broken ice covers 
+L:ICE
+F:115:0:115:0:0
+S:SEEN
+P:OUTER | RANDOM
+
+N:117:121:0:0:60:1:30:128
+A:oil-filled
+B:
+D:Oil coats 
+F:122:0:122:0:0
+L:OIL
+S:SEEN
+P:OUTER | RANDOM
+
+N:117:121:0:0:60:1:30:128
+A:coal
+B:
+D:Seams of coal cover 
+F:123:0:123:0:0
+L:OIL
+S:SEEN
+P:OUTER | RANDOM
+
+N:117:121:107:137:50:3:1:128
+A:
+B:library
+D:Crowded bookshelves line 
+K:70:0:99
+S:SEEN
+R:DROP_WRITING
+P:SCATTER
+
+N:117:121:107:137:75:2:4:128
+A:
+B:library
+D:Crowded bookshelves line 
+K:90:0:99
+R:MAGE
+S:SEEN
+P:SCATTER
+
+N:117:121:107:137:75:2:4:128
+A:
+B:library
+D:Crowded bookshelves line 
+K:91:0:99
+R:PRIEST
+S:SEEN
+P:SCATTER
+
+N:117:121:107:137:50:2:4:128
+A:
+B:laboratory
+D:Laboratory equipment lines 
+K:75:0:99
+R:DROP_POTION
+S:SEEN
+P:SCATTER
+
+N:117:121:107:137:50:2:4:128
+A:
+B:laboratory
+D:Laboratory equipment lines 
+K:77:0:99
+R:DROP_TOOL
+S:SEEN
+P:SCATTER
+
+N:117:121:107:137:50:2:4:128
+A:
+B:laboratory
+D:Laboratory equipment lines 
+K:2:1:1
+G:E
+S:SEEN
+P:SCATTER
+
+N:117:121:107:139:50:2:4:128
+A:
+B:supply room
+D:Rope lines 
+K:14:1:1
+R:DROP_TOOL
+S:SEEN
+P:SCATTER
+
+N:117:121:107:139:30:2:5:128
+A:
+B:supply room
+D:Bags of shot line 
+K:16:1:99
+R:DROP_MISSILE
+S:SEEN
+P:SCATTER
+
+N:117:121:107:139:30:2:5:128
+A:
+B:supply room
+D:Bundles of arrows line 
+K:17:0:99
+R:DROP_MISSILE
+S:SEEN
+P:SCATTER
+
+N:117:121:107:139:30:2:5:128
+A:
+B:supply room
+D:Bundles of bolts line 
+K:18:0:99
+R:DROP_MISSILE
+S:SEEN
+P:SCATTER
+
+N:117:121:107:138:30:2:5:128
+A:
+B:guardroom
+D:Missile weapons line 
+K:19:0:99
+R:DROP_MISSILE
+S:SEEN
+P:SCATTER
+
+N:117:121:107:138:30:2:5:128
+A:
+B:guardroom
+D:Weapon racks line 
+K:21:0:99
+R:WARRIOR
+S:SEEN
+P:SCATTER
+
+N:117:121:107:138:30:2:7:128
+A:
+B:guardroom
+D:Weapon racks line 
+K:22:0:99
+R:WARRIOR
+S:SEEN
+P:SCATTER
+
+N:117:121:107:138:30:2:4:128
+A:
+B:guardroom
+D:Weapon racks line 
+K:23:0:99
+R:WARRIOR
+S:SEEN
+P:SCATTER
+
+N:117:121:107:137:75:2:4:128
+A:
+B:music room
+D:Instruments line 
+K:24:0:99
+R:DROP_MUSIC
+S:SEEN
+P:SCATTER
+
+N:117:121:107:137:75:2:4:128
+A:
+B:music room
+D:Music lines 
+K:92:0:99
+R:DROP_MUSIC
+S:SEEN
+P:SCATTER
+
+N:117:121:107:123:50:2:4:128
+A:
+B:map room
+D:Maps line 
+K:72:0:99
+R:DROP_WRITING
+S:SEEN
+P:SCATTER
+
+N:117:121:107:129:50:3:1:128
+A:
+B:cloakroom
+D:Boots hang from 
+K:30:0:99
+S:SEEN
+R:DROP_CLOTHES
+P:SCATTER
+
+N:117:121:107:129:50:3:1:128
+A:
+B:cloakroom
+D:Gloves hang from 
+K:31:0:99
+S:SEEN
+R:DROP_CLOTHES
+P:SCATTER
+
+N:117:121:107:124:50:3:1:128
+A:
+B:cloakroom
+D:Cloaks hang from 
+K:35:0:99
+S:SEEN
+R:DROP_CLOTHES
+P:SCATTER
+
+N:117:121:107:129:50:3:3:128
+A:
+B:armory
+D:Leather armor lines 
+K:36:0:99
+S:SEEN
+R:DROP_ARMOR
+P:SCATTER
+
+N:117:121:107:129:50:3:25:128
+A:
+B:armory
+D:Metal armor lines 
+K:37:0:99
+S:SEEN
+R:WARRIOR
+P:SCATTER
+
+N:117:121:107:129:50:3:3:128
+A:
+B:armory
+D:Battered shields hang from 
+K:34:0:99
+S:SEEN
+R:WARRIOR
+P:SCATTER
+
+N:117:121:107:137:50:3:5:128
+A:
+B:closet
+D:Empty chests line 
+F:319:0:0:0:0
+S:SEEN
+R:DROP_CHEST
+P:SCATTER
+
+N:117:121:107:129:50:2:3:128
+A:
+B:trophy room
+D:Banners hang from 
+K:32:0:99
+S:SEEN
+R:WARRIOR
+P:SCATTER
+
+N:117:102:0:0:50:1:6:128
+A:burnt
+B:
+D:Burn marks cover 
+R:IM_FIRE
+F:2:308:729:22:0
+S:SEEN
+P:SCATTER
+
+N:117:102:0:0:50:1:6:128
+A:burnt
+B:
+D:Burn marks cover 
+R:IM_FIRE
+F:308:308:729:0:0
+S:SEEN
+P:SCATTER
+
+N:117:102:0:0:50:1:6:128
+A:corroded
+B:
+D:Acid marks cover 
+R:IM_ACID
+F:309:309:728:0:0
+S:SEEN
+P:SCATTER
+
+N:117:102:0:0:50:1:6:128
+A:corroded
+B:
+D:Acid marks cover 
+R:IM_ACID
+F:2:309:728:23:0
+S:SEEN
+P:SCATTER
+
+N:117:102:107:149:100:2:30:128
+A:frosty
+B:
+D:Frost covers 
+F:2:0:0:132:0
+L:ICE
+S:SEEN
+P:SCATTER
+
+N:117:102:0:0:50:1:10:128
+A:
+B:
+D:Burn marks cover 
+R:BRTH_FIRE
+F:308:308:729:0:0
+S:SEEN
+P:SCATTER
+
+N:117:102:0:0:50:1:10:128
+A:
+B:
+D:Poison coats 
+R:IM_POIS
+S:SEEN
+F:395:395:434:0:0
+P:PLACE | RANDOM
+
+N:117:102:0:0:50:1:10:128
+A:
+B:
+D:Poison coats 
+R:BRTH_POIS
+S:SEEN
+F:395:395:434:0:0
+P:PLACE | RANDOM
+
+N:117:102:0:0:50:1:11:128
+A:
+B:
+D:Acid marks cover 
+R:BRTH_ACID
+F:309:309:728:0:0
+S:SEEN
+P:SCATTER
+
+N:117:102:0:0:50:1:11:128
+A:
+B:
+D:Frost covers 
+R:BRTH_COLD
+F:2:0:839:132:0
+S:SEEN
+P:SCATTER
+
+N:117:102:107:126:150:3:5:128
+A:
+B:
+D:Stone pillars line 
+R:UNDEAD
+S:SEEN
+F:57:0:0:0:0
+P:ROWS | COLS
+
+N:117:102:107:126:150:3:5:128
+A:
+B:
+D:Stone pillars line 
+R:DWARF
+S:SEEN
+F:57:0:0:0:0
+P:ROWS | COLS
+
+N:117:102:107:126:30:3:5:128
+A:
+B:
+D:Stone statues line 
+R:SMART
+S:SEEN
+K:11:2:2
+P:ROWS | COLS
+
+N:117:102:107:125:30:3:5:128
+A:
+B:
+D:Primitive wooden carvings line 
+G:Y
+S:SEEN
+K:11:3:3
+P:ROWS | COLS
+
+N:117:121:0:0:30:6:5:128
+A:
+B:
+D:Broken statues line 
+S:SEEN
+K:11:1:1
+R:STUPID
+P:SCATTER
+
+N:117:121:0:0:75:3:15:128
+A:
+B:crypt
+D:Stone caskets line 
+R:UNDEAD
+S:SEEN
+K:2:3:3
+P:ROWS | COLS | SCATTER
+
+N:117:102:0:0:75:2:11:128
+A:
+B:
+D:Deep gouges cover 
+R:DRAGON
+S:SEEN
+P:SCATTER | OUTER
+F:833:0:833:0:0
+
+N:117:102:0:0:75:3:4:128
+A:
+B:
+D:Scratch marks cover 
+G:f
+S:SEEN
+P:SCATTER | OUTER
+F:833:0:833:0:0
+
+N:117:102:107:127:75:3:14:128
+A:
+B:
+D:Precious inlay covers 
+K:100:0:99
+S:SEEN
+R:DROP_MINERAL
+P:SCATTER
+F:0:0:55:0:0
+
+N:117:102:107:125:50:3:0:128
+A:
+B:
+D:Wood panels cover 
+P:OUTER
+S:SEEN
+R:ELF
+F:841:0:841:0:0
+
+N:117:121:107:137:75:3:0:128
+A:
+B:kitchen
+D:Cupboards cover 
+K:80:30:99
+S:SEEN
+F:449:0:0:0:0
+R:DROP_FOOD
+
+N:117:121:107:137:75:3:0:128
+A:
+B:bar
+D:Benches cover 
+K:80:30:99
+S:SEEN
+F:810:0:730:0:0
+R:DROP_FOOD
+
+N:117:113:0:0:15:1:0:128
+A:
+B:
+D:Worn 
+S:SEEN
+R:STUPID
+
+N:117:113:0:0:15:1:5:128
+A:
+B:
+D:Patterned 
+S:SEEN
+R:SMART
+P:OUTER
+
+N:117:113:0:0:15:1:10:128
+A:
+B:
+D:Gloomy 
+S:SEEN | GLOOMY
+R:HURT_LITE
+P:OUTER
+
+N:117:113:0:0:15:1:15:128
+A:
+B:
+D:Mottled 
+S:SEEN | HIDDEN
+R:SNEAKY
+P:OUTER
+
+N:117:113:0:0:15:1:30:128
+A:
+B:
+D:Skull-inlaid 
+S:SEEN | GRAVE
+R:UNDEAD
+F:0:868:752:0:0
+
+N:117:113:0:0:15:1:30:128
+A:
+B:
+D:Strange 
+S:SEEN | PUZZLE
+R:WEIRD_MIND
+P:OUTER
+
+N:117:113:0:0:15:1:20:128
+A:
+B:
+D:Heavy 
+S:SEEN | ANCHOR
+R:RES_TPORT
+P:OUTER
+
+N:117:113:0:0:15:1:20:128
+A:
+B:
+D:Shimmering 
+S:SEEN | PORTAL
+R:RES_TPORT
+P:OUTER
+
+N:117:113:0:0:15:1:20:128
+A:
+B:
+D:Gleaming 
+S:SEEN | ICKY
+R:EVIL
+P:OUTER
+
+N:117:113:0:0:15:1:20:128
+A:
+B:
+D:Dull 
+S:SEEN | DISPEL
+R:RES_MAGIC
+F:0:868:752:0:0
+
+N:117:113:0:0:15:1:40:128
+A:
+B:
+D:Glistening 
+S:SEEN | BLOODY
+R:EVIL
+P:OUTER
+
+N:117:113:0:0:15:1:50:128
+A:
+B:
+D:Glowing 
+S:SEEN | CURSED
+R:EVIL
+P:OUTER
+
+N:117:102:0:0:15:0:30:128
+A:
+B:
+D:Blood seeps from
+S:SEEN | BLOODY
+F:754:305:754:0:0
+R:EVIL
+P:OUTER
+
+# Note flag to force only slimes.
+
+N:117:102:0:0:75:3:15:128
+A:
+B:
+D:Slime covers 
+G:,
+R:FRIENDS
+F:306:306:829:0:0
+S:SEEN
+P:SCATTER
+
+N:117:121:0:0:50:5:0:128
+A:
+B:cell
+D:Rusted chains hang from 
+F:853:0:739:0:0
+S:SEEN
+R:MAN
+P:SCATTER
+
+N:117:102:0:0:80:8:0:128
+A:
+B:forge
+D:Braziers line 
+F:404:0:736:0:0
+S:SEEN
+R:NEED_LITE
+P:ROWS | COLS | DARK
+
+N:117:102:0:0:80:8:0:128
+A:torch-lit
+B:
+D:Torches line 
+F:736:0:736:0:0
+S:SEEN
+R:NEED_LITE
+P:ROWS | COLS | DARK
+
+N:117:102:0:0:80:4:10:128
+A:magical
+B:
+D:Magical lights line 
+F:0:0:736:0:0
+S:SEEN
+R:MAGE
+P:ROWS | COLS | LITE
+
+N:117:102:0:0:75:3:2:128
+A:thieves
+B:
+D:Loot covers 
+K:100:0:99
+S:SEEN
+R:SNEAKY
+P:SCATTER
+
+N:117:102:0:0:100:2:3:128
+A:thieves
+B:
+D:Stolen goods cover 
+F:316:0:0:0:0
+S:SEEN
+R:SNEAKY
+P:SCATTER
+
+N:117:102:0:0:150:2:10:128
+A:
+B:workshop
+D:Spare parts cover
+K:12:0:99
+S:SEEN
+G:g
+P:SCATTER
+
+N:117:102:0:0:150:2:37:128
+A:
+B:workshop
+D:Diagrams cover
+K:11:27:27
+S:SEEN
+P:SCATTER
+
+N:117:121:107:123:50:2:0:128
+A:windowed
+B:
+D:Stained-glass windows line 
+F:723:0:723:0:0
+S:SEEN
+P:OUTER | LITE
+R:PRIEST
+
+N:117:121:0:0:50:2:0:128
+A:windowed
+B:
+D:Windows line 
+F:723:0:723:0:0
+S:SEEN
+P:OUTER | LITE
+R:SMART
+
+N:117:121:0:0:50:2:0:128
+A:windowed
+B:
+D:Open windows line 
+F:724:0:723:0:0
+S:SEEN
+P:OUTER | LITE
+R:SMART
+
+N:117:121:0:0:50:2:0:128
+A:broken window
+B:
+D:Broken windows line 
+F:725:0:723:0:0
+S:SEEN
+P:OUTER | LITE
+R:NONLIVING
+
+N:117:121:0:0:50:2:0:128
+A:
+B:prison
+D:Locked gates line 
+F:726:0:726:0:0
+S:SEEN
+P:OUTER
+R:SMART
+
+N:117:121:0:0:50:2:0:128
+A:
+B:prison
+D:Broken bars line 
+F:727:0:726:0:0
+S:SEEN
+P:OUTER
+R:NONLIVING
+
+N:117:121:0:0:50:3:0:128
+A:
+B:storeroom
+D:Stone coffers line 
+S:SEEN
+P:OUTER
+R:SMART
+F:748:0:748:0:0
+
+N:117:121:0:0:50:3:0:128
+A:
+B:storeroom
+D:Ransacked stone coffers line 
+S:SEEN
+P:OUTER
+R:STUPID
+F:769:0:748:0:0
+
+N:117:121:0:0:50:3:0:128
+A:
+B:storeroom
+D:Crowded shelves line 
+S:SEEN
+P:OUTER
+R:SMART
+F:730:0:730:0:0
+
+N:117:121:0:0:50:3:0:128
+A:
+B:storeroom
+D:Empty shelves line 
+S:SEEN
+P:OUTER
+R:NONLIVING
+F:761:0:730:0:0
+
+N:117:121:0:0:50:3:0:128
+A:
+B:smithy
+D:Lit fireplaces line 
+S:SEEN
+P:OUTER
+R:SMART
+F:734:0:734:0:0
+
+N:117:121:0:0:50:3:0:128
+A:
+B:smithy
+D:Empty fireplaces line 
+S:SEEN
+P:OUTER
+R:NONLIVING
+F:762:0:762:0:0
+
+N:117:121:0:0:50:3:0:128
+A:well-lit
+B:
+D:Burning torches line 
+S:SEEN
+P:OUTER
+R:NEED_LITE
+F:736:0:736:0:0
+
+N:117:121:107:126:50:3:0:128
+A:vine-covered
+B:
+D:Vines grow on 
+S:SEEN
+P:OUTER
+R:SMART
+F:742:456:742:0:0
+L:LIVING
+
+N:117:121:107:151:50:3:0:128
+A:vine-covered
+B:
+D:Vines grow on 
+S:SEEN
+P:OUTER
+R:SMART
+F:742:0:0:0:0
+L:LIVING
+
+N:117:121:0:0:50:3:0:128
+A:
+B:washroom
+D:Basins line 
+S:SEEN
+P:OUTER
+R:SMART
+F:744:547:744:0:0
+
+N:117:121:0:0:50:3:0:128
+A:
+B:washroom
+D:Empty basins line 
+S:SEEN
+P:OUTER
+R:STUPID
+F:764:547:764:0:0
+
+N:117:121:0:0:50:3:0:128
+A:
+B:midden
+D:Middens line 
+S:SEEN
+P:OUTER
+R:SMART
+F:746:547:744:0:0
+
+N:117:121:0:0:50:3:0:128
+A:
+B:midden
+D:Empty middens line 
+S:SEEN
+P:OUTER
+R:STUPID
+F:765:547:744:0:0
+
+N:117:121:0:0:50:3:0:128
+A:
+B:store room
+D:Stores line 
+S:SEEN
+P:OUTER
+R:SMART
+F:748:0:748:0:0
+
+N:117:121:107:128:50:3:0:128
+A:writing
+B:
+D:Writing covers 
+S:SEEN
+P:OUTER
+R:SMART
+F:750:817:750:0:0
+
+N:117:121:107:128:50:3:0:128
+A:runed
+B:
+D:Runes cover 
+S:SEEN
+P:OUTER
+R:DWARF
+F:750:817:750:0:0
+
+N:117:121:0:0:100:0:0:128
+A:bloody
+B:
+D:Blood covers 
+S:SEEN
+P:OUTER
+R:EVIL
+F:754:305:754:0:0
+
+N:117:121:0:0:100:3:0:128
+A:slime-covered
+B:
+D:Slime covers 
+S:SEEN
+P:OUTER
+R:HAS_SLIME
+F:756:306:756:0:0
+
+# Randomly place extra stuff around the room.
+
+N:118:136:0:0:75:5:0:128
+A:
+B:
+D:
+F:57:0:0:0:0
+R:UNDEAD
+
+N:118:136:0:0:75:5:0:128
+A:
+B:
+D:
+F:807:0:0:0:0
+R:STUPID
+
+N:118:136:0:0:75:5:0:128
+A:
+B:
+D:
+F:809:0:0:0:0
+R:STUPID
+
+N:118:136:0:0:75:5:0:128
+A:
+B:
+D:
+F:810:0:0:0:0
+R:SMART
+
+N:118:136:0:0:75:5:0:128
+A:
+B:
+D:
+F:812:0:0:0:0
+R:SMART
+
+N:118:136:0:0:75:5:0:128
+A:
+B:
+D:
+F:921:0:0:0:0
+L:OIL
+
+N:118:136:0:0:75:5:0:128
+A:
+B:
+D:
+F:921:0:0:0:0
+G:g
+
+N:118:107:0:0:50:50:0:128
+A:
+B:
+D:
+
+# Randomly decide how to allocate feature.
+
+N:119:105:0:0:10:10:0:128
+A:
+B:
+D:
+P:CHECKER
+
+N:119:105:0:0:2:2:0:128
+A:
+B:
+D:
+P:ROWS
+
+N:119:105:0:0:2:2:0:128
+A:
+B:
+D:
+P:COLS
+
+N:119:105:0:0:100:10:0:128
+A:
+B:
+D:
+P:ROWS | COLS
+R:UNDEAD
+
+N:119:105:0:0:10:10:0:128
+A:
+B:
+D:
+P:ALLOC
+
+N:119:105:0:0:5:5:0:128
+A:
+B:
+D:
+P:INNER
+
+N:119:105:0:0:5:5:0:128
+A:
+B:
+D: 
+P:MAZE_WALL
+
+N:119:105:0:0:5:5:0:128
+A:
+B:
+D: 
+P:MAZE_DECOR
+
+N:119:105:0:0:10:10:0:128
+A:
+B:
+D:
+P:STARBURST
+
+# Garden layout
+
+N:120:122:0:0:15:15:0:128
+A:
+B:
+D:in the north of the room is 
+S:SEEN
+P:NORTH | CENTRE
+
+N:120:122:0:0:15:15:0:128
+A:
+B:
+D:in the east of the room is 
+S:SEEN
+P:EAST | CENTRE
+
+N:120:122:0:0:15:15:0:128
+A:
+B:
+D:in the west of the room is 
+S:SEEN
+P:WEST | CENTRE
+
+N:120:122:0:0:15:15:0:128
+A:
+B:
+D:in the south of the room is 
+S:SEEN
+P:SOUTH | CENTRE
+
+N:120:122:0:0:40:40:0:128
+A:
+B:
+D:in the centre of the room is 
+S:SEEN
+P:CENTRE
+
+N:120:122:0:0:40:40:0:128
+A:
+B:
+D:around the centre of the room is 
+S:SEEN
+P:INNER | CENTRE
+
+# Randomly decide how to allocate feature.
+
+N:121:102:0:0:10:10:0:128
+A:
+B:
+D:
+P:CHECKER
+
+N:121:102:0:0:2:2:0:128
+A:
+B:
+D:
+P:ROWS
+
+N:121:102:0:0:2:2:0:128
+A:
+B:
+D:
+P:COLS
+
+N:121:102:0:0:100:10:0:128
+A:
+B:
+D:
+P:ROWS | COLS
+L:CRYPT
+
+N:121:102:0:0:5:5:0:128
+A:
+B:
+D:
+P:ROWS | COLS | OUTER
+
+#Inner room by itself
+
+N:121:102:0:0:15:15:0:128
+A:
+B:
+D:
+
+N:121:102:0:0:5:5:0:128
+A:
+B:
+D: 
+P:MAZE_WALL
+
+N:121:102:0:0:5:5:0:128
+A:
+B:
+D: 
+P:MAZE_DECOR
+
+N:122:107:0:0:10:1:0:128
+A:rocky
+B:
+D:strewn with rocks. 
+F:409:0:0:0:0
+S:SEEN
+P:PLACE
+R:CAN_DIG
+
+N:122:107:0:0:10:1:0:128
+A:pebble
+B:
+D:filled with pebbles. 
+F:410:0:0:0:0
+S:SEEN
+P:PLACE
+R:CAN_DIG
+
+N:122:151:0:0:10:1:0:128
+A:grassy
+B:
+D:planted with grass. 
+F:411:0:0:0:0
+S:SEEN
+P:PLACE
+L:LIVING
+
+N:122:151:0:0:10:1:0:128
+A:landscaped
+B:
+D:landscaped into grassy slopes. 
+F:530:0:0:0:0
+S:SEEN
+P:PLACE
+L:LIVING
+
+N:122:107:0:0:10:1:0:128
+A:earth
+B:
+D:recently tilled. 
+F:407:0:0:0:0
+S:SEEN
+P:PLACE
+R:CAN_DIG
+
+N:122:107:0:0:10:1:0:128
+A:burnt
+B:
+D:burnt bare. 
+F:418:0:0:0:0
+S:SEEN
+P:PLACE
+R:BRTH_FIRE
+
+N:122:107:0:0:10:1:0:128
+A:poisoned
+B:
+D:poisoned.
+F:442:0:434:0:0 
+S:SEEN
+P:PLACE
+R:BRTH_POIS
+
+N:122:107:0:0:10:1:0:128
+A:bare
+B:
+D:bare. 
+F:411:0:0:0:0
+S:SEEN
+P:PLACE
+R:STUPID
+
+N:122:151:0:0:10:1:20:128
+A:hedge
+B:
+D:planted with hedges. 
+F:419:0:0:0:0
+S:SEEN
+L:LIVING
+P:PLACE
+
+N:122:151:0:0:5:1:40:128
+A:hedge
+B:
+D:planted with thick hedges. 
+F:461:0:0:0:0
+S:SEEN
+L:LIVING
+P:PLACE
+
+N:122:107:0:0:15:5:0:128
+A:
+B:
+F:425:0:0:0:0
+D:burnt out and dying. 
+S:SEEN
+R:IM_FIRE
+P:PLACE
+
+N:122:151:0:0:15:5:0:128
+A:
+B:
+F:427:0:0:0:0
+K:3:7:7
+D:wrecked. 
+S:SEEN
+R:HUGE
+P:PLACE
+L:LIVING
+
+N:122:151:0:0:5:0:0:128
+A:
+B:
+F:420:0:0:0:0
+D:shaded by trees. 
+S:SEEN
+L:LIVING
+P:PLACE
+
+N:122:151:0:0:3:0:40:128
+A:
+B:
+F:454:0:0:0:0
+D:shaded by huge trees. 
+S:SEEN
+L:LIVING
+P:PLACE
+
+N:122:151:0:0:5:0:0:128
+A:
+B:
+F:421:0:0:0:0
+D:shaded by trees. 
+S:SEEN
+L:LIVING
+P:PLACE
+
+N:122:151:0:0:5:0:0:128
+A:
+B:
+F:422:0:0:0:0
+D:planted with herbs. 
+S:SEEN
+L:LIVING
+P:PLACE
+
+N:122:151:0:0:5:0:0:128
+A:
+B:
+F:426:0:0:0:0
+D:planted with apple trees. 
+S:SEEN
+R:ELF
+L:LIVING
+P:PLACE
+
+N:122:149:0:0:25:0:35:128
+A:
+B:
+F:428:0:0:0:0
+D:covered in snow. 
+S:SEEN
+R:ELF
+L:LIVING | ICE
+P:PLACE
+
+N:122:149:0:0:25:0:45:128
+A:
+B:
+F:452:0:0:0:0
+D:covered in deep snow. 
+S:SEEN
+R:ELF
+L:LIVING | ICE
+P:PLACE
+
+N:122:151:0:0:10:1:3:128
+A:bushy
+B:
+D:planted with bushes. 
+F:435:0:0:0:0
+S:SEEN
+L:LIVING
+P:PLACE
+
+N:122:151:0:0:7:1:30:128
+A:
+B:
+D:planted with thorns. 
+F:448:0:0:0:0
+S:SEEN
+L:LIVING
+P:PLACE
+
+N:122:151:0:0:7:1:30:128
+A:
+B:
+D:planted with brambles. 
+F:440:0:0:0:0
+S:SEEN
+L:LIVING
+P:PLACE
+
+N:122:151:0:0:7:1:40:128
+A:
+B:
+D:planted with poisonous thorns. 
+F:436:0:0:0:0
+S:SEEN
+L:LIVING
+P:PLACE
+
+N:122:146:0:0:14:2:0:128
+A:
+B:
+D:flooded with stagnant water. 
+F:310:0:0:0:0
+L:WATER
+S:SEEN
+P:PLACE
+
+N:122:151:0:0:14:2:0:128
+A:
+B:
+D:planted with water-lillies. 
+F:310:0:0:0:0
+L:WATER
+S:SEEN
+P:PLACE
+
+N:123:130:0:0:5:1:0:128
+A:
+B:
+D:The pictures depict 
+S:SEEN
+
+N:124:130:0:0:5:1:0:128
+A:
+B:
+D:The fabrics depict 
+S:SEEN
+
+N:125:130:0:0:5:1:0:128
+A:
+B:
+D:The woodwork depicts 
+S:SEEN
+
+N:126:130:0:0:5:1:0:128
+A:
+B:
+D:The stonework depicts 
+S:SEEN
+
+N:127:130:0:0:5:1:0:128
+A:
+B:
+D:The metalwork depicts 
+S:SEEN
+
+N:128:133:0:0:5:5:0:128
+A:
+B:
+D:You can make out 
+S:SEEN
+
+N:128:133:0:0:5:5:0:128
+A:
+B:
+D:You can translate 
+S:SEEN
+
+# Occasional grafitti instead.
+
+N:128:134:0:0:1:1:0:128
+A:
+B:
+D:
+S:SEEN
+
+N:129:130:0:0:5:1:0:128
+A:
+B:
+D:The heraldry depicts 
+S:SEEN
+
+N:130:131:0:0:5:1:0:128
+A:
+B:
+D:elves 
+R:ELF
+S:SEEN
+
+N:130:131:0:0:5:1:0:128
+A:
+B:
+D:men 
+R:MAN
+S:SEEN
+
+N:130:131:0:0:5:1:0:128
+A:
+B:
+D:dwarves 
+R:DWARF
+S:SEEN
+
+N:130:131:0:0:5:1:0:128
+A:
+B:
+D:orcs 
+R:ORC
+S:SEEN
+
+N:130:131:0:0:5:1:0:128
+A:
+B:
+D:giants 
+R:GIANT
+S:SEEN
+
+N:130:131:0:0:5:1:0:128
+A:
+B:
+D:trolls 
+R:TROLL
+S:SEEN
+
+N:130:131:0:0:5:1:0:128
+A:
+B:
+D:a strange people 
+S:SEEN
+R:WEIRD_MIND
+
+N:130:107:0:0:5:1:50:128
+A:
+B:
+D:the symbol of an everwatchful eye. 
+S:SEEN
+
+N:130:107:0:0:5:1:25:128
+A:
+B:
+D:the symbol of a white hand. 
+S:SEEN
+
+N:130:107:0:0:5:1:0:128
+A:
+B:
+D:nothing you can recognise. 
+S:SEEN
+
+N:130:107:0:0:5:1:0:128
+A:
+B:
+D:dreamlike scenes. 
+S:SEEN
+
+N:130:107:0:0:5:1:0:128
+A:
+B:
+D:nightmares. 
+S:SEEN
+
+N:131:107:0:0:5:1:0:128
+A:
+B:
+D:living in a golden age. 
+S:SEEN
+
+N:131:107:0:0:5:1:0:128
+A:
+B:
+D:creating a great artifact. 
+S:SEEN
+
+N:131:107:0:0:5:1:0:128
+A:
+B:
+D:on a long march through the wilderness. 
+S:SEEN
+
+N:131:107:0:0:5:1:0:128
+A:
+B:
+D:suffering a great catastrophe. 
+S:SEEN
+
+N:131:107:0:0:5:1:0:128
+A:
+B:
+D:being forced underground. 
+S:SEEN
+
+N:131:107:0:0:5:1:0:128
+A:
+B:
+D:toiling deep beneath the earth. 
+S:SEEN
+
+N:131:132:0:0:5:1:0:128
+A:
+B:
+D:meeting 
+S:SEEN
+
+N:131:132:0:0:5:1:0:128
+A:
+B:
+D:glorious in battle against 
+S:SEEN
+
+N:131:132:0:0:5:1:0:128
+A:
+B:
+D:in a pyrrhic victory against 
+S:SEEN
+
+N:131:132:0:0:5:1:0:128
+A:
+B:
+D:fighting to the last against 
+S:SEEN
+
+N:131:132:0:0:5:1:0:128
+A:
+B:
+D:under the grip of tyranny of 
+S:SEEN
+
+N:131:132:0:0:5:1:0:128
+A:
+B:
+D:being enslaved by 
+S:SEEN
+
+N:131:132:0:0:5:1:0:128
+A:
+B:
+D:fleeing from 
+S:SEEN
+
+N:132:107:0:0:5:1:0:128
+A:
+B:
+D:the elves. 
+R:ORC
+S:SEEN
+
+N:132:107:0:0:5:1:0:128
+A:
+B:
+D:the men of Numenor. 
+R:EVIL
+S:SEEN
+
+N:132:107:0:0:1:5:0:128
+A:
+B:
+D:the men of Harad. 
+R:EVIL
+S:SEEN
+
+N:132:107:0:0:5:1:0:128
+A:
+B:
+D:the petty dwarves. 
+R:GIANT
+S:SEEN
+
+N:132:107:0:0:5:1:0:128
+A:
+B:
+D:the orcs. 
+R:ELF
+S:SEEN
+
+N:132:107:0:0:5:1:0:128
+A:
+B:
+D:the giants. 
+R:DWARF
+S:SEEN
+
+N:132:107:0:0:5:1:0:128
+A:
+B:
+D:the trolls. 
+R:GOOD
+S:SEEN
+
+N:132:107:0:0:5:1:0:128
+A:
+B:
+D:the elves. 
+R:ORC
+S:SEEN
+
+N:132:107:0:0:5:1:0:128
+A:
+B:
+D:dragons. 
+R:DRAGON
+S:SEEN
+
+N:132:107:0:0:5:1:0:128
+A:
+B:
+D:demons. 
+R:DEMON
+S:SEEN
+
+N:132:107:0:0:5:1:0:128
+A:
+B:
+D:the dead. 
+R:UNDEAD
+S:SEEN
+
+N:132:107:0:0:5:1:0:128
+A:
+B:
+D:a cruel tyrant. 
+S:SEEN
+R:EVIL
+
+N:132:107:0:0:5:1:0:128
+A:
+B:
+D:a dark shadow. 
+S:SEEN
+R:DEMON
+
+N:132:107:0:0:5:1:0:128
+A:
+B:
+D:an undying enemy. 
+S:SEEN
+R:UNDEAD
+
+N:132:107:0:0:5:1:0:128
+A:
+B:
+D:a strange race. 
+S:SEEN
+R:WEIRD_MIND
+
+N:132:107:0:0:5:1:0:128
+A:
+B:
+D:an unspeakable evil. 
+S:SEEN
+R:EVIL
+
+N:133:107:0:0:5:1:0:128
+A:
+B:
+D:'Drums! Drums! Drums in the deep!' 
+S:LANGUAGE
+R:ORC
+
+N:133:107:0:0:5:1:0:128
+A:
+B:
+D:'Speak friend and enter.' 
+S:LANGUAGE
+R:DWARF
+
+N:133:107:0:0:5:1:0:128
+A:
+B:
+D:'You shall not pass!' 
+S:LANGUAGE
+R:DEMON
+
+N:133:107:0:0:5:1:50:128
+A:
+B:
+D:'A Elbereth Gilthoniel!' 
+S:LANGUAGE
+R:HURT_LITE
+
+N:133:107:0:0:5:1:50:128
+A:
+B:
+D:'Ash nazg durbatuluk, ash nazg gimbatul,
+D: ash nazg thrakatuluk agh burzum-ishi krimpatul.' 
+S:LANGUAGE
+R:EVIL
+
+N:133:107:0:0:5:1:50:128
+A:
+B:
+D:'Three Rings for the Elven-kings under the sky.' 
+S:LANGUAGE
+R:ELF
+
+N:133:107:0:0:5:1:50:128
+A:
+B:
+D:'Seven for the Dwarf-lords in their halls of stone.' 
+S:LANGUAGE
+R:DWARF
+
+N:133:107:0:0:5:1:50:128
+A:
+B:
+D:'Nine for Mortal Men doomed to die.' 
+S:LANGUAGE
+R:MAN
+
+N:133:107:0:0:5:1:50:128
+A:
+B:
+D:'One for the Dark Lord on his dark throne.' 
+S:LANGUAGE
+R:EVIL
+
+N:133:107:0:0:5:1:50:128
+A:
+B:
+D:'In the land of Mordor where the shadows lie.' 
+S:LANGUAGE
+R:EVIL
+
+N:133:107:0:0:5:1:0:128
+A:
+B:
+D:'It wantsss it.' 
+S:LANGUAGE
+G:h
+R:INVISIBLE
+
+N:133:107:0:0:5:1:0:128
+A:
+B:
+D:'My precioussss.' 
+S:LANGUAGE
+G:h
+R:INVISIBLE
+
+N:133:107:0:0:5:1:0:128
+A:
+B:
+D:'..f.. x... s.' 
+S:LANGUAGE
+
+N:134:135:0:0:5:1:0:128
+A:
+B:
+D:Some wag has written 
+S:SEEN
+
+N:134:135:0:0:5:2:0:128
+A:
+B:
+D:Someone has scrawled 
+S:SEEN
+
+N:134:135:0:0:5:2:0:128
+A:
+B:
+D:You can make out 
+S:SEEN
+
+N:134:135:0:0:5:2:0:128
+A:
+B:
+D:Someone has scratched 
+S:SEEN
+
+N:134:135:0:0:5:0:25:128
+A:
+B:
+D:Someone has scrawled in blood 
+F:305:305:754:0:0
+R:EVIL
+S:SEEN
+P:PLACE | SCATTER
+
+N:134:135:0:0:15:15:15:128
+A:
+B:
+D:Someone has obsessively repeated 
+S:SEEN
+
+N:135:107:0:0:5:1:0:128
+A:
+B:
+D:'Have you seen my dogs?', signed F. Maggot. 
+S:SEEN
+
+N:135:107:0:0:5:1:0:128
+A:
+B:
+D:'Wormtongue was here.' 
+S:SEEN
+
+N:135:107:0:0:5:1:0:128
+A:
+B:
+D:'Hobbits rule, okay.' 
+S:SEEN
+
+N:135:107:0:0:5:1:0:128
+A:
+B:
+D:'Tolkien is hobbit-forming.' 
+S:SEEN
+
+N:135:107:0:0:5:1:0:128
+A:
+B:
+D:'Something's hidden in the midden.' 
+S:SEEN
+
+N:135:107:0:0:5:1:0:128
+A:
+B:
+D:'Where are the pink dragons?' 
+S:SEEN
+
+N:135:107:0:0:5:1:0:128
+A:
+B:
+D:'No trespassing! - the Chief Shirriff.' 
+G:h
+S:SEEN
+
+N:135:107:0:0:5:1:0:128
+A:
+B:
+D:'Made in NZ.' 
+S:SEEN
+
+N:136:107:0:0:10:10:0:128
+A:
+B:
+D:
+F:810:0:0:0:0
+P:CHECKER | CENTRE | PLACE
+
+N:136:107:0:0:2:2:0:128
+A:
+B:
+D:
+F:810:0:0:0:0
+P:ROWS | CENTRE | PLACE
+
+N:136:107:0:0:2:2:0:128
+A:
+B:
+D:
+F:810:0:0:0:0
+P:COLS | CENTRE | PLACE
+
+N:136:107:0:0:10:10:0:128
+A:
+B:
+D:
+F:810:0:0:0:0
+P:ROWS | COLS | CENTRE | PLACE
+
+N:136:107:0:0:5:5:0:128
+A:
+B:
+D:
+F:810:0:0:0:0
+P:INNER | CENTRE | PLACE
+
+N:136:107:0:0:5:5:0:128
+A:
+B:
+D:
+F:810:0:0:0:0
+P:SCATTER | CENTRE | PLACE
+
+# Place shelves around.
+
+N:137:118:0:0:5:5:0:128
+A:
+B:
+F:730:0:730:0:0
+P:OUTER | PLACE
+
+N:137:118:0:0:5:5:0:128
+A:
+B:
+F:730:0:730:0:0
+P:OUTER | ROWS | COLS | PLACE
+
+N:137:118:0:0:5:5:0:128
+A:
+B:
+F:730:0:730:0:0
+P:OUTER | CHECKER | PLACE
+
+N:137:118:0:0:5:5:0:128
+A:
+B:
+F:730:0:730:0:0
+P:OUTER | RANDOM | PLACE
+
+N:137:118:0:0:5:5:0:128
+A:
+B:
+F:730:0:730:0:0
+P:MAZE_DECOR | PLACE
+
+# Place weapon racks around.
+
+N:138:118:0:0:5:5:0:128
+A:
+B:
+F:740:0:740:0:0
+P:OUTER | PLACE
+
+N:138:118:0:0:5:5:0:128
+A:
+B:
+F:740:0:740:0:0
+P:OUTER | ROWS | COLS | PLACE
+
+N:138:118:0:0:5:5:0:128
+A:
+B:
+F:740:0:740:0:0
+P:OUTER | CHECKER | PLACE
+
+N:138:118:0:0:5:5:0:128
+A:
+B:
+F:740:0:740:0:0
+P:OUTER | RANDOM | PLACE
+
+N:138:118:0:0:5:5:0:128
+A:
+B:
+F:740:0:740:0:0
+P:MAZE_DECOR | PLACE
+
+# Place stores around.
+
+N:139:118:0:0:5:5:0:128
+A:
+B:
+F:748:0:748:0:0
+P:OUTER | PLACE
+
+N:139:118:0:0:5:5:0:128
+A:
+B:
+F:748:0:748:0:0
+P:OUTER | ROWS | COLS | PLACE
+
+N:139:118:0:0:5:5:0:128
+A:
+B:
+F:748:0:748:0:0
+P:OUTER | CHECKER | PLACE
+
+N:139:118:0:0:5:5:0:128
+A:
+B:
+F:748:0:748:0:0
+P:OUTER | RANDOM | PLACE
+
+N:139:118:0:0:5:5:0:128
+A:
+B:
+F:748:0:748:0:0
+P:MAZE_DECOR | PLACE
+
+# Stuff to manipulate with levers.
+
+N:140:106:0:0:5:5:30:128
+A:
+B:
+F:726:0:0:0:0
+P:OUTER | PLACE
+
+N:140:106:0:0:5:5:30:128
+A:
+B:
+F:850:0:0:0:0
+P:OUTER | PLACE
+
+N:140:106:0:0:5:5:0:128
+A:
+B:
+F:853:0:0:0:0
+P:OUTER | PLACE
+
+N:140:106:0:0:5:5:15:128
+A:
+B:
+F:858:0:0:0:0
+P:OUTER | PLACE
+
+N:140:106:0:0:5:5:30:128
+A:
+B:
+F:859:0:0:0:0
+P:OUTER | PLACE
+
+N:140:106:0:0:5:5:15:128
+A:
+B:
+F:865:0:0:0:0
+P:OUTER | PLACE
+
+N:140:106:0:0:5:5:15:128
+A:
+B:
+F:868:0:0:0:0
+P:OUTER | PLACE
+
+# Northern feature
+
+N:141:106:0:0:5:5:0:128
+A:
+B:
+P:NORTH
+
+N:141:106:0:0:15:15:15:128
+A:
+B:
+P:NORTH | CENTRE
+
+N:141:106:0:0:5:5:35:128
+A:
+B:
+P:NORTH | CENTRE | WEST
+
+N:141:106:0:0:5:5:35:128
+A:
+B:
+P:NORTH | CENTRE | EAST
+
+N:141:106:0:0:15:15:45:128
+A:
+B:
+P:NORTH | CENTRE | EDGE
+
+N:141:106:0:0:5:5:55:128
+A:
+B:
+P:NORTH | CENTRE | WEST | EDGE
+
+N:141:106:0:0:5:5:55:128
+A:
+B:
+P:NORTH | CENTRE | EAST | EDGE
+
+N:141:106:0:0:5:5:65:128
+A:
+B:
+P:NORTH | CENTRE | EAST | WEST | EDGE
+
+# East
+
+N:142:106:0:0:5:5:0:128
+A:
+B:
+P:EAST
+
+N:142:106:0:0:15:15:15:128
+A:
+B:
+P:EAST | CENTRE
+
+N:142:106:0:0:5:5:35:128
+A:
+B:
+P:NORTH | CENTRE | EAST
+
+N:142:106:0:0:5:5:35:128
+A:
+B:
+P:SOUTH | CENTRE | EAST
+
+N:142:106:0:0:15:15:45:128
+A:
+B:
+P:EAST | CENTRE | EDGE
+
+N:142:106:0:0:5:5:55:128
+A:
+B:
+P:NORTH | CENTRE | EAST | EDGE
+
+N:142:106:0:0:5:5:55:128
+A:
+B:
+P:SOUTH | CENTRE | EAST | EDGE
+
+N:142:106:0:0:5:5:65:128
+A:
+B:
+P:SOUTH | CENTRE | EAST | NORTH | EDGE
+
+# West
+
+N:143:106:0:0:5:5:0:128
+A:
+B:
+P:WEST
+
+N:143:106:0:0:15:15:15:128
+A:
+B:
+P:WEST | CENTRE
+
+N:143:106:0:0:5:5:35:128
+A:
+B:
+P:NORTH | CENTRE | WEST
+
+N:143:106:0:0:5:5:35:128
+A:
+B:
+P:SOUTH | CENTRE | WEST
+
+N:143:106:0:0:15:15:45:128
+A:
+B:
+P:WEST | CENTRE | EDGE
+
+N:143:106:0:0:5:5:55:128
+A:
+B:
+P:NORTH | CENTRE | WEST | EDGE
+
+N:143:106:0:0:5:5:55:128
+A:
+B:
+P:SOUTH | CENTRE | WEST | EDGE
+
+N:143:106:0:0:5:5:65:128
+A:
+B:
+P:SOUTH | CENTRE | WEST | NORTH | EDGE
+
+# South
+
+N:144:106:0:0:5:5:0:128
+A:
+B:
+P:SOUTH
+
+N:144:106:0:0:15:15:15:128
+A:
+B:
+P:SOUTH | CENTRE
+
+N:144:106:0:0:5:5:35:128
+A:
+B:
+P:SOUTH | CENTRE | EAST
+
+N:144:106:0:0:5:5:35:128
+A:
+B:
+P:SOUTH | CENTRE | WEST
+
+N:144:106:0:0:15:15:45:128
+A:
+B:
+P:SOUTH | CENTRE | EDGE
+
+N:144:106:0:0:5:5:55:128
+A:
+B:
+P:SOUTH | CENTRE | EAST | EDGE
+
+N:144:106:0:0:5:5:55:128
+A:
+B:
+P:SOUTH | CENTRE | WEST | EDGE
+
+N:144:106:0:0:5:5:65:128
+A:
+B:
+P:SOUTH | CENTRE | WEST | EAST | EDGE
+
+# Centre
+
+N:145:106:0:0:15:15:0:128
+A:
+B:
+P:CENTRE
+
+N:145:106:0:0:15:15:0:128
+A:
+B:
+P:CENTRE | EDGE
+
+N:145:106:0:0:45:45:0:128
+A:
+B:
+P:CENTRE | STARBURST
+
+N:145:106:0:0:15:15:0:128
+A:
+B:
+P:CENTRE | MAZE_WALL
+
+N:145:106:0:0:15:15:0:128
+A:
+B:
+P:CENTRE | MAZE_DECOR
+
+N:145:106:0:0:15:15:0:128
+A:
+B:
+P:CENTRE | MAZE_PATH
+
+N:145:106:0:0:15:15:0:128
+A:
+B:
+P:CENTRE | INNER
+
+N:145:106:0:0:15:15:15:128
+A:
+B:
+P:EAST | CENTRE
+
+N:145:106:0:0:15:15:15:128
+A:
+B:
+P:WEST | CENTRE
+
+N:145:106:0:0:15:15:15:128
+A:
+B:
+P:NORTH | CENTRE
+
+N:145:106:0:0:15:15:15:128
+A:
+B:
+P:SOUTH | CENTRE
+
+N:145:106:0:0:35:35:35:128
+A:
+B:
+P:EAST | NORTH | CENTRE
+
+N:145:106:0:0:35:35:35:128
+A:
+B:
+P:WEST | SOUTH | CENTRE
+
+N:145:106:0:0:35:35:35:128
+A:
+B:
+P:NORTH | WEST | CENTRE
+
+N:145:106:0:0:35:35:35:128
+A:
+B:
+P:SOUTH | EAST | CENTRE
+
+N:145:106:0:0:55:55:55:128
+A:
+B:
+P:SOUTH | NORTH | CENTRE
+
+N:145:106:0:0:55:55:55:128
+A:
+B:
+P:WEST | EAST | CENTRE
+
+# Water-filled rooms
+
+N:146:107:0:0:15:15:0:128
+F:0:0:0:0:0
+
+N:146:107:0:0:15:15:0:128
+F:0:0:837:0:0
+
+N:146:107:0:0:15:15:0:128
+F:0:307:837:0:0
+
+N:146:107:0:0:15:15:0:128
+F:0:307:0:0:0
+
+N:146:107:0:0:15:15:18:128
+F:0:310:0:0:0
+
+N:146:107:0:0:15:15:27:128
+F:0:311:0:0:0
+
+N:146:107:0:0:15:15:60:128
+F:0:120:837:0:0
+
+N:146:107:0:0:15:15:60:128
+F:0:121:837:0:0
+
+N:146:107:0:0:15:15:41:128
+F:0:126:837:0:0
+
+N:146:107:0:0:15:15:18:128
+F:0:153:837:0:0
+
+N:146:107:0:0:15:15:27:128
+F:0:155:837:0:0
+
+# Boiling water-filled rooms
+
+N:147:107:0:0:15:15:0:128
+F:0:0:837:0:0
+
+N:147:107:0:0:15:15:51:128
+F:0:209:837:0:0
+
+N:147:107:0:0:15:15:55:128
+F:0:173:837:0:0
+
+N:147:107:0:0:15:15:60:128
+F:0:205:837:0:0
+
+N:147:107:0:0:15:15:70:128
+F:0:547:837:0:0
+
+N:147:107:0:0:15:15:81:128
+F:0:208:837:0:0
+
+N:147:107:0:0:15:15:81:128
+F:0:160:837:0:0
+
+# Acid-filled rooms
+
+N:148:107:0:0:15:15:0:128
+F:0:0:728:0:0
+
+N:148:107:0:0:15:15:0:128
+F:0:309:728:0:0
+
+N:148:107:0:0:15:15:0:128
+F:0:309:0:0:0
+
+N:148:107:0:0:15:15:79:128
+F:0:127:728:0:0
+
+N:148:107:0:0:15:15:65:128
+F:0:155:728:0:0
+
+N:148:107:0:0:15:15:68:128
+F:0:157:728:0:0
+
+N:148:107:0:0:15:15:72:128
+F:0:165:728:0:0
+
+N:148:107:0:0:15:15:75:128
+F:0:843:728:0:0
+
+N:148:107:0:0:15:15:78:128
+F:0:845:728:0:0
+
+# Frozen rooms
+
+N:149:107:0:0:15:15:0:128
+F:0:0:839:0:0
+
+N:149:107:0:0:15:15:33:128
+F:0:145:839:0:0
+
+N:149:107:0:0:15:15:0:128
+F:0:429:839:0:0
+
+N:149:107:0:0:15:15:0:128
+F:0:430:839:0:0
+
+N:149:107:0:0:15:15:33:128
+F:0:145:0:0:0
+
+N:149:107:0:0:15:15:30:128
+F:0:464:839:0:0
+
+N:149:107:0:0:15:15:35:128
+F:0:428:839:0:0
+
+N:149:107:0:0:15:15:45:128
+F:0:452:839:0:0
+
+# Lava rooms
+
+N:150:107:0:0:15:15:0:128
+F:0:0:729:0:0
+
+N:150:107:0:0:15:15:33:128
+F:0:209:729:0:0
+
+N:150:107:0:0:15:15:0:128
+F:0:209:50:0:0
+
+N:150:107:0:0:15:15:60:128
+F:0:162:50:0:0
+
+N:150:107:0:0:15:15:60:128
+F:0:162:729:0:0
+
+N:150:107:0:0:15:15:75:128
+F:0:547:729:0:0
+
+N:150:107:0:0:15:15:91:128
+F:0:161:50:0:0
+
+N:150:107:0:0:15:15:84:128
+F:0:216:50:0:0
+
+N:150:107:0:0:15:15:87:128
+F:0:217:50:0:0
+
+# Oil levels
+
+N:151:107:0:0:15:15:0:128
+F:0:0:729:0:0
+
+N:151:107:0:0:15:15:50:128
+F:0:547:729:0:0
+
+#Living rooms
+
+N:151:107:0:0:15:15:0:128
+F:0:0:831:0:0
+
+N:151:146:0:0:50:50:0:128
+
+N:151:107:0:0:15:15:0:128
+F:0:407:831:0:0
+
+N:151:107:0:0:15:15:0:128
+F:0:408:0:0:0
+
+N:151:107:0:0:15:15:20:128
+F:0:409:0:0:0
+
+N:151:107:0:0:15:15:0:128
+F:0:410:0:0:0
+
+N:151:107:0:0:15:15:0:128
+F:0:411:0:0:0
+
+N:151:107:0:0:15:15:0:128
+F:0:412:0:0:0
+
+N:151:107:0:0:15:15:10:128
+F:0:456:742:0:0
+
+N:151:107:0:0:15:15:20:128
+F:0:419:0:0:0
+
+N:151:107:0:0:15:15:25:128
+F:0:420:0:0:0
+
+N:151:107:0:0:15:15:25:128
+F:0:530:0:0:0
+
+N:151:107:0:0:15:15:25:128
+F:0:531:0:0:0
+
+N:151:107:0:0:15:15:30:128
+F:0:448:0:0:0
+
+N:151:107:0:0:15:15:30:128
+F:0:440:0:0:0
+
+N:151:107:0:0:15:15:40:128
+F:0:442:0:0:0
+
+N:152:153:107:154:25:1:1:128
+A:pit
+B:
+D:surrounded by pits. 
+F:238:0:0:0:0
+R:CAN_DIG
+S:SEEN
+
+N:152:153:0:0:25:1:1:128
+A:runed
+B:
+D:covered by strange runes. 
+F:239:0:750:0:0
+R:MAGE
+S:SEEN
+
+N:152:153:0:0:25:1:1:128
+A:trapped
+B:
+D:surrounded by explosive traps. 
+F:242:0:0:0:0
+R:SNEAKY
+S:SEEN
+
+N:152:153:0:0:25:1:1:128
+A:trapped
+B:
+D:surrounded by spring-loaded traps. 
+F:240:0:0:0:0
+R:SNEAKY
+S:SEEN
+
+N:152:153:0:0:25:1:1:128
+A:trapped
+B:
+D:surrounded by gas traps. 
+R:SNEAKY
+F:241:0:0:0:0
+S:SEEN
+
+N:152:153:0:0:25:1:1:128
+A:stone-faced
+B:
+D:surrounded by stoney visages. 
+R:MAGE
+F:244:0:0:0:0
+S:SEEN
+
+N:152:153:0:0:25:1:1:128
+A:trapped
+B:
+D:surrounded by discoloured spots. 
+R:SNEAKY
+F:243:0:0:0:0
+S:SEEN
+
+N:152:153:0:0:25:1:1:128
+A:trapped
+B:
+D:surrounded by trip wires. 
+R:SNEAKY
+F:246:0:0:0:0
+S:SEEN
+
+N:152:153:0:0:25:1:1:128
+A:symbol
+B:
+D:covered by magic symbols. 
+R:MAGE
+F:249:0:750:0:0
+S:SEEN
+
+N:152:153:0:0:25:1:1:128
+A:hexen
+B:
+D:covered by ancient hexes. 
+R:MAGE
+F:248:0:750:0:0
+S:SEEN
+
+N:152:153:0:0:25:1:1:128
+A:trapped
+B:
+D:surrounded by murder holes. 
+R:SNEAKY
+F:247:0:0:0:0
+S:SEEN
+
+N:152:153:0:0:25:1:1:128
+A:trapped
+B:
+D:surrounded by traps. 
+R:SNEAKY
+F:2:0:0:0:0
+S:SEEN
+
+N:152:153:0:0:25:1:1:128
+A:painted
+B:
+D:surrounded by surreal paintings. 
+R:SMART
+F:250:0:732:0:0
+S:SEEN
+
+N:152:153:0:0:25:1:1:128
+A:evil
+B:
+D:surrounded by ever burning eyes. 
+R:EVIL
+F:251:0:0:0:0
+S:SEEN
+
+N:152:153:0:0:25:1:1:128
+A:windy
+B:
+D:surrounded by upwards drafts. 
+F:252:0:0:0:0
+S:SEEN
+
+N:152:153:0:0:10:1:1:128
+A:trapped
+B:
+D:surrounded by precariously balanced boulders. 
+R:GIANT
+F:253:0:0:0:0
+S:SEEN
+
+N:152:153:0:0:10:1:1:128
+A:trapped
+B:
+D:surrounded by precariously balanced boulders. 
+R:DWARF
+F:253:0:0:0:0
+S:SEEN
+
+N:152:153:0:0:5:1:1:128
+A:trapped
+B:
+D:surrounded by precariously balanced boulders. 
+R:CAN_DIG
+F:253:0:0:0:0
+S:SEEN
+
+N:152:153:0:0:25:1:1:128
+A:
+B:
+D:criss-crossed with rays of light. 
+F:250:0:0:0:0
+S:SEEN
+P:DARK
+
+N:152:153:0:0:25:1:1:128
+A:glyph
+B:
+D:surrounded by glowing glyphs. 
+R:MAGE
+F:255:0:0:0:0
+S:SEEN
+P:DARK
+
+N:152:153:0:0:25:1:1:128
+A:demonic
+B:
+D:surrounded by demonic signs. 
+R:DEMON
+F:256:0:0:0:0
+S:SEEN
+
+N:152:153:0:0:25:1:1:128
+A:snare
+B:
+D:surrounded by snares. 
+R:ANIMAL
+F:972:0:0:0:0
+S:SEEN
+
+N:152:153:0:0:25:1:1:128
+A:siege
+B:
+D:surrounded by siege engines. 
+F:973:0:0:0:0
+S:SEEN
+
+N:152:153:0:0:25:1:1:128
+A:clockwork
+B:
+D:surrounded by clockwork mechanisms. 
+F:974:0:0:0:0
+S:SEEN
+
+N:152:153:0:0:25:1:1:128
+A:white-hand
+B:
+D:painted repeatedly with mark of the white hand. 
+F:975:0:0:0:0
+S:SEEN
+
+N:152:153:0:0:25:1:1:128
+A:portal
+B:
+D:surrounded by shimmering portals. 
+F:976:0:0:0:0
+S:SEEN
+
+N:152:153:0:0:25:1:1:128
+A:watched
+B:
+D:surrounded by silent watchers. 
+R:SMART
+F:699:0:0:0:0
+S:SEEN
+
+N:153:107:0:0:25:1:1:128
+P:PLACE | SCATTER
+
+N:153:107:0:0:25:1:6:128
+P:PLACE | ROWS | COLS | EDGE
+
+N:153:107:0:0:25:1:11:128
+P:PLACE | CHECKER | EDGE
+
+N:153:107:0:0:25:1:16:128
+P:PLACE | ROWS | COLS | RANDOM
+
+N:153:107:0:0:25:1:21:128
+P:PLACE | CHECKER | RANDOM
+
+N:153:107:0:0:25:1:26:128
+P:PLACE | ROWS | COLS
+
+N:153:107:0:0:25:1:31:128
+P:PLACE | MAZE_WALL
+
+N:153:107:0:0:25:1:36:128
+P:PLACE | CHECKER
+
+N:153:107:0:0:25:1:41:128
+P:PLACE | RANDOM
+
+# This is used to place loose rocks around the room to trigger pit traps
+
+N:154:107:0:0:25:1:0:128
+F:2:0:0:138:0
+P:PLACE | SCATTER
+
+# Poisonous levels
+
+N:155:107:0:0:15:15:0:128
+F:0:0:434:0:0
+
+N:155:107:0:0:15:15:10:128
+F:0:442:434:0:0
+
+N:155:107:0:0:15:15:20:128
+F:0:395:434:0:0
+
+N:155:107:0:0:15:15:30:128
+F:0:397:434:0:0
+
+N:155:107:0:0:15:15:40:128
+F:0:392:434:0:0
+
+N:155:107:0:0:15:15:40:128
+F:0:581:434:0:0
+
+N:155:107:0:0:15:15:40:128
+F:0:990:434:0:0
+
+N:155:107:0:0:15:15:40:128
+F:0:990:434:0:0
+
+# Hints for player to explore the rubble.
+
+N:156:157:0:0:25:25:20:128
+D:You see something shiny 
+
+N:156:157:0:0:25:25:25:128
+D:Splinters of broken bone lie 
+K:1:0:99
+
+N:156:157:0:0:25:25:30:128
+D:A mummified body lies 
+K:6:0:99
+
+N:156:157:0:0:25:25:35:128
+D:A half-crushed arm extends from 
+
+N:157:107:0:0:25:25:0:128
+D:amidst the debris.  
+
+N:157:107:0:0:25:25:0:128
+D:between the fallen stones.  
+
+N:157:107:0:0:25:25:0:128
+D:wedged between two boulders.  
+
+N:157:107:0:0:25:25:30:128
+D:trapped under a huge stone block.  
+
+# Repeat 117 -> 113 entries so that greater vaults and bizarre concaves can start correctly.
+
+N:158:113:0:0:15:1:0:128
+A:
+B:
+D:Worn 
+S:SEEN
+R:STUPID
+
+N:158:113:0:0:15:1:5:128
+A:
+B:
+D:Patterned 
+S:SEEN
+R:SMART
+P:OUTER
+
+N:158:113:0:0:15:1:10:128
+A:
+B:
+D:Gloomy 
+S:SEEN | GLOOMY
+R:HURT_LITE
+P:OUTER
+
+N:158:113:0:0:15:1:15:128
+A:
+B:
+D:Mottled 
+S:SEEN | HIDDEN
+R:SNEAKY
+P:OUTER
+
+N:158:113:0:0:15:1:30:128
+A:
+B:
+D:Skull-inlaid 
+S:SEEN | GRAVE
+R:UNDEAD
+F:0:868:752:0:0
+
+N:158:113:0:0:15:1:30:128
+A:
+B:
+D:Strange 
+S:SEEN | PUZZLE
+R:WEIRD_MIND
+P:OUTER
+
+N:158:113:0:0:15:1:20:128
+A:
+B:
+D:Heavy 
+S:SEEN | ANCHOR
+R:RES_TPORT
+P:OUTER
+
+N:158:113:0:0:15:1:20:128
+A:
+B:
+D:Shimmering 
+S:SEEN | PORTAL
+R:RES_TPORT
+P:OUTER
+
+N:158:113:0:0:15:1:20:128
+A:
+B:
+D:Gleaming 
+S:SEEN | ICKY
+R:EVIL
+P:OUTER
+
+N:158:113:0:0:15:1:20:128
+A:
+B:
+D:Dull 
+S:SEEN | DISPEL
+R:RES_MAGIC
+F:0:868:752:0:0
+
+N:158:113:0:0:15:1:40:128
+A:
+B:
+D:Glistening 
+S:SEEN | BLOODY
+R:EVIL
+P:OUTER
+
+N:158:113:0:0:15:1:50:128
+A:
+B:
+D:Glowing 
+S:SEEN | CURSED
+R:EVIL
+P:OUTER

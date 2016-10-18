@@ -1,0 +1,44 @@
+#
+# Makefile for Angband using the lcc32 compiler
+#
+
+
+#
+# Basic defines (change the file locations as appropriate).
+#
+
+LCC_PATH =	C:\lcc
+LINK	=	$(LCC_PATH)\bin\lcclnk.exe
+CC		=	$(LCC_PATH)\bin\lcc.exe
+RC		=	$(LCC_PATH)\bin\lrc.exe
+LIBS	=	$(LCC_PATH)\lib\winmm.lib
+INCS	=	$(LCC_PATH)\include
+CFLAGS	=	-I$(INCS) -DHAS_STRICMP
+
+
+default: unangband.exe
+
+OBJEXT=.obj
+include commondefs.inc
+
+OBJS = $(COMMONOBJS) \
+	main-win.obj readdib.obj angband.res
+
+
+#
+# Rules
+#
+
+%.obj: %.c $(INCS)
+	$(CC) -c $(CFLAGS) -o $@ $< 
+
+#
+# Targets
+#
+
+unangband.exe:	$(OBJS) Makefile.lcc
+	$(LINK) -s -subsystem windows -o $@ $(OBJS) $(LIBS)
+
+angband.res: angband.rc
+	$(RC) -I$(INCS) angband.rc
+

@@ -1,0 +1,32 @@
+=== Your Home Town ===
+
+Once you are satisfied with your purchases, you should visit the house
+marked by '8' to store any excess equipment, thereby declaring this town 
+your home.  Stores will only restock for you in your home town; 
+elsewhere merchants will show you the same wares every time you call upon.  
+Even your home town merchants will not take you seriously as long as they 
+see you wasting your time travelling around wilderness. 
+
+You'll also discover that it's easy to arrange for the contents of your home 
+to move with you, so that you can keep useful items in your home and be sure 
+they are available for you from place to place.  You may find other 
+non-shop locations in various towns that you can store items in --- 
+be assured that these will be there for you upon your return.
+
+=== Travelling through the Wilderness ===
+
+You can also travel through the wilderness to a nearby dungeon in search
+of adventure.  Use the travel command ('<') when you are on the surface
+and choose wisely an area that promises treasure and fame, not instant death.
+The higher the level of the location, the higher the danger.
+
+After you travel a little, you'll see dungeon entrances marked as '>'.
+To enter a dungeon, stand on the entrance and use the climb down 
+command ('>').  Remember to bring a light source with you 
+and light it up ('|') before you descend, or you may be ambushed.
+
+You can climb back up using the climb up command ('<') if you find 
+a set of stairs up within the dungeon.  To save time, when you arrive 
+at a town that has a dungeon in it, you'll start on the entrance.
+In the wilderness though, you'll have to explore a little to find 
+the dungeon entrance.

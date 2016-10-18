@@ -1,0 +1,1222 @@
+Unangband now uses an online database to record bugs and feature
+requests. See http://developer.berlios.de/bugs/?group_id=331 for
+an up to date list.
+
+The following comprises a rough ideas list not already included
+at that URL.
+
+This file describes my basic to do list for Unangband.
+Also see lib\todo, which is a dumping group for
+various files and ideas.
+
+Release v0.6.2 - v0.6.5
+=======================
+
+MAIN FOCUS: Improve the user interface and game balance.
+
+TODO: Various UI improvements.
+
+TODO: Hold spells and gambits.
+
+TODO: Implement revised bard spell list.
+
+TODO: Stores should preferentially stock items that the player actually buys.
+
+TODO: Commands from menus.
+
+TODO: Improve self-knowledge so that it tells you what the impact of an effect is: You are blind,
+which prevents you reading scrolls or casting spells from books or rune-stones. 
+
+TODO: DEAFEN effect? POLYMORPH player.
+
+TODO: Work on isometric graphics. See http://www.gamedev.net/reference/articles/article742.asp
+and http://www.gamedev.net/reference/articles/article744.asp
+
+TODO: Encumberance reduces energy as opposed to speed.
+
+TODO: Significant improvements to the store system.
+
+TODO: Mark items and monster bodies with blows/spells of the most dangerous monster on the 
+level (acid-marked, blood-stained).
+
+TODO: Persistent levels.
+
+
+Release v0.7.0
+==============
+
+MAIN FOCUS: Complete the quest code. Allow the player to modify and manufacture items.
+
+TODO: Complete quest code.
+
+TODO: Stores, in conjunction with the character's charisma, offer additional quests based
+on what the player state is.
+
+TODO: Create set items as per Sangband, but including sets of dragon armor.
+
+TODO: Assemblies that can be build into objects of any type.
+
+TODO: Add materials system.
+
+TODO: Strike finds nearby terrain preferentially.
+
+TODO:Implement alchemy/manufacturing items.
+
+TODO: Additional store functions. If a store is sold an empty wand / staff, it charges it.
+If a store is sold the constituents for an object it attempts to make it.
+
+TODO:Implement all magic spells so that they are level dependent.
+
+TODO:Implement mana regeneration, searching, detection etc. as a spell effect.
+
+TODO: Drop chunks of metals and large jewels for manufacturing purposes.
+
+TODO: Mystics carry essences.
+
+TODO: Have keys of various kinds.
+
+TODO: Allow the player to fly.
+
+TODO: Allow the player to jump. This may be needed to navigate various
+'puzzle' locations.
+
+
+Release v0.8.0
+==============
+
+MAIN FOCUS: Revise monster AI to fix known AI bugs.
+
+TODO: Allow monsters to ride other monsters.
+
+TODO: Give monsters some AI patterns.
+
+TODO: Fix monster AI to allow correct navigation through all types of terrain.
+
+TODO:Implement monster spellbooks, so that monsters can cast all ACID_MAGIC
+etc. spells.
+
+TODO: SILENCE monster spell prevents you casting.
+
+TODO: Make mushrooms and other mimic monsters 'hide' in objects that they
+mimic.
+
+TODO: Add monster ability 'reflect/beams' and 'reflect shots/thrown'.
+
+TODO: Higher level birds, for bird summoners.
+
+TODO: 'Good' monsters don't summon evil. 'Evil' monsters don't summon good.
+
+TODO: Allow smart monsters to hide themselves in darkness, especially when fleeing,
+and alter terrain between them and the player to either permit los / lof / movement
+or prevent it, depending on whether they are fleeing or not.
+
+
+Release v0.9.0
+==============
+
+MAIN FOCUS: Tidy up in preparation for version 1.0 release.
+
+Lower priority activities are listed here to see if they are feasible or not. They are ideas and
+may not necessarily be added.
+
+TODO: Implement the player hiding in terrain, and items of
+invisibility.
+
+TODO: Walk on terrain flags.
+
+TODO: Storm clouds should now be created by GF_WIND.
+
+TODO: Have electrical projections get 'conducted' by acid, water or metal.
+
+TODO: Have various metal terrains.
+
+TODO: Have the concept of pushing and pulling when interacting with terrain.
+
+TODO: Have siege engines e.g. ballista, catapults etc which are a fixed location for a weapon
+that can be fired.
+
+TODO: Have machines which can be filled with oil and switched on.
+
+TODO: Have crystals of various colours and types, which cause interaction between sound,
+electricity and light.
+
+TODO: Add tents (G:<:R), sails (G:>:R).
+
+TODO: Allow player to dig shallow pits, which fill with water etc to become
+shallow water.
+
+TODO: Let pits and deep pits fill with water to become deep water etc.
+
+TODO: As previous points, but let water flow into a chasm to become a
+waterfall, similiarly lava etc.
+
+TODO: Should be able to traverse chasms/pits once fallen in without damage
+(Actually all MUST_CLIMB terrain).
+
+TODO: Add phases of the moon. During a full moon, light all outside
+locations (but not adjacent locations - so still darker than daylight).
+During a new moon, treat outside like inside.  Should treat one phase
+darker if the night is overcast, and two phases darker if it is
+stormy (2 phases darker during daytime treats like a full moon).
+
+TODO: Add before sunrise and after sunset phases of night. During
+before sunrise, do not light locations to the west. During
+after sunset, do not light locations to the east. These time last
+for half an hour.
+
+TODO: Add an eclipse, which lasts 5 minutes and occurs once... light
+like a full moon.
+
+TODO: I like the idea of being able to get onto the roof of a building. 
+
+TODO: Implement Sangband-like weather system for magic.
+
+TODO: Have groups of spells, that if the player learns one, the
+remainder in the group become harder to learn. 
+
+
+Release v2.0.0
+===============
+
+MAIN FOCUS: To implement things that are a significant departure from
+Angband or Unangband.
+
+TODO: Skill system.
+
+TODO: Have two layers of terrain - wall/feature and 'underlying terrain'.
+
+TODO: Revised wilderness generation.
+
+TODO: Have uniques corresponding to the players family.
+
+TODO: Have a primitive economy.
+
+
+
+
+Notes
+=====
+
+TODO: Implement the player hiding in terrain, and items of
+invisibility.
+	This will require tweaking the monster AI so that
+monsters that cannot see you do something. Acting confused is
+in my opinion, a bit of a hack. I'd rather they left the room,
+or wandered around the room, if they weren't aware of you. Acting
+confused if they are aware of you might be a possibility.
+
+TODO: Give monsters some AI patterns. eg
+Hunt - move to a random room exit, or move down corridor.
+Make decision again when encountering another room exit.
+Attack anyone from another room. Get the bodies and bring
+back to home room.
+
+Patrol - as hunt, but never leave room. Attack anyone from
+another room. Return to room if outside it.
+
+Twitch - move randomly (Don't use unless none other possible).
+
+Gather - Use hunt algorithm to go to another room. If room has
+items, get items and return to home room and drop them in home
+room. Flee anyone from another room if has items, or attack
+them otherwise. (requires take item ability).
+
+Scout - move to a random room exit, or move down corridor.
+Attack anyone from another room, and set immediately to flee.
+Return to home room. (requires ranged attack)
+
+Animals only use patrol and hunt algorithms (Hunting when hungry,
+patrol when satiated).
+
+Rest - never leave room. Remains stationary until detects target.
+Return to room if outside it.
+
+TODO: Implement friendly monsters and uniques.
+	Long overdue, but its a reasonably big job.
+Should be less of a job now, as all spells can be cast by monsters
+on each other and there are cooperative spells that monsters can
+use to assist the player now (such as haste, heal and cure).
+
+TODO: Have conversations with monsters.
+
+Conversations depend on the monster status:
+
+You are given a choice of approximately 5 phrases, two of which are
+'correct' to use in any situation (maybe depend on charisma).
+
+The selection of phrases depends on the 'total status' of the monster
+where medium gives one point and high gives 2.
+
+A correct match occurs if the monster has a low stat in that area
+(negative, positive):
+
+Low Strength: bully, be kind to
+Low Intelligence: insult, be polite to,
+Low Wisdom: dissemble, be honest to,
+Low Dexterity: laugh at, praise
+Low Constitution: flatter, ignore
+
+The negative phrase types lower a random stat, if the monster has that
+stat already low. The positive phrase types increase a random stat, if
+that monster has that stat already low. If the positive or negative
+phrase is used against a monster that has a high stat in that area,
+the monster ignores the player from that point onwards.
+
+With medium stats, the monster has a variety of interactions. Each
+interaction increases that stat from medium to high. Note it is
+(deliberately) not possible to raise constitution through interaction.
+
+Medium Strength: give food to
+Medium Intelligence: give money to
+Medium Wisdom: sell to
+Medium Dexterity: buy from
+Medium Constitution: N/a
+
+With high stats, townsfolk only will give up a useful
+ability/information, and then drop the stat back to medium. Charisma
+determines 'how useful'. Note that townsfolk are hacked never to start
+with good stats.
+
+High Strength: monster lore
+High Intelligence: item/ego item/artifact lore
+High Wisdom: identify item
+High Dexterity: buy good item from(then ignore)/get quest from
+High Constitution: cure disease (for free)
+
+It is possible to get a monster to ally with the player iff they max
+all stats, or minimise all stats.
+
+
+
+TODO:Implement alchemy/manufacturing items.
+	This is low priority at this stage. Perhaps do essences
+as per Sangband, or ingredients based system?
+
+TODO:Implement all magic spells so that they are level dependent.
+
+TODO:Implement mana regeneration, searching, detection etc. as a spell effect.
+
+TODO:Implement monster spellbooks, so that monsters can cast all ACID_MAGIC
+etc. spells.
+
+TODO: Implement skill system. Unangband skill system comes out of the
+specialistaion system: Similar to Sangband, but with restrictions on what
+you can spend skills on based on your surroundings. eg you can only learn
+weapon & shield skill when you are holding or carrying a shield.
+Also add Damage Resistance skill, so that you increase you hps
+independently of total skills.
+
+Instead of Oaths, have totals for certain skill combinations limited to
+a certain value eg highest magic skill + highest weapon skill may not exceed 150,
+Fire Magic + Water Magic may not exceed 150 etc.
+
+Allow spell skills to be learnt based on what spells are known and books
+are held. eg to learn any spell in Cantrips requires the player have a
+Cantrips book.
+
+Other skills: Literacy (Use of scrolls), Wizardy (Use of staffs), Chemistry
+(Use of potions) etc.
+
+TODO: Make mushrooms and other mimic monsters 'hide' in objects that they
+mimic.
+
+TODO: Add tents (G:<:R), sails (G:>:R).
+
+TODO: Allow player to dig shallow pits, which fill with water etc to become
+shallow water.
+
+TODO: Let pits and deep pits fill with water to become deep water etc.
+
+TODO: As previous points, but let water flow into a chasm to become a
+waterfall, similiarly lava etc.
+
+The above three should probably use LAVA, ACID etc transitions, rather
+than HURT_FIRE, HURT_ACID.
+
+TODO: Should be able to traverse chasms/pits once fallen in without damage
+(Actually all MUST_CLIMB terrain).
+
+TODO: Add phases of the moon. During a full moon, light all outside
+locations (but not adjacent locations - so still darker than daylight).
+During a new moon, treat outside like inside.  Should treat one phase
+darker if the night is overcast, and two phases darker if it is
+stormy (2 phases darker during daytime treats like a full moon).
+
+TODO: Add before sunrise and after sunset phases of night. During
+before sunrise, do not light locations to the west. During
+after sunset, do not light locations to the east. These time last
+for half an hour.
+
+TODO: Add an eclipse, which lasts 5 minutes and occurs once... light
+like a full moon.
+
+TODO: Add monster ability 'reflect/beams' and 'reflect shots/thrown'. These cause either
+any bolt/beam attack, or any shot/thrown weapon to reflect in a random compass direction,
+instead of affecting the target. This can also reflect back at the player...
+
+TODO: Create set items as per Sangband, but including sets of dragon armor.
+
+Dragon age	Item	Basic ability		3 of set	4 of set	Entire set
+------------	------	-------------		-------		--------	----------
+Baby dragons	gloves	None.					Act for brand.
+Young dragons	boots	None.			Walk on terrain
+Mature dragons	shield  Good ac. Resistance.			Temp resistance
+Ancient dragons	armour	Resistance, breath. Counts as 2 items of set.
+Wyrms		helm	Res blind, breath.					Immunity.
+
+S:set:tval:sval:number required of set:flag(s)
+S:set:tval:sval:number required of set:flags
+
+Note that only coloured and metallic dragons get gloves / boots / shield / armour / helm
+and have sets.
+
+Metallic dragons also drop their coin type. They only provide immunity, branding, walk
+on terrain and temporary resistance to the base element they prefer.
+Gem dragons drop gems of their type only.
+Drakes drop shields, armour and helms only and do not have sets. However, the shields,
+armour and helms are quite useful...
+
+TODO: Assemblies that can be build into objects of any type. Need some way of noting the final
+tval / sval / ego / artifact type of the item.
+
+Item		Parts
+----		-----
+Sword		Handle, blade, guard, pommel
+Hafted		Handle, head
+Polearm		Handle, head
+Light armour	greaves, breast plate, throat guard etc
+Heavy armour	greaves, breast plate, throat guard etc
+Dragon armour	greaves, breast plate, throat guard etc
+Gloves		left glove, right glove
+Boots		left boot, right boot
+Artifact light	setting, jewel
+
+This in particular allows dragons to always drop parts of dragon armour, that the player
+must assemble into the whole item.
+
+TODO: Out of depth objects should come in assemblies, particularly out of depth artifacts.
+Then, the player is given a quest by the applicable store owner for the additional parts of
+the item. *Important*: Because the player has already 'qualified' for the item by
+having the RNG generate it, we should make the quests suitable for the player level, not
+the object level. Unless we are feeling evil.
+
+TODO: Walk on terrain flags. We horribly hack these and allow the RES_ flags on boots to 
+automatically protect against certain terrain types:
+
+Flag		Ability
+----		-------
+Res_fire	Fire walk	Not harmed by burning oil, fire & smoke
+Res_acid	Acid walk	Not harmed by acid or acidic clouds
+Res_cold	Ice walk	Not harmed by ice, cannot slip on ice, cannot sink in snow
+Res_pois	Swamp walk	Cannot slip on mud, does not sink into mud
+Res_elec	Cloud walk	Cannot fall into chasms that are filled with clouds
+Res_water	Water walk	Cannot sink into water
+
+This is of course, a horrible hack. Note that boots of cloud walking break many of the
+puzzles we would otherwise force solutions for by using chasms.
+
+TODO: Extend the idea of clouds to include chasms being affected by HURT_COLD, HURT_WATER,
+HURT_ACID and HURT_FIRE to create snow clouds, mist, acidic clouds and smoke respectively.
+In order that these can effectively be 'cloud-walked', have them transition as follows
+       	      SPREAD                   INSTANT
+snow cloud    ----->   thinning cloud  ------>    chasm
+       	      HURT_ACID
+       	      <--------
+			G:>:W
+                 	D:The snow cloud begins to thin.
+
+       SPREAD                   INSTANT
+mist   ------>   thinning mist  ------>    chasm
+       HURT_WATER
+       <---------
+		 G:>:W
+                 D:The mist begins to thin.
+
+       		SPREAD                    INSTANT
+acidic cloud    ------>   thinning cloud  ------>    chasm
+       		HURT_ACID
+       		<--------
+			  G:>:G
+                 	  D:The acidic cloud begins to thin.
+
+         SPREAD                    INSTANT
+smoke    ------>   thinning smoke  ------->    chasm
+       	 HURT_FIRE
+       	 <--------
+		   G:>:S
+                   D:The smoke begins to thin.
+
+
+
+This gives the player one turn (or more for faster players) in order to move off the
+cloud space.
+
+Because chasms are not floors, it is possible to use ball spells and beam spells to
+create clouds in the chasms very easily.
+
+In order to create temporary bridges, allow mist to be frozen to create an icy bridge - 
+which times out and collapses.
+
+Create cloud levels, which are levels that are 95% unbridged chasms. Have each room
+contain either boots of cloud walking or wands of bridge building or web building. Have
+each cloud walking room surrounded by a lump of irregular rock that contains a waterfall
+of either oil, water, lava or acid, next to the room exit. This forces the player to
+experiment with cloud walking in order to move between the room locations.
+
+TODO: Storm clouds should now be created by GF_WIND. GF_WIND should be used to create other
+storm effects (e.g. waves), as opposed to the current random hack. GF_WIND should instead
+randomly be applied over a level depending on some kind of wind factor - particularly
+on surface levels.
+
+TODO: All magically created terrain should create a timer on it, which times out after a
+number (50?) of turns and reverts to the old terrain. This should also apply to timed
+terrain. Possibly use objects to create these timers.
+
+TODO: Have electrical projections get 'conducted' by acid, water or metal. This means that
+instead of using the standard projection code, if an electrical projection hits a grid
+that is conductive, it instead randomly moves between adjacent conductive squares until
+maximum range is achieved (use MAX_SIGHT as an upper limit). Ball attacks should be
+conducted more effectively, so that radius does not decrease damage.
+
+TODO: Have various metal terrains, including metal floors, metal walls (which cannot be
+tunnelled or bashed, but are not permanent).
+
+TODO: Have the concept of pushing and pulling.
+
+Items which can be pushed:
+piles of ice / rubble / wood
+chests
+wooden platforms
+wooden / iron / spiked cages (new terrain)
+various traps (get activated when pushed)
+sliding walls (new terrain)
+weak wooden platforms (turn into pile of wood when pushed)
+boulders (new terrain)
+
+You can push terrain to an adjacent terrain provided the adjacent terrain has a SLIDE
+flag.
+
+Terrain which has slide flag:
+ice / slimy floor
+oil-coated floor
+slopes (can slide down slope only, however get momentum similar to pulling as below)
+shallow / normal / deep pits / chasms (can push terrain into this location, but not out
+- it fills the pit up and destroys the terrain)
+chain (but not rope or vines)
+
+Items which can be pulled:
+rope / chain / vines
+
+If you pull a terrain, it pushes one adjacent terrain with a PUSH flag to its own location,
+and then your location the following turn. If that terrain has a PULL flag, it continues
+to pull in the direction you are pulling from instead.
+
+Add stone chests, which can be pushed around but not opened. It is only possible to open these
+by pushing them into a pit.
+
+You can push monsters into adjacent terrain.
+
+TODO: Have siege engines e.g. ballista, catapults etc which are a fixed location for a weapon
+that can be fired.
+
+TODO: Have machines, which are terrain types which when filled with oil and then hurt by
+electricity, can create various types of effects. A furnace creates fire. A generator creates
+electricity. A pump moves oil/water/acid around. An engine pushes or pulls or opens or 
+closes stuff. Two adjacent generators in alternate turns when feed by oil can continuously
+run together. 
+
+Machines can be manually operated by opening and closing them, as opposed to having
+to hurt them with electricity. However, they require oil.
+
+Create puzzle rooms, using machines. e.g. a pump has to be used to fill a furnace,
+because if oil is moved directly next to the furnace, it is set on fire by the furnace and
+no longer usable. e.g. an engine has to be run to open a valve to feed oil to a machine.
+e.g. an engine has to open an otherwise inaccessible door to let out a monster that the
+player has to fight.
+
+TODO: Have crystals of various colours and types, which cause interaction between sound,
+electricity and light. A dark crystal absorbs light and creates electricity. A clear crystal
+absorbs electricity and creates light. A glowing crystal gives off light and fades. A mirror
+reflects light and electricity around. Sound destroys all crystals and mirrors, except tough
+coloured crystals. Note that all crystals should let light through. Note that crystals cannot
+be tunnelled, and are impassable.
+
+Crystal rooms should start off lit so that the puzzle is fully visible...
+
+To create a basic crystal clearing problem, where the strategy is to minimise the number of
+light beams required to clear a path, create a room and fill it with crystals, except for a 1 width
+wide path at the bottom. Pick a column of the room and a crystal colour. Then write a sentence
+in diagonally down and up that results in each adjecent crystal vibrating from the effect of
+the attack of the adjacent crystal. Start with light on the 1st crystal.
+
+Valid sentences are:
+
+rbbbbb...
+grbbbbb...
+
+
+               HURT_LITE
+dark crystal   --------->   charged crystal
+               TIMED
+               <------
+	       HURT_SOUND   
+               ---------->  open floor
+
+	       HURT_ELEC
+clear crystal  --------->   glowing crystal
+               TIMED
+               <------
+	       HURT_SOUND   open floor
+               ---------->
+
+              HURT_LITE
+red crystal   --------->    vibrating red crystal
+              TIMED
+              <------
+              HURT_ELEC     glowing red crystal
+              --------->
+              TIMED
+              <------
+              HURT_SOUND    charged red crystal
+              ---------->
+              TIMED
+              <------
+So a line of red crystals   123123123123  
+
+e.g. regardless of what a red crystal is hit with, every adjacent location is hit by
+sound energy at some point, if there are at least 2 adjacent.
+
+adjacent to other crystal colours
+
+colour	light based causes partner to vibrate?   elec based causes partner to vibrate?
+------  --------------------------------------   ------------------------------------
+red			 no					  yes
+green	                 no                                       no
+blue	                 yes                                      no
+yellow                   no    					  yes
+
+
+green crystal HURT_ELEC     vibrating green crystal
+              --------->
+              TIMED
+              <------
+              HURT_LITE     glowing green crystal
+              --------->
+              TIMED
+              <------
+              HURT_SOUND    charged green crystal
+              ---------->
+              TIMED
+              <------
+
+So a line of green crystals   1313131313   where 1 - vibrating, 2 - glowing, 3 - charged
+                         or   2222222222
+
+e.g. it is safe to hit 2 adjacent green crystals with lite, but hitting 2 adjacent crystals
+with sound or electricity causes every adjacent location to be hit with sound energy at some
+point.
+
+adjacent to other crystal colours
+
+colour	light based causes partner to vibrate?   elec based causes partner to vibrate?
+------  --------------------------------------   ------------------------------------
+red			 yes					  no
+green	                 no                                       no
+blue	                 no                                       yes
+yellow                   yes   					  no
+
+
+blue crystal  HURT_SOUND    vibrating blue crystal
+              ---------->
+              TIMED
+              <------
+              HURT_LITE     charged blue crystal
+              --------->
+              TIMED
+              <------
+              HURT_ELEC     glowing blue crystal
+              --------->
+              TIMED
+              <--------
+
+So a line of blue crystals    2323232323   where 1 - vibrating, 2 - glowing, 3 - charged
+                         or   1111111111
+
+e.g. hitting 2 adjacent green crystals with sound energy causes them all to be emit sound
+continuous, but but hitting them with lite or electricity causes them to pass on lite and
+electricity.
+
+adjacent to other crystal colours
+
+colour	light based causes partner to vibrate?   elec based causes partner to vibrate?
+------  --------------------------------------   ------------------------------------
+red			 no					  yes
+green	                 yes                                      no
+blue	                 no                                       no
+yellow                   no   					  yes
+
+
+yellow crystal  HURT_SOUND    glowing yellow crystal
+                ---------->
+                TIMED
+                <------
+                HURT_LITE     vibrating yellow crystal
+                --------->
+                TIMED
+                <------
+                HURT_ELEC     charged yellow crystal
+                --------->
+                TIMED
+                <------
+
+So a line of yellow crystals  1212121212   where 1 - vibrating, 2 - glowing, 3 - charged
+                         or   3333333333
+
+e.g. hitting 2 adjacent yellow crystals with electrical energy causes them all to be emit
+electricity continuously, but but hitting them with sound or lite ensures that all adjacent
+locations are hit with sound at some point.
+
+colour	light based causes partner to vibrate?   elec based causes partner to vibrate?
+------  --------------------------------------   ------------------------------------
+red			 no					  no
+green	                 no                                       yes
+blue	                 yes                                      no
+yellow                   no   					  no
+
+
+So what parameters can be manipulated by light and electricity only.
+
+x - dark, o - light, rgby - coloured, 1 - vibrating, 2 - glowing, 3 - charged  
+
+In a line of crystals, with a single coloured crystal
+
+xxxxxxxx   nothing transmitted, however a light beam can pass through to the end
+
+oooooooo   nothing transmitted, however a light beam can pass through to the end
+
+xoxoxoxo   hit first dark with lite
+32323232
+
+oxoxoxox   hit first lite with elec, or first dark with beam/ball of lite
+23232323
+
+ooooooor   hit with lite, red destroys all adjacent crystals and stops
+       1
+oooooo r
+
+oxoxoxor   red destroys adjacent crystals and stops, if a clear crystal next to it
+23232321
+oxoxox r
+
+xoxoxoxr   red has no impact if all crystals adjacent are dark, just ends up glowing
+32323232
+xoxoxoxr
+
+ooooooog   hit with lite, green just ends up glowing
+       1
+ooooooog
+
+oxoxoxog   green has no impact if all crystals adjacent are clear, just ends up glowing
+23232322
+
+xoxoxoxg   green destroys adjacent crystals and stops, if a dark crystal next to it
+32323231
+xoxoxo g
+
+xoxoxoxb   blue never destroys adjacent clear or dark crystals, just ends up acting like
+32323232   a dark crystal
+
+oxoxoxob
+23232323
+
+oxoxoxoy   yellow always destoys adjacent crystals if there is a lit crystal next to it
+           yellow never destroys crystals if all adjacent crystals are dark            
+
+Which order to hit crystals in?
+
+ooooooooooo
+ogoboyorogo
+ooooooooooo
+
+oooooo   oo
+ogoboy   go   Hitting red.   
+oooooo   oo
+
+oooo   oooo
+ogob   rogo   Hitting yellow.
+oooo   oooo
+
+222oooooooo
+2g2boyorogo   Hitting green.
+222oooooooo
+
+oo222oooooo
+og2b2yorogo   Hitting blue.
+oo222oooooo
+
+123456789
+ooooooooo
+ogxboyxro
+ooooooooo
+
+   22oooo
+   b2yxro     Hitting column 2.
+   22oooo
+
+   22oooo
+   b2yxro     Hitting column 3.
+   22oooo
+
+   22oooo
+   b2yxro     Hitting column 4.
+   22oooo
+
+oooo   oo
+ogxb   ro     Hitting column 6.
+oooo   oo
+
+ooooooooo
+ogxboyxro     Hitting column 7.
+ooooooooo
+   
+
+   22oooo
+   b2yxro     Hitting column 2.
+   22oooo
+
+   22oooo
+   b2yxro     Hitting column 3.
+   22oooo
+
+   22oooo
+   b2yxro     Hitting column 4.
+   22oooo
+
+oooo   oo
+ogxb   ro     Hitting column 6.
+oooo   oo
+
+oooooo   
+ogxboy        Hitting column 8.
+oooooo   
+
+123456789
+ooooooogo
+ooooooboo
+ooooorooo
+ooooyoooo
+ooobooooo
+oogoooooo
+orooooooo
+ooooooooo
+
+ooooooogo
+ooooooboo
+ooooorooo
+ooooyoooo
+ooobooooo
+  goooooo
+ r oooooo
+   oooooo
+
+ooooooogo
+ooooooboo
+ooo  rooo
+ooo y ooo
+ooob  ooo
+oogoooooo
+orooooooo
+ooooooooo
+
+ooooooogo
+oooo   oo
+oooo   oo
+oooo   oo
+ooobooooo
+oogoooooo
+orooooooo
+ooooooooo
+
+oooooo g
+oooo  b 
+ooo  r 
+ooo y ooo
+o  b  ooo
+  g ooooo
+ r  ooooo
+   oooooo
+
+Hitting the blue crystal in this instance, causes a chain reaction...
+
+
+TODO: Have light spells use line of sight, as opposed to line of fire, for their
+projections.
+
+
+TODO: It should now be possible to create trapped areas as follows (where < is falling
+terrain and % is a vent):
+
+####.      #####.
+#<%%.   or #<%%%.
+####.      #####.
+
+This results in the the floor locations getting hit, on the left, every 3 turns,
+or on the right every 4 turns (an adjacent water fall will hit every 2 turns).
+
+TODO: Additional store functions. If a store is sold an empty wand / staff, it charges it.
+If a store is sold the constituents for an object it attempts to make it.
+
+
+TODO: Stores, in conjunction with the character's charisma, offer additional quests based
+on what the player stat is. In particular:
+* if the player is diseased (and not just lightly) have the temple offer a quest to cure the
+particular disease.
+* same for drained stats.
+* if the player has part of an assembly, the store owner gives a quest for the next part
+* the armoury gives quests to kill additional dragons, once a first dragon of a particular
+type is killed, to collect the skin in order to make the appropriate dragon object
+* all stores give quests if they are sold an object they are not aware of, to find an
+additional x objects to 'analyse how it is made'
+* once this quest is complete, a store offers a quest to restock the same, by killing x
+monsters of a particular type and collecting a body part of some kind
+
+TODO: Drop chunks of metals and large jewels for manufacturing purposes.
+
+TODO: Stores should preferentially stock items that the player actually buys.
+
+TODO: Mystics carry essences.
+
+TODO: Have an option birth_evil that automatically flags the player as evil. This means
+they do not have to worry about which weapon combinations to wield as much. Also, evil players
+will never get allies.
+
+TODO: Have uniques corresponding to the players family. They are primarily quest 
+givers, however, if the player is evil, they will spit, insult, and wail at
+the player. (Considering vomit on, but it might be a bit much).
+
+TODO: Higher level birds, for bird summoners.
+
+TODO: 'Good' monsters don't summon evil. 'Evil' monsters don't summon good.
+
+TODO: I like the idea of being able to get onto the roof of a building. In which case, the line of
+sight algorithm needs to be special cased, so that all 'roof' grids block line of sight in
+the traditional sense, and the player only has line of sight and line of fire to monsters with
+MFLAG_OVER set.
+
+
+e.g. ......,,,
+     .#####,,,
+     .##b##,,,
+     .#a##@,,,
+     .#####,,,
+     ......,,,
+
+The player gets LOS calculated to the grids marked with a , normally. However,
+all the roof grids block LOS in the traditional sense (otherwise the player would
+see the floors underneath the roof). The player can't see or project to the 'a' ant, because
+the ant does not have the MFLAG_OVER set. e.g. the ant is on
+the real floor underneath the roof.
+
+However the player can see and the 'b' bat, because the bat has the MFLAG_OVER set (e.g. is
+flying over the building). Furthermore, if the player throws a fireball at the bat, the ant
+won't be affected. This requires setting some kind of PROJECT_OVER flag set when projecting
+at a target when you are climbing or MFLAG_OVER, and the first step is covered...
+
+TODO: Elemental effects that cause more than 100 hp damage (before resistance) “The air around you
+is superheated/frozen.” “There is a static feeling in the air.” “Water swirls about you.” “Acid
+swirls about you.” These mean that when you attempt to use  an item vulnerable to the effect
+e.g. potion it is destroyed (Or for electricity, discharged), unless the item ignores the effect.
+This occurs even if you are immune. This can also be associated with room types, or
+when you activate an item / cast a spell that does more than this in damage. Wind causes windy
+effect preventing missiles/throwing.
+
+TODO: Allow monsters to ride other monsters.
+
+We display this by 'shimmering' both the ATTR and CHAR of both the riding and ridden monster.
+The ridden monster moves for both monsters. The riding monster can choose to jump off,
+or make ranged or melee attacks. Mature dragons (but not ancient or wyrms), drakes, horses,
+large wolves, bears, large birds etc. can be ridden. Majority of attacks are aginst the ridden
+monster, as opposed to the riding but PROJECT_BOOM affects all monsters in the stack.
+
+The ridden monster sits at the top of the stack...
+
+Should allow player to ride friendly or unfriendly monsters. Similarly, player may choose to
+jump off at any time, or 'order' the monster around. May have easy_rider option to allow 
+movement keys to order the monster around. We deliberately make ridden monsters hard to
+control by the player, and not correspond to the player speed.
+
+TODO: Have a primitive economy.
+
+Store purse size increases by the profit they make from sales, and reduces by the cost they make
+from purchases. Cycling stock out earns the store 50% of the stock value; new stock in costs the
+store 50% (maybe 40% - test) of the stock value. The stock costs and profits on the blackmarket
+are likely to be different... services of course, never cost the store anything.
+
+Prices inflate based on the total purse size of the town / divided by the default purse size of
+each store.
+
+e.g. if the player has bought lots of stuff, prices go up. If they sell lots of stuff, prices go
+down. However costs don't go down as fast as prices, if at all.
+
+A store can go bankrupt if they run out of money, and are unable to sell their stock. To make this
+more likely, a store with a small purse size is more likely to put stuff on sale to try to make a
+profit. Note that the costs of purchasing this stock do not get discounted so they are likely to
+continue to lose money this way. When a store bankrupts, the inflation in the economy is affected
+implicitly, because there is a smaller total purse size in the town.
+
+A new shopkeeper will come in after a short while after a store is bankrupted. The new shop has a
+chance of being in competition with an existing shop, as opposed to being the same type of store
+as previously.
+
+A store keeps track of player purchases and sales. A sale decreases the frequency of a store
+restocking an item. A purchase increases the frequency. High frequencies have the following impact:
+ *  the store is more likely to stock multiples of the item
+ *  the store increases the price of the item (special orders, increased demand)
+ *  very high frequencies cause multiple shops to stock an item. The threshold is likely to be
+initial shop, then general store, then black market (the black market always charges a premium).
+ *  when this happens, overall prices drop again (production has increased)
+
+Low frequencies have the following impact:
+ *  the item is more likely to be discounted
+ *  the shopkeeper may stop stocking the item
+ *  the shopkeeper may refuse to purchase the item
+
+If multiple stores in a town stock the same item, the player gets an advantage whilst haggling
+and the shopkeeper is likely to arrive at the final price sooner and this price will be closer
+to the cost. If only one store stocks the item, the reverse happens (this is the Angband default -
+be sure to balance it correctly).
+
+Each town has a separate currency, that the player must conver their money to in order to buy
+anything. The player collects money in which ever currency they last had. The conversion rate
+is affected by the inflation of the old and new towns, with an overhead tax, depending on how
+usurous the money changer is.
+
+The player can donate to certain stores (the temple, the magic shop - for research), and tip others.
+Some shopkeepers are are too proud to accept. Potentially though e.g. the general store may have
+a Village Idiot fund etc.
+
+
+TODO: Add a materials system.
+
+TV_MATERIAL
+
+SV_MATERIAL_WOOD – a bundle of #; staffs
+
+SV_MATERIAL_METAL – a chunk of #; wands
+
+SV_MATERIAL_STONE – a large #; rings
+
+Some items are generated with {empty socket}. This can have an SV_MATERIAL_STONE applied
+to it. The resulting item also gets the abilities of the ring applied to it that is
+associated with the stone.
+
+Ego-items. Each ego item is associated with a wand sval. The ego item is ‘flavoured’ with
+the flavour of the wand. (e.g. Red Armour of Elvenkind).
+
+Item forging: this is a way of turning junk, bodies or materials into useful items. Forging
+needs a source of fire.
+
+You ‘add items’ to a forging session, and it comes up with a list of possible outcomes, from
+which you pick one item.
+
+Bodies and body parts can be turned into rations, potions, ink, skeletons or parts of bodies;
+skeletons into multiple bones.
+
+Skulls can be turned into empty bottles or potions (with body parts or other potions).
+
+Bones can be turned into batons, clubs or arrows.
+
+Branches can be turned into staffs, torches, bundles of wood, clubs, batons, arrows.
+
+Skin can be turned into scrolls (with feathers and ink), empty flasks, hafted weapons (with
+metal), soft armour, leather, cloaks.
+
+Wood can be turned into staffs, pole arms (with metal), arrows.
+
+Metal can be turned into wands, swords, hard armour and used to create higher level soft
+armour, ego-items, bolts, shot (but not pebbles).
+
+Stones can assist the creation of other items.
+
+Potions can be turned into other potions, ink.
+
+Extra powers can be based on the flavour and/or flags of associated with the objects
+creating an item (staff power for wood, wand power for metal, ring power for stone).
+
+Rods, amulets can be forged from a variety of materials, depending on flavour.
+
+TV_ESSENCE, SV_ESSENCE_attack effect (e.g. GF_ ).
+
+Essences can be used to add flags to item.
+
+
+
+Suggested by Eddie Grove:
+
+> The way things are currently set up, if you carry too much weight
+> compared to your strength, you get a speed penalty.  I will call that
+> the encumbrance.
+>
+> The encumbrance currently matters a whole lot for starting characters,
+> and hardly at all for endgame characters.  Suppose the penalty is -2.
+> At the beginning, a drop from speed 0 to speed -2 drops energy from
+> 10/gameturn to 8/gameturn.  That is a big deal.  Late in the game,
+> when you haste and fight at +26 speed, the difference in dropping down
+> to +24 speed is a nearly inconsequential drop from 36/gameturn to
+> 34/gameturn.  If you can manage +36 speed, the drop is nothing at all
+> from 40/gameturn to 40/gameturn.
+>
+> I suggest a change so that an encumbrance of -2 means -20% to energy.
+> Then, at +36 speed, energy would drop from 40/gameturn to 32/gameturn.
+> That is noticeable, and would make weight relevant in the endgame.
+
+
+TODO: Various UI improvements.
+
+* Squelch / automizer.  I think these are overkill, especially with
+magical bags. Of course, I generate lots of junk in the dungeon, so
+they may not be. However, I'd hope that auto-inscriptions allow you to
+do most of this anyway, with a lot simpler an implementation.
+
+* Adopting platform independent macro key code from variants such as
+NPPAngband where you can specify e.g. \[tab] to mean the tab key on
+any platform. Credit Mogami correctly.
+
+* When you press a number e.g. 1 while selecting an item, and you
+don't have a valid '1' binding (either by an inscription or
+automatically from the quiver), you get prompted for a 'Pick an item
+to select with the '1' key for this action?' The item then gets
+inscribed with @f1 etc as appropriate.
+
+* Allow numbers to be used in books to mean '1st spell learnt in that
+book, 2nd spell learnt' in the order the player has learnt spells.
+
+* Define tab to mean either m11. or f1. depending on whether you are a
+mage/shaman or not. Then the first time you press tab, you will be
+prompted to pick an item, and every subsequent tab key will either
+cast or fire the item at the target. (I assume here 1st mage spell
+learnt is attack spell).
+
+* Styles and substyles need to have .prf files defined.
+
+* Investigate use of 'n' in ToME.
+
+* Investigate an easy_macro's option that automatically clears -more-
+prompts, and lets you verify stuff (and other sensible options) whilst
+still specifying a string of keys/commands. e.g. don't require that
+the player have to define every macro starting with \e\e\e and other
+'weird' options. Also use this to 'detect' if the macro has been
+entered wrong somehow e.g. assume the player only wants to define a
+single command combination.
+
+* Make all commands accessible from drop-down menus in the GUI.
+
+TODO: Hold spells and gabmits.
+
+* Expand the hold_spells option to allow bards to specify under what
+circumstances to cast spells. They get a maximum of 1 casting per
+round and can specify 1 held spell, plus 1 every 5 levels.
+e.g.
+a)  Cure mortal wounds - cast immediately when reach hit point warning
+b)  Prayer - cast immediately when spell expires
+c)  Detect traps - cast immediately when leaving area detected traps
+d)  Light - cast immediately when entering a dark room
+e)  Remembrance - cast at end of turn when experience has been drained
+
+* Expand on this system for 'gambits' for all players. However, note
+for other classes, the actions specified override the player's turn,
+so it may only be safe to allow these whilst the player is searching.
+
+e.g.
+
+b)  Prayer - cast instead of searching when spell expires
+c)  Detect traps - cast instead of searching when leaving area detected traps
+d)  Light - cast instead of searching when entering a dark room
+
+or
+
+a)  Rod of Detect Traps - zap instead of searching when when leaving
+area detected traps
+b)  Palantir - activate instead of searching when entering a dark room.
+
+etc.
+
+We want to future proof these gambits so that the player can specify
+gambits for monsters / allies under their control at a later date. Its
+probably worth while allowing the player to directly invoke commands /
+use items as opposed to indirectly doing this via a macro, as then the
+gambit system can intelligently determine if they have the item in
+question before attempting the gambit.
+
+Alternately, we could just come up with a better way of managing spells
+which have a duration.
+
+TODO: Implement Sangband-like weather system for magic. Hot / cold
+temperature, still / windy conditions and wet / dry humidity help and
+penalise various elemental types [1]. Rather than base this strictly
+on the weather, I'd probably sample the surroundings of the player,
+count e.g. the number of fire vs ice squares, and then adjust upwards
+and downwards based on the amount of fire or ice magic cast by the
+player and monsters. This means in fiery locations and around fiery
+monsters, fire spells do more damage. Of course, said monsters tend to
+be immune to fire... however the cold magic they tend to be vulnerable
+to does less damage in hot conditions.
+
+[1]  From memory still benefits poison, windy benefits lightning, wet
+benefits water, and dry benefits acid. I could be wrong though.
+--
+
+
+
+TODO: Allow the player to jump. This may be needed to navigate various
+'puzzle' locations.
+
+Jumping can either be done to the squares a player is charging into (e.g.
+with a run up) or from an EASY_CLIMB location that the player has climbed
+onto. Jumping allows the player to ignore hit_trap effects or terrain damage
+(except for filled terrain) for a single location. They must then move to
+an adjacent location. Use charging directions for the locations that they
+can move into.
+
+Jumping is only possible through locations that have the CAN_FLY flag.
+
+Jumping is only possible if the player is below 50% encumberance or has
+the feather fall flag.
+
+
+TODO: Allow the player to fly.
+
+There are two types of flying: flying because the player is so light due
+to accumulated feather fall flags, where they can run on water and clouds
+ala Crouching Tiger, Hidden Dragon, and flying where the player has
+unpowered (Gliding) or powered (Flying or Hovering) flight.
+
+Gliding allows the player to fly only when they are charging. As a result,
+gliding fails as soon as a player attacks or does any other action other
+than moving in a restricted set of directions.
+
+Flying acts as per gliding, but allows the player a number of turns 'sinking'
+or 'landing', before the flight actually fails. This gives the player the
+opportunity to attack or act for a limited period while flying.
+
+Hovering just treats the player as flying all the time, except in locations
+that are not CAN_FLY.
+
+Accumulated levels of feather fall allow the player to (2 flags) walk on mud
+and snow, (3 flags) walk on water, or (4 flags) walk on clouds, as per the
+various walking flags above. Note that walking on air except clouds is not
+possible using accumulated feather fall levels.
+
+TODO: Significant improvements to the store system.
+
+We now record the stock a store will sell in each store, so we should make
+significant improvements here.
+
+In particular, it should be possible for a player to order in certain items,
+if its not currently stocked, as per FAngband.
+
+We should also improve the selling of magic books to stores. We should tie
+a magic book to certain flags. When the magic book is sold, the store then
+becomes capable of selling equipment with these flags, in addition to offering
+extra store services.
+
