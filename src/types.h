@@ -1330,6 +1330,9 @@ struct store_type
 	byte stock_num; /* Stock -- Number of entries */
 	s16b stock_size;/* Stock -- Total Size of Array */
 	object_type *stock;     /* Stock -- Actual stock items */
+        
+        /* An artifact that always appears*/
+        s16b auto_artifact;
 };
 
 

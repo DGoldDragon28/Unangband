@@ -1223,7 +1223,34 @@ static void store_create(int store_index)
 
 		/* Paranoia */
 		tval_drop_idx = 0;
+                
+                /* Hack -- handle fixed artifacts */
+                if(st_ptr->auto_artifact) {
+                    artifact_type art = a_info[st_ptr->auto_artifact];
+                    if(art.cur_num == 0) {
+                        /* Set pointer */
+                        i_ptr = &object_type_body;
+                        /* Get base item */
+                        k_idx = lookup_kind(art.tval, art.sval);
+                        /* Prep the object */
+                        object_prep(i_ptr, k_idx);
+                        /* Set as artifact */
+                        i_ptr->name1 = st_ptr->auto_artifact;
+                        /* Apply artifact attributes */
+                        apply_magic(i_ptr, -1, TRUE, TRUE, TRUE);
+                        /* Get store origina */
+                        i_ptr->origin = ORIGIN_STORE_REWARD;
+                    
+                        /* Its now safe to identify quest rewards */
+                        object_aware(i_ptr, TRUE);
+                        object_known(i_ptr);
 
+                        /* Attempt to carry the (known) object */
+                        (void)store_carry(i_ptr, store_index);
+
+                        return;
+                    }
+                }
 		/* Quest rewards */
 		if ((total == 0) && (st_ptr->base == STORE_QUEST_REWARD))
 		{

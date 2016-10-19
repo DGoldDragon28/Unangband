@@ -344,7 +344,8 @@ int set_routes(s16b *routes, int max_num, int from)
 			/* Check for maps */
 			if ((inventory[i].k_idx) && (inventory[i].tval == TV_MAP))
 			{
-				/* Add map routes */
+                                if(inventory[i].pval && (inventory[i].pval != p_ptr->dungeon)) continue;
+                                /* Add map routes */
 				routes[num++] = actual_route(inventory[i].sval);
 			}
 
@@ -355,7 +356,13 @@ int set_routes(s16b *routes, int max_num, int from)
 				for (ii = 0; ii < INVEN_BAG_TOTAL; ii++)
 				{
 					/* Slot holds a map */
-					if ((bag_holds[inventory[i].sval][ii][0] == TV_MAP) && (bag_contents[inventory[i].sval][ii]))
+					if ((bag_holds[inventory[i].sval][ii][0] == TV_MAP) 
+                                                && (bag_contents[inventory[i].sval][ii])
+                                                && (bag_contents[inventory[i].sval][ii])
+                                                && (((k_info[lookup_kind(TV_MAP, 
+                                                bag_contents[inventory[i].sval][ii])].pval)
+                                                == p_ptr->dungeon) || ((k_info[lookup_kind(TV_MAP, 
+                                                bag_contents[inventory[i].sval][ii])].pval) == 0)))
 					{
 						/* Add route */
 						routes[num++] = actual_route(bag_holds[inventory[i].sval][ii][1]);

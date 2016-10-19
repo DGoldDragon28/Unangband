@@ -7305,7 +7305,17 @@ errr parse_u_info(char *buf, header *head)
 		/* increase counter for 'possible tval' index */
 		cur_w++;
 	}
-
+        
+        /* Process 'A' for "Artifact" */
+	else if (buf[0] == 'A')
+	{
+		int art;
+		/* only sixteen B: lines allowed */
+		if (u_ptr->auto_artifact) return (PARSE_ERROR_GENERIC);
+                
+                if (1 != sscanf(buf+2, "%d", &art)) return (PARSE_ERROR_GENERIC);
+                u_ptr->auto_artifact = art;
+	}
 	else
 	{
 		/* Oops */
