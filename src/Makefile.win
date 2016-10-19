@@ -1,4 +1,8 @@
-#
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#!!!  ***DEPRECATED***   !!!
+#!!! For a Windows build !!!
+#!!! use Makefile.cyg    !!!
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # Makefile for Windows systems using gmake
 #
 #
