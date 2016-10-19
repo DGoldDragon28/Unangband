@@ -20295,3 +20295,10 @@ F:CAN_CLIMB | CAN_FLY | HIDE_ITEM |
 F:ATTR_LITE |
 D:You are surrounded by a bitter-tasting clear gas! It seems to have no effect.
 
+N:1000:treasures of Orthanc
+G:+:U
+W:35:0:20:0
+K:DEFAULT:1000:51
+F:LOS | PROJECT | MOVE | NOTICE | REMEMBER | ENTER | PERMANENT |
+F:GLOW | CAN_FLY |
+F:OUTSIDE | ATTR_LITE |

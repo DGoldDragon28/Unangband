@@ -567,9 +567,10 @@ D: of Saruman's machinations, you open the easier path to Minas Tirith.
 N:33:emptied Isengard
 X:29:35:0:0
 Q:51:532
+S:1000:0:0:0:0:0:0:0
 L:30:407:420:397:141:514:31:0:DESTROYED | SURFACE | DAYLIGHT | TOWER | WILD | ROOMS | TUNNELS:
 L:31:141:56:0:0:0:31:0:TOWER | LESS | MORE:
-L:45:141:56:0:0:532:31:0:TOWER | MORE:
+L:45:141:56:407:0:532:31:0:TOWER | TOWN | MORE:
 D:Almost all of the Saruman's army went for Hornburg.  What are the
 D: tidings?
 

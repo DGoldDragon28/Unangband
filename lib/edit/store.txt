@@ -549,6 +549,7 @@ B:Mushroom
 
 N:24:the Mirror of Galadriel
 X:2
+A:1
 
 N:25:Shrine
 X:6
@@ -930,6 +931,7 @@ X:2
 
 N:43:vault of the city of Erebor
 X:2
+A:3
 
 N:44:the Brandywine Barge House
 X:3
@@ -1030,3 +1032,6 @@ X:0
 N:50:pavilion of the Army of the West
 X:2
 
+N:51:treasures of Orthanc
+X:2
+A:7

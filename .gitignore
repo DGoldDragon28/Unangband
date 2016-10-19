@@ -4,6 +4,8 @@
 *.tgz
 *.raw
 *.prf
+lib/user/
 lib/save/
 *.INI
+.project
 

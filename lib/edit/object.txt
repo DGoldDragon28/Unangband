@@ -5725,7 +5725,7 @@ W:40:0:10:1800
 A:40/4
 P:0:1d1:0:0:0
 
-# Maps. Used to travel to locations in t_info.txt (By sval).
+# Maps. Used to travel to locations in t_info.txt (By sval) from location by pval.
 
 N:692:to the mountain Caradhras
 G:?:U
@@ -5736,7 +5736,7 @@ P:0:0d0:0:0:0
 
 N:693:to the Paths of the Dead
 G:?:U
-I:72:50:0
+I:72:50:37
 W:30:0:5:250
 A:30/2
 P:0:0d0:0:0:0
@@ -5748,58 +5748,29 @@ W:20:0:5:250
 A:20/2
 P:0:0d0:0:0:0
 
-N:695:to Shelob's Lair
+N:695:to Cirith Ungol
 G:?:U
-I:72:56:0
+I:72:56:55
 W:40:0:5:1250
 A:40/2
 P:0:0d0:0:0:0
 
-N:696:to Mount Doom
-G:?:U
-I:72:62:0
-W:55:0:5:1500
-A:55/2
-P:0:0d0:0:0:0
+### 696 - Unused ###
 
 ### 697 - Unused ###
 
 #$# 697 - Unused ###
 
-N:698:titled 'There and Back Again'
+N:698:of Erebor
 G:?:U
-I:72:25:0
+I:72:27:22
 W:20:0:5:500
 A:20/2
 P:0:0d0:0:0:0
 
-N:699:to the ruins of Angmar
-G:?:U
-I:72:68:0
-W:20:0:5:500
-A:20/4
-P:0:0d0:0:0:0
+### 699 - Unused ###
 
-N:700:to the sunken city of Numenor
-G:?:U
-I:72:64:0
-W:20:0:5:500
-A:20/2
-P:0:0d0:0:0:0
-
-N:701:to the temple of Elemental Evil
-G:?:U
-I:72:65:0
-W:20:0:5:500
-A:20/2
-P:0:0d0:0:0:0
-
-N:702:to the Crystal Castle
-G:?:U
-I:72:66:0
-W:20:0:5:500
-A:20/2
-P:0:0d0:0:0:0
+### 700 - Unused ###
 
 ### Some additional weapons and armor
 
@@ -7218,7 +7189,7 @@ P:0:0d0:0:0:0
 
 N:893:to the door to Moria
 G:?:U
-I:72:41:0
+I:72:41:40
 W:20:0:5:250
 A:20/2
 P:0:0d0:0:0:0

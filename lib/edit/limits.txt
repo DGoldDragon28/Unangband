@@ -20,7 +20,7 @@ M:m:229
 M:e:168
 
 # Maximum number of feature types
-M:F:1000
+M:F:1004
 
 # Maximum number of room description lines
 M:D:900
@@ -50,7 +50,7 @@ M:V:278
 M:T:74
 
 # Maximum number of stores
-M:U:51
+M:U:52
 
 # Maximum number of player races & shapes
 M:P:40
