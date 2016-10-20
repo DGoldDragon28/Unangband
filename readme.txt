@@ -3,10 +3,11 @@
              | |_| | ' \ / _ \| ' \/ _` | '_ \/ _` | ' \/ _` |
               \___/|_||_/_/ \_\_||_\__, |_.__/\__,_|_||_\__,_|
                                     |___/                      
-           The Unnamed Angband                  Version 0.6.3
+           The Unnamed Angband                  Version 0.6.4
         Copyright (c) 2001-2009 by Andrew Doull and others, except where noted.
-        UnAngband 0.5.3 by Andrew Doull, Mogami, and Andrew Sidwell
-               Other versions of UnAngband by Andrew Doull.
+        Unangband 0.5.4 - 0.6.4 by Andrew Doull
+	UnAngband 0.5.3 by Andrew Doull, Mogami, and Andrew Sidwell
+               Previous versions of UnAngband by Andrew Doull.
     Based on:   Moria:   Copyright (c) 1985 Robert Alan Koeneke
                 Umoria:   Copyright (c) 1989 James E. Wilson
                 Angband 2.0 - 2.4 - 2.6.2 by:

@@ -55,9 +55,9 @@ off an old Angband version (2.9.2), and I'm chasing the feature
 tail on at least 3 variants (Sangband, NPPAngband and vanilla).
 In addition, I have my own ideas to implement.
 
-Feel free to implement the feature from that variant against the
-latest CVS version and send me a patch file. I mean, the source
-code is all there...
+Feel free to implement the feature from that variant in a fork 
+of https://github.com/DGoldDragon28/Unangband.git and send me 
+a pull request. I mean, the source code is all there...
 
 
 [Q1.4]   Why isn't there a compile of the latest release for

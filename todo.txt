@@ -1,6 +1,6 @@
-Unangband now uses an online database to record bugs and feature
-requests. See http://developer.berlios.de/bugs/?group_id=331 for
-an up to date list.
+Unangband now uses a github page to record bugs and feature
+requests. See https://github.com/DGoldDragon28/Unangband/issues 
+for that list.
 
 The following comprises a rough ideas list not already included
 at that URL.
