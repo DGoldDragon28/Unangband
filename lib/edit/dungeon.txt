@@ -128,6 +128,7 @@
 # S: store1 : store2 : store3 : store4 : store5 : store6 : store7 : store8
 # D: description, the shorter the better
 # F: flags
+# A: generate allies with this char: generate allies with this flag
 
 # Note store 1 - 8 are now the index of the feature in terrain.txt not the store in store.txt.
 # The 'power' of the feature determines which store to reference. So you can theoretically
@@ -478,8 +479,9 @@ X:24:0:0:0
 Q:27:235
 Z:27:27
 G:C
-R:ESCORT
+R:ORC
 L:30:407:414:56:153:235:0:0:SURFACE | DAYLIGHT | BATTLE | WILD | TUNNELS:the Battle of
+A:l:DWARF
 D:Five great armies have gathered at the promise of Smaug's riches hidden
 D: in the Lonely Mountain.
 
@@ -641,6 +643,7 @@ R:TROLL
 L:22:407:420:56:155:249:49:0:SURFACE | DAYLIGHT | TOWER | BATTLE | WILD | TUNNELS:the Siege of
 L:23:141:56:0:0:249:49:0:TOWER | BATTLE | LESS | MORE:
 L:40:141:56:0:0:249:49:0:TOWER | BATTLE | MORE:
+A:t:MAN
 D:Saruman's orcs have laid siege to the fortress of Hornburg.  You stand
 D: with your allies to relieve the siege --- fight your way through the
 D: narrow ravine of Helm's Deep and scale the tower to confront the leader
@@ -828,10 +831,11 @@ L:48:141:56:0:0:1085:46:0:TOWER | MORE:
 N:52:Pelennor Fields
 X:51:0:0:0
 G:W
-R:ESCORTS
+R:EVIL
 Q:69:535
 Z:69:69
 L:43:407:435:411:420:535:0:0:SURFACE | DAYLIGHT | BATTLE | WILD | TUNNELS:the Battle of
+A:p:MAN
 
 N:53:Mount Mindolluin
 X:51:0:0:0
@@ -968,6 +972,7 @@ X:54:59:69:0
 G:T
 R:ESCORTS
 L:45:407:407:56:397:538:43:0:SURFACE | DAYLIGHT | WILD | TUNNELS | BATTLE:the Battle of
+A:t:MAN
 
 # Alternate to bypass Moria etc. and reach Angband...
 
@@ -989,10 +994,11 @@ D:A great force, ready to assail the gates of Mordor.
 N:70:Osgiliath
 X:51:54:0:0
 G:o
-R:ESCORT
+R:EVIL
 Q:52:457
 Z:52:52
 L:40:407:49:155:199:457:0:0:SURFACE | DAYLIGHT | WILD | TUNNELS | ROOMS | DESTROYED | BATTLE:the siege of
+A:p:MAN
 
 # The non-campaign starting dungeon.
 # Must always be second to last position

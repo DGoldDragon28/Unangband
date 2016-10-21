@@ -6,6 +6,8 @@
 
 -Made some artifacts always appear in certain 'reward shops' (e.g. the Phial of Galadriel is attained at her Mirror).
 
+-Allies in battlefield levels now vary based on the 'A:' entry for that dungeon
+
 [TODO more stuff]
 
 Unangband 0.6.4c release

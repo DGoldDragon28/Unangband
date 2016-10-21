@@ -10726,7 +10726,7 @@ F:SMART | POWERFUL | OPEN_DOOR | BASH_DOOR | TAKE_ITEM |
 F:IM_ACID | IM_ELEC | IM_FIRE | IM_COLD | IM_POIS |
 F:HAS_SKULL | HAS_SKELETON | HAS_TEETH | HAS_CORPSE | HAS_HEAD | HAS_HAND |
 F:HAS_ARM | HAS_LEG | HAS_BLOOD | DROP_WEAPON | DROP_ARMOR | DROP_WRITING |
-F:ELF |
+F:ELF | GOOD |
 S:BALL_FIRE | BOLT_FIRE | BOLT_PLAS | BOLT_MANA |
 S:HASTE | HEAL | TPORT | TELE_TO | TELE_AWAY | DARKNESS | FORGET |
 S:MIND_BLAST | WOUND | SHIELD | SCARE | BLIND | CONF |
@@ -27244,14 +27244,12 @@ F:OPEN_DOOR | BASH_DOOR | MAGE |
 F:IM_FIRE | IM_COLD | NO_CONF | NO_SLEEP |
 F:HAS_SKULL | HAS_SKELETON | HAS_TEETH | HAS_CORPSE | HAS_HEAD | HAS_HAND |
 F:HAS_ARM | HAS_LEG | HAS_BLOOD | DROP_WEAPON | DROP_ARMOR | DROP_WRITING |
-F:ELF | ATTR_METAL |
+F:ELF | ATTR_METAL | NEUTRAL |
 S:BOLT_FIRE |
 S:HEAL | TRAPS | SLOW |
 S:S_PLANT | S_ANIMAL |
 D:Sometimes belittled as a bird-loving fool, he keeps crying about
-D: something terrible he's found in Fangorn, but he won't talk.  He
-D: believes you to be a spy of Saruman's, sent here to confront him.  The
-D: only way to convince him otherwise is to best him in battle.
+D: something terrible he's found in Fangorn, but he won't talk. 
 
 # The following are from ToME.
 
@@ -27270,7 +27268,7 @@ B:BITE:HURT:1d6
 F:CAN_FLY |
 F:ANIMAL |
 F:HAS_SKULL | HAS_SKELETON | HAS_CORPSE | HAS_HEAD | HAS_CLAW | HAS_WING |
-F:HAS_FEATHER | HAS_BLOOD |
+F:HAS_FEATHER | HAS_BLOOD | GOOD |
 D:A magnificent huge predatory bird. 
 
 N:1315:Agent of the black market
@@ -28168,7 +28166,7 @@ B:BITE:HURT:3d6
 F:CAN_FLY | BASH_DOOR |
 F:ANIMAL |
 F:HAS_SKULL | HAS_SKELETON | HAS_CORPSE | HAS_HEAD | HAS_CLAW | HAS_WING |
-F:HAS_FEATHER | HAS_BLOOD |
+F:HAS_FEATHER | HAS_BLOOD | GOOD |
 D:Greater and more intelligent than most of its kind, this great eagle is
 D: a messenger between the forces of good.  It has not yet heard of you,
 D: however.
@@ -28247,12 +28245,11 @@ F:CAN_FLY |
 F:ANIMAL |
 F:HAS_SKULL | HAS_SKELETON | HAS_CORPSE | HAS_HEAD | HAS_CLAW | HAS_WING |
 F:HAS_FEATHER | HAS_BLOOD |
-F:ATTR_METAL |
+F:ATTR_METAL | GOOD |
 S:BLOW_4 |
 S:S_KIN |
 D:Among all the eagles of Middle-earth he is the swiftest, and in his time
-D: has borne messages between all of the Wise.  He is looking for Gandalf
-D: the Grey and believes you withhold that information from him.
+D: has borne messages between all of the Wise.
 
 N:1366:the Great Grey Wolf
 G:C:s

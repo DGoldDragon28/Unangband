@@ -4791,7 +4791,45 @@ static bool place_monster_group(int y, int x, int r_idx, bool slp,
 	return (TRUE);
 }
 
+/*
+ * Hack -- escorts for the player on a BATTLE level.
+ */
+static bool comrade_okay(int r_idx)
+{
+	monster_race *z_ptr = &r_info[r_idx];
+	byte a_char = t_info[p_ptr->dungeon].a_char;
+	u32b a_flag = t_info[p_ptr->dungeon].a_flag;
 
+	/* Uniques are never spawned as allies */
+	if(z_ptr->flags1 & (RF1_UNIQUE)) return (FALSE);
+
+	/* Evil creatures are spawned as allies only if the player is evil. */
+	if(((p_ptr->cur_flags4 & (TR4_EVIL)) != 0) != ((z_ptr->flags3 & (RF3_EVIL)) != 0)) return (FALSE);
+
+	/* No ally data, resort to townsfolk only */
+	if(!a_char && !a_flag) return ((z_ptr->d_char == 't') &&
+				((z_ptr->flags2 & (RF2_SNEAKY)) == 0));
+
+	/* Graphical match */
+	if(a_char == z_ptr->d_char)
+	{
+		if (cheat_hear) msg_format("Accepted monster %s as player ally in %s based on char.", r_name + z_ptr-> name, t_name + t_info[p_ptr->dungeon].name);
+		return (TRUE);
+	}
+	u32b flagmatch = ((a_flag & z_ptr->flags3 & 0x0000FFFF) | (a_flag & z_ptr->flags9 & 0xFFFF0000));
+	/* Racial flag match */
+	if(flagmatch)
+	{
+		if (cheat_hear) msg_format("Criteria for flag match is %#010lx.", a_flag);
+		if (cheat_hear) msg_format("Accepted monster %s as player ally in %s based on flags (%#010lx).",
+				r_name + z_ptr-> name, t_name + t_info[p_ptr->dungeon].name,
+				flagmatch);
+		return (TRUE);
+	}
+
+	/* Disallowed */
+	return (FALSE);
+}
 
 /*
  * Hack -- help pick an escort type
@@ -4808,14 +4846,7 @@ static bool place_monster_okay(int r_idx)
 	monster_race *z_ptr = &r_info[r_idx];
 
 	/* Hack -- player escort for non-monster races */
-	if ((!place_monster_idx) && (!rp_ptr->r_idx))
-	{
-		/* Hack -- place warriors/thieves */
-		return ((z_ptr->d_char == 't') &&
-				((z_ptr->flags1 & (RF1_UNIQUE)) == 0) &&
-					((z_ptr->flags2 & (RF2_SNEAKY)) == 0) &&
-					(((p_ptr->cur_flags4 & (TR4_EVIL)) != 0) == ((z_ptr->flags3 & (RF3_EVIL)) != 0)));
-	}
+	if ((!place_monster_idx) && (!rp_ptr->r_idx)) return comrade_okay(r_idx);
 
 	/* Group monsters require similar "group" */
 	if (r_ptr->grp_idx)
@@ -4838,7 +4869,6 @@ static bool place_monster_okay(int r_idx)
 	/* Okay */
 	return (TRUE);
 }
-
 
 /*
  * Attempt to place an escort of monsters around the given location

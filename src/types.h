@@ -264,6 +264,8 @@ struct town_type
 
 	dungeon_zone zone[MAX_DUNGEON_ZONES];
 
+	byte a_char;	/* Use races of this char as allies for BATTLE levels */
+	u32b a_flag;	/* Use races with this flag as allies for BATTLE levels */
 };
 
 
