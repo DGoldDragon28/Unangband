@@ -3581,10 +3581,10 @@ static void calc_bonuses(void)
 	/* Set the rate of tiring */
 	if (k > 10) p_ptr->tiring = k - 10;
 	else p_ptr->tiring = 0;
-
-	/* Apply "encumbrance" from weight */
+#if 0
+	/* Apply "encumbrance" from weight ***MOVED TO FUNCTION IN DUNGEON.C*** */
 	if (j > i/2) p_ptr->pspeed -= ((j - (i/2)) / (i / 10));
-
+#endif
 	/* Bloating slows the player down (a little) */
 	if (p_ptr->food >= PY_FOOD_MAX) p_ptr->pspeed -= 10;
 

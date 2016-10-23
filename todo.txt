@@ -32,8 +32,6 @@ TODO: DEAFEN effect? POLYMORPH player.
 TODO: Work on isometric graphics. See http://www.gamedev.net/reference/articles/article742.asp
 and http://www.gamedev.net/reference/articles/article744.asp
 
-TODO: Encumberance reduces energy as opposed to speed.
-
 TODO: Significant improvements to the store system.
 
 TODO: Mark items and monster bodies with blows/spells of the most dangerous monster on the 

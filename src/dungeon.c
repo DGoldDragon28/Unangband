@@ -3625,8 +3625,16 @@ static void dungeon(void)
 
 		/*** Apply energy ***/
 
-		/* Give the player some energy */
-		p_ptr->energy += extract_energy[p_ptr->pspeed];
+		/* Check speed */
+		s16b delta_energy = extract_energy[p_ptr->pspeed];
+
+		/* Apply "encumbrance" from weight */
+		if (p_ptr->total_weight > (adj_str_wgt[p_ptr->stat_ind[A_STR]] * 50))
+				delta_energy -= (p_ptr->total_weight / (adj_str_wgt[p_ptr->stat_ind[A_STR]] * 10)) - 5;
+		if(cheat_xtra) msg_format("Player gets energy %i", delta_energy);
+
+		/* Hack -- player always gets at least one energy */
+		p_ptr->energy += ((delta_energy > 0) ? delta_energy : 1);
 
 		/* Can the player move? */
 		while ((p_ptr->energy >= 100) && !p_ptr->leaving)
