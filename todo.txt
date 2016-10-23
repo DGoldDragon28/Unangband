@@ -32,8 +32,6 @@ TODO: DEAFEN effect? POLYMORPH player.
 TODO: Work on isometric graphics. See http://www.gamedev.net/reference/articles/article742.asp
 and http://www.gamedev.net/reference/articles/article744.asp
 
-TODO: Encumberance reduces energy as opposed to speed.
-
 TODO: Significant improvements to the store system.
 
 TODO: Mark items and monster bodies with blows/spells of the most dangerous monster on the 
@@ -1069,6 +1067,9 @@ Suggested by Eddie Grove:
 > I suggest a change so that an encumbrance of -2 means -20% to energy.
 > Then, at +36 speed, energy would drop from 40/gameturn to 32/gameturn.
 > That is noticeable, and would make weight relevant in the endgame.
+
+* Done in patch 0.6.5. Encumbrance ranges from 0 to -5. Speed is reduced by 10% per point of encumbrance.
+
 
 
 TODO: Various UI improvements.

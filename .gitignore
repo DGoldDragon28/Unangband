@@ -9,4 +9,4 @@ lib/save/
 *.INI
 .project
 *.res
-
+.settings/

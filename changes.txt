@@ -8,6 +8,8 @@
 
 -Allies in battlefield levels now vary based on the 'A:' entry for that dungeon
 
+-Encumbrance reduces energy as opposed to speed.
+
 [TODO more stuff]
 
 Unangband 0.6.4c release
