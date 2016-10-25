@@ -15787,7 +15787,8 @@ static bool town_gen(void)
 	if ((level_flag & (LF1_SURFACE)) != 0) town_illuminate((level_flag & (LF1_DAYLIGHT)) != 0);
 
 	/* Ensure guardian monsters */
-	if (((level_flag & (LF1_GUARDIAN)) != 0) && ((level_flag & (LF1_DAYLIGHT)) == 0))
+	if (((level_flag & (LF1_GUARDIAN)) != 0) && (((level_flag & (LF1_DAYLIGHT)) == 0)
+			|| ((r_info[zone->guard].flags3 & RF3_HURT_LITE) == 0)))
 	{
 		/* Place the guardian in the town */
 		place_guardian(3, 3, TOWN_HGT - 4, TOWN_WID -4);

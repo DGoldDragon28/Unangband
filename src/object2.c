@@ -9090,6 +9090,18 @@ s16b inven_carry(object_type *o_ptr)
 	/* Count the items */
 	p_ptr->inven_cnt++;
 
+	/* Check quests */
+	quest_event event;
+	WIPE(&event, quest_event);
+	event.flags = EVENT_GET_ITEM;
+	event.dungeon = p_ptr->dungeon;
+	event.level = p_ptr->depth - min_depth(p_ptr->dungeon);
+	event.kind = j_ptr->k_idx;
+	event.ego_item_type = j_ptr->name2;
+	event.artifact = j_ptr->name1;
+	event.number = j_ptr->number;
+	check_quest(&event, TRUE);
+
 	/* Recalculate bonuses */
 	p_ptr->update |= (PU_BONUS);
 

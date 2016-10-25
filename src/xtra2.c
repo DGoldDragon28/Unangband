@@ -2174,8 +2174,6 @@ bool check_quest(quest_event *qe1_ptr, bool advance)
 	int i, j;
 	bool questor = FALSE;
 
-	return (FALSE);
-
 	for (i = 0; i < MAX_Q_IDX; i++)
 	{
 		quest_type *q_ptr = &(q_list[i]);
@@ -2210,23 +2208,37 @@ bool check_quest(quest_event *qe1_ptr, bool advance)
 					if (q_ptr->stage != j) continue;
 			}
 
+			/* Hack -- disjunction of conditions */
+			bool or = (qe2_ptr->flags & EVENT_OR) != 0;
+
+			msg_format("Checking quest %i stage %i (flags %#010x)", i, j, qe2_ptr->flags);
+
+			/* Empty disjunction is false; empty conjunction is true */
+			bool compl = !or;
+
 			/* We support quests with blank transitions */
 			if (qe2_ptr->flags)
 			{
-				/* Check for quest match */
-				if ((qe2_ptr->flags & (qe1_ptr->flags)) == 0) continue;
+				u32b flags = (qe2_ptr->flags & ~(EVENT_OR));
 
-				/* Check for level match */
-				if ((qe2_ptr->dungeon) && ((qe2_ptr->dungeon != qe1_ptr->dungeon) ||
-						(qe2_ptr->level != qe2_ptr->level))) continue;
+				/* Check for quest match */
+				if ((flags & (qe1_ptr->flags)) == 0) continue;
+
+				/* Check for dungeon match */
+				if ((qe2_ptr->dungeon) && (qe2_ptr->dungeon != qe1_ptr->dungeon) && !or) continue;
+				if ((qe2_ptr->level) && (qe2_ptr->level != qe2_ptr->level) && !or) continue;
+				if(((!qe2_ptr->dungeon) || (qe2_ptr->dungeon == qe1_ptr->dungeon))
+						&& ((!qe2_ptr->level) || (qe2_ptr->level == qe2_ptr->level))
+						&& (flags & (EVENT_TRAVEL | EVENT_LEAVE))) compl = TRUE;
 
 				/* Check for race match */
 				if (qe1_ptr->flags & (EVENT_GIVE_RACE | EVENT_GET_RACE | EVENT_FIND_RACE | EVENT_KILL_RACE |
-						EVENT_ALLY_RACE | EVENT_HATE_RACE | EVENT_FEAR_RACE | EVENT_HEAL_RACE |
+						EVENT_ALLY_RACE | EVENT_HATE_RACE | EVENT_FEAR_RACE | EVENT_HEAL_RACE | EVENT_TALK_RACE |
 						EVENT_BANISH_RACE | EVENT_DEFEND_RACE | EVENT_DEFEND_STORE | EVENT_DEFEND_FEAT))
 				{
 					/* Match any monster or specific race */
-					if ((qe2_ptr->race) && (qe2_ptr->race != qe1_ptr->race)) continue;
+					if ((qe2_ptr->race) && (qe2_ptr->race != qe1_ptr->race) && !or) continue;
+					if (((!qe2_ptr->race) || (qe2_ptr->race == qe1_ptr->race)) && or) compl = TRUE;
 
 					/* Have to check monster states? */
 					if ((qe1_ptr->flags & (EVENT_GIVE_RACE | EVENT_GET_RACE | EVENT_DEFEND_FEAT)) == 0)
@@ -2248,7 +2260,10 @@ bool check_quest(quest_event *qe1_ptr, bool advance)
 				/* Check for store match */
 				if ((qe1_ptr->flags & (EVENT_BUY_STORE | EVENT_SELL_STORE | EVENT_GIVE_STORE |
 						EVENT_STOCK_STORE | EVENT_GET_STORE | EVENT_DEFEND_STORE)) &&
-						(qe2_ptr->store != qe1_ptr->store)) continue;
+						(qe2_ptr->store != qe1_ptr->store) && !or) continue;
+				if ((qe1_ptr->flags & (EVENT_BUY_STORE | EVENT_SELL_STORE | EVENT_GIVE_STORE |
+										EVENT_STOCK_STORE | EVENT_GET_STORE | EVENT_DEFEND_STORE)) &&
+										(qe2_ptr->store == qe1_ptr->store) && or) compl = TRUE;
 
 				/* Check for item match */
 				if (qe1_ptr->flags & (EVENT_GIVE_RACE | EVENT_GET_RACE | EVENT_BUY_STORE |
@@ -2256,9 +2271,12 @@ bool check_quest(quest_event *qe1_ptr, bool advance)
 						EVENT_GET_ITEM | EVENT_FIND_ITEM | EVENT_DESTROY_ITEM | EVENT_LOSE_ITEM))
 				{
 					/* Match artifact, ego_item_type or kind of item or any item */
-					if (((qe2_ptr->artifact) && (qe2_ptr->artifact != qe1_ptr->artifact)) ||
+					if ((((qe2_ptr->artifact) && (qe2_ptr->artifact != qe1_ptr->artifact)) ||
 					 ((qe2_ptr->ego_item_type) && (qe2_ptr->ego_item_type != qe1_ptr->ego_item_type)) ||
-					 ((qe2_ptr->kind) && (qe2_ptr->kind != qe1_ptr->kind))) continue;
+					 ((qe2_ptr->kind) && (qe2_ptr->kind != qe1_ptr->kind))) && !or) continue;
+					if ((((qe2_ptr->artifact) && (qe2_ptr->artifact == qe1_ptr->artifact)) ||
+					 ((qe2_ptr->ego_item_type) && (qe2_ptr->ego_item_type == qe1_ptr->ego_item_type)) ||
+					 ((qe2_ptr->kind) && (qe2_ptr->kind == qe1_ptr->kind))) && or) compl = TRUE;
 
 					/* XXX Paranoia around artifacts */
 					if ((qe2_ptr->artifact) && (qe2_ptr->number)) qe2_ptr->number = 1;
@@ -2276,7 +2294,8 @@ bool check_quest(quest_event *qe1_ptr, bool advance)
 				if (qe1_ptr->flags & (EVENT_ALTER_FEAT | EVENT_DEFEND_FEAT))
 				{
 					/* Match feature or any feature */
-					if ((qe2_ptr->feat) && (qe2_ptr->feat != qe1_ptr->feat)) continue;
+					if ((qe2_ptr->feat) && (qe2_ptr->feat != qe1_ptr->feat) && !or) continue;
+					if (((!qe2_ptr->feat) || (qe2_ptr->feat == qe1_ptr->feat)) && or) compl = TRUE;
 
 					/* Accumulate features */
 					qe3_ptr->number = qe1_ptr->number;
@@ -2285,24 +2304,32 @@ bool check_quest(quest_event *qe1_ptr, bool advance)
 				/* Check for room type match */
 				if (((qe1_ptr->flags & (EVENT_FIND_ROOM | EVENT_FLAG_ROOM | EVENT_UNFLAG_ROOM))) &&
 					(((qe2_ptr->room_type_a) && (qe2_ptr->room_type_a != qe1_ptr->room_type_a)) ||
-					((qe2_ptr->room_type_b) && (qe2_ptr->room_type_b != qe1_ptr->room_type_b))))
+					((qe2_ptr->room_type_b) && (qe2_ptr->room_type_b != qe1_ptr->room_type_b))) && !or)
 						continue;
+				if (((qe1_ptr->flags & (EVENT_FIND_ROOM | EVENT_FLAG_ROOM | EVENT_UNFLAG_ROOM))) &&
+					(((!qe2_ptr->room_type_a) || (qe2_ptr->room_type_a == qe1_ptr->room_type_a)) &&
+					((!qe2_ptr->room_type_b) || (qe2_ptr->room_type_b == qe1_ptr->room_type_b))) && or)
+						compl = TRUE;
 
 				/* Check for room flag match */
 				if (((qe1_ptr->flags & (EVENT_FLAG_ROOM | EVENT_UNFLAG_ROOM))) &&
-						((qe2_ptr->room_flags & (qe1_ptr->room_flags)) == 0))
+						((qe2_ptr->room_flags & (qe1_ptr->room_flags)) == 0) && !or)
+					continue;
+				if (((qe1_ptr->flags & (EVENT_FLAG_ROOM | EVENT_UNFLAG_ROOM))) &&
+						((qe2_ptr->room_flags & (qe1_ptr->room_flags))) && or)
 					continue;
 
 				/* Do we have to stay on this level a set amount of time? */
-				if (qe2_ptr->flags & (EVENT_STAY | EVENT_DEFEND_RACE | EVENT_DEFEND_FEAT | EVENT_DEFEND_STORE))
+				if (flags & (EVENT_DEFEND_RACE | EVENT_DEFEND_FEAT | EVENT_DEFEND_STORE))
 				{
 					if (old_turn + qe2_ptr->time < turn) continue;
 				}
 
 				/* Do we have to succeed at a quest? */
-				if (qe2_ptr->flags & (EVENT_PASS_QUEST))
+				if (flags & (EVENT_PASS_QUEST))
 				{
-					if (q_info[qe2_ptr->quest].stage != QUEST_FINISH) continue;
+					if ((q_info[qe2_ptr->quest].stage != QUEST_FINISH) && !or) continue;
+					if ((q_info[qe2_ptr->quest].stage == QUEST_FINISH) && or) compl = TRUE;
 				}
 
 				/* Check for defensive failure */
@@ -2317,15 +2344,20 @@ bool check_quest(quest_event *qe1_ptr, bool advance)
 				}
 
 				/* Check for completion */
-				else if ((qe3_ptr->number) && (qe3_ptr->number < qe2_ptr->number))
+				if(qe3_ptr->number && qe3_ptr->number < qe2_ptr->number && !compl)
 				{
 					/* We at least have a partial match */
 					partial = TRUE;
+					break;
 				}
 			}
 
 			/* We have qualified for the next stage of the quest */
-			next_stage = (j == QUEST_ACTIVE ? QUEST_REWARD : j + 1);
+			if(compl) {
+				next_stage = (j == QUEST_ACTIVE ? QUEST_REWARD : j + 1);
+				msg_format("Quest %i advanced (%s) to stage %i", i, or ? "OR" : "AND", next_stage);
+				anykey();
+			}
 		}
 
 		/* Advance the quest */
@@ -3235,6 +3267,20 @@ bool mon_take_hit(int m_idx, int dam, bool *fear, cptr note)
 
 		/* Not afraid */
 		(*fear) = FALSE;
+
+		/* Handle quest effects */
+		quest_event event;
+
+		/* Use this to allow quests to succeed or fail */
+		WIPE(&event, quest_event);
+
+		/* Handle quests */
+		event.flags = EVENT_KILL_RACE;
+		event.dungeon = p_ptr->dungeon;
+		event.level = p_ptr->depth - min_depth(p_ptr->dungeon);
+		event.race = m_ptr->r_idx;
+		event.number = 1;
+		check_quest(&event, TRUE);
 
 		/* Monster is dead */
 		return (TRUE);
