@@ -53,7 +53,7 @@
 /*
  * Current version string
  */
-#define VERSION_STRING	"0.6.4"
+#define VERSION_STRING	"0.6.5"
 
 /*
  * Hack -- note use of new version name/string but old version
@@ -66,8 +66,8 @@
  */
 #define VERSION_MAJOR	0
 #define VERSION_MINOR	6
-#define VERSION_PATCH	4
-#define VERSION_EXTRA	3
+#define VERSION_PATCH	5
+#define VERSION_EXTRA	0
 
 /*
  * Oldest version number that can still be imported

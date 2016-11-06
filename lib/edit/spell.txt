@@ -22,7 +22,7 @@
 # Version stamp (required)
 
 
-V:0.6.4
+V:0.6.5
 
 N:0:(illegible)
 C:11:99:99:100:100

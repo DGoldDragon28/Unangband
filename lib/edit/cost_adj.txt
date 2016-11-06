@@ -16,7 +16,7 @@
 
 # Version stamp (required)
 
-V:0.6.4
+V:0.6.5
 
 #Note all the new races are to do.
 
