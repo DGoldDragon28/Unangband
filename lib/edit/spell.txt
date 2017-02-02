@@ -6771,7 +6771,7 @@ B:STORM:FIRE:7
 S:REGION:41
 L:1d10+10
 
-N:556:Cyrokinesis
+N:556:Cryokinesis
 A:90:68:10
 A:90:16:8
 C:1:7:6:40:6
