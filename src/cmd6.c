@@ -2449,15 +2449,15 @@ bool player_apply_rune_or_coating2(int item2)
 		}
 
 		/* Clear feeling */
-		if (o_ptr->feeling == INSCRIP_COATED) o_ptr->feeling = 0;
+		if (j_ptr->feeling == INSCRIP_COATED) o_ptr->feeling = 0;
 
 		/* Clear coating */
-		o_ptr->xtra1 = 0;
-		o_ptr->xtra2 = 0;
+		j_ptr->xtra1 = 0;
+		j_ptr->xtra2 = 0;
 
 		/* Clear charges */
-		o_ptr->charges = 0;
-		o_ptr->stackc = 0;
+		j_ptr->charges = 0;
+		j_ptr->stackc = 0;
 	}
 
 	/* Can't apply if artifact or other magical item */
