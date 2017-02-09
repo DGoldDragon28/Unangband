@@ -7894,8 +7894,8 @@ int create_trap_region(int y, int x, int feat, int power, bool player)
 						return (0);
 
 		/* Use the given direction */
-		ty = y + 99 * ddy[dir];
-		tx = x + 99 * ddx[dir];
+		ty = y + ddy[dir];
+		tx = x + ddx[dir];
 
 		/* Hack -- Use an actual "target" */
 		if ((dir == 5) && target_okay())
