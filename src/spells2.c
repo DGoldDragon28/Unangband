@@ -7319,6 +7319,7 @@ bool process_spell_types(int who, int spell, int level, bool *cancel, bool known
 			}
 
 			case SPELL_USE_OBJECT:
+			case SPELL_DETECT_FIRE:
 			case SPELL_DETECT_MIND:
 			{
 				/* Spell was processed previously */
