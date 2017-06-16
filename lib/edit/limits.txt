@@ -80,7 +80,7 @@ M:B:8
 M:Q:8
 
 # Maximum number of region info
-M:i:50
+M:i:52
 
 # Maximum number of region pieces
 M:p:2048
