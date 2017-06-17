@@ -1941,7 +1941,7 @@ bool item_tester_hook_activate(const object_type *o_ptr)
 	object_flags(o_ptr, &f1, &f2, &f3, &f4);
 
 	/* Hack -- for spells that can activate. They are always 'charging', so would never activate otherwise. */
-	if ((o_ptr->tval == TV_SPELL) && (p_ptr->rest < PY_REST_FAINT)) return (FALSE);
+	if ((o_ptr->tval == TV_SPELL) && (p_ptr->rest > PY_REST_FAINT)) return (TRUE);
 
 	/* Check the recharge */
 	else if ((o_ptr->timeout) && ((!o_ptr->stackc) || (o_ptr->stackc >= o_ptr->number))) return (FALSE);
@@ -2143,7 +2143,7 @@ bool player_activate(int item)
 	if ((item == INVEN_SELF) || (o_ptr->tval == TV_SPELL))
 	{
 		/* Tire out the player */
-		p_ptr->rest -= PY_REST_FAINT;
+		p_ptr->rest -= PY_REST_WEAK;
 
 		/* Redraw stuff */
 		p_ptr->redraw |= (PR_STATE);
