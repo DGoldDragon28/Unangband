@@ -6033,8 +6033,16 @@ bool retarget_blows(int *ty, int *tx, u32b *flg, int method, int level, bool ful
 						retarget_blows_known ? method_ptr->diameter_of_source : 0)) return (FALSE);
 
 		/* Use the given direction */
-		*ty = py + 99 * ddy[retarget_blows_dir];
-		*tx = px + 99 * ddx[retarget_blows_dir];
+		s16b dy = ddy[retarget_blows_dir];
+		s16b dx = ddx[retarget_blows_dir];
+		*ty = (dy < 0) ? 0 : (py + 99 * dy);
+		*tx = (dx < 0) ? 0 : (px + 99 * dx);
+
+		/* Hack -- prevent off-map bugs */
+		if(retarget_blows_dir == 7) {
+		    *ty = (py > px) ? py - px : 0;
+		    *tx = (py > px) ? py - px : 0;
+		}
 
 		/* Hack -- Use an actual "target" */
 		if ((retarget_blows_dir == 5) && target_okay())
@@ -8006,6 +8014,8 @@ bool process_spell_prepare(int spell, int level, bool *cancel, bool forreal, boo
 				{
 					p_ptr->delay_spell = s_ptr->lasts_plus;
 				}
+				/* Fix bug with Delay Spell and Spell trap never being 'used' */
+				*cancel = FALSE;
 			}
 		}
 	}

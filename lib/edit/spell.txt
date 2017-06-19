@@ -3729,6 +3729,7 @@ C:11:15:7:60:29
 P:0:0
 S:DELAY_SPELL:43
 L:1d24+24
+D:The next spell you cast will be delayed.
 
 N:277:Spell Trap
 A:90:69:5
@@ -3744,6 +3745,7 @@ C:11:15:7:60:29
 P:0:0
 S:DELAY_SPELL:42
 L:0d0+1
+D:The next spell you cast will be made into a trap.
 
 N:278:Witchblooms
 A:90:68:2
