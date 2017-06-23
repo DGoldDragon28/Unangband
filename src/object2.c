@@ -2033,7 +2033,7 @@ void object_absorb(object_type *o_ptr, const object_type *j_ptr, bool floor)
 		/* Swap objects */
 		object_copy(i_ptr, o_ptr);
 		object_copy(o_ptr, j_ptr);
-		j_ptr = i_ptr;
+		object_copy(j_ptr, i_ptr);
 	}
 
 	/* Hack -- magical bags -- object swallowed by bag */
@@ -2080,12 +2080,10 @@ void object_absorb(object_type *o_ptr, const object_type *j_ptr, bool floor)
 			/* Hack -- Decrease the weight -- will be increased later */
 			p_ptr->total_weight -= (j_ptr->number * j_ptr->weight);
 		}
-
 		/* Aware of object? */
 		if (!object_aware_p(j_ptr))
 		{
 			int k;
-
 			k_info[j_ptr->k_idx].aware |= (AWARE_SENSEX);
 
 		    /* Mark all such objects sensed */
@@ -2097,7 +2095,6 @@ void object_absorb(object_type *o_ptr, const object_type *j_ptr, bool floor)
 					o_list[k].feeling = o_ptr->sval + MAX_INSCRIP;
 				}
 		    }
-
 			/* Check inventory */
 			for (k = 0; k < INVEN_TOTAL; k++)
 			{
@@ -2114,7 +2111,6 @@ void object_absorb(object_type *o_ptr, const object_type *j_ptr, bool floor)
 
 		/* Combine and re-order again */
 		p_ptr->notice |= (PN_COMBINE | PN_REORDER);
-
 		/* Successful */
 		return;
 	}
