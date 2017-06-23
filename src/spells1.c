@@ -4224,7 +4224,7 @@ bool project_f(int who, int what, int y, int x, int dam, int typ)
 		case GF_WEB:
 		{
 			/* Create webs on floor */
-			if (f_ptr->flags1 & (FF1_FLOOR))
+			if ((f_ptr->flags1 & (FF1_FLOOR)) || (f_ptr->flags3 & (FF3_GROUND)))
 			{
 				cave_set_feat(y, x, FEAT_FLOOR_WEB);
 
