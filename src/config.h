@@ -507,7 +507,7 @@
 /*
  * OPTION: Person to bother if something goes wrong.
  */
-#define MAINTAINER	"andrewdoull@hotmail.com"
+#define MAINTAINER	"dgolddragon28@gmail.com"
 
 
 /*

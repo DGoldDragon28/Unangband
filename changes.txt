@@ -1,4 +1,11 @@
-(Planned) Unangband 0.6.5 release 
+Unangband 0.6.5a release
+
+-Many bugfixes
+
+-Updated some text files
+
+
+Unangband 0.6.5 release 
 
 ### Game Play ###
 
@@ -10,7 +17,6 @@
 
 -Encumbrance reduces energy as opposed to speed.
 
-[TODO more stuff]
 
 Unangband 0.6.4c release
 

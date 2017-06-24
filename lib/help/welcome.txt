@@ -1,27 +1,46 @@
 === Welcome to Unangband ===
 
-I want to welcome you with open arms to Unangband, a variant of Angband which
-I have spent some not inconsiderable time and effort developing over more
-than 10 years.
+	I want to welcome you with open arms to Unangband, a variant of Angband which
+	I have spent some not inconsiderable time and effort developing over more
+	than 10 years.
 
-Unangband attempts to create a place of mystery, that you will grow to know
-and understand, while still leaving you surprised and intrigued at every
-unexpected turn.  You will fail in your quest to kill Morgoth many times, but
-I hope every failure is at least interesting and different from the last,
-and provides a sense of enlightenment about the underlying mechanics of the
-game. To quote another game developer 'Failure is fun!' and it is this sense
-of slow, but fruitful accomplishment that I hope this game provides you.
+	Unangband attempts to create a place of mystery, that you will grow to know
+	and understand, while still leaving you surprised and intrigued at every
+	unexpected turn.  You will fail in your quest to kill Morgoth many times, but
+	I hope every failure is at least interesting and different from the last,
+	and provides a sense of enlightenment about the underlying mechanics of the
+	game. To quote another game developer 'Failure is fun!' and it is this sense
+	of slow, but fruitful accomplishment that I hope this game provides you.
 
-And should you finish in your quest, and hold Melkor's iron crown in your
-grip, you should realise that this game is infinitely replayable, but also
-that I have never come close to the victory you now feel.
+	And should you finish in your quest, and hold Melkor's iron crown in your
+	grip, you should realise that this game is infinitely replayable, but also
+	that I have never come close to the victory you now feel.
 
-Good luck! And good hunting.
+	Good luck! And good hunting.
                                                      - Andrew Doull
+                                                     
+So reads the game's introduction as written by its original developer. I shall
+briefly echo his sentiment here, despite having a miniscule fraction of the
+responsibility that Andrew Doull had for this game.
+
+To those who want a more thematic game in the world of Arda than the original
+Angband provides, Unangband allows travel around the various dungeons of
+Middle-Earth. Delve into the dark halls of Khazad-Dum. Recover the Arkenstone
+of Thrain from the hoard of Smaug in the bowels of Erebor. Storm the dark
+tower of Dol Goldur, or the other, Barad-dur. Just remember that actions
+have consequences, and where you venture and whom you anger can change your
+fortune for weal or woe! And to those who prefer the traditional linear
+dungeon of Angband, simply disable the 'adult_campaign' option and you
+are back to a standard Angband dungeon. Many of Unangband's striking features
+are part of the campaign, though, so I recommend leaving that option enabled.
+
+So without further ado, I bid you be on your way, for the enemies arrayed
+against you are many. But remember: allies may also be found unlooked-for;
+not everything that moves is hostile!
+
+													 - the Gold Dragon	
 
 PS: From here, you should find useful game play tips as you travel through
 the towns, wilderness and dungeons of this world. Also peruse the help files
 accessible at almost any time with the ? key. Feel free to report any bugs
-or unexpected behaviour on the website at http://unangband.blogspot.com
-where you will also find many informative links and a like-minded community
-of fellow players.
+or unexpected behaviour on the issue tracker at https://github.com/DGoldDragon28/Unangband/issues
