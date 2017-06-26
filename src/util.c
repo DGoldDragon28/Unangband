@@ -318,7 +318,7 @@ FILE *my_fopen(cptr file, cptr mode)
 
 	/* Attempt to fopen the file anyway */
 	fff = (fopen(buf, mode));
-#if defined(MAC_MPW) || defined(MACH_O_CARBON)
+#if 0 /*defined(MAC_MPW) || defined(MACH_O_CARBON)*/
 
     /* Set file creator and type */
     if (fff && strchr(mode, 'w')) fsetfileinfo(buf, _fcreator, _ftype);
@@ -570,7 +570,7 @@ int fd_make(cptr file, int mode)
 
 #endif
 
-#ifdef MACH_O_CARBON
+#ifdef MACH_O_CARBON_notarealthing
     /* Set file creator and type */
     if (fd >= 0) fsetfileinfo(buf, _fcreator, _ftype);
 

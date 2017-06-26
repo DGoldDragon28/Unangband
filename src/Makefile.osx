@@ -1,83 +1,98 @@
-# This is a makefile for the Cygwin tools which may
-# be downloaded by following the links from the URL:
-# http://sources.redhat.com/cygwin/
+# File: Makefile.osx
 
-#
-# Standard defines
-#
+# This is a Makefile for the Mac OS X Cocoa port of Angband.
 
-#Name of the executable file
-EXE=unangband
-NAME=Unangband
-COPYRIGHT=2001-2009 Andrew Doull
-
-TOOLDIR = /Developer/Tools
-SETFILE = $(TOOLDIR)/SetFile
-REZ = $(TOOLDIR)/Rez
-
-CC = gcc
-
-LIBS = -framework CoreFoundation -framework QuickTime -framework Carbon \
-	-framework Cocoa
-CFLAGS = -Wall -std=gnu99 -g -O2 -DMACH_O_CARBON -DHAVE_MKSTEMP \
-	-DPRIVATE_USER_PATH=\"~/Library/Preferences\" -DPRIVATE_USER_PATHS \
-	-arch ppc -arch i386 -mmacosx-version-min=10.3
-
-#
-# Provide a CFLAGS override so that older versions of OS X can continue to
-# compile their own builds.  The default CFLAGS provide a backwards-compatible
-# binary, but will error when building on <10.3.9.
-#
-ppc: CFLAGS = \
-	-Wall -std=gnu99 -O2 -DMACH_O_CARBON -DHAVE_MKSTEMP \
-	-DPRIVATE_USER_PATH=\"~/Library/Preferences\" -DPRIVATE_USER_PATHS
-
-default: all
-
-OBJEXT=.o
-include commondefs.inc
-
-
-OBJS = $(COMMONOBJS) \
-	main-crb.o
-
-# 
-# Additional dependencies
-#
-main-crb.o: osx/osx_tables.h
-
-#
-# Targets
-#
-
+# default target
 all: install
 
-install: $(EXE) $(ICONFILES) $(PLIST) $(LIBFILES)
+# settings
+CC = clang
+LD = ld
+OPT ?= -O2
+
+NAME = Unangband
+
+# for consistency with older versions, use a lower case bundle ID
+BUNDLE_IDENTIFIER = io.github.dgolddragon28.unangband
+
+ARCH = -arch i386 -arch x86_64
+WARNINGS = -W -Wall -Wno-unused-parameter -Wno-missing-field-initializers \
+	-Wunused-macros
+JUST_C = -std=c99
+OBJ_CFLAGS = -std=c99 -x objective-c -mmacosx-version-min=10.5
+CFLAGS = -g -I. $(WARNINGS) $(OPT) -DMACH_O_CARBON -DHAVE_MKSTEMP \
+	-fno-stack-protector $(ARCH)
+LIBS = -framework Cocoa
+# Fix for bug #1663: Set the deployment target via environment variable
+# for the final link command. See http://grauonline.de/wordpress/?p=71
+# or http://stackoverflow.com/questions/5509885/creating-app-for-old-mac-from-new-mac-machine
+DEPLOYMENT_TARGET = MACOSX_DEPLOYMENT_TARGET=10.5
+
+# Import user prefs
+# If you don't want to edit this file, put your module redefinitions
+# and build flags in "./config"
+-include config
+
+# Check for autoconf.h; do not warn on nonexistence
+autoconf= $(wildcard autoconf.h)
+ifneq ($(autoconf),)
+CFLAGS += -DHAVE_CONFIG_H
+endif
+
+# Note that Makefile.inc sets VERSION, and so we must run version.sh after including Makefile.inc
+include Makefile.inc
+
+PROGNAME = $(NAME)
+APPNAME = $(NAME).app
+EXE = $(PROGNAME)
+
+VERSION := 0.6.5a
+ifneq (${VERSION},)
+	BUNDLE_VERSION := ${VERSION}
+	CFLAGS += -DBUILD_ID=${VERSION}
+endif
+
+
+OBJS = $(BASEOBJS)
+OSX_OBJS = main-cocoa.o
+
+
+
+#
+# Build the "Angband" program
+#
+
+
+$(EXE).o: $(OBJS)
+	@printf "%10s %-20s\n" LD $@.x86_64
+	@$(LD) -r -arch x86_64 -o $@.x86_64 $(OBJS)
+	@printf "%10s %-20s\n" LD $@.i386
+	@$(LD) -r -arch i386 -o $@.i386 $(OBJS)
+	lipo -arch x86_64 $@.x86_64 -arch i386 $@.i386 -create -output $(PROGNAME).o
+
+izzywizzy: $(OBJS) izzywizzy.o
+
+$(EXE): $(EXE).o $(OSX_OBJS)
+	$(DEPLOYMENT_TARGET) $(CC) $(CFLAGS) $(LDFLAGS) -o $(EXE) $(EXE).o $(OSX_OBJS) $(LIBS) 
+
+#
+# Clean up old junk
+#
 
 clean:
-	rm *.o $(EXE)
+	-rm -f $(OBJS) $(EXE) $(EXE).o.i386 $(EXE).o.x86_64 $(EXE).o $(OSX_OBJS)
 
 
 #
-# Dependency rules
+# Basic build rules and dependencies
 #
 
-#
-# Executable
-#
-
-$(EXE): $(OBJS)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@  $(OBJS) $(LIBS)
-
-#
-# Compiling objects
-#
-
-main-crb.o : main-crb.c
-	CC $(CFLAGS) -x objective-c -c -o $@ $<
-%.o: %.c $(INCS)
-	$(CC) $(CFLAGS) $(INCDIRS) -c -o $@ $<
-
+main-cocoa.o : main-cocoa.m
+	@printf "%10s %-20s (objective-c)\n" CC $<
+	@$(CC) $(CFLAGS) $(OBJ_CFLAGS) -c -o $@ $<
+%.o : %.c
+	@printf "%10s %-20s\n" CC $<
+	@$(CC) $(JUST_C) $(CFLAGS) -c -o $@ $<
 
 
 #
@@ -85,13 +100,8 @@ main-crb.o : main-crb.c
 # Application bundle -- a directory looking like an ordinary application
 #
 
-# Name of the game
-APPNAME = Unangband.app
 # Bundle of the game (it must be a directory whose name ends in ".app")
 APPBNDL = ../$(APPNAME)
-
-# Version number (displayed)
-VERSION=0.6.4
 
 # A bundle must have these subdirectories
 APPCONT = $(APPBNDL)/Contents
@@ -107,18 +117,14 @@ APPRES = $(APPCONT)/Resources
 # it isn't generally safe just to convert GIF or BMP files to PNG, because
 # the Mac OS takes dpi values stored in various images quite seriously.
 # Almost all tilesets for *band requires adjustment, with the sole exception
-# of 8x8.bmp for Vanilla.  Make sure setting dpi to 72, *not* preserving
-# the actual size of image.  When you have them ready, put them in the src
-# directory and "make install-tiles".
-ICONFILES = osx/Unangband.icns osx/Save.icns osx/Edit.icns osx/Data.icns
-PLIST = osx/Angband.xml
+# of 8x8.png for Vanilla.  Make sure setting dpi to 72, *not* preserving
+# the actual size of image.  When you have them ready, put them in
+# the lib/xtra/graf directory and rebuild.
+PLIST = cocoa/$(NAME)-Cocoa.xml
 
-RFLAGS = -i /Developer/Headers/FlatCarbon -d MACH_O_CARBON
-GRAPHSRC=../lib/xtra/graf/
-TILES = $(GRAPHSRC)8x8.bmp $(GRAPHSRC)16x16.bmp $(GRAPHSRC)32x32.bmp
+ICONFILES = cocoa/$(NAME)_Icons.icns cocoa/Save.icns cocoa/Edit.icns cocoa/Data.icns
 
 LIBFILES = \
-  ../lib/docs/*.rtf \
   ../lib/edit/*.txt \
   ../lib/file/*.txt \
   ../lib/help/*.txt \
@@ -126,50 +132,64 @@ LIBFILES = \
   ../lib/info/*.txt \
   ../lib/pref/*.prf \
 
+
 install: $(EXE) $(ICONFILES) $(PLIST) $(LIBFILES)
 	@echo making directories...
 	@mkdir -p $(APPBNDL)
 	@mkdir -p $(APPCONT)
 	@mkdir -p $(APPBIN)
 	@mkdir -p $(APPRES)
-	@mkdir -p $(APPRES)/English.lproj/main.nib
-	@mkdir -p $(APPRES)/lib/docs
+	@mkdir -p $(APPRES)/English.lproj/MainMenu.nib 
+	@mkdir -p $(APPRES)/lib/apex
+	@mkdir -p $(APPRES)/lib/bone
+	@mkdir -p $(APPRES)/lib/data
 	@mkdir -p $(APPRES)/lib/edit
 	@mkdir -p $(APPRES)/lib/file
 	@mkdir -p $(APPRES)/lib/help
 	@mkdir -p $(APPRES)/lib/info
 	@mkdir -p $(APPRES)/lib/pref
-	@mkdir -p $(APPRES)/lib/script
-	@mkdir -p $(APPRES)/lib/xtra/graf
-	@mkdir -p $(APPRES)/lib/xtra/sound
+	@mkdir -p $(APPRES)/lib/save
+	@mkdir -p $(APPRES)/lib/user
+	@mkdir -p $(APPRES)/lib/xtra
 
 	@echo copying files...
-	@cp ../lib/docs/*.rtf $(APPRES)/lib/docs
 	@cp ../lib/edit/*.txt $(APPRES)/lib/edit
 	@cp ../lib/file/*.txt $(APPRES)/lib/file
+	@cp ../lib/info/*.txt $(APPRES)/lib/info
 	@cp ../lib/help/*.txt $(APPRES)/lib/help
 	@cp ../lib/help/*.hlp $(APPRES)/lib/help
-	@cp ../lib/info/*.txt $(APPRES)/lib/info
 	@cp ../lib/pref/*.prf $(APPRES)/lib/pref
-
-	# 'optionally' install sound and graphics tiles, if present
-	-cp ../lib/xtra/graf/*.png $(APPRES)/lib/xtra/graf
-	-cp ../lib/xtra/sound/*.wav $(APPRES)/lib/xtra/sound
-
-	-cp ../lib/xtra/sound/sound.cfg $(APPRES)/lib/xtra/sound
 
 	install -m 755 $(EXE) $(APPBIN)
 	install -m 644 $(ICONFILES) $(APPRES)
-	cp osx/English.lproj/main.nib/*ib $(APPRES)/English.lproj/main.nib
-	sed -e 's/\$$VERSION\$$/$(VERSION)/' -e 's/\$$COPYRIGHT\$$/$(COPYRIGHT)/' \
-		-e 's/\$$NAME\$$/$(NAME)/' -e 's/\$$EXECUTABLE\$$/$(EXE)/' \
+	cp cocoa/English.lproj/MainMenu.nib/*ib $(APPRES)/English.lproj/MainMenu.nib
+	cp cocoa/CommandMenu.plist $(APPRES)/CommandMenu.plist
+	sed -e 's/\$$VERSION\$$/$(VERSION)/' \
+		-e 's/\$$COPYRIGHT\$$/$(COPYRIGHT)/' \
+		-e 's/\$$NAME\$$/$(NAME)/' \
+		-e 's/\$$EXECUTABLE\$$/$(EXE)/' \
+		-e 's/\$$BUNDLE_VERSION\$$/$(BUNDLE_VERSION)/' \
+		-e 's/\$$BUNDLE_IDENTIFIER\$$/$(BUNDLE_IDENTIFIER)/' \
 		$(PLIST) > $(APPCONT)/Info.plist
-	$(SETFILE) -a B $(APPBNDL)
+
+	SetFile -a B $(APPBNDL)
 
 
-#
-# Build the "Angband" program
-#
+vars:
+	@echo LDFLAGS = $(LDFLAGS)
+	@echo CFLAGS = $(CFLAGS)
+	@echo BASEOBJS = $(BASEOBJS)
+
+# build a version that has separate prefs (different bundle ID) and directories (setting SAFE_DIRECTORY preprocessor flag)
+safe-install:
+	$(MAKE) -f Makefile.osx install CFLAGS="-DSAFE_DIRECTORY $(CFLAGS)"
+	sed -e 's/\$$VERSION\$$/$(VERSION)/' \
+		-e 's/\$$COPYRIGHT\$$/$(COPYRIGHT)/' \
+		-e 's/\$$NAME\$$/$(NAME)/' \
+		-e 's/\$$EXECUTABLE\$$/$(EXE)/' \
+		-e 's/\$$BUNDLE_VERSION\$$/$(BUNDLE_VERSION)/' \
+		-e 's/\$$BUNDLE_IDENTIFIER\$$/$(BUNDLE_IDENTIFIER).$(VERSION)/' \
+		$(PLIST) > $(APPCONT)/Info.plist
 
 
 PACKAGE_NAME = $(NAME)-$(VERSION)
@@ -177,15 +197,24 @@ PACKAGE_NAME = $(NAME)-$(VERSION)
 # In the unlikely event that tar+zip isn't enough...
 
 dist: install
-	@rm -rf disttemp
+	@rm -rf disttemp*
 	mkdir -p disttemp/Docs
-	cp ../readme.txt ../changes.txt disttemp/Docs
+	cp ../changes.txt ../copying.txt ../faq.txt ../readme.txt disttemp/Docs
+	-cp ../doc/manual.html ../doc/manual.pdf disttemp/Docs
 	cp -R -p "$(APPBNDL)" disttemp
-	$(SETFILE) -a B disttemp/$(APPNAME)
+	SetFile -a B disttemp/$(APPNAME)
 
-	-rm ../"$(PACKAGE_NAME)-osx.dmg"
+	@-rm ../"$(PACKAGE_NAME)-osx.dmg"
 
-	hdiutil create -quiet -fs HFS+ -volname "$(PACKAGE_NAME)" -srcfolder disttemp disttemp.dmg
+	hdiutil create -quiet -fs HFS+ -volname $(PACKAGE_NAME) -srcfolder disttemp disttemp.dmg
 	hdiutil convert disttemp.dmg -quiet -format UDZO -imagekey zlib-level=6 -o ../"$(PACKAGE_NAME)-osx.dmg"
 
 	rm -rf disttemp*
+
+tests:
+	$(MAKE) -C tests all CFLAGS='-I.. -DDEFAULT_CONFIG_PATH=\"../../lib\" -DDEFAULT_LIB_PATH=\"../../lib\" -DDEFAULT_DATA_PATH=\"../../lib\" $(CFLAGS)' LDFLAGS="$(LIBS)"
+
+test-clean:
+	$(MAKE) -C tests clean
+
+.PHONY : tests test-clean
