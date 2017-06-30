@@ -160,6 +160,9 @@ static void say_comment_2(s32b value, int annoyed)
 		/* Formatted message */
 		msg_format(comment_2b[rand_int(MAX_COMMENT_2B)], tmp_val);
 	}
+
+	/* Pause */
+	anykey();
 }
 
 
@@ -186,6 +189,9 @@ static void say_comment_3(s32b value, int annoyed)
 		/* Formatted message */
 		msg_format(comment_3b[rand_int(MAX_COMMENT_3B)], tmp_val);
 	}
+
+    /* Pause */
+    anykey();
 }
 
 
@@ -196,6 +202,9 @@ static void say_comment_4(void)
 {
 	msg_print(comment_4a[rand_int(MAX_COMMENT_4A)]);
 	msg_print(comment_4b[rand_int(MAX_COMMENT_4B)]);
+
+    /* Pause */
+    anykey();
 }
 
 
@@ -214,6 +223,9 @@ static void say_comment_5(void)
 static void say_comment_6(void)
 {
 	msg_print(comment_6[rand_int(MAX_COMMENT_6)]);
+
+    /* Pause */
+    anykey();
 }
 
 
