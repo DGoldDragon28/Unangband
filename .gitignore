@@ -8,5 +8,7 @@ lib/user/
 lib/save/
 *.INI
 .project
+.cproject
 *.res
 .settings/
+
