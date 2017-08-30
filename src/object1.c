@@ -2732,8 +2732,8 @@ void show_inven(void)
 	 * Add notes about slots used by the quiver or bags, if we have space, want
 	 * to show all slots, and have items in the quiver or bags.
 	 */
-	if ((p_ptr->pack_size_reduce_quiver || p_ptr->pack_size_reduce_bags || p_ptr->pack_size_reduce_study) && (item_tester_full) &&
-		(j <= (INVEN_PACK - p_ptr->pack_size_reduce_quiver - p_ptr->pack_size_reduce_bags - p_ptr->pack_size_reduce_study)))
+	if ((p_ptr->pack_size_reduce_quiver || p_ptr->pack_size_reduce_bags || (p_ptr->pack_size_reduce_study/3)) && (item_tester_full) &&
+		(j <= (INVEN_PACK - p_ptr->pack_size_reduce_quiver - p_ptr->pack_size_reduce_bags - (p_ptr->pack_size_reduce_study/3))))
 	{
 		int ammo_num = 0, ammo_slot;
 
@@ -2751,14 +2751,14 @@ void show_inven(void)
 		}
 
 		/* Insert a blank dividing line, if we have the space. */
-		if (j <= ((INVEN_PACK - 1) - p_ptr->pack_size_reduce_quiver - p_ptr->pack_size_reduce_bags - p_ptr->pack_size_reduce_study))
+		if (j <= ((INVEN_PACK - 1) - p_ptr->pack_size_reduce_quiver - p_ptr->pack_size_reduce_bags - (p_ptr->pack_size_reduce_study/3)))
 		{
 			j++;
 
 			prt("", j, col ? col - 2 : col);
 		}
 
-		for (i = 0; i < p_ptr->pack_size_reduce_quiver + p_ptr->pack_size_reduce_bags + p_ptr->pack_size_reduce_study; i++)
+		for (i = 0; i < p_ptr->pack_size_reduce_quiver + p_ptr->pack_size_reduce_bags + (p_ptr->pack_size_reduce_study/3); i++)
 		{
 			int attr;
 
@@ -2769,7 +2769,7 @@ void show_inven(void)
 
 			/* Determine index, print it out. */
 			sprintf(tmp_val, "%c)", index_to_label(INVEN_PACK -
-				p_ptr->pack_size_reduce_quiver - p_ptr->pack_size_reduce_bags - p_ptr->pack_size_reduce_study + i));
+				p_ptr->pack_size_reduce_quiver - p_ptr->pack_size_reduce_bags - (p_ptr->pack_size_reduce_study/3) + i));
 
 			put_str(tmp_val, j, col);
 

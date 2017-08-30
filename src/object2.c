@@ -8833,7 +8833,7 @@ bool inven_carry_okay(const object_type *o_ptr)
 	int j;
 
 	/* Empty slot? - note hack for bags taking up two slots */
-	if (p_ptr->inven_cnt < INVEN_PACK - p_ptr->pack_size_reduce_quiver - p_ptr->pack_size_reduce_study - p_ptr->pack_size_reduce_bags - (o_ptr->tval == TV_BAG ? 1 : 0)) return (TRUE);
+	if (p_ptr->inven_cnt < INVEN_PACK - p_ptr->pack_size_reduce_quiver - (p_ptr->pack_size_reduce_study/3) - p_ptr->pack_size_reduce_bags - (o_ptr->tval == TV_BAG ? 1 : 0)) return (TRUE);
 
 	/* Similar slot? */
 	for (j = 0; j < INVEN_PACK; j++)
@@ -8928,7 +8928,7 @@ s16b inven_carry(object_type *o_ptr)
 		 * Hack -- Force pack overflow if we reached the slots of the
 		 * inventory reserved for the quiver. -DG-
 		 */
-		if (j >= INVEN_PACK - p_ptr->pack_size_reduce_quiver - p_ptr->pack_size_reduce_study - p_ptr->pack_size_reduce_bags - (o_ptr->tval == TV_BAG ? 1 : 0))
+		if (j >= INVEN_PACK - p_ptr->pack_size_reduce_quiver - (p_ptr->pack_size_reduce_study/3) - p_ptr->pack_size_reduce_bags - (o_ptr->tval == TV_BAG ? 1 : 0))
 		{
 			/* Jump to INVEN_PACK to not mess up pack reordering */
 			j = INVEN_PACK;
