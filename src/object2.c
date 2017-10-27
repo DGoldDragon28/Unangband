@@ -7127,16 +7127,12 @@ void drop_near(object_type *j_ptr, int chance, int y, int x, bool dont_trigger)
 			/* Skip illegal grids */
 			if (!in_bounds_fully(ty, tx)) continue;
 
-			/* We are not placing an object exactly */
-			if ((chance != -2) || (ty != y) || (tx != x))
-			{
-				/* Require drop space */
-				if ((f_info[cave_feat[ty][tx]].flags1 & (FF1_DROP)) == 0) continue;
-	
-				/* Requires terrain that won't destroy it */
-				if ((chance <= 0) && hates_terrain(j_ptr, cave_feat[ty][tx])) continue;
-			}
+			/* Require drop space */
+			if ((f_info[cave_feat[ty][tx]].flags1 & (FF1_DROP)) == 0) continue;
 
+			/* Requires terrain that won't destroy it */
+			if ((chance <= 0) && hates_terrain(j_ptr, cave_feat[ty][tx])) continue;
+	
 			/* No objects */
 			k = 0;
 
