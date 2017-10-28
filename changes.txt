@@ -1,3 +1,17 @@
+Unangband 0.6.6 release
+
+### Game Play ###
+
+-Study slots consume one-third as many inventory slots as they did previously
+
+-Minor change to spell prereqs
+
+### Bug Fixes ###
+
+-Vendor speech now appears
+
+-Thrown items can no longer land on open doors and be impossible to pick up
+
 Unangband 0.6.5a release
 
 -Many bugfixes

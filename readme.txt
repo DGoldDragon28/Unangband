@@ -3,9 +3,9 @@
              | |_| | ' \ / _ \| ' \/ _` | '_ \/ _` | ' \/ _` |
               \___/|_||_/_/ \_\_||_\__, |_.__/\__,_|_||_\__,_|
                                     |___/                      
-           The Unnamed Angband                  Version 0.6.5a
+           The Unnamed Angband                  Version 0.6.6
         Copyright (c) 2001-2009 by Andrew Doull and others, except where noted.
-        Unangband 0.6.5 and 0.6.5a by the Gold Dragon
+        Unangband 0.6.5 - 0.6.6 by the Gold Dragon
         Unangband 0.5.4 - 0.6.4 by Andrew Doull
 	UnAngband 0.5.3 by Andrew Doull, Mogami, and Andrew Sidwell
                Previous versions of UnAngband by Andrew Doull.

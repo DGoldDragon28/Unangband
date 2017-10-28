@@ -14,7 +14,7 @@
 # Version stamp (required)
 
 
-V:0.6.5
+V:0.6.6
 
 N:0:NOTHING
 I:0

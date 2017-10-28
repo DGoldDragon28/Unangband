@@ -11,7 +11,7 @@
 
 # Version stamp (required)
 
-V:0.6.5
+V:0.6.6
 
 # Maximum number of method/blow types
 M:m:229

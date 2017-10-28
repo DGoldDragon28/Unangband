@@ -61,7 +61,7 @@
 
 # Version stamp (required)
 
-V:0.6.5
+V:0.6.6
 
 # Each room type has a separate N from 1 - 16.
 
