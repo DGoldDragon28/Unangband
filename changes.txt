@@ -31,7 +31,6 @@ Unangband 0.6.5 release
 
 -Encumbrance reduces energy as opposed to speed.
 
-
 Unangband 0.6.4c release
 
 ### Bug Fixes ###

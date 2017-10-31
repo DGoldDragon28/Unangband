@@ -3374,7 +3374,7 @@ enum
  */
 #define EVENT_TRAVEL		0x00000001L	/* Travels to a location */
 #define EVENT_LEAVE		0x00000002L	/* Leave a location */
-#define EVENT_STAY		0x00000004L	/* Stay in location a minimum amount of time */
+#define EVENT_OR		0x00000004L	/* This stage requires only one of the conditions to be fulfilled */
 #define EVENT_PASS_QUEST	0x00000008L	/* Valid after this quest completed */
 #define EVENT_FAIL_QUEST	0x00000010L	/* Valid after this quest failed */
 #define EVENT_FIND_ROOM		0x00000020L	/* Locate room */

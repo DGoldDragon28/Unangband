@@ -5180,21 +5180,11 @@ bool print_event(quest_event *event, int pronoun, int tense, cptr prefix)
 		if (tense > 1)
 		{
 			if (event->flags & (EVENT_TRAVEL)) vp[vn++] = "travel to";
-			if (event->flags & (EVENT_STAY))
-			{
-				if (event->level) vp[vn++] = "stay";
-				else vp[vn++] = "stay in";
-			}
 			if (event->flags & (EVENT_LEAVE)) vp[vn++] = "leave";
 		}
 		else
 		{
 			if (event->flags & (EVENT_TRAVEL)) vp[vn++] = "travelled to";
-			if (event->flags & (EVENT_STAY))
-			{
-				if (event->level) vp[vn++] = "stayed";
-				else vp[vn++] = "stayed in";
-			}
 			if (event->flags & (EVENT_LEAVE)) vp[vn++] = "left";
 		}
 

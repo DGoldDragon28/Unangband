@@ -1367,7 +1367,7 @@ static cptr quest_event_info_flags[] =
 {
 	"TRAVEL",
 	"LEAVE",
-	"STAY",
+	"OR",
 	"PASS_QUEST",
 	"FAIL_QUEST",
 	"FIND_ROOM",
@@ -7576,7 +7576,7 @@ static errr grab_one_quest_flag(quest_event *qe_ptr, cptr what)
  */
 static errr grab_one_quest_room_flag(quest_event *qe_ptr, cptr what)
 {
-	if (grab_one_flag(&qe_ptr->flags, d_info_sflags, what) == 0)
+	if (grab_one_flag(&qe_ptr->room_flags, d_info_sflags, what) == 0)
 		return (0);
 
 	/* Oops */
