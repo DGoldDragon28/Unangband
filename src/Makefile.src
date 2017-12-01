@@ -5,7 +5,7 @@
 # across a range of different makefiles, to cut down on maintenance.
 #
 
-VERSION = 0.6.3
+VERSION = 0.6.6
 
 HEADERS = \
 	angband.h \
@@ -59,6 +59,7 @@ ANGFILES = \
 	object2.o \
 	option.o \
 	randart.o \
+	quests.o \
 	save.o \
 	spells1.o \
 	spells2.o \

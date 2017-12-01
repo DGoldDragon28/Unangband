@@ -936,11 +936,31 @@ bool player_drop(int item)
 		return (FALSE);
 	}
 
+	quest_event event;
+
+	/* Use this to allow quests to succeed or fail */
+	WIPE(&event, quest_event);
+
+	/* Set up destruction event */
+	event.flags = EVENT_LOSE_ITEM;
+	event.dungeon = p_ptr->dungeon;
+	event.level = p_ptr->depth - min_depth(p_ptr->dungeon);
+	event.kind = o_ptr->k_idx;
+	event.ego_item_type = o_ptr->name2;
+	event.artifact = o_ptr->name1;
+	event.number = amt;
+
+	/* Check for quest failure. Abort if requested. */
+	if (check_quest(&event, FALSE)) return (FALSE);
+
 	/* Take a partial turn */
 	p_ptr->energy_use = 50;
 
 	/* Drop (some of) the item */
 	inven_drop(item, amt, 0);
+
+    /* Advance quests */
+    check_quest(&event, TRUE);
 
 	return (TRUE);
 }

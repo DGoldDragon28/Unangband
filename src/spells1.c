@@ -5405,47 +5405,6 @@ static bool questor_test_heal(int m_idx)
 
 
 /*
- *  Check how many monsters of a particular race are affected by a state
- *  that a quest requires.
- */
-void check_monster_quest(int m_idx, bool (*questor_test_hook)(int m_idx), u32b event)
-{
-	int i;
-	int k = 0;
-	int r_idx = m_idx ? m_list[m_idx].r_idx : 0;
-
-	quest_event qe;
-
-	for (i = 0; i < z_info->m_max; i++)
-	{
-		monster_type *m_ptr = &m_list[i];
-
-		/* Skip dead monsters */
-		if (!m_ptr->r_idx) continue;
-
-		/* Check any monster race, if necessary */
-		if ((r_idx) && !(m_ptr->r_idx != r_idx)) continue;
-
-		/* Check for state */
-		if (!questor_test_hook(m_idx)) continue;
-
-		/* Accumulate count */
-		k++;
-	}
-
-	if (!k) return;
-
-	WIPE(&qe, quest_event);
-
-	qe.flags = event;
-	qe.number = k;
-
-	/* Check for quest completion */
-	check_quest(&qe, FALSE);
-}
-
-
-/*
  *  Monster saving throw.
  *
  *  Hack -- we manipulate wisdom to indicate the player is nearly affecting the

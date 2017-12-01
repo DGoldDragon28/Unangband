@@ -3405,6 +3405,31 @@ enum
 #define EVENT_BANISH_RACE	0x40000000L	/* Banish a monster race */
 #define EVENT_DEFEND_RACE	0x80000000L	/* Defend a race */
 
+/*
+ * Consider grouping flags slightly? (bits needed, bits saved, entries wasted) [Slash indicates action/effect sharing same flag]
+ * TRAVEL : ARRIVE, LEAVE (2, 0, 1)
+ * OR (by itself because it is a modifier) (1, 0, 0)
+ * QUEST : PASS_, FAIL_ (2, 0, 1)
+ * ROOM : FIND_, FLAG_, UNFLAG_ (2, 1, 0)
+ * FEAT : ALTER_, DEFEND_, (2, 0, 1)
+ * ITEM : FIND_, GET_, LOSE_, DESTROY_, BUY_STORE, SELL_STORE (3, 3, 1)
+ * STORE : STOCK_, DEFEND_, TALK_ (2, 1, 0)
+ * RACE : TALK_, GIVE_, GET_,  FIND_, KILL_, ALLY_, HATE_, FEAR_, HEAL_, BANISH_, DEFEND_ (4, 7, 4)
+ * Total (18, 12, 8)
+ *
+ * Well lets do masks at least first.
+ */
+#define EVENT_MASK_TRAVEL (EVENT_TRAVEL | EVENT_LEAVE)                              /* 0x00000003 */
+#define EVENT_MASK_QUEST (EVENT_PASS_QUEST | EVENT_FAIL_QUEST)                      /* 0x00000018 */
+#define EVENT_MASK_ROOM (EVENT_FIND_ROOM | EVENT_FLAG_ROOM | EVENT_UNFLAG_ROOM)     /* 0x000000E0 */
+#define EVENT_MASK_FEAT (EVENT_ALTER_FEAT | EVENT_DEFEND_FEAT)                      /* 0x00000300 */
+#define EVENT_MASK_ITEM (EVENT_FIND_ITEM | EVENT_GET_ITEM | EVENT_LOSE_ITEM | \
+        EVENT_DESTROY_ITEM | EVENT_BUY_STORE | EVENT_SELL_STORE)                    /* 0x0001BC00 */
+#define EVENT_MASK_STORE (EVENT_STOCK_STORE | EVENT_DEFEND_STORE | EVENT_TALK_STORE)/* 0x00144000 */
+#define EVENT_MASK_RACE (EVENT_TALK_RACE | EVENT_GIVE_RACE | EVENT_GET_RACE | \
+        EVENT_FIND_RACE | EVENT_KILL_RACE | EVENT_ALLY_RACE | EVENT_HATE_RACE | \
+        EVENT_FEAR_RACE | EVENT_HEAL_RACE | EVENT_BANISH_RACE | EVENT_DEFEND_RACE)  /* 0xFFE00000 */
+
 /*** Quest event sequence ***/
 
 #define QUEST_ASSIGN	0	/* Event describes quest assignment */
@@ -3417,15 +3442,6 @@ enum
 #define	QUEST_FORFEIT	7	/* Event describes quest penalty at completion */
 #define	QUEST_PENALTY	8	/* Event describes quest penalty after completion */
 #define MAX_QUEST_EVENTS 9	/* Maximum events in a quest */
-
-/* When stage is 0, character has not been assigned quest.
-   When stage is 1, character has been assigned quest, but not completed any actions
-   When stage is 2, character has completed some actions
-   When stage is 3, character has completed all the required actions, but not collected the reward
-   When stage is 4, character has collected the reward
-   When stage is 5, character has failed the quest
-   When stage is 6, character has failed the quest, and the penalty has been applied */
-
 
 
 /*** Object flags ***/

@@ -684,7 +684,7 @@ static void rd_lore(int r_idx)
 	/* Later (?) */
 	rd_byte(&tmp8u);
 	rd_byte(&tmp8u);
-	rd_byte(&tmp8u);
+    rd_byte(&tmp8u);
 
 
 	/* Repair the lore flags */
@@ -2702,7 +2702,8 @@ static errr rd_savefile_new_aux(void)
 
 		rd_byte(&tmp8u);
 
-		q_list[i].stage = tmp8u;
+		q_list[i].stage = tmp8u & 0xF;
+		q_list[i].resolved = tmp8u & 0x10;
 	}
 
 	if (arg_fiddle) note("Loaded Quests");
