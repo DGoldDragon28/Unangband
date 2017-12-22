@@ -4395,7 +4395,7 @@ void tell_ally_death(monster_type *n_ptr, int u, int v, int w)
 bool tell_allies_death(int y, int x, cptr saying)
 {
 	/* Something said? */
-	return (tell_allies_info(y, x, NULL, (int)saying, 0, 0, TRUE, NULL, tell_ally_death));
+	return (tell_allies_info(y, x, saying, 0, 0, 0, TRUE, NULL, tell_ally_death));
 }
 
 
