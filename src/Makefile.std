@@ -48,7 +48,7 @@ SYS_gcu = -DUSE_GCU -DUSE_NCURSES -lncurses
 
 # Basic compiler stuff
 CC = gcc
-CFLAGS = -Wall -O2 -Wno-unused-parameter
+CFLAGS = -Wall -O2 -Wno-unused-parameter -DHAVE_MKSTEMP
 
 
 # Add additional search directives here
