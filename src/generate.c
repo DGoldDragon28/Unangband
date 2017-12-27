@@ -15761,12 +15761,16 @@ static bool town_gen(void)
 	}
 
 	/* Start with solid walls */
-	for (y = 0; y < TOWN_HGT; y++)
+	for (y = 0; y < DUNGEON_HGT; y++)
 	{
-		for (x = 0; x < TOWN_WID; x++)
+		for (x = 0; x < DUNGEON_WID; x++)
 		{
 			/* Create "solid" perma-wall */
-			cave_set_feat(y, x, FEAT_PERM_SOLID);
+			if (x >= TOWN_WID || y >= TOWN_HGT) {
+				cave_set_feat(y, x, FEAT_NONE);
+			} else {
+				cave_set_feat(y, x, FEAT_PERM_SOLID);
+			}
 		}
 	}
 
