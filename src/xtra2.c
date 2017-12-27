@@ -3414,7 +3414,7 @@ bool change_panel(int dir)
 /*
  * Hack - generate the current room description
  */
-static void get_room_desc(int room, char *name, int name_s, char *text_visible, int text_visible_s, char *text_always, int text_always_s)
+void get_room_desc(int room, char *name, int name_s, char *text_visible, int text_visible_s, char *text_always, int text_always_s)
 {
 	bool scan_name = FALSE;
 	bool scan_desc = FALSE;

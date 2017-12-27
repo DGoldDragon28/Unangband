@@ -3427,7 +3427,12 @@ static void process_player(void)
 
 	/* Update scent trail */
 	update_smell();
-
+	
+	/* If narrative shown, update narrative */
+	if (show_narrative)
+	{
+		print_emergent_narrative();
+	}
 
 	/*
 	 * Reset character vulnerability.  Will be calculated by
