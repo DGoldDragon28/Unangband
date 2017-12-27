@@ -215,7 +215,7 @@ static option_entry options[OPT_MAX] =
 { "view_granite_lite",   "Use special colors for wall grids",           FALSE }, /* 62 */
 { "view_special_lite",   "Use special colors for floor grids",          TRUE },  /* 63 */
 { "easy_open",           "Open/Disarm/Close without direction",         FALSE }, /* 64 */
-{ "easy_alter",          "Open/Disarm doors/traps on movement",         FALSE }, /* 65 */
+{ "easy_alter",          "Open/Disarm doors/traps on movement",         TRUE }, /* 65 */
 { NULL,                  NULL,                                          FALSE }, /* 66 */
 { "show_piles",          "Show stacks using special attr/char",         FALSE }, /* 67 */
 { "center_player",       "Center map continuously",                     FALSE }, /* 68 */
