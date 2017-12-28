@@ -261,7 +261,7 @@ static option_entry options[OPT_MAX] =
 { "easy_monlist",        "Spacebar toggles visible monsters/objects",   FALSE }, /* 107 */
 { "view_fogged_grids",   "Show fog of war for unexplored areas",        TRUE }, /* 108 */
 { "ally_messages",       "Show detailed combat messages for allies",    FALSE }, /* 109 */
-{ "show_narrative",      "Display emergent narrative",                  TRUE }, /* 110 */
+{ "show_narrative",      "Single-window narrative mode",                FALSE }, /* 110 */
 { NULL,                  NULL,                                          FALSE }, /* 111 */
 { NULL,                  NULL,                                          FALSE }, /* 112 */
 { NULL,                  NULL,                                          FALSE }, /* 113 */
