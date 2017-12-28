@@ -309,6 +309,427 @@ static void prt_gold(void)
 }
 
 
+/*
+ * Clear sidebar
+ */
+int clear_sidebar(int height_start, int height_end)
+{
+	int index;
+	
+	for (index = height_start; index <= height_end; index++) {
+		c_put_str(TERM_DARK, "             ", index, 0);
+	}
+	
+	return 1;
+}
+
+
+/* Check if integer value is in array */
+int is_in_array(int value, int *array, int size){
+    int index;
+    
+    for (index = 0; index < size; index++) {
+        if (array[index] == value)
+            return 1;
+    }
+    
+    return 0;
+}
+
+
+/*
+ * Prints tokenized name on multiple lines in the sidebar
+ */
+int print_tokenized_name(int line_number, byte color, char display_character, char* name, int max_line_number)
+{
+	int show_display_character = 1;
+	
+	char text[80];
+	char trimmed_text[14];
+	
+	char* token = strtok(name, " ");
+	
+	while( token != NULL && line_number < max_line_number ) {
+		if (strlen(token) > 2) {
+			if (show_display_character) {
+				sprintf(text, "%c: %s", display_character, token);
+				show_display_character = 0;
+			} else {
+				sprintf(text, "   %s", token);
+			}
+			
+			strncpy(trimmed_text, text, 13);
+			trimmed_text[13] = '\0';
+			c_put_str(color, trimmed_text, line_number, 0);
+			
+			line_number++;
+		}
+		
+		token = strtok(NULL, " ");
+	}
+	
+	return line_number;
+}
+
+
+/*
+ * Print monster character, color and name
+ */
+int print_monster_narrative(int line_number, int max_line_number)
+{
+	int index;
+	int previous_monsters[100];
+	int previous_monster_count = 0;
+	
+	char name[80];
+	
+	byte color;
+	
+	monster_type *monster;
+	monster_race *monster_race;
+	
+	/* Loop over monsters */
+	for (index = 1; index < z_info->m_max; index++) {
+		monster = &m_list[index];
+		
+		/* Only visible monsters */
+		if (!monster->ml) continue;
+		
+		if (!player_can_see_bold(monster->fy, monster->fx)) continue;
+		
+		/* Get monster race */
+		monster_race = &r_info[monster->r_idx];
+		
+		/* Get the monster name */
+		monster_desc(name, sizeof(name), index, 0x208);
+		
+		color = monster_race->d_attr;
+		
+		/* Ignore duplicates */
+		if ( is_in_array(
+			monster->r_idx, 
+			previous_monsters, 
+			sizeof(previous_monsters)) == 1 ) 
+				continue;
+		
+		line_number = print_tokenized_name(
+			line_number, 
+			color, 
+			monster_race->d_char, 
+			name, 
+			max_line_number);
+		
+		previous_monsters[ previous_monster_count ] = monster->r_idx;
+		previous_monster_count++;
+		
+		if (Term->hgt > 40) line_number++;
+	}
+	
+	return line_number;
+}
+
+
+/*
+ * Print object character, color and name
+ */
+int print_object_narrative(int line_number, int max_line_number)
+{
+	int index;
+	int previous_objects[100];
+	int previous_object_count = 0;
+	
+	char name[80];
+	
+	byte color;
+	
+	object_type *object;
+	
+	/* Loop over objects */
+	for (index = 1; index < z_info->o_max; index++) {
+		object_type object_type_body;
+		
+		object = &o_list[index];
+		
+		/* Only visible objects */
+		if ((object->ident & (IDENT_MARKED)) == 0) continue;
+		
+		/* Only objects on the floor */
+		if (object->held_m_idx) continue;
+		
+		if (!player_can_see_bold(object->iy, object->ix)) continue;
+		
+		/* Prepare a fake object */
+		object_prep(&object_type_body, object->k_idx);
+		
+		/* Fake the artifact */
+		if (object_named_p(object) && object->name1) {
+			object_type_body.name1 = object->name1;
+		}
+		
+		/* Describe the object */
+		object_desc(name, sizeof(name), &object_type_body, TRUE, 0);
+		
+		color = k_info[object->k_idx].d_attr;
+		
+		/* Ignore duplicates */
+		if ( is_in_array(
+			object->k_idx, 
+			previous_objects, 
+			sizeof(previous_objects)) == 1 ) 
+				continue;
+		
+		line_number = print_tokenized_name(
+			line_number, 
+			color, 
+			k_info[object->k_idx].d_char, 
+			name, 
+			max_line_number);
+		
+		previous_objects[ previous_object_count ] = object->k_idx;
+		previous_object_count++;
+		
+		if (Term->hgt > 40) line_number++;
+	}
+	
+	return line_number;
+}
+
+
+/*
+ * Print noticable feature character, color and name
+ */
+int print_feature_narrative(int line_number, int max_line_number)
+{
+	int player_x = p_ptr->px;
+	int player_y = p_ptr->py;
+	int scan_square_size = 6;
+	int x, y, i;
+	char previous_feature_chars[100];
+	int previous_feature_count = 0;
+	
+	char name[80];
+	
+	byte color;
+	byte previous_feature_colors[100];
+	
+	feature_type *feature;
+	
+	bool is_duplicate;
+	bool outside = (level_flag & (LF1_SURFACE))
+		&& (f_info[cave_feat[player_y][player_x]].flags3 & (FF3_OUTSIDE));
+	
+	/* Scan rectangle shape around player */
+	for (y = (player_y - scan_square_size); y <= (player_y + scan_square_size); y++) {
+		/* Skip if Y falls outside terrain borders */
+		if (y < 0 || (outside && y > TOWN_HGT) 
+			|| (!outside && y > DUNGEON_HGT)) 
+				continue;
+		
+		for (x = (player_x - scan_square_size); x <= (player_x + scan_square_size); x++) {
+			/* Skip if X falls outside terrain borders */
+			if (x < 0 || (outside && x > TOWN_WID) 
+				|| (!outside && x > DUNGEON_WID)) 
+					continue;
+			
+			if (!player_can_see_bold(y, x)) continue;
+			
+			feature = &f_info[cave_feat[y][x]];
+			
+			/* Only display is feature is noticable */
+			if ((feature->flags1 & FF1_NOTICE) 
+				|| (feature->flags1 & RE1_NOTICE)) {
+					sprintf(name, "%s", (f_name + feature->name));
+					color = feature->d_attr;
+					
+					/* Ignore duplicates */
+					/* Compare char and color because I couldn't find a unique index */
+					is_duplicate = (bool) 0;
+					for (i = 0; i < previous_feature_count; i++) {
+						if (previous_feature_chars[i] == feature->d_char
+							&& previous_feature_colors[i] == color) {
+								is_duplicate = (bool) 1;
+								continue;
+						}
+					}
+					if (is_duplicate) continue;
+					
+					line_number = print_tokenized_name(
+						line_number, 
+						color, 
+						feature->d_char, 
+						name, 
+						max_line_number);
+					
+					previous_feature_chars[ previous_feature_count ] = feature->d_char;
+					previous_feature_colors[ previous_feature_count ] = color;
+					previous_feature_count++;
+					
+					if (Term->hgt > 40) line_number++;
+			}
+		}
+	}
+	
+	return line_number;
+}
+
+
+/*
+ * Print text word by word, break lines on sidebar width
+ */
+int print_text_in_sidebar(int line_number, byte color, char* text, int max_line_number, bool first_sentence_only)
+{
+	int line_column = 0;
+	
+	char token_trimmed[14];
+	
+	char* token = strtok(text, " ");
+	
+	while( token != NULL && line_number < max_line_number ) {
+		if (strlen(token) > 13) {
+			strncpy(token_trimmed, token, 13);
+			token_trimmed[13] = '\0';
+		} else {
+			strcpy(token_trimmed, token);
+			token_trimmed[ strlen(token) ] = '\0';
+		}
+		
+		if ((line_column + strlen(token_trimmed)) >= 13) {
+			line_column = 0;
+			line_number++;
+		}
+		
+		c_put_str(color, token_trimmed, line_number, line_column);
+		
+		line_column = line_column + strlen(token_trimmed) + 1;
+		
+		/* If first sentence only, stop after the first period */
+		if (first_sentence_only && strchr(token, '.') != NULL) break;
+		
+		token = strtok(NULL, " ");
+	}
+	
+	line_number++;
+	
+	return line_number;
+}
+
+
+/*
+ * Print room description
+ */
+int print_room_narrative(int line_number, char* title, char* text, int max_line_number, bool is_long_description)
+{
+#ifdef ALLOW_BORG
+	/* Hack -- No descriptions for the borg */
+	if (count_stop) return line_number;
+#endif
+	
+	/* Hack -- handle "xtra" mode */
+	if (!character_dungeon) return line_number;
+	
+	/* Hack -- not a room */
+	//if (!(cave_info[p_ptr->py][p_ptr->px] & (CAVE_ROOM))) room = 0;
+	
+	if (title && strlen(title) > 0 && strcmp(title, "empty room") != 0) {
+		title[0] = toupper(title[0]);
+		line_number = print_text_in_sidebar(
+			line_number, 
+			TERM_WHITE, 
+			title, 
+			max_line_number, 
+			(bool) 0);
+		//if (Term->hgt > 40 || ! is_long_description) line_number++;
+	}
+	
+	if (text && strlen(text) > 0) {
+		line_number = print_text_in_sidebar(
+			line_number, 
+			TERM_L_DARK, 
+			text, 
+			max_line_number, 
+			is_long_description);
+		line_number++;
+	}
+	
+	return line_number;
+}
+
+
+/*
+ * Print emergent narrative using:
+ * - visible monsters
+ * - visible objects
+ * - visible noticable features
+ * - room title and both descriptions
+ */
+int print_emergent_narrative(void)
+{
+	int line_number = 1;
+	int max_line_number = (Term->hgt - 3);
+	
+	int room = room_idx(p_ptr->py, p_ptr->px);
+	
+	char hungry_message[] = "You're hungry";
+	char name[62];
+	char text_visible[1024];
+	char text_always[1024];
+	char text_empty[] = "";
+	//empty[0] = '\0';
+	
+	bool is_long_description;
+	
+	/* Get the room description */
+	get_room_desc(
+		room, 
+		name, 
+		sizeof(name), 
+		text_visible, 
+		sizeof(text_visible), 
+		text_always, 
+		sizeof(text_always));
+	
+	/* Check if a description is long */
+	is_long_description = ((Term->hgt < 40 
+		&& strlen(text_always) > 85) 
+		|| strlen(text_always) > 125);
+	
+	clear_sidebar(line_number, max_line_number);
+	
+	/* Additional hunger warning at the top left for larger screens */
+	if (Term->hgt > 40 && p_ptr->food < PY_FOOD_ALERT) {
+		line_number = print_text_in_sidebar(
+			line_number, 
+			TERM_L_RED, 
+			hungry_message, 
+			max_line_number, 
+			(bool) 0);
+		line_number++;
+	}
+	
+	line_number = print_monster_narrative(line_number, max_line_number);
+	line_number = print_object_narrative(line_number, max_line_number);
+	line_number = print_feature_narrative(line_number, max_line_number);
+	
+	/* Add whitespace between list and room description for smaller screens */
+	if (Term->hgt <= 40) line_number++;
+	
+	line_number = print_room_narrative(
+		line_number, 
+		name, 
+		text_visible, 
+		max_line_number, 
+		is_long_description);
+	
+	line_number = print_room_narrative(
+		line_number, 
+		text_empty, 
+		text_always, 
+		max_line_number, 
+		is_long_description);
+
+	return line_number;
+}
+
 
 /*
  * Prints current AC
@@ -4596,6 +5017,8 @@ void redraw_stuff(void)
 		p_ptr->redraw &= ~(PR_STUDY);
 		prt_study();
 	}
+	
+	if (show_narrative) print_emergent_narrative();
 }
 
 

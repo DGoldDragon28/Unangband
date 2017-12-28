@@ -1170,6 +1170,7 @@ extern void update_stuff(void);
 extern void redraw_stuff(void);
 extern void window_stuff(void);
 extern void handle_stuff(void);
+extern int print_emergent_narrative(void);
 
 /* xtra2.c */
 extern bool set_timed(int idx, int v, bool notify);
@@ -1229,7 +1230,7 @@ extern void get_zone(dungeon_zone **zone_handle, int dungeon, int depth);
 extern void long_level_name(char* str, int town, int depth);
 extern void current_long_level_name(char* str);
 extern int scale_method(method_level_scalar_type scalar, int level);
-
+extern void get_room_desc(int room, char *name, int name_s, char *text_visible, int text_visible_s, char *text_always, int text_always_s);
 
 /*
  * Hack -- conditional (or "bizarre") externs

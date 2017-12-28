@@ -113,7 +113,7 @@
  * into the main window. So in these instances, we cheat, and shrink it slightly to 12.
  *
  */
-#define SIDEBAR_WID		(show_sidebar ? (use_dbltile || use_trptile ? 12 : 13) : 0)
+#define SIDEBAR_WID		(show_sidebar | show_narrative ? (use_dbltile || use_trptile ? 12 : 13) : 0)
 
 
 #define ROW_MAP			1
