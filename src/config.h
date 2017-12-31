@@ -528,6 +528,8 @@
 #define DEFAULT_X11_FONT_6		"5x8"
 #define DEFAULT_X11_FONT_7		"5x8"
 
+#define FALLBACK_X11_FONT		"*fixed*"
+
 
 /*
  * Hack -- Special "ancient machine" versions

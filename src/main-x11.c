@@ -2384,7 +2384,12 @@ static errr term_data_init(term_data *td, int i)
 	/* Prepare the standard font */
 	td->fnt = ZNEW(infofnt);
 	Infofnt_set(td->fnt);
-	if (Infofnt_init_data(font)) quit_fmt("Couldn't load the requested font. (%s)", font);
+	if (Infofnt_init_data(font)) {
+		printf("\nUsing sys font, please install base xfonts (reboot required).\n\n");
+
+		if (Infofnt_init_data(FALLBACK_X11_FONT))
+			quit_fmt("Please install base xfonts (reboot required). (%s)", font);
+	}
 
 	/* Hack -- key buffer size */
 	num = ((i == 0) ? 1024 : 16);
