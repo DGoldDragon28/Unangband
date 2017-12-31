@@ -2334,6 +2334,8 @@ static errr term_data_init(term_data *td, int i)
 	char res_name[20];
 	char res_class[20];
 
+	bool is_main_term = (i == 0);
+
 	XSizeHints *sh;
 
 	/* Get default font for this term */
@@ -2384,11 +2386,25 @@ static errr term_data_init(term_data *td, int i)
 	/* Prepare the standard font */
 	td->fnt = ZNEW(infofnt);
 	Infofnt_set(td->fnt);
-	if (Infofnt_init_data(font)) {
-		printf("\nUsing sys font, please install base xfonts (reboot required).\n\n");
 
-		if (Infofnt_init_data(FALLBACK_X11_FONT))
-			quit_fmt("Please install base xfonts (reboot required). (%s)", font);
+	if (! has_env_font(i) && is_main_term) {
+		if (Infofnt_init_data(MODERN_X11_FONT)) {
+			printf("\nUsing base xfont, install Terminus xfonts for improved visuals.\n");
+
+			if (Infofnt_init_data(font)) {
+				printf("\nUsing sys font, please install Terminus/base xfonts (reboot required).\n\n");
+
+				if (Infofnt_init_data(FALLBACK_X11_FONT))
+					quit_fmt("Please install xfonts (Terminus or base, reboot required). (%s)", font);
+			}
+		}
+	} else {
+		if (Infofnt_init_data(font)) {
+			printf("\nUsing sys font, please install base xfonts (reboot required).\n\n");
+
+			if (Infofnt_init_data(FALLBACK_X11_FONT))
+				quit_fmt("Please install base xfonts (reboot required). (%s)", font);
+		}
 	}
 
 	/* Hack -- key buffer size */

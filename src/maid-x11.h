@@ -60,6 +60,7 @@
 
 
 extern u32b create_pixel(Display *dpy, byte red, byte green, byte blue);
+extern bool has_env_font(int term_num);
 extern cptr get_default_font(int term_num);
 extern XImage *ReadBMP(Display *dpy, char *Name);
 extern bool smoothRescaling;

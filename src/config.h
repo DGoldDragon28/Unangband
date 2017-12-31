@@ -519,6 +519,7 @@
 /*
  * OPTION: Default fonts (when using X11)
  */
+#define MODERN_X11_FONT			"terminus-18"
 #define DEFAULT_X11_FONT_0		"10x20"
 #define DEFAULT_X11_FONT_1		"9x15"
 #define DEFAULT_X11_FONT_2		"9x15"
