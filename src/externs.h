@@ -451,6 +451,7 @@ extern void object_actual_track(const object_type *j_ptr);
 extern void disturb(int stop_search, int wake_up);
 extern bool is_quest(int level);
 extern void init_level_flags(void);
+extern bool is_daytime(void);
 
 /* cmd1.c */
 extern bool test_hit_fire(int chance, int ac, int vis);

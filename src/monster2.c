@@ -214,12 +214,12 @@ bool has_torch_lit(int y, int x)
 
 bool redraw_torch_lit_loss(int y, int x)
 {
-	return ((play_info[y][x] & (PLAY_VIEW)) && ((cave_info[y][x] & (CAVE_TLIT)) == 0));
+	return (((play_info[y][x] & (PLAY_VIEW)) && ((cave_info[y][x] & (CAVE_TLIT)) == 0)) || (p_ptr->outside && ! is_daytime()));
 }
 
 bool redraw_torch_lit_gain(int y, int x)
 {
-	return ((play_info[y][x] & (PLAY_VIEW)) && ((cave_info[y][x] & (CAVE_TLIT)) != 0));
+	return (((play_info[y][x] & (PLAY_VIEW)) && ((cave_info[y][x] & (CAVE_TLIT)) != 0)) || (p_ptr->outside && ! is_daytime()));
 }
 
 void apply_torch_lit(int y, int x)
@@ -3266,6 +3266,11 @@ void monster_swap(int y1, int x1, int y2, int x2)
 	/* Update grids */
 	cave_m_idx[y1][x1] = m2;
 	cave_m_idx[y2][x2] = m1;
+	
+	/* This function is misused to move monsters and not swap them. */
+	/* Used to enable "glowing" NPCs outside at night. */
+	/* Using bool to detect whether monsters are swapped or only moved. */
+	bool is_real_monster_swap = (m1 > 0 && m2 > 0);
 
 	/* Monster 1 */
 	if (m1 > 0)
@@ -3368,28 +3373,34 @@ void monster_swap(int y1, int x1, int y2, int x2)
 		player_swap(y2, x2, y1, x1);
 	}
 
-	/* Check monster lites */
-	if (lite1 && !lite4)
-	{
-		check_attribute_lost(y1, x1, 2, CAVE_XLOS, require_torch_lit, has_torch_lit, redraw_torch_lit_loss, remove_torch_lit, reapply_torch_lit);
-	}
+	/* Redraw lit monster lights outside at night, to avoid a light trail glitch */
+	if (! is_real_monster_swap && lite2){
+		check_attribute_lost(y1, x1, 2, CAVE_GLOW, require_torch_lit, has_torch_lit, redraw_torch_lit_loss, remove_torch_lit, reapply_torch_lit);
+		gain_attribute(y2, x2, 2, CAVE_GLOW, apply_torch_lit, redraw_torch_lit_gain);
+	} else {
+		/* Check monster lites */
+		if (lite1 && !lite4)
+		{
+			check_attribute_lost(y1, x1, 2, CAVE_XLOS, require_torch_lit, has_torch_lit, redraw_torch_lit_loss, remove_torch_lit, reapply_torch_lit);
+		}
 
-	/* Check monster lites */
-	if (lite3 && !lite2)
-	{
-		check_attribute_lost(y2, x2, 2, CAVE_XLOS, require_torch_lit, has_torch_lit, redraw_torch_lit_loss, remove_torch_lit, reapply_torch_lit);
-	}
+		/* Check monster lites */
+		if (lite3 && !lite2)
+		{
+			check_attribute_lost(y2, x2, 2, CAVE_XLOS, require_torch_lit, has_torch_lit, redraw_torch_lit_loss, remove_torch_lit, reapply_torch_lit);
+		}
 
-	/* Handle creating "glowing" terrain */
-	if (!lite1 && lite4)
-	{
-		gain_attribute(y1, x1, 2, CAVE_XLOS, apply_torch_lit, redraw_torch_lit_gain);
-	}
+		/* Handle creating "glowing" terrain */
+		if (!lite1 && lite4)
+		{
+			gain_attribute(y1, x1, 2, CAVE_XLOS, apply_torch_lit, redraw_torch_lit_gain);
+		}
 
-	/* Handle creating "glowing" terrain */
-	if (!lite3 && lite2)
-	{
-		gain_attribute(y2, x2, 2, CAVE_XLOS, apply_torch_lit, redraw_torch_lit_gain);
+		/* Handle creating "glowing" terrain */
+		if (!lite3 && lite2)
+		{
+			gain_attribute(y2, x2, 2, CAVE_XLOS, apply_torch_lit, redraw_torch_lit_gain);
+		}
 	}
 
 	/* Redraw */

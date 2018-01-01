@@ -5335,7 +5335,22 @@ extern int PlayerUID;
 #define TERM_BLUE_SLATE 26	/* 'z' */
 #define TERM_DEEP_L_BLUE 27	/* 'Z' */
 
-#define BASE_COLORS 	28	/* Maximum 'normal' colours */
+#define TERM_DARK_RED	28
+#define TERM_DARK_GREEN 29
+#define TERM_DARK_BLUE	30
+
+#define TERM_NIGHT_DARK	31
+#define TERM_NIGHT_RED	32
+#define TERM_NIGHT_GREEN 33
+#define TERM_NIGHT_BLUE	34
+
+#define TERM_HIGH_RED	35
+#define TERM_HIGH_GREEN 36
+#define TERM_HIGH_BLUE	37
+
+#define TERM_FOREST	38	/* 'f' */
+
+#define BASE_COLORS 	39	/* Maximum 'normal' colours */
 #define MAX_COLORS 		256	/* Maximum 'normal' colours */
 
 
@@ -5348,12 +5363,13 @@ extern int PlayerUID;
 #define ATTR_HIGH		6	/* "Highlight" color translation */
 #define ATTR_METAL		7	/* "Metallic" color translation */
 #define ATTR_MISC		8	/* "Miscellaneous" color translation - see misc_to_attr */
+#define ATTR_NIGHT		9	/* "Miscellaneous" color translation - see misc_to_attr */
 
 /* Strongly consider the following for accessibility reasons */
 #define ATTR_COLOR_RG	9	/* Red/green colorblind users */
 #define ATTR_CONTRAST	10	/* High contrast colors */
 
-#define MAX_ATTR		9
+#define MAX_ATTR		10
 
 /*** Message constants ***/
 
