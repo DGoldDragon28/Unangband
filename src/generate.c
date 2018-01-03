@@ -404,7 +404,7 @@ static byte room_build_order[ROOM_MAX] = {ROOM_LAIR, ROOM_GREATER_VAULT, ROOM_CH
 
 
 /*
- * Count the number of walls adjacent to the given grid.
+ * Count the number of walls orthogonally adjacent to the given grid.
  *
  * Note -- Assumes "in_bounds_fully(y, x)"
  *
@@ -415,9 +415,9 @@ static int next_to_walls(int y, int x)
 	int k = 0;
 
 	if (f_info[cave_feat[y+1][x]].flags1 & (FF1_WALL)) k++;
-	if (f_info[cave_feat[y+1][x]].flags1 & (FF1_WALL)) k++;
-	if (f_info[cave_feat[y+1][x]].flags1 & (FF1_WALL)) k++;
-	if (f_info[cave_feat[y+1][x]].flags1 & (FF1_WALL)) k++;
+	if (f_info[cave_feat[y-1][x]].flags1 & (FF1_WALL)) k++;
+	if (f_info[cave_feat[y][x+1]].flags1 & (FF1_WALL)) k++;
+	if (f_info[cave_feat[y][x-1]].flags1 & (FF1_WALL)) k++;
 
 	return (k);
 }
