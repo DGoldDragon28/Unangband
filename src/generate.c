@@ -16003,7 +16003,8 @@ void generate_cave(void)
 		ensure_quest();
 
 		/* Extract the feeling */
-		if (rating > 100) feeling = 2;
+		if (good_item_flag) feeling = 1;
+		else if (rating > 100) feeling = 2;
 		else if (rating > 70) feeling = 3;
 		else if (rating > 40) feeling = 4;
 		else if (rating > 30) feeling = 5;

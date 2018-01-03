@@ -663,18 +663,28 @@ static void prt_speed(void)
 	/* Hack -- Visually "undo" the Search Mode Slowdown */
 	if (p_ptr->searching) i += 10;
 
-	/* Fast */
-	if (i > 110)
-	{
-		attr = TERM_L_GREEN;
-		sprintf(buf, (show_sidebar ? "Fast (+%d)" : (p_ptr->timed[TMD_SLOW] || p_ptr->timed[TMD_FAST] || p_ptr->food >= PY_FOOD_MAX ? "Temp Fast +%-2d" : "Fast +%-2d")), (i - 110));
-	}
+	if(speed_as_factor) {
+	    if(i != 110) {
+	        int multiplier = 100 * extract_energy[i] / extract_energy[110];
+	        const char * type = (i > 110) ? "Fast" : "Slow";
+	        const char * tmp = (p_ptr->timed[TMD_SLOW] || p_ptr->timed[TMD_FAST] || p_ptr->food >= PY_FOOD_MAX) ? "Temp " : "";
+	        attr = (i > 110) ? TERM_L_GREEN : TERM_L_UMBER;
+	        strnfmt(buf, sizeof(buf), "%s%s (%d%%)", tmp, type, multiplier);
+	    }
+	} else {
+	    /* Fast */
+	    if (i > 110)
+	    {
+	        attr = TERM_L_GREEN;
+	        sprintf(buf, (show_sidebar ? "Fast (+%d)" : (p_ptr->timed[TMD_SLOW] || p_ptr->timed[TMD_FAST] || p_ptr->food >= PY_FOOD_MAX ? "Temp Fast +%-2d" : "Fast +%-2d")), (i - 110));
+	    }
 
-	/* Slow */
-	else if (i < 110)
-	{
-		attr = TERM_L_UMBER;
-		sprintf(buf, (show_sidebar ? "Slow (-%d)" : (p_ptr->timed[TMD_SLOW] || p_ptr->timed[TMD_FAST] || p_ptr->food >= PY_FOOD_MAX ?  "Temp Slow -%-2d" : "Slow -%-2d")), (110 - i));
+	    /* Slow */
+	    else if (i < 110)
+	    {
+	        attr = TERM_L_UMBER;
+	        sprintf(buf, (show_sidebar ? "Slow (-%d)" : (p_ptr->timed[TMD_SLOW] || p_ptr->timed[TMD_FAST] || p_ptr->food >= PY_FOOD_MAX ?  "Temp Slow -%-2d" : "Slow -%-2d")), (110 - i));
+	    }
 	}
 
 	/* Display the speed */

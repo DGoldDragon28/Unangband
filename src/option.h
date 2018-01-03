@@ -102,6 +102,7 @@ extern const byte option_page[OPT_PAGE_MAX][OPT_PAGE_PER];
 #define OPT_easy_monlist  		 107
 #define OPT_view_fogged_grids	108
 #define OPT_ally_messages	109
+#define OPT_speed_as_factor     110
 
 #define OPT_birth_randarts          (OPT_BIRTH+1)
 #define OPT_birth_rand_stats        (OPT_BIRTH+2)
@@ -221,7 +222,7 @@ extern const byte option_page[OPT_PAGE_MAX][OPT_PAGE_PER];
 #define easy_monlist        OPT(easy_monlist)
 #define view_fogged_grids 	OPT(view_fogged_grids)
 #define ally_messages	 	OPT(ally_messages)
-
+#define speed_as_factor     OPT(speed_as_factor)
 
 #define birth_randarts			OPT(birth_randarts)
 #define birth_rand_stats		OPT(birth_rand_stats)
