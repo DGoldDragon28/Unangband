@@ -4086,9 +4086,9 @@ void monster_speech(int m_idx, cptr saying, bool understand)
  *
  * u, v and w are parameters for the information conveyed.
  */
-bool tell_allies_info(int y, int x, cptr saying, int u, int v, int w, bool wakeup,
+bool tell_allies_info(int y, int x, cptr saying, intptr_t u, int v, int w, bool wakeup,
 		bool query_ally_hook(const monster_type *n_ptr, int u, int v, int w),
-		void tell_ally_hook(monster_type *n_ptr, int u, int v, int w))
+		void tell_ally_hook(monster_type *n_ptr, intptr_t u, int v, int w))
 {
 	int i, language, d;
 	bool vocal = FALSE;
@@ -4169,7 +4169,7 @@ bool query_ally_can(const monster_type *n_ptr, int u, int v, int w)
 /*
  * Tells the ally the player can do something
  */
-void tell_ally_can(monster_type *n_ptr, int u, int v, int w)
+void tell_ally_can(monster_type *n_ptr, intptr_t u, int v, int w)
 {
 	u32b flag = (u32b)u;
 	(void)v;
@@ -4239,7 +4239,7 @@ bool query_ally_not(const monster_type *n_ptr, int u, int v, int w)
 /*
  * Tells the ally the player can no longer do something
  */
-void tell_ally_not(monster_type *n_ptr, int u, int v, int w)
+void tell_ally_not(monster_type *n_ptr, intptr_t u, int v, int w)
 {
 	u32b flag = (u32b)u;
 	(void)v;
@@ -4308,7 +4308,7 @@ bool query_ally_mflag(const monster_type *n_ptr, int u, int v, int w)
 /*
  * Tells the ally mflag
  */
-void tell_ally_mflag(monster_type *n_ptr, int u, int v, int w)
+void tell_ally_mflag(monster_type *n_ptr, intptr_t u, int v, int w)
 {
 	u32b flag = (u32b)u;
 	(void)v;
@@ -4348,7 +4348,7 @@ bool query_ally_not_mflag(const monster_type *n_ptr, int u, int v, int w)
 /*
  * Tells the ally to clear mflag
  */
-void tell_ally_not_mflag(monster_type *n_ptr, int u, int v, int w)
+void tell_ally_not_mflag(monster_type *n_ptr, intptr_t u, int v, int w)
 {
 	u32b flag = (u32b)u;
 	(void)v;
@@ -4375,7 +4375,7 @@ bool tell_allies_not_mflag(int y, int x, u32b flag, cptr saying)
 /*
  * Tells the allies of the ally about death
  */
-void tell_ally_death(monster_type *n_ptr, int u, int v, int w)
+void tell_ally_death(monster_type *n_ptr, intptr_t u, int v, int w)
 {
 	cptr saying = (cptr)u;
 	(void)v;
@@ -4395,7 +4395,7 @@ void tell_ally_death(monster_type *n_ptr, int u, int v, int w)
 bool tell_allies_death(int y, int x, cptr saying)
 {
 	/* Something said? */
-	return (tell_allies_info(y, x, NULL, (int)saying, 0, 0, TRUE, NULL, tell_ally_death));
+	return (tell_allies_info(y, x, NULL, (intptr_t)saying, 0, 0, TRUE, NULL, tell_ally_death));
 }
 
 
@@ -4417,7 +4417,7 @@ bool query_ally_range(const monster_type *n_ptr, int u, int v, int w)
 /*
  * Tells the ally to move to best range
  */
-void tell_ally_range(monster_type *n_ptr, int u, int v, int w)
+void tell_ally_range(monster_type *n_ptr, intptr_t u, int v, int w)
 {
 	(void)w;
 
@@ -4456,7 +4456,7 @@ bool query_ally_summoned(const monster_type *n_ptr, int u, int v, int w)
 /*
  * Tells the ally to wait a while
  */
-void tell_ally_summoned(monster_type *n_ptr, int u, int v, int w)
+void tell_ally_summoned(monster_type *n_ptr, intptr_t u, int v, int w)
 {
 	(void)v;
 	(void)w;
@@ -4498,7 +4498,7 @@ bool query_ally_target(const monster_type *n_ptr, int u, int v, int w)
 /*
  * Tells the ally to change timer
  */
-void tell_ally_target(monster_type *n_ptr, int u, int v, int w)
+void tell_ally_target(monster_type *n_ptr, intptr_t u, int v, int w)
 {
 	(void)w;
 
