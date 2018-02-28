@@ -580,6 +580,11 @@ loop_hack:
 	return (a);
 }
 
+bool is_daytime()
+{
+	return (bool) ((level_flag & (LF1_DAYLIGHT)) != 0);
+}
+
 
 /*
  * Modify a 'boring' grid appearance based on the ambient light
@@ -609,6 +614,11 @@ void modify_grid_boring_view(byte *a, char *c, int y, int x, byte cinfo, byte pi
 				/* Use "yellow" */
 				*a = get_color(*a, ATTR_LITE, 1);
 			}
+		}
+		
+		/* Highlight terrain when seen outside */
+		if (p_ptr->outside) {
+			*a = get_color(*a, ATTR_HIGH, 1);
 		}
 	}
 
@@ -646,7 +656,12 @@ void modify_grid_boring_view(byte *a, char *c, int y, int x, byte cinfo, byte pi
 		else
 		{
 			/* Use "dark gray" */
-			*a = get_color(*a, ATTR_DARK, 2);
+			/* During nighttime when outside, unlit terrain uses night color */
+			if (p_ptr->outside) {
+				*a = get_color(*a, (is_daytime() ? ATTR_DARK : ATTR_NIGHT), 1);
+			} else {
+				*a = get_color(*a, ATTR_DARK, 2);
+			}
 		}
 	}
 
@@ -665,7 +680,9 @@ void modify_grid_boring_view(byte *a, char *c, int y, int x, byte cinfo, byte pi
 		else
 		{
 			/* Use "gray" */
-			*a = get_color(*a, ATTR_DARK, 1);
+			if (! p_ptr->outside) {
+				*a = get_color(*a, ATTR_DARK, 1);
+			}
 		}
 	}
 }
@@ -675,7 +692,7 @@ void modify_grid_boring_view(byte *a, char *c, int y, int x, byte cinfo, byte pi
  */
 void modify_grid_unseen_view(byte *a, char *c)
 {
-	/* Handle "blind", "asleep" and night time*/
+	/* Handle "blind", "asleep" */
 	if ((p_ptr->timed[TMD_BLIND])
 		|| p_ptr->timed[TMD_PSLEEP] >= PY_SLEEP_ASLEEP
 		|| !(level_flag & (LF1_DAYLIGHT)))
@@ -1040,7 +1057,7 @@ void map_info(int y, int x, byte *ap, char *cp, byte *tap, char *tcp)
 	}
 
 	/* Boring grids (floors, etc) */
-	else if (!(f_info[feat].flags1 & (FF1_REMEMBER)))
+	else if (!(f_info[feat].flags1 & (FF1_REMEMBER)) || p_ptr->outside)
 	{
 		/* Mega Hack -- handle trees branches */
 		if (p_ptr->outside && (f_info[feat].flags3 & (FF3_NEED_TREE)))
@@ -1050,10 +1067,21 @@ void map_info(int y, int x, byte *ap, char *cp, byte *tap, char *tcp)
 
 		/* Memorized (or seen) floor */
 		if ((pinfo & (PLAY_MARK)) ||
-		    (pinfo & (PLAY_SEEN)))
+		    (pinfo & (PLAY_SEEN)) ||
+		    p_ptr->outside)
 		{
 			/* Apply "mimic" field */
 			feat = f_info[feat].mimic;
+
+			/* Apply "under" field if appropriate */
+			if (f_info[feat].under)
+			{
+				/* Get the feat beneath */
+				feat = f_info[feat].under;
+
+				/* Showing terrain under */
+				under = TRUE;
+			}
 
 			/* Get the feature */
 			f_ptr = &f_info[feat];
@@ -1083,43 +1111,6 @@ void map_info(int y, int x, byte *ap, char *cp, byte *tap, char *tcp)
 			{
 				/* Modify the lighting */
 				(*modify_grid_boring_hook)(&a, &c, y, x, cinfo, pinfo);
-			}
-		}
-
-		/* Handle surface grids */
-		else if (p_ptr->outside)
-		{
-			/* Get the feature */
-			feat = f_info[feat].unseen;
-
-			/* Get the feature*/
-			f_ptr = &f_info[feat];
-
-			/* Normal attr */
-			a = f_ptr->x_attr;
-
-			/* Normal char */
-			c = f_ptr->x_char;
-
-			/* Special wall effects */
-			if (f_ptr->flags3 & (FF3_ATTR_WALL))
-			{
-				/* Modify based on adjacent grids */
-				(*modify_grid_adjacent_hook)(&a, &c, y, x, wall_char);
-			}
-
-			/* Special wall effects */
-			else if (f_ptr->flags3 & (FF3_ATTR_DOOR))
-			{
-				/* Modify based on adjacent grids */
-				(*modify_grid_adjacent_hook)(&a, &c, y, x, door_char);
-			}
-
-			/* Special lighting effects */
-			else if ((view_special_lite) && (f_ptr->flags3 & (FF3_ATTR_LITE)))
-			{
-				/* Modify lighting */
-				(*modify_grid_unseen_hook)(&a, &c);
 			}
 		}
 
@@ -1208,43 +1199,6 @@ void map_info(int y, int x, byte *ap, char *cp, byte *tap, char *tcp)
 
 			/* Note if a trap */
 			if (f_ptr->flags1 & (FF1_TRAP)) trap = TRUE;
-		}
-
-		/* Handle surface grids */
-		else if (p_ptr->outside)
-		{
-			/* Get the feature */
-			feat = f_info[feat].unseen;
-
-			/* Get the feature*/
-			f_ptr = &f_info[feat];
-
-			/* Normal attr */
-			a = f_ptr->x_attr;
-
-			/* Normal char */
-			c = f_ptr->x_char;
-
-			/* Special wall effects */
-			if (f_ptr->flags3 & (FF3_ATTR_WALL))
-			{
-				/* Modify based on adjacent grids */
-				(*modify_grid_adjacent_hook)(&a, &c, y, x, wall_char);
-			}
-
-			/* Special wall effects */
-			else if (f_ptr->flags3 & (FF3_ATTR_DOOR))
-			{
-				/* Modify based on adjacent grids */
-				(*modify_grid_adjacent_hook)(&a, &c, y, x, door_char);
-			}
-
-			/* Special lighting effects */
-			else if ((view_special_lite) && (f_ptr->flags3 & (FF3_ATTR_LITE)))
-			{
-				/* Modify lighting */
-				(*modify_grid_unseen_hook)(&a, &c);
-			}
 		}
 
 		/* Hack -- Safe cave grid -- now use 'invisible trap' */
@@ -5626,7 +5580,7 @@ bool require_daylight(int y, int x)
 
 bool has_daylight(int y, int x)
 {
-	bool daytime = (bool)(level_flag & (LF1_DAYLIGHT));
+	bool daytime = is_daytime();
 	bool outside = (level_flag & (LF1_SURFACE))
 		&& (f_info[cave_feat[y][x]].flags3 & (FF3_OUTSIDE));
 
