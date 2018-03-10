@@ -135,7 +135,8 @@ extern errr parse_b_info(char *buf, header *head);
 extern errr parse_g_info(char *buf, header *head);
 extern errr parse_q_info(char *buf, header *head);
 extern errr parse_n_info(char *buf, header *head);
-extern errr parse_flavor_info(char *buf, header *head);\
+extern errr parse_rsv_info(char *buf, header *head);
+extern errr parse_flavor_info(char *buf, header *head);
 extern errr eval_method_power(header *head);
 extern errr eval_r_power(header *head);
 extern errr eval_e_power(header *head);

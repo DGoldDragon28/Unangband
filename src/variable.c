@@ -1001,6 +1001,11 @@ char *a_name;
 char *a_text;
 
 /*
+ * The randart sval arrays
+ */
+randart_sv_tbl *rsv_info;
+
+/*
  * The random name generator tables
  */
 names_type *n_info;

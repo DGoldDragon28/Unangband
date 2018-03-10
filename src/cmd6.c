@@ -2743,7 +2743,7 @@ bool player_apply_rune_or_coating2(int item2)
 	}
 
 	/* Hack - water washes away */
-	else if ((tval == TV_POTION) && (sval == SV_POTION_WATER))
+	else if ((tval == TV_POTION) && !sval)
 	{
 		msg_print("The coating washes away.");
 	}

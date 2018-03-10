@@ -1901,6 +1901,17 @@ errr parse_z_info(char *buf, header *head)
 		/* Save the value */
 		z_info->fake_text_size = max;
 	}
+
+	/* Process 't' of "Randart tvals" */
+	else if (buf[2] == 't') {
+        long max;
+
+        /* Scan for the value */
+        if (1 != sscanf(buf+4, "%ld", &max)) return (PARSE_ERROR_GENERIC);
+
+        /* Save the value */
+        z_info->rsv_max = max;
+	}
 	else
 	{
 		/* Oops */
@@ -7586,6 +7597,74 @@ static errr grab_one_quest_room_flag(quest_event *qe_ptr, cptr what)
 	return (PARSE_ERROR_GENERIC);
 }
 
+errr parse_rsv_info(char *buf, header *head)
+{
+    int i, j;
+
+    /* Current entry */
+    static randart_sv_tbl *rsv_ptr = NULL;
+
+    /* Current entry */
+    static int cur_idx = 0;
+
+    /* Process 'N' for "New/Number" */
+    if(buf[0] == 'N')
+    {
+		/* Get the index */
+		i = atoi(buf+2);
+
+		/* Verify information */
+		if (i <= error_idx) return (PARSE_ERROR_NON_SEQUENTIAL_RECORDS);
+
+		/* Verify information */
+		if (i >= head->info_num) return (PARSE_ERROR_TOO_MANY_ENTRIES);
+
+		/* Save the index */
+		error_idx = i;
+
+		/* Point at the "info" */
+		rsv_ptr = (randart_sv_tbl*)head->info_ptr + i;
+
+		cur_idx = 0;
+    }
+
+    /* Process 'S' for "Sval entry" */
+    else if(buf[0] == 'S') {
+
+		/* There better be a current rsv_ptr */
+		if (!rsv_ptr) return (PARSE_ERROR_MISSING_RECORD_HEADER);
+
+		/* Paranoia */
+		if (cur_idx >= RANDART_SV_ENTRY_MAX) return (PARSE_ERROR_TOO_MANY_ENTRIES);
+
+		/* Scan for the values */
+		if (2 != sscanf(buf+2, "%d:%d", &i, &j)) return (PARSE_ERROR_GENERIC);
+
+		rsv_ptr->thresholds[cur_idx] = i;
+		rsv_ptr->svals[cur_idx] = j;
+
+		cur_idx++;
+    }
+
+    /* Process 'U' for "Ultimate sval" */
+    else if(buf[0] == 'U') {
+        /* There better be a current rsv_ptr */
+        if (!rsv_ptr) return (PARSE_ERROR_MISSING_RECORD_HEADER);
+
+        /* Scan for the values */
+        if (1 != sscanf(buf+2, "%d", &i)) return (PARSE_ERROR_GENERIC);
+
+        rsv_ptr->svals[RANDART_SV_ENTRY_MAX] = i;
+    }
+    else
+    {
+        /* Oops */
+        return (PARSE_ERROR_UNDEFINED_DIRECTIVE);
+    }
+
+    /* Success */
+    return (0);
+}
 
 /*
  * Initialize the "q_info" array, by parsing an ascii "template" file

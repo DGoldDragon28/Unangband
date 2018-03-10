@@ -387,6 +387,7 @@ header h_head;
 header b_head;
 header g_head;
 header q_head;
+header rsv_head;
 
 
 
@@ -1496,6 +1497,30 @@ static errr init_g_info(void)
 	return (err);
 }
 
+/*
+ * I
+ */
+static errr init_rsv_info(void)
+{
+    errr err;
+
+    /* Init the header */
+    init_header(&rsv_head, z_info->rsv_max, sizeof(randart_sv_tbl));
+
+#ifdef ALLOW_TEMPLATES
+
+    /* Save a pointer to the parsing function */
+    rsv_head.parse_info_txt = parse_rsv_info;
+
+#endif /* ALLOW_TEMPLATES */
+
+    err = init_info("randart_sv", &rsv_head);
+
+    /* Set the global variable */
+    rsv_info = (randart_sv_tbl*)rsv_head.info_ptr;
+
+    return (err);
+}
 
 /*
  * Initialize the "q_info" array
@@ -2368,6 +2393,10 @@ void init_angband(void)
 	/* Initialize price info */
 	note("[Initializing arrays... (prices)]");
 	if (init_g_info()) quit("Cannot initialize prices");
+
+	/* Initialize randart sval tables */
+	note("[Initializing arrays... (rsv)]");
+	if(init_rsv_info()) quit("Cannot initialize rsv");
 
 	/* Initialize quest info */
 	note("[Initializing arrays... (quests)]");

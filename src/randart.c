@@ -1214,7 +1214,7 @@ static void store_base_power (void)
 			case TV_SHIELD:
 				art_shield_total++; break;
 			case TV_CLOAK:
-				if (a_info[i].sval <= SV_SHADOW_CLOAK) art_cloak_total++;
+				if (a_info[i].sval <= 6) art_cloak_total++;
 				else art_armor_total++; break;
 			case TV_HELM:
 			case TV_CROWN:
@@ -1266,6 +1266,7 @@ static s16b choose_item(int a_idx)
 	int r, i;
 	s16b k_idx, r2;
 	byte target_level;
+	randart_sv_tbl *rsv_tbl;
 
 	/*
 	 * Look up the original artifact's base object kind to get level.
@@ -1309,85 +1310,7 @@ static s16b choose_item(int a_idx)
 	tval = item_choices[i].tval;
 	LOG_PRINT(format("Creating item: %s\n", item_choices[i].report));
 
-
-	switch (tval)
-	{
-	case TV_BOW:
-		if (r2 < 15) sval = SV_SLING;
-		else if (r2 < 30) sval = SV_SHORT_BOW;
-		else if (r2 < 60) sval = SV_HAND_XBOW;
-		else if (r2 < 90) sval = SV_LONG_BOW;
-		else if (r2 < 120) sval = SV_LIGHT_XBOW;
-		else sval = SV_HEAVY_XBOW;
-		break;
-
-	case TV_DIGGING:
-		if (r2 < 15) sval = SV_SHOVEL;
-		else if (r2 < 30) sval = SV_PICK;
-		else if (r2 < 60) sval = SV_GNOMISH_SHOVEL;
-		else if (r2 < 90) sval = SV_ORCISH_PICK;
-		else if (r2 < 120) sval = SV_DWARVEN_SHOVEL;
-		else sval = SV_DWARVEN_PICK;
-		break;
-
-	case TV_HAFTED:
-		if (r2 < 3) sval = SV_WHIP;
-		else if (r2 < 5) sval = SV_BATON;
-		else if (r2 < 8) sval = SV_MACE;
-		else if (r2 < 15) sval = SV_WAR_HAMMER;
-		else if (r2 < 22) sval = SV_QUARTERSTAFF;
-		else if (r2 < 28) sval = SV_LUCERN_HAMMER;
-		else if (r2 < 35) sval = SV_MORNING_STAR;
-		else if (r2 < 45) sval = SV_FLAIL;
-		else if (r2 < 60) sval = SV_LEAD_FILLED_MACE;
-		else if (r2 < 80) sval = SV_BALL_AND_CHAIN;
-		else if (r2 < 100) sval = SV_TWO_HANDED_MACE;
-		else if (r2 < 130) sval = SV_TWO_HANDED_FLAIL;
-		else sval = SV_MACE_OF_DISRUPTION;
-		break;
-
-	case TV_SWORD:
-		if (r2 < -5) sval = SV_BROKEN_DAGGER;
-		else if (r2 < 0) sval = SV_BROKEN_SWORD;
-		else if (r2 < 4) sval = SV_DAGGER;
-		else if (r2 < 8) sval = SV_MAIN_GAUCHE;
-		else if (r2 < 12) sval = SV_RAPIER;	/* or at least pointy ;-) */
-		else if (r2 < 15) sval = SV_SMALL_SWORD;
-		else if (r2 < 18) sval = SV_SHORT_SWORD;
-		else if (r2 < 22) sval = SV_SABRE;
-		else if (r2 < 26) sval = SV_CUTLASS;
-		else if (r2 < 30) sval = SV_TULWAR;
-		else if (r2 < 35) sval = SV_BROAD_SWORD;
-		else if (r2 < 41) sval = SV_LONG_SWORD;
-		else if (r2 < 45) sval = SV_SCIMITAR;
-		else if (r2 < 51) sval = SV_BASTARD_SWORD;
-		else if (r2 < 64) sval = SV_KATANA;
-		else if (r2 < 90) sval = SV_TWO_HANDED_SWORD;
-		else if (r2 < 120) sval = SV_EXECUTIONERS_SWORD;
-		else sval = SV_BLADE_OF_CHAOS;
-		break;
-
-	case TV_POLEARM:
-		if (r2 < 3) sval = SV_DART;
-		else if (r2 < 8) sval = SV_JAVELIN;
-		else if (r2 < 17) sval = SV_SPEAR;
-		else if (r2 < 22) sval = SV_TWO_HANDED_SPEAR;
-		else if (r2 < 30) sval = SV_AWL_PIKE;
-		else if (r2 < 37) sval = SV_PIKE;
-		else if (r2 < 45) sval = SV_BEAKED_AXE;
-		else if (r2 < 54) sval = SV_BROAD_AXE;
-		else if (r2 < 64) sval = SV_BATTLE_AXE;
-		else if (r2 < 75) sval = SV_GLAIVE;
-		else if (r2 < 83) sval = SV_TRIDENT;
-		else if (r2 < 91) sval = SV_HALBERD;
-		else if (r2 < 96) sval = SV_LANCE;
-		else if (r2 < 106) sval = SV_GREAT_AXE;
-		else if (r2 < 115) sval = SV_SCYTHE;
-		else if (r2 < 130) sval = SV_LOCHABER_AXE;
-		else sval = SV_SCYTHE_OF_SLICING;
-		break;
-
-	case TV_SOFT_ARMOR:
+	if(tval == TV_SOFT_ARMOR) {
 		/* Hack - multiply r2 by 3/2 (armor has deeper base levels than other types) */
 		r2 = sign(r2) * ((ABS(r2) * 3) / 2);
 
@@ -1396,93 +1319,16 @@ static s16b choose_item(int a_idx)
 		else if (r2 < 37) tval = TV_CLOAK;
 		else if (r2 < 106) tval = TV_HARD_ARMOR;
 		else tval = TV_DRAG_ARMOR;
-
-		/* Soft stuff. */
-		if (r2 < 0) sval = SV_FILTHY_RAG;
-		else if (r2 < 5) sval = SV_ROBE;
-		else if (r2 < 10) sval = SV_SOFT_LEATHER_ARMOR;
-		else if (r2 < 15) sval = SV_SOFT_STUDDED_LEATHER;
-		else if (r2 < 20) sval = SV_HARD_LEATHER_ARMOR;
-		else if (r2 < 25) sval = SV_HARD_STUDDED_LEATHER;
-		else if (r2 < 30) sval = SV_LEATHER_SCALE_MAIL;
-
-		/* Cloak-like armour */
-		else if (r2 < 33) sval = SV_RIVETED_LEATHER_COAT;
-		else if (r2 < 37) sval = SV_CHAIN_MAIL_COAT;
-
-		/* Hard stuff. */
-		else if (r2 < 39) sval = SV_RUSTY_CHAIN_MAIL;
-		else if (r2 < 43) sval = SV_METAL_SCALE_MAIL;
-		else if (r2 < 46) sval = SV_CHAIN_MAIL;
-		else if (r2 < 49) sval = SV_AUGMENTED_CHAIN_MAIL;
-		else if (r2 < 54) sval = SV_DOUBLE_CHAIN_MAIL;
-		else if (r2 < 59) sval = SV_BAR_CHAIN_MAIL;
-		else if (r2 < 64) sval = SV_METAL_BRIGANDINE_ARMOUR;
-		else if (r2 < 69) sval = SV_PARTIAL_PLATE_ARMOUR;
-		else if (r2 < 74) sval = SV_METAL_LAMELLAR_ARMOUR;
-		else if (r2 < 80) sval = SV_FULL_PLATE_ARMOUR;
-		else if (r2 < 85) sval = SV_RIBBED_PLATE_ARMOUR;
-		else if (r2 < 92) sval = SV_MITHRIL_CHAIN_MAIL;
-		else if (r2 < 99) sval = SV_MITHRIL_PLATE_MAIL;
-		else if (r2 < 106) sval = SV_ADAMANTITE_PLATE_MAIL;
-
-		/* DSM - CC 18/8/01 */
-		else if (r2 < 111) sval = SV_DRAGON_BLACK;
-		else if (r2 < 116) sval = SV_DRAGON_BLUE;
-		else if (r2 < 121) sval = SV_DRAGON_WHITE;
-		else if (r2 < 126) sval = SV_DRAGON_RED;
-		else if (r2 < 132) sval = SV_DRAGON_GREEN;
-		else if (r2 < 138) sval = SV_DRAGON_MULTIHUED;
-		else if (r2 < 144) sval = SV_DRAGON_ETHER;
-		else if (r2 < 152) sval = SV_DRAGON_LAW;
-		else if (r2 < 159) sval = SV_DRAGON_BRONZE;
-		else if (r2 < 166) sval = SV_DRAGON_GOLD;
-		else if (r2 < 174) sval = SV_DRAGON_CHAOS;
-		else if (r2 < 183) sval = SV_DRAGON_BALANCE;
-		else sval = SV_DRAGON_POWER;
-		break;
-
-	case TV_BOOTS:
-		if (r2 < 15) sval = SV_PAIR_OF_SOFT_LEATHER_BOOTS;
-		else if (r2 < 60) sval = SV_PAIR_OF_HARD_LEATHER_BOOTS;
-		else sval = SV_PAIR_OF_METAL_SHOD_BOOTS;
-		break;
-
-	case TV_GLOVES:
-		if (r2 < 15) sval = SV_SET_OF_LEATHER_GLOVES;
-		else if (r2 < 60) sval = SV_SET_OF_GAUNTLETS;
-		else sval = SV_SET_OF_CESTI;
-		break;
-
-	case TV_HELM:
+	} else if(tval == TV_HELM) {
 		/* Adjust tval to handle crowns and helms here */
 		if (r2 < 50) tval = TV_HELM; else tval = TV_CROWN;
-
-		if (r2 < 9) sval = SV_HARD_LEATHER_CAP;
-		else if (r2 < 20) sval = SV_METAL_CAP;
-		else if (r2 < 40) sval = SV_IRON_HELM;
-		else if (r2 < 50) sval = SV_STEEL_HELM;
-
-		else if (r2 < 70) sval = SV_IRON_CROWN;
-		else if (r2 < 90) sval = SV_GOLDEN_CROWN;
-		else sval = SV_JEWELED_CROWN;
-		break;
-
-	case TV_SHIELD:
-		if (r2 < 15) sval = SV_SMALL_LEATHER_SHIELD;
-		else if (r2 < 40) sval = SV_SMALL_METAL_SHIELD;
-		else if (r2 < 70) sval = SV_LARGE_LEATHER_SHIELD;
-		else if (r2 < 120) sval = SV_LARGE_METAL_SHIELD;
-		else sval = SV_SHIELD_OF_DEFLECTION;
-		break;
-
-	case TV_CLOAK:
-		if (r2 < 30) sval = SV_CLOAK;
-		else if (r2 < 50) sval = SV_TABARD;
-		else if (r2 < 100) sval = SV_LEATHER_COAT;
-		else sval = SV_SHADOW_CLOAK;
-		break;
 	}
+
+	rsv_tbl = &rsv_info[tval];
+	for(i = 0; i < RANDART_SV_ENTRY_MAX; i++) {
+	    if(r2 < rsv_tbl->thresholds[i]) break;
+	}
+	sval = rsv_tbl->svals[i];
 
 	k_idx = lookup_kind(tval, sval);
 	k_ptr = &k_info[k_idx];

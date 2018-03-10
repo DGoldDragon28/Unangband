@@ -337,6 +337,7 @@ extern char *g_text;
 extern quest_type *q_info;
 extern char *q_name;
 extern char *q_text;
+extern randart_sv_tbl *rsv_info;
 extern names_type *n_info;
 extern s16b tips[TIPS_MAX];
 extern s16b tips_start;

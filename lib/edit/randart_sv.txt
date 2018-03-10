@@ -1,0 +1,195 @@
+# File: randart_sv.txt
+
+# This file is used to initialize the "lib/data/randart_sv.raw" file, which is
+# used to initialize the "randart-sval" information for the Angband game.
+
+# Do not modify this file unless you know exactly what you are doing,
+# unless you wish to risk possible system crashes and broken savefiles.
+# After modifying this file, delete the "lib/data/randart_sv.raw" file.
+
+# See "lib/docs/modding.rtf" to understand this file and how to modify
+# it and related files.
+
+# randart_sv.txt entry format
+
+# N: tval
+# S: threshold : sval (max 15 'S:' lines)
+# U: ultimate sval
+
+# Version stamp (required)
+
+V:0.6.6
+
+
+# TV_BOW
+
+N:19
+S:15:2
+S:30:12
+S:60:22
+S:90:13
+S:120:23
+U:24
+
+# TV_DIGGING
+
+N:20
+S:15:1
+S:30:4
+S:60:2
+S:90:5
+S:120:3
+U:6
+
+# TV_HAFTED
+
+N:21
+S:3:2
+S:5:4
+S:8:5
+S:15:8
+S:22:3
+S:28:10
+S:35:12
+S:45:13
+S:60:15
+S:80:6
+S:100:16
+S:130:18
+U:20
+
+# TV_POLEARM
+
+N:22
+S:8:2
+S:17:5
+S:22:20
+S:30:4
+S:37:8
+S:45:10
+S:54:11
+S:64:22
+S:75:13
+S:83:14
+S:91:15
+S:96:27
+S:106:25
+S:115:17
+S:130:28
+U:30
+
+# TV_SWORD
+
+N:23
+S:4:4
+S:8:5
+S:12:7
+S:15:8
+S:18:10
+S:22:11
+S:26:12
+S:30:15
+S:35:16
+S:41:17
+S:45:18
+S:51:21
+S:64:20
+S:90:25
+S:120:28
+U:30
+
+# TV_BOOTS
+
+N:30
+S:15:2
+S:60:3
+U:6
+
+# TV_GLOVES
+
+N:31
+S:15:1
+S:60:2
+U:5
+
+# TV_HELM
+
+N:32
+S:9:2
+S:20:3
+S:40:5
+S:50:6
+
+# TV_CROWN
+
+N:33
+S:70:10
+S:90:11
+U:12
+
+# TV_SHIELD
+
+N:34
+S:15:2
+S:40:3
+S:70:4
+S:120:5
+U:10
+
+# TV_CLOAK
+
+N:35
+S:30:1
+S:50:3
+S:100:5
+U:6
+
+# TV_SOFT_ARMOR
+
+N:36
+# Soft
+S:0:1
+S:5:2
+S:10:4
+S:15:5
+S:20:6
+S:25:7
+S:30:11
+# Cloaks
+S:33:8
+S:37:13
+
+# TV_HARD_ARMOR
+
+N:37
+S:39:1
+S:43:3
+S:46:4
+S:49:6
+S:54:7
+S:59:8
+S:64:9
+S:69:12
+S:74:13
+S:80:15
+S:85:18
+S:92:20
+S:99:25
+S:106:30
+
+# TV_DRAG_ARMOR
+
+N:38
+S:111:1
+S:116:2
+S:121:3
+S:126:4
+S:132:5
+S:138:6
+S:144:10
+S:152:12
+S:159:14
+S:166:16
+S:174:18
+S:183:20
+U:30

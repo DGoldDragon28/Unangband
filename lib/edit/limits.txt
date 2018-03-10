@@ -94,6 +94,8 @@ M:O:1024
 # Maximum number of monsters
 M:M:1024
 
+# Maximum number of randart tvals
+M:t:64
 
 #
 # Array sizes (in bytes) for some initialization stuff

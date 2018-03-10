@@ -1,0 +1,388 @@
+===TV_JUNK===
+#define SV_JUNK_PEBBLE	     0 /* Unused */
+#define SV_JUNK_ROCK	     1 /* Unused */
+
+defines.h:1889
+
+#define SV_JUNK_SAND  9 /* Unused */
+#define SV_JUNK_EARTH 10 /* Unused */
+#define SV_JUNK_MUD   11 /* Unused */
+#define SV_JUNK_DUST  12 /* Unused */
+#define SV_JUNK_ICE   13 /* Unused */
+
+===TV_SPELL===
+/*
+ * Note these probably will have to not conflict with the sval for
+ * the normal item(s) in the same slot. Thus the non-contiguous svals.
+ */
+#define SV_LITE_WIZARD		10 /* Unused */
+#define SV_PSYCHIC_CROWN	13 /* Unused */
+#define SV_HAMMER_UNDEAD	25 /* Unused */
+#define SV_HAMMER_DEMON		26 /* Unused */
+#define SV_QUARTERSTAFF_RUNE	30 /* Unused */
+#define SV_BLADE_ACID		31 /* Unused */
+#define SV_BLADE_ELEC		32 /* Unused */
+#define SV_BLADE_FIRE		33 /* Unused */
+#define SV_BLADE_COLD		34 /* Unused */
+#define SV_STONESKIN		35 /* Unused */
+#define SV_DRAGONSCALES  36 /* Unused */
+
+===TV_LITE===
+#define SV_LITE_GALADRIEL	4 /* Unused */
+#define SV_LITE_ELENDIL		5 /* Unused */
+#define SV_LITE_THRAIN		6 /* Unused */
+#define SV_LITE_PALANTIR	7 /* Unused */
+
+===TV_STAFF===
+#define SV_STAFF_DARKNESS		0 /* Unused */
+#define SV_STAFF_SUMMONING		3 /* Unused */
+#define SV_STAFF_TELEPORTATION	4 /* Unused */
+#define SV_STAFF_STARLITE		7 /* Unused */
+#define SV_STAFF_LITE			8 /* Unused */
+#define SV_STAFF_MAPPING		9 /* Unused */
+#define SV_STAFF_CURING			17 /* Unused */
+#define SV_STAFF_HEALING		18 /* Unused */
+#define SV_STAFF_THE_MAGI		19 /* Unused */
+#define SV_STAFF_SPEED			22 /* Unused */
+#define SV_STAFF_DISPEL_EVIL	24 /* Unused */
+#define SV_STAFF_POWER			25 /* Unused */
+#define SV_STAFF_HOLINESS		26 /* Unused */
+#define SV_STAFF_BANISHMENT		27 /* Unused */
+#define SV_STAFF_EARTHQUAKES	28 /* Unused */
+#define SV_STAFF_DESTRUCTION	29 /* Unused */
+#define SV_STAFF_CURE_SERIOUS	31 /* Unused */
+#define SV_STAFF_CURE_MORTAL	32 /* Unused */
+#define SV_STAFF_PERILOUS_SUMMONING 33 /* Unused */
+
+===TV_WAND===
+#define SV_WAND_HEAL_MONSTER	0 /* Unused */
+#define SV_WAND_HASTE_MONSTER	1 /* Unused */
+#define SV_WAND_CLONE_MONSTER	2 /* Unused */
+#define SV_WAND_TELEPORT_AWAY	3 /* Unused */
+#define SV_WAND_DISARMING		4 /* Unused */
+#define SV_WAND_TRAP_DOOR_DEST	5 /* Unused */
+#define SV_WAND_STONE_TO_MUD	6 /* Unused */
+#define SV_WAND_LITE			7 /* Unused */
+#define SV_WAND_SLEEP_MONSTER	8 /* Unused */
+#define SV_WAND_SLOW_MONSTER	9 /* Unused */
+#define SV_WAND_CONFUSE_MONSTER	10 /* Unused */
+#define SV_WAND_FEAR_MONSTER	11 /* Unused */
+#define SV_WAND_DRAIN_LIFE		12 /* Unused */
+#define SV_WAND_POLYMORPH		13 /* Unused */
+#define SV_WAND_STINKING_CLOUD	14 /* Unused */
+#define SV_WAND_MAGIC_MISSILE	15 /* Unused */
+#define SV_WAND_ACID_BOLT		16 /* Unused */
+#define SV_WAND_ELEC_BOLT		17 /* Unused */
+#define SV_WAND_FIRE_BOLT		18 /* Unused */
+#define SV_WAND_COLD_BOLT		19 /* Unused */
+#define SV_WAND_ACID_BALL		20 /* Unused */
+#define SV_WAND_ELEC_BALL		21 /* Unused */
+#define SV_WAND_FIRE_BALL		22 /* Unused */
+#define SV_WAND_COLD_BALL		23 /* Unused */
+#define SV_WAND_WONDER			24 /* Unused */
+#define SV_WAND_ANNIHILATION	25 /* Unused */
+#define SV_WAND_DRAGON_FIRE		26 /* Unused */
+#define SV_WAND_DRAGON_COLD		27 /* Unused */
+#define SV_WAND_DRAGON_BREATH	28 /* Unused */
+
+===TV_ROD===
+#define SV_ROD_HASTE_MONSTERS	0 /* Unused */
+#define SV_ROD_DETECT_CURSE		1 /* Unused */
+#define SV_ROD_DETECT_GOLD		2 /* Unused */
+#define SV_ROD_DETECT_ITEM		3 /* Unused */
+#define SV_ROD_SLOW_MONSTERS	4 /* Unused */
+#define SV_ROD_SLEEP_MONSTERS	5 /* Unused */
+#define SV_ROD_CURE_MODERATE_WOUNDS	6 /* Unused */
+#define SV_ROD_DETECT_LIFE		7 /* Unused */
+#define SV_ROD_REMOVE_CURSE		8 /* Unused */
+#define SV_ROD_DETECT_EVIL		9 /* Unused */
+#define SV_ROD_DETECT_TRAP		10 /* Unused */
+#define SV_ROD_DETECT_DOOR		11 /* Unused */
+#define SV_ROD_DETECT_MAGIC		12 /* Unused */
+#define SV_ROD_RECALL			13 /* Unused */
+#define SV_ROD_ILLUMINATION		14 /* Unused */
+#define SV_ROD_MAPPING			15 /* Unused */
+#define SV_ROD_DETECTION		16 /* Unused */
+#define SV_ROD_GAUGE_MAGIC    	17 /* Was probing */ /* Unused */
+#define SV_ROD_CURING			18 /* Unused */
+#define SV_ROD_HEALING			19 /* Unused */
+#define SV_ROD_RESTORATION		20 /* Unused */
+#define SV_ROD_SPEED			21 /* Unused */
+#define SV_ROD_DOWSING			22 /* Unused */
+#define SV_ROD_FEEDBACK			23 /* Unused */
+#define SV_ROD_DISARMING		24 /* Unused */
+#define SV_ROD_LITE			25 /* Unused */
+#define SV_ROD_SLEEP_MONSTER		26 /* Unused */
+#define SV_ROD_SLOW_MONSTER		27 /* Unused */
+#define SV_ROD_DRAIN_LIFE		28 /* Unused */
+#define SV_ROD_POLYMORPH		29 /* Unused */
+#define SV_ROD_ACID_BOLT		30 /* Unused */
+#define SV_ROD_ELEC_BOLT		31 /* Unused */
+#define SV_ROD_FIRE_BOLT		32 /* Unused */
+#define SV_ROD_COLD_BOLT		33 /* Unused */
+#define SV_ROD_ACID_BALL		34 /* Unused */
+#define SV_ROD_ELEC_BALL		35 /* Unused */
+#define SV_ROD_FIRE_BALL		36 /* Unused */
+#define SV_ROD_COLD_BALL		37 /* Unused */
+#define SV_ROD_TELEPORT_AWAY		38 /* Unused */
+
+===TV_SCROLL===
+#define SV_SCROLL_DARKNESS				0 /* Unused */
+#define SV_SCROLL_AGGRAVATE_MONSTER		1 /* Unused */
+#define SV_SCROLL_CURSE_ARMOR			2 /* Unused */
+#define SV_SCROLL_CURSE_WEAPON			3 /* Unused */
+#define SV_SCROLL_SUMMON_MONSTER		4 /* Unused */
+#define SV_SCROLL_SUMMON_UNDEAD			5 /* Unused */
+/* xxx (summon?) */
+#define SV_SCROLL_TRAP_CREATION			7 /* Unused */
+#define SV_SCROLL_PHASE_DOOR			8 /* Unused */
+#define SV_SCROLL_TELEPORT				9 /* Unused */
+#define SV_SCROLL_TELEPORT_LEVEL		10 /* Unused */
+#define SV_SCROLL_WORD_OF_RECALL		11 /* Unused */
+#define SV_SCROLL_IDENTIFY				12 /* Unused */
+#define SV_SCROLL_STAR_IDENTIFY			13 /* Unused */
+#define SV_SCROLL_REMOVE_CURSE			14 /* Unused */
+#define SV_SCROLL_STAR_REMOVE_CURSE		15 /* Unused */
+#define SV_SCROLL_ENCHANT_ARMOR			16 /* Unused */
+#define SV_SCROLL_ENCHANT_WEAPON_TO_HIT	17 /* Unused */
+#define SV_SCROLL_ENCHANT_WEAPON_TO_DAM	18 /* Unused */
+/* xxx enchant missile? */
+#define SV_SCROLL_STAR_ENCHANT_ARMOR	20 /* Unused */
+#define SV_SCROLL_STAR_ENCHANT_WEAPON	21 /* Unused */
+#define SV_SCROLL_RECHARGING			22 /* Unused */
+/* xxx */
+#define SV_SCROLL_LIGHT					24 /* Unused */
+#define SV_SCROLL_MAPPING				25 /* Unused */
+#define SV_SCROLL_DETECT_GOLD			26 /* Unused */
+#define SV_SCROLL_DETECT_ITEM			27 /* Unused */
+#define SV_SCROLL_DETECT_TRAP			28 /* Unused */
+#define SV_SCROLL_DETECT_DOOR			29 /* Unused */
+#define SV_SCROLL_DETECT_INVIS			30 /* Unused */
+#define SV_SCROLL_DETECT_MAGIC			31 /* Unused */
+#define SV_SCROLL_SATISFY_HUNGER		32 /* Unused */
+#define SV_SCROLL_BLESSING				33 /* Unused */
+#define SV_SCROLL_HOLY_CHANT			34 /* Unused */
+#define SV_SCROLL_HOLY_PRAYER			35 /* Unused */
+/* xxx was monster confusion */
+#define SV_SCROLL_PROTECTION_FROM_EVIL	37 /* Unused */
+#define SV_SCROLL_RUNE_OF_PROTECTION	38 /* Unused */
+#define SV_SCROLL_TRAP_DOOR_DESTRUCTION	39 /* Unused */
+#define SV_SCROLL_DETECT_CURSE   40 /* Unused */
+#define SV_SCROLL_STAR_DESTRUCTION		41 /* Unused */
+#define SV_SCROLL_DISPEL_UNDEAD			42 /* Unused */
+/* xxx */
+#define SV_SCROLL_BANISHMENT				44 /* Unused */
+#define SV_SCROLL_MASS_BANISHMENT			45 /* Unused */
+#define SV_SCROLL_ACQUIREMENT			46 /* Unused */
+#define SV_SCROLL_STAR_ACQUIREMENT		47 /* Unused */
+#define SV_SCROLL_LEGEND_LORE			48 /* Unused */
+#define SV_SCROLL_ENCHANT_ARMOR_BRAND    49 /* Unused */
+#define SV_SCROLL_ENCHANT_WEAPON_BRAND   50 /* Unused */
+#define SV_SCROLL_ENCHANT_WEAPON_BLESS   51 /* Unused */
+
+===TV_POTION===
+#define SV_POTION_WATER				0
+#define SV_POTION_APPLE_JUICE		1 /* Unused */
+#define SV_POTION_SLIME_MOLD		2 /* Unused */
+/* xxx (fixed color) */
+#define SV_POTION_SLOWNESS			4 /* Unused */
+#define SV_POTION_SALT_WATER		5 /* Unused */
+#define SV_POTION_POISON			6 /* Unused */
+#define SV_POTION_BLINDNESS			7 /* Unused */
+/* xxx */
+#define SV_POTION_CONFUSION			9 /* Unused */
+/* xxx */
+#define SV_POTION_SLEEP				11 /* Unused */
+/* xxx */
+#define SV_POTION_LOSE_MEMORIES		13 /* Unused */
+/* xxx */
+#define SV_POTION_RUINATION			15 /* Unused */
+#define SV_POTION_DEC_STR			16 /* Unused */
+#define SV_POTION_DEC_INT			17 /* Unused */
+#define SV_POTION_DEC_WIS			18 /* Unused */
+#define SV_POTION_DEC_DEX			19 /* Unused */
+#define SV_POTION_DEC_CON			20 /* Unused */
+#define SV_POTION_DEC_CHR			21 /* Unused */
+#define SV_POTION_DETONATIONS		22 /* Unused */
+#define SV_POTION_DEATH				23 /* Unused */
+#define SV_POTION_INFRAVISION		24 /* Unused */
+#define SV_POTION_DETECT_INVIS		25 /* Unused */
+#define SV_POTION_SLOW_POISON		26 /* Unused */
+#define SV_POTION_CURE_POISON		27 /* Unused */
+#define SV_POTION_BOLDNESS			28 /* Unused */
+#define SV_POTION_SPEED				29 /* Unused */
+#define SV_POTION_RESIST_HEAT		30 /* Unused */
+#define SV_POTION_RESIST_COLD		31 /* Unused */
+#define SV_POTION_HEROISM			32 /* Unused */
+#define SV_POTION_BERSERK_STRENGTH	33 /* Unused */
+#define SV_POTION_CURE_LIGHT		34 /* Unused */
+#define SV_POTION_CURE_SERIOUS		35 /* Unused */
+#define SV_POTION_CURE_CRITICAL		36 /* Unused */
+#define SV_POTION_HEALING			37 /* Unused */
+#define SV_POTION_STAR_HEALING		38 /* Unused */
+#define SV_POTION_LIFE				39 /* Unused */
+#define SV_POTION_RESTORE_MANA		40 /* Unused */
+#define SV_POTION_RESTORE_EXP		41 /* Unused */
+#define SV_POTION_RES_STR			42 /* Unused */
+#define SV_POTION_RES_INT			43 /* Unused */
+#define SV_POTION_RES_WIS			44 /* Unused */
+#define SV_POTION_RES_DEX			45 /* Unused */
+#define SV_POTION_RES_CON			46 /* Unused */
+#define SV_POTION_RES_CHR			47 /* Unused */
+#define SV_POTION_INC_STR			48 /* Unused */
+#define SV_POTION_INC_INT			49 /* Unused */
+#define SV_POTION_INC_WIS			50 /* Unused */
+#define SV_POTION_INC_DEX			51 /* Unused */
+#define SV_POTION_INC_CON			52 /* Unused */
+#define SV_POTION_INC_CHR			53 /* Unused */
+/* xxx */
+#define SV_POTION_AUGMENTATION			55 /* Unused */
+#define SV_POTION_ENLIGHTENMENT			56 /* Unused */
+#define SV_POTION_STAR_ENLIGHTENMENT	57 /* Unused */
+#define SV_POTION_SELF_KNOWLEDGE		58 /* Unused */
+#define SV_POTION_EXPERIENCE			59 /* Unused */
+
+===TV_DIGGING===
+#define SV_SHOVEL			1
+#define SV_GNOMISH_SHOVEL	2
+#define SV_DWARVEN_SHOVEL	3
+#define SV_PICK				4
+#define SV_ORCISH_PICK		5
+#define SV_DWARVEN_PICK		6
+#define SV_MATTOCK			7
+
+===TV_HAFTED===
+#define SV_THROWING_HAMMER    	        1	/* 2d4 */ /* Unused */
+#define SV_WHIP					2	/* 1d4 */
+#define SV_QUARTERSTAFF			3	/* 1d9 */
+#define SV_BATON				4	/* 1d5 */
+#define SV_MACE					5	/* 2d4 */
+#define SV_BALL_AND_CHAIN		6	/* 2d4 */
+#define SV_WAR_HAMMER			8	/* 3d3 */
+#define SV_LUCERN_HAMMER		10	/* 2d5 */
+#define SV_MORNING_STAR			12	/* 2d6 */
+#define SV_FLAIL				13	/* 2d6 */
+#define SV_LEAD_FILLED_MACE		15	/* 3d4 */
+#define SV_TWO_HANDED_MACE		16	/* 4d4 */
+#define SV_TWO_HANDED_FLAIL		18	/* 3d6 */
+#define SV_MACE_OF_DISRUPTION	20	/* 5d8 */
+#define SV_GROND				50	/* 3d4 */
+
+===TV_POLEARM===
+#define SV_DART					1
+#define SV_JAVELIN				2	/* 1d6 */
+#define SV_AWL_PIKE				4	/* 1d8 */
+#define SV_SPEAR  				5	/* 1d8 */
+#define SV_HARPOON				6	/* 1d8 */
+#define SV_PIKE					8	/* 2d5 */
+#define SV_BEAKED_AXE			10	/* 2d6 */
+#define SV_BROAD_AXE			11	/* 2d6 */
+#define SV_GLAIVE				13	/* 2d6 */
+#define SV_TRIDENT			14	/* 3d4 */
+#define SV_HALBERD			15	/* 3d5 */
+#define SV_SCYTHE				17	/* 5d3 */
+#define SV_TWO_HANDED_SPEAR		20	/* 2d8 */
+#define SV_BATTLE_AXE			22	/* 2d8 */
+#define SV_GREAT_AXE			25	/* 4d4 */
+#define SV_LANCE				27	/* 3d8 */
+#define SV_LOCHABER_AXE			28	/* 3d8 */
+#define SV_SCYTHE_OF_SLICING	30	/* 8d4 */
+
+===TV_SWORD===
+#define SV_BROKEN_DAGGER		3	/* 1d1 */
+#define SV_BROKEN_SWORD			2	/* 1d2 */
+#define SV_DAGGER				4	/* 1d4 */
+#define SV_MAIN_GAUCHE			5	/* 1d5 */
+#define SV_RAPIER				7	/* 1d6 */
+#define SV_SMALL_SWORD			8	/* 1d6 */
+#define SV_SHORT_SWORD			10	/* 1d7 */
+#define SV_SABRE				11	/* 1d7 */
+#define SV_CUTLASS				12	/* 1d7 */
+#define SV_TULWAR				15	/* 2d4 */
+#define SV_BROAD_SWORD			16	/* 2d5 */
+#define SV_LONG_SWORD			17	/* 2d5 */
+#define SV_SCIMITAR				18	/* 2d5 */
+#define SV_KATANA				20	/* 3d4 */
+#define SV_BASTARD_SWORD		21	/* 3d4 */
+#define SV_TWO_HANDED_SWORD		25	/* 3d6 */
+#define SV_EXECUTIONERS_SWORD	28	/* 4d5 */
+#define SV_BLADE_OF_CHAOS		30	/* 6d5 */
+
+===TV_SHIELD===
+#define SV_SMALL_LEATHER_SHIELD		2
+#define SV_SMALL_METAL_SHIELD		3
+#define SV_LARGE_LEATHER_SHIELD		4
+#define SV_LARGE_METAL_SHIELD		5
+#define SV_SHIELD_OF_DEFLECTION		10
+
+/* These are correct */
+===TV_HELM===
+#define SV_HARD_LEATHER_CAP		2
+#define SV_METAL_CAP			3
+#define SV_IRON_HELM			5
+#define SV_STEEL_HELM			6
+#define SV_IRON_CROWN			10
+#define SV_GOLDEN_CROWN			11
+#define SV_JEWELED_CROWN		12
+#define SV_MORGOTH				50
+
+===TV_BOOTS===
+#define SV_PAIR_OF_SOFT_LEATHER_BOOTS	2
+#define SV_PAIR_OF_HARD_LEATHER_BOOTS	3
+#define SV_PAIR_OF_METAL_SHOD_BOOTS		6
+
+===TV_CLOAK===
+#define SV_CLOAK					1
+#define SV_TABARD				3
+#define SV_LEATHER_COAT				5
+#define SV_SHADOW_CLOAK				6
+#define SV_RIVETED_LEATHER_COAT			8
+#define SV_CHAIN_MAIL_COAT			13
+
+===TV_GLOVES===
+#define SV_SET_OF_LEATHER_GLOVES	1
+#define SV_SET_OF_GAUNTLETS			2
+#define SV_SET_OF_CESTI				5
+
+===TV_SOFT_ARMOR===
+#define SV_FILTHY_RAG				1
+#define SV_ROBE						2
+#define SV_SOFT_LEATHER_ARMOR		4
+#define SV_SOFT_STUDDED_LEATHER		5
+#define SV_HARD_LEATHER_ARMOR		6
+#define SV_HARD_STUDDED_LEATHER		7
+#define SV_LEATHER_SCALE_MAIL		11
+
+===TV_HARD_ARMOR===
+#define SV_RUSTY_CHAIN_MAIL			1	/* 14- */
+#define SV_METAL_SCALE_MAIL			3	/* 13 */
+#define SV_CHAIN_MAIL				4	/* 14 */
+#define SV_AUGMENTED_CHAIN_MAIL		6	/* 16 */
+#define SV_DOUBLE_CHAIN_MAIL		7	/* 16 */
+#define SV_BAR_CHAIN_MAIL			8	/* 18 */
+#define SV_METAL_BRIGANDINE_ARMOUR	9	/* 19 */
+#define SV_PARTIAL_PLATE_ARMOUR		12	/* 22 */
+#define SV_METAL_LAMELLAR_ARMOUR	13	/* 23 */
+#define SV_FULL_PLATE_ARMOUR		15	/* 25 */
+#define SV_RIBBED_PLATE_ARMOUR		18	/* 28 */
+#define SV_MITHRIL_CHAIN_MAIL		20	/* 28+ */
+#define SV_MITHRIL_PLATE_MAIL		25	/* 35+ */
+#define SV_ADAMANTITE_PLATE_MAIL	30	/* 40+ */
+
+===TV_DRAG_ARMOR===
+#define SV_DRAGON_BLACK		1
+#define SV_DRAGON_BLUE		2
+#define SV_DRAGON_WHITE		3
+#define SV_DRAGON_RED		4
+#define SV_DRAGON_GREEN		5
+#define SV_DRAGON_MULTIHUED	6
+#define SV_DRAGON_ETHER		10
+#define SV_DRAGON_LAW		12
+#define SV_DRAGON_COPPER	13 /* Unused */
+#define SV_DRAGON_BRONZE	14
+#define SV_DRAGON_SILVER	15 /* Unused */
+#define SV_DRAGON_GOLD		16
+#define SV_DRAGON_BRASS		17 /* Unused */
+#define SV_DRAGON_CHAOS   	18
+#define SV_DRAGON_BALANCE	20
+#define SV_DRAGON_POWER		30

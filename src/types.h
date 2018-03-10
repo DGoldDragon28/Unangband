@@ -100,6 +100,7 @@ typedef struct object_kind object_kind;
 typedef struct object_info object_info;
 typedef struct object_lore object_lore;
 typedef struct artifact_type artifact_type;
+typedef struct randart_sv_tbl randart_sv_tbl;
 typedef struct names_type names_type;
 typedef struct ego_item_type ego_item_type;
 typedef struct flavor_type flavor_type;
@@ -198,6 +199,8 @@ struct maxima
 	u16b region_piece_max;	/* Max size for "region_piece_list" */
 	u16b region_max;		/* Max size for "region_list" */
 	u16b region_info_max;		/* Max size for "region_list" */
+
+	u16b rsv_max;   /* max size for randart_sv_tbl*/
 };
 
 
@@ -690,6 +693,13 @@ struct artifact_type
 	s32b power;	/* Pre-computed power */
 };
 
+/*
+ * Information about randart svals
+ */
+struct randart_sv_tbl {
+    byte thresholds[RANDART_SV_ENTRY_MAX];
+    byte svals[RANDART_SV_ENTRY_MAX + 1];
+};
 
 /*structure of letter probabilitiesfor the random name generator*/
 struct names_type
