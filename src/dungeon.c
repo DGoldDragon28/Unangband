@@ -4041,7 +4041,6 @@ void play_game(bool new_game)
 					else
 						zone_depth = t_info[i].zone[ii+1].level - 1;
 
-#if 0
 					if (r_info[guard].level /* Maggot */
 						&& r_info[guard].level < zone_depth)
 						fputs(format("Warning: Guardian %d (%s) wimpy.\n", guard, r_info[guard].name + r_name), stderr);
@@ -4051,8 +4050,6 @@ void play_game(bool new_game)
 						fputs(format("Warning: Guardian %d (%s) deadly.\n", guard, r_info[guard].name + r_name), stderr);
 					if (r_info[guard].calculated_level > zone_depth + 20)
 						fputs(format("Warning: Guardian %d (%s) really deadly.\n", guard, r_info[guard].name + r_name), stderr);
-
-#endif
 				}
 			}
 		}

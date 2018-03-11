@@ -4906,8 +4906,9 @@ static void fill_terrain_info(void)
 	ex = MIN(p_ptr->px + MAX_PF_RADIUS / 2 - 1,DUNGEON_WID);
 	ey = MIN(p_ptr->py + MAX_PF_RADIUS / 2 - 1,DUNGEON_HGT);
 
-	for (i=0;i<MAX_PF_RADIUS*MAX_PF_RADIUS;i++)
-		terrain[0][i] = -1;
+	for (i=0;i<MAX_PF_RADIUS;i++)
+	    for(j=0;j<MAX_PF_RADIUS;j++)
+	        terrain[i][j] = -1;
 
 	for (j=oy;j<ey;j++)
 		for (i=ox;i<ex;i++)

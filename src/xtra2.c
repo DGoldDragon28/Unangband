@@ -1428,8 +1428,6 @@ static void improve_stat(void)
 
 	char buf[32];
 
-	cptr p = "";
-
 	int count = 0;
 
 #ifdef ALLOW_BORG
@@ -1489,16 +1487,12 @@ static void improve_stat(void)
 			/* Display */
 			if (p_ptr->stat_cur[stat_gain_selection[stat_gain_selected]] < p_ptr->stat_max[stat_gain_selection[stat_gain_selected]])
 			{
-				/* Set description */
-				p = "you could be ";
-				
 				/* Hack --- store stat */
 				tmp = p_ptr->stat_cur[stat_gain_selection[stat_gain_selected]];
 				p_ptr->stat_cur[stat_gain_selection[stat_gain_selected]] = p_ptr->stat_max[stat_gain_selection[stat_gain_selected]];
 			}
 			else
 			{
-				p = "";
 				tmp = 0;
 			}
 			

@@ -4559,7 +4559,6 @@ static bool run_test(void)
 
 	int prev_dir;
 	int new_dir;
-	int check_dir = 0;
 
 	int row, col;
 	int i, max, inv;
@@ -4702,14 +4701,12 @@ static bool run_test(void)
 			/* Two new (adjacent) directions (case 1) */
 			else if (new_dir & 0x01)
 			{
-				check_dir = cycle[chome[prev_dir] + i - 2];
 				option2 = new_dir;
 			}
 
 			/* Two new (adjacent) directions (case 2) */
 			else
 			{
-				check_dir = cycle[chome[prev_dir] + i + 1];
 				option2 = option;
 				option = new_dir;
 			}

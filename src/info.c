@@ -4341,7 +4341,6 @@ void list_object(const object_type *o_ptr, int mode)
 		cptr vp[128];
 		int vt[128];
 		bool vd[128];
-		bool fired = FALSE;
 
 		cptr vp_set_trap = "When set in a trap, it ";
 		cptr vp_throw = "When thrown, it ";
@@ -4442,21 +4441,18 @@ void list_object(const object_type *o_ptr, int mode)
 				vp[vn] = "When fired from a crossbow, it "; vd[vn] = TRUE; vt[vn++] = SPELL_TARGET_AIMED;
 				vp[vn] = vp_set_trap; vd[vn] = TRUE; vt[vn++] = SPELL_TARGET_VICTIM;
 				vp[vn] = vp_throw; vd[vn] = TRUE; vt[vn++] = SPELL_TARGET_AIMED;
-				fired = TRUE;
 				break;
 
 			case TV_ARROW:
 				vp[vn] = "When fired from a bow, it "; vd[vn] = TRUE; vt[vn++] = SPELL_TARGET_AIMED;
 				vp[vn] = vp_set_trap; vd[vn] = TRUE; vt[vn++] = SPELL_TARGET_VICTIM;
 				vp[vn] = vp_throw; vd[vn] = TRUE; vt[vn++] = SPELL_TARGET_AIMED;
-				fired = TRUE;
 				break;
 
 			case TV_SHOT:
 				vp[vn] = "When fired from a sling, it "; vd[vn] = TRUE; vt[vn++] = SPELL_TARGET_AIMED;
 				vp[vn] = vp_set_trap; vd[vn] = TRUE; vt[vn++] = SPELL_TARGET_VICTIM;
 				vp[vn] = vp_throw; vd[vn] = TRUE; vt[vn++] = SPELL_TARGET_AIMED;
-				fired = TRUE;
 				break;
 
 			case TV_SERVICE:

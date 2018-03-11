@@ -632,11 +632,7 @@ s16b get_obj_num(int level)
 {
 	int i, j, p;
 
-	int k_idx;
-
 	long value, total;
-
-	object_kind *k_ptr;
 
 	alloc_entry *table = alloc_kind_table;
 
@@ -664,12 +660,6 @@ s16b get_obj_num(int level)
 
 		/* Default */
 		table[i].prob3 = 0;
-
-		/* Get the index */
-		k_idx = table[i].index;
-
-		/* Get the actual kind */
-		k_ptr = &k_info[k_idx];
 
 		/* Accept */
 		table[i].prob3 = table[i].prob2;
@@ -2033,6 +2023,7 @@ void object_absorb(object_type *o_ptr, const object_type *j_ptr, bool floor)
 		/* Swap objects */
 		object_copy(i_ptr, o_ptr);
 		object_copy(o_ptr, j_ptr);
+		/* FIXME -- don't violate 'const' */
 		object_copy(j_ptr, i_ptr);
 	}
 
@@ -10217,12 +10208,7 @@ s16b spell_chance(int spell)
  */
 bool spell_okay(int spell, bool known)
 {
-	spell_type *s_ptr;
-
 	int i;
-
-	/* Get the spell */
-	s_ptr = &s_info[spell];
 
 	/* Spell is illegible */
 	if (!spell_legible(spell)) return (FALSE);

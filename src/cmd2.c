@@ -1590,7 +1590,7 @@ static bool do_cmd_tunnel_aux(int y, int x)
 {
 	bool more = FALSE;
 
-	int i,j;
+	int j;
 
 	cptr name;
 
@@ -1600,8 +1600,6 @@ static bool do_cmd_tunnel_aux(int y, int x)
 
 	/* Verify legality */
 	if (!do_cmd_test(y, x, FS_TUNNEL)) return (FALSE);
-
-	i = p_ptr->skills[SKILL_DIGGING];
 
 	j = f_info[cave_feat[y][x]].power;
 

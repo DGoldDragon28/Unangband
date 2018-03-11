@@ -67,7 +67,6 @@ const byte option_page[OPT_PAGE_MAX][OPT_PAGE_PER] =
 		OPT_room_names,
 		OPT_room_descriptions,
 		OPT_show_tips,
-		OPT_NONE,
 		OPT_NONE
 	},
 

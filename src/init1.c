@@ -6313,7 +6313,6 @@ errr parse_s_info(char *buf, header *head)
 	{
 		int tval,sval,slot;
 
-		bool collision = FALSE;
 		bool last_slot = 0;
 		int j, k;
 
@@ -6366,8 +6365,6 @@ errr parse_s_info(char *buf, header *head)
 					(s2_ptr->appears[k].sval == sval))
 				{
 					if (last_slot < s2_ptr->appears[k].slot) last_slot = s2_ptr->appears[k].slot;
-
-					if (s2_ptr->appears[k].slot == slot) collision = TRUE;
 				}
 			}
 		}
@@ -9505,6 +9502,7 @@ errr eval_e_power(header *head)
  */
 errr eval_f_power(header *head)
 {
+#if 0 /* Currently no calculation */
 	int i;
 	feature_type *f_ptr = NULL;
 #if 0
@@ -9518,7 +9516,7 @@ errr eval_f_power(header *head)
 		f_ptr = (feature_type*)head->info_ptr + i;
 
 	}
-
+#endif
 
 	/* Success */
 	return(0);

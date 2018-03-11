@@ -4295,7 +4295,7 @@ int find_monster_ammo(int m_idx, int blow, bool created)
 	/* Examine the attacks */
 	for (i = (blow < 0 ? 0 : blow); i < (blow < 0 ? 4 : blow + 1); i++)
 	{
-		int method, effect, d_dice, d_side;
+		int method, d_dice;
 
 		method_type *method_ptr;
 
@@ -4304,9 +4304,7 @@ int find_monster_ammo(int m_idx, int blow, bool created)
 
 		/* Extract the attack info */
 		method = r_ptr->blow[i].method;
-		effect = r_ptr->blow[i].effect;
 		d_dice = r_ptr->blow[i].d_dice;
-		d_side = r_ptr->blow[i].d_side;
 
 		/* Get the blow pointer */
 		method_ptr  = &method_info[method];

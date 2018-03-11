@@ -2756,7 +2756,6 @@ static bool generate_cellular_cave(int y1, int x1, int y2, int x2, s16b wall, s1
 	 		case GRID_EDGE:
 	 		{
 	 			int d;
-	 			bool edged = FALSE;
 	 			byte cave_flag_edge = (edge && f_info[edge].flags1 & (FF1_OUTER)) ? (cave_flag) : ((cave_flag) & ~(CAVE_ROOM));
 
 	 			if (edge || wall)
@@ -2769,7 +2768,6 @@ static bool generate_cellular_cave(int y1, int x1, int y2, int x2, s16b wall, s1
 		 				{
 							cave_set_feat(y1 + yi, x1 + xi, edge ? edge : wall);
 							cave_info[y1+yi][x1 + xi] |= (cave_flag_edge);
-							edged = TRUE;
 		 					break;
 		 				}
 		 			}
@@ -2950,7 +2948,6 @@ static bool generate_poly_room(int n, int *y, int *x, s16b edge, s16b floor, s16
 	 		case GRID_EDGE:
 	 		{
 	 			int d;
-	 			bool edged = FALSE;
 
 	 			if (edge)
 	 			{
@@ -2962,7 +2959,6 @@ static bool generate_poly_room(int n, int *y, int *x, s16b edge, s16b floor, s16
 		 				{
 							cave_set_feat(y0 + yi, x0 + xi, edge);
 							cave_info[y0+yi][x0 + xi] |= (cave_flag_edge);
-							edged = TRUE;
 		 					break;
 		 				}
 		 			}
@@ -12664,6 +12660,7 @@ static bool build_type26(int room, int type)
 		}
 	}
 
+	/* FIXME -- figure out what this condition should be : currently always true */
 	/* Need at least 3 different races in pit */
 	if (ecology_start + 2 >= cave_ecology.num_races)
 	{
