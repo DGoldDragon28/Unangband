@@ -5039,32 +5039,6 @@ enum
 
 
 /*
- * Maximum known sounds
- *
- * Should be the same as MSG_MAX for compatibility reasons.
- */
-#define SOUND_MAX MSG_MAX
-
-
-/*** Hack ***/
-
-
-/*
- * Hack -- attempt to reduce various values
- */
-#ifdef ANGBAND_LITE
-# undef MACRO_MAX
-# define MACRO_MAX	128
-# undef QUARK_MAX
-# define QUARK_MAX	256
-# undef MESSAGE_MAX
-# define MESSAGE_MAX	128
-# undef MESSAGE_BUF
-# define MESSAGE_BUF	4096
-#endif
-
-
-/*
  * Mega-Hack -- maximum known sounds
  *
  * Should be the same as MSG_MAX for compatibility reasons.
@@ -5133,10 +5107,6 @@ enum
 
 /* Returns TRUE if the given queue is full */
 #define GRID_QUEUE_FULL(Q) ((((Q)->tail + 1) % (Q)->max_size) == (Q)->head)
-
-/*Square a number*/
-#define GET_SQUARE(X) 	((X) * (X))
-
 
 /*
  * Maximum size around the player to consider in the pathfinder
