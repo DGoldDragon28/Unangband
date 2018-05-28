@@ -30,10 +30,11 @@
 # 'G' is for graphics - symbol and color. There are 16 colors, as
 # follows:
 
-# D - Black        w - White          s - Gray          o - Orange
+# d - Black        w - White          s - Gray          o - Orange
 # r - Red          g - Green          b - Blue          u - Brown
 # d - Dark Gray    W - Light Gray     v - Violet        y - Yellow
 # R - Light Red    G - Light Green    B - Light Blue    U - Light Brown
+# D - Dark Gray
 
 # 'W' is for where the feature appears, its rarity, the priority number used
 # when viewing the condensed map, and the index of a feature that surrounds
@@ -386,7 +387,7 @@ V:0.6.6
 # 0x00 --> nothing
 
 N:0:nothing
-G: :w
+G: :d
 O:0
 W:0:0:0:0
 F:ATTR_LITE |
@@ -421,7 +422,7 @@ F:HURT_POIS | HURT_WATER | ATTR_LITE |
 # 0x02 --> invisible trap (drawn as open floor)
 
 N:2:invisible trap
-G:x:D
+G:x:d
 M:1
 #$ open floor
 U:56
@@ -3582,7 +3583,7 @@ F:OUTSIDE | ATTR_LITE |
 #Chasm center.
 
 N:141:chasm
-G: :D
+G: :d
 O:0
 W:45:2:1:142
 #$ chasm
@@ -9014,7 +9015,7 @@ F:LAKE | CAN_CLIMB | CAN_FLY | HIDE_DIG |
 F:HURT_WATER | GET_FEAT | GROUND | OUTSIDE | ATTR_LITE |
 
 N:411:grass
-G:.:G
+G:.:f
 O:0
 W:1:10:15:0
 K:DEFAULT:411:0

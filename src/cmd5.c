@@ -528,8 +528,6 @@ bool player_browse_object(object_type *o_ptr)
 
 		if ((i >= 0) && (i < num))
 		{
-			spell_type *s_ptr;
-
 			/* Save the spell index */
 			spell = book[i];
 
@@ -544,9 +542,6 @@ bool player_browse_object(object_type *o_ptr)
 
 			/* Begin recall */
 			Term_gotoxy(0, 1);
-
-			/* Get the spell */
-			s_ptr = &s_info[spell];
 
 			/* Spell is illegible */
 			if (!spell_legible(spell))
@@ -750,8 +745,6 @@ bool player_browse_object(object_type *o_ptr)
  */
 bool player_browse(int item)
 {
-	int sval;
-
 	object_type *o_ptr;
 
 	/* Get the item (in the pack) */
@@ -765,9 +758,6 @@ bool player_browse(int item)
 	{
 		o_ptr = &o_list[0 - item];
 	}
-
-	/* Get the item's sval */
-	sval = o_ptr->sval;
 
 	/* Save the screen */
 	screen_save();
@@ -813,7 +803,7 @@ bool player_study(int item)
 
 	int spell = -1;
 
-	cptr p, r;
+	cptr p;
 
 	cptr u = " book";
 
@@ -865,22 +855,18 @@ bool player_study(int item)
 	{
 		case TV_PRAYER_BOOK:
 			p="prayer";
-			r="Pray for which blessing";
 			break;
 
 		case TV_SONG_BOOK:
 			p="song";
-			r="Improvise which melody";
 			break;
 
 		case TV_MAGIC_BOOK:
 			p="spell";
-			r="Research which field";
 			break;
 
 		default:
 			p="power";
-			r = "";
 			break;
 	}
 
@@ -1182,12 +1168,7 @@ bool player_cast_spell(int spell, int plev, cptr p, cptr t)
 	int i;
 	int chance;
 
-	spell_type *s_ptr;
 	spell_cast *sc_ptr;
-
-
-	/* Get the spell */
-	s_ptr = &s_info[spell];
 
 	/* Get the cost */
 	sc_ptr = spell_cast_details(spell);

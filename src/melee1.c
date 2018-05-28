@@ -1264,7 +1264,7 @@ bool make_attack_normal(int m_idx, bool harmless)
 			}
 
 			/* Player armor reduces total damage */
-			damage -= (damage * ((p_ptr->ac + p_ptr->to_a < 150) ? p_ptr->ac + p_ptr->to_a: 150) / 250);
+			damage -= (damage * ((ac < 150) ? ac : 150) / 250);
 
 			if (cheat_xtra) msg_format("base damage dealt by monster in this blow: %d, dice %d, sides %d", damage, d_dice, d_side);
 
@@ -1789,7 +1789,6 @@ bool make_attack_ranged(int who, int attack, int y, int x)
 	bool seen;	/* Source seen */
 	bool known;	/* Either source or target seen */
 	bool powerful;
-	bool normal;
 	bool direct;
 
 	u32b allies = 0L;
@@ -1957,9 +1956,6 @@ bool make_attack_ranged(int who, int attack, int y, int x)
 
 		/* Hack -- Message text depends on feature description */
 		seen = FALSE;
-
-		/* Assume "normal" target */
-		normal = (target < 0);
 
 		/* Assume "projectable" */
 		direct = TRUE;
@@ -2138,24 +2134,15 @@ bool make_attack_ranged(int who, int attack, int y, int x)
 		if (target > 0)
 		{
 			known = ((m_ptr->ml || n_ptr->ml));
-
-			/* Not "normal" target */
-			normal = FALSE;
 		}
 		else if (target < 0)
 		{
 			/* Always known if target */
 			known = TRUE;
-
-			/* Assume "normal" target */
-			normal = TRUE;
 		}
 		else
 		{
 			known = (m_ptr->ml && player_can_see_bold(y,x));
-
-			/* Assume "normal" target */
-			normal = TRUE;
 		}
 
 		/* Check "projectable" */

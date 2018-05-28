@@ -3067,15 +3067,12 @@ void inc_stat(int stat)
  */
 bool dec_stat(int stat, int amount)
 {
-	int cur, max, loss, same, res = FALSE;
+	int cur, max, loss, res = FALSE;
 
 
 	/* Get the current value */
 	cur = p_ptr->stat_cur[stat];
 	max = p_ptr->stat_max[stat];
-
-	/* Note when the values are identical */
-	same = (cur == max);
 
 	/* Damage "current" value */
 	if (cur > 3)
@@ -4838,11 +4835,10 @@ bool project_o(int who, int what, int y, int x, int dam, int typ)
 
 					if ((who > SOURCE_MONSTER_START) || (who <= SOURCE_PLAYER_START))
 					{
-						int path_n;
 						u16b path_g[256];
 
 						/* Calculate the path */
-						path_n = project_path(path_g, dist, y, x, &ny, &nx, 0);
+						(void)project_path(path_g, dist, y, x, &ny, &nx, 0);
 
 						ny = GRID_Y(path_g[dist]);
 						nx = GRID_X(path_g[dist]);

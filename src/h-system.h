@@ -108,4 +108,5 @@
 
 #endif
 
+#include <stdint.h>
 

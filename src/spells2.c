@@ -1801,7 +1801,7 @@ static bool item_tester_cursed(const object_type *o_ptr)
  */
 static bool detect_objects_type(bool (*detect_item_hook)(const object_type *o_ptr), int sense_type, int ignore_feeling)
 {
-	int i, y, x, tv;
+	int i, y, x;
 
 	bool detect = FALSE;
 
@@ -1825,9 +1825,6 @@ static bool detect_objects_type(bool (*detect_item_hook)(const object_type *o_pt
 
 		/* Only detect nearby objects */
 		if (distance(p_ptr->py, p_ptr->px, y, x) > 2 * MAX_SIGHT) continue;
-
-		/* Examine the tval */
-		tv = o_ptr->tval;
 
 		/* Artifacts, misc magic items, or enchanted wearables */
 		if (!(detect_item_hook) || (detect_item_hook)(o_ptr))
@@ -5670,8 +5667,8 @@ static int spell_damage(spell_blow *blow_ptr, int level, u32b flg, bool player, 
 		/* Roll out the damage */
 		if (blow_ptr->d_side)
 		{
-			int dd = blow_ptr->d_dice;
-			int ds = blow_ptr->d_side;
+			uint dd = blow_ptr->d_dice;
+			uint ds = blow_ptr->d_side;
 
 			/* Determine damage */
 			damage += (forreal) ? damroll(dd, ds) : ((ds > 1) ? (dd * (ds + 1) / 2) : (dd * ds));
@@ -5680,8 +5677,8 @@ static int spell_damage(spell_blow *blow_ptr, int level, u32b flg, bool player, 
 		/* Roll out level dependent damage */
 		if (blow_ptr->l_side)
 		{
-			int dd = blow_ptr->l_dice * level / blow_ptr->levels;
-			int ds = blow_ptr->l_side;
+			uint dd = blow_ptr->l_dice * level / blow_ptr->levels;
+			uint ds = blow_ptr->l_side;
 
 			/* Determine damage */
 			damage += (forreal) ? damroll(dd, ds) : ((ds > 1) ? (dd * (ds + 1) / 2) : (dd * ds));

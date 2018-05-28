@@ -48,6 +48,7 @@ const byte option_page[OPT_PAGE_MAX][OPT_PAGE_PER] =
 
 	/* Display */
 	{
+		OPT_show_narrative,
 		OPT_hilite_player,
  		OPT_center_player,
 		OPT_show_piles,
@@ -67,7 +68,6 @@ const byte option_page[OPT_PAGE_MAX][OPT_PAGE_PER] =
 		OPT_room_descriptions,
 		OPT_show_tips,
 		OPT_speed_as_factor,
-		OPT_NONE
 	},
 
 	/* Warning */
@@ -215,7 +215,7 @@ static option_entry options[OPT_MAX] =
 { "view_granite_lite",   "Use special colors for wall grids",           FALSE }, /* 62 */
 { "view_special_lite",   "Use special colors for floor grids",          TRUE },  /* 63 */
 { "easy_open",           "Open/Disarm/Close without direction",         FALSE }, /* 64 */
-{ "easy_alter",          "Open/Disarm doors/traps on movement",         FALSE }, /* 65 */
+{ "easy_alter",          "Open/Disarm doors/traps on movement",         TRUE }, /* 65 */
 { NULL,                  NULL,                                          FALSE }, /* 66 */
 { "show_piles",          "Show stacks using special attr/char",         FALSE }, /* 67 */
 { "center_player",       "Center map continuously",                     FALSE }, /* 68 */
@@ -246,7 +246,7 @@ static option_entry options[OPT_MAX] =
 { "easy_autos",          "Automatically inscribe all objects",          FALSE }, /* 93 */
 { "easy_search",         "Start searching if not disturbed",            FALSE }, /* 94 */
 { "view_glowing_lite",   "Use special colours for glowing lite",        TRUE }, /* 95 */
-{ "show_sidebar",        "Display stats in main window",                FALSE }, /* 96 */
+{ "show_sidebar",        "Display stats in main window",                TRUE }, /* 96 */
 { "show_itemlist",       "Display all items on the bottom line",        FALSE }, /* 97 */
 { "depth_in_feet",       "Show dungeon level in feet",                  FALSE }, /* 98 */
 { "view_flavors",        "Show flavors in object graphics",             TRUE }, /* 99 */
@@ -260,8 +260,8 @@ static option_entry options[OPT_MAX] =
 { "easy_monlist",        "Spacebar toggles visible monsters/objects",   FALSE }, /* 107 */
 { "view_fogged_grids",   "Show fog of war for unexplored areas",        TRUE }, /* 108 */
 { "ally_messages",       "Show detailed combat messages for allies",    FALSE }, /* 109 */
-{ "speed_as_factor",     "Show speed as a factor",                      TRUE }, /* 110 */
-{ NULL,                  NULL,                                          FALSE }, /* 111 */
+{ "show_narrative",      "Single-window narrative mode",                FALSE }, /* 110 */
+{ "speed_as_factor",     "Show speed as a factor",                      TRUE }, /* 111 */
 { NULL,                  NULL,                                          FALSE }, /* 112 */
 { NULL,                  NULL,                                          FALSE }, /* 113 */
 { NULL,                  NULL,                                          FALSE }, /* 114 */

@@ -78,6 +78,8 @@ typedef struct join {
 
 /* A default group-by */
 static join_t *default_join;
+
+#if 0 /* Unused but unknown purpose */
 static int default_join_cmp(const void *a, const void *b)
 {
 	join_t *ja = &default_join[*(int*)a];
@@ -86,6 +88,8 @@ static int default_join_cmp(const void *a, const void *b)
 	if (c) return c;
 	return ja->oid - jb->oid;
 }
+#endif
+
 static int default_group(int oid) { return default_join[oid].gid; }
 
 
@@ -483,9 +487,8 @@ static void display_knowledge_start_at(
 
 	int grp_old = -1, grp_top = 0; /* group list positions */
 	int o_cur = 0, object_top = 0; /* object list positions */
-	int g_o_count = 0; /* object count for group */
 	int o_first = 0, g_o_max = 0; /* group limits in object list */
-	int oid = -1, old_oid = -1;  /* object identifiers */
+	int oid = -1;  /* object identifiers */
 
 	/* display state variables */
 	bool visual_list = FALSE;
@@ -576,10 +579,8 @@ static void display_knowledge_start_at(
 		if(g_cur != grp_old) {
 			o_first = o_cur = g_offset[g_cur];
 			object_top = o_first;
-			g_o_count = g_offset[g_cur+1] - g_offset[g_cur];
 			g_o_max = g_offset[g_cur+1];
 			grp_old = g_cur;
-			old_oid = -1;
 
 			/* Tweak the starting object position
 			if(init_obj >= 0) {
@@ -764,7 +765,7 @@ static void display_knowledge_start_at(
 					if (!i_ptr->k_idx || i_ptr->note != old_note) continue;
 
 					/* Not matching item */
-					if (!g_funcs.group(oid) != i_ptr->tval) continue;
+					if (g_funcs.group(oid) != i_ptr->tval) continue;
 
 					/* Auto-inscribe */
 					if (g_funcs.aware(i_ptr) || adult_auto)

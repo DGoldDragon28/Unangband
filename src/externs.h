@@ -337,6 +337,7 @@ extern char *g_text;
 extern quest_type *q_info;
 extern char *q_name;
 extern char *q_text;
+extern randart_sv_tbl *rsv_info;
 extern names_type *n_info;
 extern s16b tips[TIPS_MAX];
 extern s16b tips_start;
@@ -451,6 +452,7 @@ extern void object_actual_track(const object_type *j_ptr);
 extern void disturb(int stop_search, int wake_up);
 extern bool is_quest(int level);
 extern void init_level_flags(void);
+extern bool is_daytime(void);
 
 /* cmd1.c */
 extern bool test_hit_fire(int chance, int ac, int vis);
@@ -1170,6 +1172,7 @@ extern void update_stuff(void);
 extern void redraw_stuff(void);
 extern void window_stuff(void);
 extern void handle_stuff(void);
+extern int print_emergent_narrative(void);
 
 /* xtra2.c */
 extern bool set_timed(int idx, int v, bool notify);
@@ -1229,7 +1232,7 @@ extern void get_zone(dungeon_zone **zone_handle, int dungeon, int depth);
 extern void long_level_name(char* str, int town, int depth);
 extern void current_long_level_name(char* str);
 extern int scale_method(method_level_scalar_type scalar, int level);
-
+extern void get_room_desc(int room, char *name, int name_s, char *text_visible, int text_visible_s, char *text_always, int text_always_s);
 
 /*
  * Hack -- conditional (or "bizarre") externs
