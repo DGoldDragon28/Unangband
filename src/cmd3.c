@@ -1274,7 +1274,7 @@ bool player_offer(int item)
 		}
 
 		/* Guardians ignore you */
-		if (r_ptr->flags1 & (RF1_GUARDIAN))
+		if ((r_ptr->flags1 & (RF1_GUARDIAN)) && !(m_ptr->mflag & (MFLAG_TOWN)))
 		{
 			msg_format("%^s guards this place and cannot be bought.", m_name);
 			

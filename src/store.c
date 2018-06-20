@@ -895,7 +895,7 @@ static int home_carry(object_type *o_ptr, int store_index)
  *
  * IDENT_STORE should be set by the calling routine if required.
  */
-static int store_carry(object_type *o_ptr, int store_index)
+int store_carry(object_type *o_ptr, int store_index)
 {
 	int i, slot;
 	s32b value, j_value;

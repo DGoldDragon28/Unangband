@@ -3671,6 +3671,9 @@ static void dungeon(void)
 		/* Hack -- Hilite the player */
 		move_cursor_relative(p_ptr->py, p_ptr->px);
 
+		/* Hack -- Quest payouts */
+		while(do_quest_resolution());
+
 		/* Handle "leaving" */
 		if (p_ptr->leaving) break;
 

@@ -535,7 +535,7 @@ static void do_cmd_travel(void)
 			/* Set up departure event */
 			event.flags = EVENT_LEAVE;
 			event.dungeon = p_ptr->dungeon;
-			event.level = p_ptr->depth - min_depth(p_ptr->dungeon);
+			event.level = p_ptr->depth;
 
 			/* Check for quest failure. Abort if requested. */
 			if (check_quest(&event, FALSE)) return;
@@ -734,7 +734,7 @@ void do_cmd_go_up(void)
 	/* Set up departure event */
 	event.flags = EVENT_LEAVE;
 	event.dungeon = p_ptr->dungeon;
-	event.level = p_ptr->depth - min_depth(p_ptr->dungeon);
+	event.level = p_ptr->depth;
 
 	/* Check for quest failure. Abort if requested. */
 	if (check_quest(&event, FALSE)) return;
@@ -860,7 +860,7 @@ void do_cmd_go_down(void)
 	/* Set up departure event */
 	event.flags = EVENT_LEAVE;
 	event.dungeon = p_ptr->dungeon;
-	event.level = p_ptr->depth - min_depth(p_ptr->dungeon);
+	event.level = p_ptr->depth;
 
 	/* Check for quest failure. Abort if requested. */
 	if (check_quest(&event, FALSE)) return;

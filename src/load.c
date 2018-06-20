@@ -3009,6 +3009,8 @@ static errr rd_savefile_new_aux(void)
 
 #endif
 
+	/* Hack -- make sure QUEST_FINISH and QUEST_PENALTY work after reload */
+	(void)apply_quest_finish();
 
 	/* Hack -- no ghosts */
 	r_info[z_info->r_max-1].max_num = 0;

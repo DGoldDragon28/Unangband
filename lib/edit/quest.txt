@@ -112,9 +112,10 @@ F:TRAVEL
 T:0:99:0
 F:KILL_RACE
 R:546
-# Can't fail unless you die
+# If Sauron gets the One Ring, Middle Earth is doomed.
 S:6
-F:OR
+F:FAIL_QUEST
+Q:6
 
 # Farmer Maggot wants you to find Grip, Fang and Wolf. This is worth the same experience as killing them, and
 # causes them to be banished. In return, you qualify for a quest where you can trade 3 mushrooms of mana for a
@@ -210,3 +211,23 @@ W:100:0:0
 # Can't fail
 S:6
 F:OR
+
+N:6:Destruction of the One Ring
+S:0
+F:GET_ITEM
+A:13
+S:1
+F:TRAVEL
+T:62:59:0
+S:4
+F:DESTROY_ITEM
+A:13
+F:KILL_RACE
+R:546
+S:6
+F:LOSE_ITEM
+A:13
+S:7
+F:FAIL_QUEST
+Q:1
+

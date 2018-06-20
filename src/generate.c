@@ -15839,7 +15839,7 @@ void generate_cave(void)
 	/* Set up departure event */
 	event.flags = EVENT_TRAVEL;
 	event.dungeon = p_ptr->dungeon;
-	event.level = p_ptr->depth - min_depth(p_ptr->dungeon);
+	event.level = p_ptr->depth;
 
 	/* Reset the monster generation level; make level feeling interesting */
 	monster_level = p_ptr->depth >= 4 ? p_ptr->depth + 2 :
