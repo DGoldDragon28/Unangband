@@ -27175,7 +27175,7 @@ F:HAS_LITE | OPEN_DOOR | BASH_DOOR | NEED_LITE |
 F:HAS_SKULL | HAS_SKELETON | HAS_TEETH | HAS_CORPSE | HAS_HEAD | HAS_HAND |
 F:HAS_ARM | HAS_LEG | HAS_BLOOD | DROP_TOOL | DROP_WEAPON | DROP_MUSIC |
 F:DROP_CLOTHES | DROP_LITE | DROP_JEWELRY | DROP_POTION | DROP_FOOD |
-F:MAN |
+F:MAN | TOWNSFOLK |
 D:A majordomo of Theoden and captain of the guard, he requests you put
 D: aside your weapons before entering the Golden Hall.
 

@@ -2580,6 +2580,84 @@ bool monster_death(int m_idx)
 	/* Check quest events */
 	check_quest(&quest_check, TRUE);
 
+	/* Check hacky quest drops */
+	if(q_drop_hack_art || q_drop_hack_ego || q_drop_hack_kind) {
+	    object_type object_type_body;
+	    object_type *i_ptr;
+	    int k_idx, tvidx;
+
+	    if(cheat_xtra) msg_format("Doing hacky quest drop: %d %d %d", q_drop_hack_art, q_drop_hack_ego, q_drop_hack_kind);
+
+	    /* Set pointer */
+	    i_ptr = &object_type_body;
+	    object_wipe(i_ptr);
+
+	    if (q_drop_hack_art) {
+	        artifact_type *a_ptr = &(a_info[q_drop_hack_art]);
+
+	        if (!a_ptr->cur_num) {
+
+	            /* Set pointer */
+	            i_ptr = &object_type_body;
+
+	            /* Get base item */
+	            k_idx = lookup_kind(a_ptr->tval, a_ptr->sval);
+
+	            /* Prep the object */
+	            object_prep(i_ptr, k_idx);
+
+	            /* Set as artifact */
+	            i_ptr->name1 = q_drop_hack_art;
+	        }
+        } else if (q_drop_hack_ego) {
+            ego_item_type *e_ptr = &(e_info[q_drop_hack_ego]);
+
+            /* Set pointer */
+            i_ptr = &object_type_body;
+
+            /* Get base item */
+            if(q_drop_hack_kind) {
+                k_idx = q_drop_hack_kind;
+            } else {
+                do {
+                    tvidx = rand_int(3);
+                } while(!e_ptr->tval[tvidx]);
+                do {
+                    k_idx = lookup_kind(e_ptr->tval[tvidx],
+                            rand_range(e_ptr->min_sval[tvidx],
+                                    e_ptr->max_sval[tvidx]));
+                } while(!k_idx);
+            }
+
+            if(cheat_xtra) msg_format("Picked item kind %d ", k_idx);
+
+            /* Prep the object */
+            object_prep(i_ptr, k_idx);
+
+            if(cheat_xtra) msg_format("Applied item kind %d ", i_ptr->k_idx);
+
+            /* Set as ego item */
+            i_ptr->name2 = q_drop_hack_ego;
+
+        } else if (q_drop_hack_kind ) {
+            /* Prep the object */
+            object_prep(i_ptr, q_drop_hack_kind);
+        }
+
+	    /* Apply magic attributes */
+	    apply_magic(i_ptr, p_ptr->lev + rand_int(p_ptr->lev), FALSE, TRUE, TRUE);
+
+	    /* Get origin */
+	    i_ptr->origin = ORIGIN_DROP;
+	    i_ptr->origin_depth = p_ptr->depth;
+	    i_ptr->origin_xtra = m_ptr->r_idx;
+
+	    /* Drop it */
+	    drop_near(i_ptr, -1, y, x, TRUE);
+
+	    q_drop_hack_art = q_drop_hack_ego = q_drop_hack_kind = 0;
+	}
+
 	/* Do we drop more treasure? */
 	if ((m_ptr->mflag & (MFLAG_MADE)) == 0)
 	{
@@ -2660,18 +2738,7 @@ bool monster_death(int m_idx)
 		/* Drop it in the dungeon */
 		drop_near(i_ptr, -1, y, x, TRUE);
 
-		/* Hack -- this is temporary */
-		/* Total winner */
-		p_ptr->total_winner = TRUE;
-
-		/* Redraw the "title" */
-		p_ptr->redraw |= (PR_TITLE);
-
-		/* Congratulations */
-		msg_print("*** CONGRATULATIONS ***");
-		msg_print("You have won the game!");
-		msg_print("You may retire (commit suicide) when you are ready.");
-
+		/* "Winner" now governed by quest code */
 	}
 
 	/* Hack -- only sometimes drop bodies */

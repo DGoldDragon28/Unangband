@@ -67,7 +67,7 @@
 # UNFLAG_ROOM:	Remove flags from room. [NOT VALID AS EFFECT]  ***NEED***
 # ALTER_FEAT:	Alter a feature using action. ***NEED***
 # DEFEND_FEAT:	Prevent a feature being altered using action. [NOT VALID AS EFFECT] ***NEED***
-# FIND_ITEM:	Find one or more objects defined by artifact, ego item and kind. [NOT VALID AS EFFECT] ***NEED***
+# FIND_ITEM:	Find one or more objects defined by artifact, ego item and kind. [NOT VALID AS EFFECT] ***DEPRECATED***
 # GET_ITEM:	Get one or more objects defined by artifact, ego item and kind.\ *[NOT VALID AS LASTING EFFECT]
 # DESTROY_ITEM: Destroy one or more one or more objects defined by artifact, ego item and kind.\ 
 # LOSE_ITEM:	Lose one or more objects defined by artifact, ego item and kind.
@@ -81,13 +81,13 @@
 # TALK_RACE:	Talk to monster or unique defined by race.\ [NOT VALID AS EFFECT]
 # GIVE_RACE:	Give one or more objects defined by artifact, ego item and kind to monster defined by race. [NOT VALID AS EFFECT] ***NEED***
 # GET_RACE:	Get one or more objects defined by artifact, ego item and kind from monster defined by race. [NOT VALID AS EFFECT] ***NEED***
-# FIND_RACE:	Find monster or unique defined by race. *[NOT VALID AS LASTING EFFECT] ***NEED***
-# KILL_RACE:	Kill monster or unique defined by race.  (TODO) If an object is defined, the monster will be drop it.\ *[NOT VALID AS LASTING EFFECT]
+# FIND_RACE:	Find monster or unique defined by race. *[NOT VALID AS LASTING EFFECT]
+# KILL_RACE:	Kill monster or unique defined by race. If an object is defined, the monster will be drop it.\ *[NOT VALID AS LASTING EFFECT]
 # ALLY_RACE:	Befriend monster or unique defined by race./
 # HATE_RACE:	Offend monster or unique defined by race./
 # FEAR_RACE:	Terrify monster or unique defined by race./
 # HEAL_RACE:	Heal monster or unique defined by race./ *[NOT VALID AS LASTING EFFECT]
-# BANISH_RACE:	Teleport monster or unique defined by race. ***NEED***
+# BANISH_RACE:	Teleport monster or unique defined by race.
 # DEFEND_RACE:	Defend a monster or unique defined by race. [NOT VALID AS EFFECT] ***NEED***
 
 
@@ -97,9 +97,12 @@ V:0.6.6
 # Completing quest 0 finishes the game.
 
 N:0:Your quest to kill Morgoth, Lord of Darkness
+S:0
+F:PASS_QUEST
+Q:1
 S:1
 F:TRAVEL
-T:0:100:0
+T:0:60:0
 F:KILL_RACE
 R:547
 # Can't fail unless you die
@@ -109,7 +112,7 @@ F:OR
 N:1:Your quest to find Sauron
 S:1
 F:TRAVEL
-T:0:99:0
+T:0:59:0
 F:KILL_RACE
 R:546
 # If Sauron gets the One Ring, Middle Earth is doomed.
@@ -212,6 +215,9 @@ W:100:0:0
 S:6
 F:OR
 
+# Very important quest, if the player finds the One.
+# Also helps us test several quest event clauses
+
 N:6:Destruction of the One Ring
 S:0
 F:GET_ITEM
@@ -230,4 +236,26 @@ A:13
 S:7
 F:FAIL_QUEST
 Q:1
+
+# Let's test some more quest event clauses. Blades from the Barrow-Wight
+
+N:7:Sealed in the Barrow
+S:0
+F:TRAVEL
+T:10:5:0
+S:1
+F:KILL_RACE
+R:431
+E:68
+S:3
+F:LEAVE
+T:10:0:0
+S:4
+W:1000:0:0
+S:6
+F:OR
+
+
+
+
 

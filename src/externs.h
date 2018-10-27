@@ -386,6 +386,11 @@ extern u16b target_path_g[512];
 extern s16b target_path_d[512];
 
 
+extern int q_drop_hack_art;
+extern int q_drop_hack_ego;
+extern int q_drop_hack_kind;
+
+
 /*
  * Automatically generated "function declarations"
  */

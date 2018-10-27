@@ -2545,7 +2545,7 @@ static void fix_bags(bool drop)
  */
 static errr rd_savefile_new_aux(void)
 {
-	int i, j;
+	int i, j, n;
 
 	byte tmp8u;
 	u16b tmp16u;
@@ -2679,6 +2679,13 @@ static errr rd_savefile_new_aux(void)
 	{
 		note(format("Too many (%u) quests!", tmp16u));
 		return (-1);
+	}
+
+	/* Quests */
+	for (n = 0; n < z_info->q_max; n++)
+	{
+		/* Copy the structure */
+		COPY(&q_list[n], &q_info[n], quest_type);
 	}
 
 	/* Load the Quests */

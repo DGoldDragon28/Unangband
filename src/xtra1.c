@@ -628,7 +628,7 @@ int print_room_narrative(int line_number, char* title, char* text, int max_line_
 	if (!character_dungeon) return line_number;
 	
 	/* Hack -- not a room */
-	//if (!(cave_info[p_ptr->py][p_ptr->px] & (CAVE_ROOM))) room = 0;
+	/* if (!(cave_info[p_ptr->py][p_ptr->px] & (CAVE_ROOM))) room = 0; */
 	
 	if (title && strlen(title) > 0 && strcmp(title, "empty room") != 0) {
 		title[0] = toupper(title[0]);
@@ -638,7 +638,7 @@ int print_room_narrative(int line_number, char* title, char* text, int max_line_
 			title, 
 			max_line_number, 
 			(bool) 0);
-		//if (Term->hgt > 40 || ! is_long_description) line_number++;
+		/* if (Term->hgt > 40 || ! is_long_description) line_number++; */
 	}
 	
 	if (text && strlen(text) > 0) {
@@ -674,7 +674,7 @@ int print_emergent_narrative(void)
 	char text_visible[1024];
 	char text_always[1024];
 	char text_empty[] = "";
-	//empty[0] = '\0';
+	/* empty[0] = '\0'; */
 	
 	bool is_long_description;
 	

@@ -5101,747 +5101,6 @@ void do_cmd_timeofday()
 	}
 }
 
-
-/*
- * Array of event pronouns strings - initial caps
- */
-static cptr event_pronoun_text_caps[6] =
-{
-	"We ",
-	"I ",
-	"You ",
-	"He ",
-	"She ",
-	"It "
-};
-
-/*
- * Array of event pronouns strings - comma
- */
-static cptr event_pronoun_text[6] =
-{
-	"we ",
-	"I ",
-	"you ",
-	"he ",
-	"she ",
-	"it "
-};
-
-/*
- * Array of event pronouns strings - comma
- */
-static cptr event_pronoun_text_which[6] =
-{
-	"which we ",
-	"which I ",
-	"which you ",
-	"which he ",
-	"which she ",
-	"which it "
-};
-
-/*
- * Array of tense strings (0, 1 and 2 occurred in past, however 0, 1 only are past tense )
- *
- */
-static cptr event_tense_text[8] =
-{
-	" ",
-	"have ",
-	"had to ",
-	"must ",
-	"will ",
-	" ",
-	"can ",
-	"may "
-};
-
-/*
- * Display a quest event.
- */
-bool print_event(quest_event *event, int pronoun, int tense, cptr prefix)
-{
-	int vn, n;
-	cptr vp[64];
-
-	bool reflex_feature = FALSE;
-	bool reflex_monster = FALSE;
-	bool reflex_object = FALSE;
-	bool used_num = FALSE;
-	bool used_race = FALSE;
-	bool output = FALSE;
-	bool intro = FALSE;
-
-	/* Describe location */
-	if ((event->dungeon) || (event->level))
-	{
-		/* Collect travel actions */
-		vn = 0;
-		if (tense > 1)
-		{
-			if (event->flags & (EVENT_TRAVEL)) vp[vn++] = "travel to";
-			if (event->flags & (EVENT_LEAVE)) vp[vn++] = "leave";
-		}
-		else
-		{
-			if (event->flags & (EVENT_TRAVEL)) vp[vn++] = "travelled to";
-			if (event->flags & (EVENT_LEAVE)) vp[vn++] = "left";
-		}
-
-		/* Describe travel actions */
-		if (vn)
-		{
-			/* Scan */
-			for (n = 0; n < vn; n++)
-			{
-				/* Intro */
-				if (n == 0)
-				{
-					if (prefix)
-					{
-						text_out(prefix);
-						text_out(event_pronoun_text[pronoun]);
-					}
-					else
-					{
-						text_out(event_pronoun_text_caps[pronoun]);
-					}
-					text_out(event_tense_text[tense]);
-				}
-				else if (n < vn-1) text_out(", ");
-				else text_out(" and ");
-
-				/* Dump */
-				text_out(vp[n]);
-			}
-
-			text_out(" ");
-		}
-
-		if ((!vn) && (prefix))
-		{
-			text_out(prefix);
-			intro = TRUE;
-		}
-
-		if (event->level)
-		{
-			if ((!intro) && (!vn)) text_out("On ");
-			text_out(format("level %d of ", event->level));
-		}
-		else if ((intro) && (!vn)) text_out(" in ");
-		else if (!vn) text_out("In ");
-
-		/* TODO: full level 0 name? level n name? */
-		text_out(t_name + t_info[event->dungeon].name);
-
-		if ((event->owner) || (event->store) || ((event->feat) && (event->action)) ||
-			(event->race) || (event->kind) || (event->ego_item_type) || (event->artifact))
-		{
-			if (!vn)
-			{
-				text_out(event_pronoun_text[pronoun]);
-				text_out(event_tense_text[tense]);
-			}
-			else text_out(" and ");
-		}
-
-		intro = TRUE;
-		output = TRUE;
-	}
-
-	/* Visit a store */
-	if ((event->owner) || (event->store) || (event->flags & (EVENT_TALK_STORE | EVENT_DEFEND_STORE)))
-	{
-		output = TRUE;
-
-		if (!intro)
-		{
-			if (prefix)
-			{
-				text_out(prefix);
-				text_out(event_pronoun_text[pronoun]);
-			}
-			else
-			{
-				text_out(event_pronoun_text_caps[pronoun]);
-			}
-			text_out(event_tense_text[tense]);
-
-			intro = TRUE;
-		}
-
-		if (event->flags & (EVENT_DEFEND_STORE))
-		{
-			if (tense < 0) text_out("defended ");
-			else text_out("defend ");
-
-			used_race = TRUE;
-		}
-		else if (event->flags & (EVENT_TALK_STORE))
-		{
-			if (tense < 0) text_out("talked to");
-			else text_out("talk to");
-		}
-		else if (tense < 0) text_out("visited ");
-		else text_out("visit ");
-
-		if (!(event->owner) && !(event->store))
-		{
-			text_out("the town");
-		}
-		else if (event->owner)
-		{
-			/* XXX owner name */;
-			if (event->store) text_out(" at ");
-		}
-
-		if (event->store)
-		{
-			text_out(f_name + f_info[event->feat].name);
-		}
-
-		if ((event->flags & (EVENT_DEFEND_STORE)) && !(event->room_type_a) && !(event->room_type_b)
-			&& !(event->room_flags) && !((event->feat) && (event->action)))
-		{
-			text_out(" from ");
-			reflex_monster = TRUE;
-		}
-		else if (((event->feat) && (event->action)) || (event->room_type_a) || (event->room_type_b)
-			|| (event->room_flags) || (event->race) || ((event->kind) || (event->ego_item_type) || (event->artifact)))
-		{
-			text_out(" and ");
-		}
-		else text_out(" ");
-
-		output = TRUE;
-	}
-
-	/* Affect room */
-	if ((event->room_type_a) || (event->room_type_b) || (event->room_flags))
-	{
-		/* Collect room flags */
-		vn = 0;
-		if (tense > 1)
-		{
-			if (event->flags & (EVENT_FIND_ROOM)) vp[vn++] = "find";
-			if ((event->flags & (EVENT_UNFLAG_ROOM)) && (event->room_flags & (ROOM_HIDDEN))) vp[vn++] = "reveal";
-			if ((event->flags & (EVENT_UNFLAG_ROOM)) && (event->room_flags & (ROOM_SEALED))) vp[vn++] = "unseal";
-			if ((event->flags & (EVENT_FLAG_ROOM)) && (event->room_flags & (ROOM_ENTERED))) vp[vn++] = "enter";
-#if 0
-			if ((event->flags & (EVENT_FLAG_ROOM)) && (event->room_flags & (ROOM_LITE))) vp[vn++] = "light up";
-#endif
-			if ((event->flags & (EVENT_FLAG_ROOM)) && (event->room_flags & (ROOM_SEEN))) vp[vn++] = "explore";
-			if ((event->flags & (EVENT_UNFLAG_ROOM)) && (event->room_flags & (ROOM_LAIR))) vp[vn++] = "clear of monsters";
-			if ((event->flags & (EVENT_UNFLAG_ROOM)) && (event->room_flags & (ROOM_OBJECT))) vp[vn++] = "empty of objects";
-#if 0
-			if ((event->flags & (EVENT_UNFLAG_ROOM)) && (event->room_flags & (ROOM_TRAP))) vp[vn++] = "disarm";
-			if ((event->flags & (EVENT_FLAG_ROOM)) && (event->room_flags & (ROOM_DARK))) vp[vn++] = "darken";
-#endif
-		}
-		else
-		{
-			if (event->flags & (EVENT_FIND_ROOM)) vp[vn++] = "found";
-			if ((event->flags & (EVENT_UNFLAG_ROOM)) && (event->room_flags & (ROOM_HIDDEN))) vp[vn++] = "revealed";
-			if ((event->flags & (EVENT_UNFLAG_ROOM)) && (event->room_flags & (ROOM_SEALED))) vp[vn++] = "unsealed";
-			if ((event->flags & (EVENT_FLAG_ROOM)) && (event->room_flags & (ROOM_ENTERED))) vp[vn++] = "entered";
-#if 0
-			if ((event->flags & (EVENT_FLAG_ROOM)) && (event->room_flags & (ROOM_LITE))) vp[vn++] = "lit up";
-#endif
-			if ((event->flags & (EVENT_FLAG_ROOM)) && (event->room_flags & (ROOM_SEEN))) vp[vn++] = "explored";
-			if ((event->flags & (EVENT_UNFLAG_ROOM)) && (event->room_flags & (ROOM_LAIR))) vp[vn++] = "cleared of monsters";
-			if ((event->flags & (EVENT_UNFLAG_ROOM)) && (event->room_flags & (ROOM_OBJECT))) vp[vn++] = "emptied of objects";
-#if 0
-			if ((event->flags & (EVENT_UNFLAG_ROOM)) && (event->room_flags & (ROOM_TRAP))) vp[vn++] = "disarmed";
-			if ((event->flags & (EVENT_FLAG_ROOM)) && (event->room_flags & (ROOM_DARK))) vp[vn++] = "darkened";
-#endif
-		}
-
-		if (vn)
-		{
-			output = TRUE;
-
-			if (!intro)
-			{
-				if (prefix)
-				{
-					text_out(prefix);
-					text_out(event_pronoun_text[pronoun]);
-				}
-				else
-				{
-					text_out(event_pronoun_text_caps[pronoun]);
-				}
-				text_out(event_tense_text[tense]);
-
-				intro = TRUE;
-			}
-
-			/* Scan */
-			for (n = 0; n < vn; n++)
-			{
-				/* Intro */
-				if (n == 0) ;
-				else if (n < vn-1) text_out(", ");
-				else text_out(" or ");
-
-				/* Dump */
-				text_out(vp[n]);
-			}
-
-			text_out(" a ");
-
-			/* Room adjective */
-			if (event->room_type_a) { text_out(d_name + d_info[event->room_type_a].name1); text_out(" "); }
-
-			/* Room noun */
-			if (!(event->room_type_a) && !(event->room_type_b)) text_out("all the rooms");
-			else if (event->room_type_b) text_out(d_name + d_info[event->room_type_b].name1);
-			else text_out("room");
-
-			if (((event->feat) && (event->action)) || (event->race) || ((event->kind) || (event->ego_item_type) || (event->artifact)))
-			{
-				if ((event->flags & (EVENT_UNFLAG_ROOM)) && (event->room_flags & (ROOM_SEALED)) && (event->room_flags & (ROOM_HIDDEN))) text_out(" hidden and sealed by ");
-				else if ((event->flags & (EVENT_UNFLAG_ROOM)) && (event->room_flags & (ROOM_SEALED))) text_out(" sealed by ");
-				else if ((event->flags & (EVENT_UNFLAG_ROOM)) && (event->room_flags & (ROOM_HIDDEN))) text_out(" hidden by ");
-				else if ((event->flags & (EVENT_UNFLAG_ROOM)) || (event->flags & (EVENT_FLAG_ROOM))) text_out(" enchanted by ");
-				else if ((event->feat) && (event->action))
-				{
-					text_out(" containing ");
-
-					reflex_feature = TRUE;
-				}
-				else if (event->race)
-				{
-					text_out(" guarded by ");
-
-					reflex_monster = TRUE;
-				}
-				else if ((event->kind) || (event->ego_item_type) || (event->artifact))
-				{
-					text_out(" containing ");
-
-					reflex_object = TRUE;
-				}
-
-				if (event->race) used_race = TRUE;
-			}
-		}
-	}
-
-	/* Alter a feature */
-	if ((event->feat) && (event->action))
-	{
-		/* Collect monster actions */
-		vn = 0;
-		if (tense > 1)
-		{
-			switch(event->action)
-			{
-				case FS_SECRET: vp[vn++] = "find"; break;
-				case FS_OPEN: vp[vn++] = "open"; break;
-				case FS_CLOSE: vp[vn++] = "close"; break;
-				case FS_BASH: vp[vn++] = "bash"; break;
-				case FS_SPIKE: vp[vn++] = "spike"; break;
-				case FS_DISARM: vp[vn++] = "disarm"; break;
-				case FS_TUNNEL: vp[vn++] = "dig through"; break;
-				case FS_HIT_TRAP: vp[vn++] = "set off"; break;
-				case FS_HURT_ROCK: vp[vn++] = "turn to mud"; break;
-				case FS_HURT_FIRE: vp[vn++] = "burn"; break;
-				case FS_HURT_COLD: vp[vn++] = "flood"; break;
-				case FS_HURT_ACID: vp[vn++] = "dissolve"; break;
-				case FS_KILL_MOVE: vp[vn++] = "step on"; break;
-				case FS_HURT_POIS: vp[vn++] = "poison"; break;
-				case FS_HURT_ELEC: vp[vn++] = "electrify"; break;
-				case FS_HURT_WATER: vp[vn++] = "flood"; break;
-				case FS_HURT_BWATER: vp[vn++] = "boil"; break;
-			}
-		}
-		else
-		{
-			switch(event->action)
-			{
-				case FS_SECRET: vp[vn++] = "found"; break;
-				case FS_OPEN: vp[vn++] = "opened"; break;
-				case FS_CLOSE: vp[vn++] = "closed"; break;
-				case FS_BASH: vp[vn++] = "bashed"; break;
-				case FS_SPIKE: vp[vn++] = "spiked"; break;
-				case FS_DISARM: vp[vn++] = "disarmed"; break;
-				case FS_TUNNEL: vp[vn++] = "dug through"; break;
-				case FS_HIT_TRAP: vp[vn++] = "set off"; break;
-				case FS_HURT_ROCK: vp[vn++] = "turned to mud"; break;
-				case FS_HURT_FIRE: vp[vn++] = "burnt"; break;
-				case FS_HURT_COLD: vp[vn++] = "flooded"; break;
-				case FS_HURT_ACID: vp[vn++] = "dissolved"; break;
-				case FS_KILL_MOVE: vp[vn++] = "stepped on"; break;
-				case FS_HURT_POIS: vp[vn++] = "poisoned"; break;
-				case FS_HURT_ELEC: vp[vn++] = "electrified"; break;
-				case FS_HURT_WATER: vp[vn++] = "flooded"; break;
-				case FS_HURT_BWATER: vp[vn++] = "boiled"; break;
-			}
-		}
-
-		/* Introduce feature */
-		if (vn)
-		{
-			output = TRUE;
-
-			if (reflex_feature)
-			{
-				if ((!used_num) && (event->number > 0)) text_out(format("%d ",event->number));
-
-				text_out(f_name + f_info[event->feat].name);
-				if ((!used_num) && (event->number > 0)) text_out("s");
-
-				text_out(event_pronoun_text_which[pronoun]);
-				text_out(event_tense_text[tense]);
-
-				used_num = TRUE;
-			}
-			else if (!intro)
-			{
-				if (prefix)
-				{
-					text_out(prefix);
-					text_out(event_pronoun_text[pronoun]);
-				}
-				else
-				{
-					text_out(event_pronoun_text_caps[pronoun]);
-				}
-				text_out(event_tense_text[tense]);
-
-				intro = TRUE;
-			}
-
-			/* Scan */
-			for (n = 0; n < vn; n++)
-			{
-				/* Intro */
-				if (n == 0) ;
-				else if (n < vn-1) text_out(", ");
-				else text_out(" or ");
-
-				/* Dump */
-				text_out(vp[n]);
-			}
-
-			if (!(reflex_feature))
-			{
-				if ((!used_num) && (event->number > 0)) text_out(format(" %d",event->number));
-
-				text_out(" ");
-				text_out(f_name + f_info[event->feat].name);
-				if ((!used_num) && (event->number > 0)) text_out("s");
-
-				used_num = TRUE;
-			}
-
-			if ((event->race) || (event->kind) || (event->ego_item_type) || (event->artifact))
-			{
-				if (reflex_feature) { text_out(".  "); intro = FALSE; reflex_monster = FALSE; reflex_object = FALSE; }
-				else if (event->race) { text_out(" guarded by "); used_race = TRUE; }
-				else text_out(" and ");
-			}
-		}
-	}
-
-	/* Kill a monster */
-	if ((event->race) && ((used_race) || !((event->kind) || (event->ego_item_type) || (event->artifact))))
-	{
-		used_race = TRUE;
-
-		/* Collect monster actions */
-		vn = 0;
-		if (tense > 1)
-		{
-			if (event->flags & (EVENT_FIND_RACE)) vp[vn++] = "find";
-			if (event->flags & (EVENT_TALK_RACE)) vp[vn++] = "talk to";
-			if (event->flags & (EVENT_ALLY_RACE)) vp[vn++] = "befriend";
-			if (event->flags & (EVENT_DEFEND_RACE)) vp[vn++] = "defend";
-			if (event->flags & (EVENT_HATE_RACE)) vp[vn++] = "offend";
-			if (event->flags & (EVENT_FEAR_RACE)) vp[vn++] = "terrify";
-			if (event->flags & (EVENT_HEAL_RACE)) vp[vn++] = "heal";
-			if (event->flags & (EVENT_BANISH_RACE)) vp[vn++] = "banish";
-			if (event->flags & (EVENT_KILL_RACE | EVENT_DEFEND_STORE)) vp[vn++] = "kill";
-		}
-		else
-		{
-			if (event->flags & (EVENT_FIND_RACE)) vp[vn++] = "found";
-			if (event->flags & (EVENT_TALK_RACE)) vp[vn++] = "talked to";
-			if (event->flags & (EVENT_ALLY_RACE)) vp[vn++] = "befriended";
-			if (event->flags & (EVENT_DEFEND_RACE)) vp[vn++] = "defended";
-			if (event->flags & (EVENT_HATE_RACE)) vp[vn++] = "offended";
-			if (event->flags & (EVENT_FEAR_RACE)) vp[vn++] = "terrified";
-			if (event->flags & (EVENT_HEAL_RACE)) vp[vn++] = "healed";
-			if (event->flags & (EVENT_BANISH_RACE)) vp[vn++] = "banished";
-			if (event->flags & (EVENT_KILL_RACE | EVENT_DEFEND_STORE)) vp[vn++] = "killed";
-		}
-
-		/* Hack -- monster race */
-		if (vn)
-		{
-			char m_name[80];
-			output = TRUE;
-
-			if (reflex_monster)
-			{
-				/* Get the name */
-				race_desc(m_name, sizeof(m_name), event->race, (used_num ? 0x400 : 0x08), event->number);
-				
-				text_out(m_name);
-
-				text_out(event_pronoun_text_which[pronoun]);
-				text_out(event_tense_text[tense]);
-
-				used_num = TRUE;
-			}
-			else if (!intro)
-			{
-				if (prefix)
-				{
-					text_out(prefix);
-					text_out(event_pronoun_text[pronoun]);
-				}
-				else
-				{
-					text_out(event_pronoun_text_caps[pronoun]);
-				}
-
-				if ((event->flags & (EVENT_GET_STORE)) && (tense > 1)) text_out("will ");
-				else text_out(event_tense_text[tense]);
-
-				intro = TRUE;
-			}
-
-			/* Scan */
-			for (n = 0; n < vn; n++)
-			{
-				/* Intro */
-				if (n == 0) ;
-				else if (n < vn-1) text_out(", ");
-				else text_out(" or ");
-
-				/* Dump */
-				text_out(vp[n]);
-			}
-
-			if (!(reflex_monster))
-			{
-				/* Get the name */
-				race_desc(m_name, sizeof(m_name), event->race, (used_num ? 0x400 : 0x08), event->number);				
-
-				text_out(" ");
-				text_out(m_name);
-
-				used_num = TRUE;
-			}
-
-			if ((event->kind) || (event->ego_item_type) || (event->artifact))
-			{
-				if (reflex_monster) { text_out(".  "); intro = FALSE; prefix = NULL; reflex_object = FALSE; }
-				else if (event->number > 1) text_out(" and each carrying ");
-				else text_out(" and carrying ");
-			}
-		}
-	}
-
-	/* Collect an object */
-	if ((event->kind) || (event->ego_item_type) || (event->artifact))
-	{
-		object_type o_temp;
-		char o_name[140];
-
-		/* Create temporary object */
-		if (event->artifact)
-		{
-			object_prep(&o_temp, lookup_kind(a_info[event->artifact].tval,a_info[event->artifact].sval));
-
-			o_temp.name1 = event->artifact;
-		}
-		else if (event->ego_item_type)
-		{
-			if (event->kind)
-			{
-				object_prep(&o_temp, event->kind);
-			}
-			else
-			{
-				object_prep(&o_temp, lookup_kind(e_info[event->ego_item_type].tval[0], e_info[event->ego_item_type].min_sval[0]));
-			}
-
-			o_temp.name2 = event->ego_item_type;
-		}
-		else
-		{
-			object_prep(&o_temp, event->kind);
-		}
-
-		if (!(used_num) && !(event->artifact)) o_temp.number = event->number;
-		else o_temp.number = 1;
-
-		if (!(used_race)) o_temp.name3 = event->race;
-
-		o_temp.ident |= (IDENT_KNOWN);
-
-		/* Describe object */
-		object_desc(o_name, sizeof(o_name), &o_temp, TRUE, 0);
-
-		/* Collect store actions */
-		vn = 0;
-		if (tense > 1)
-		{
-			if (event->flags & (EVENT_FIND_ITEM)) vp[vn++] = "find";
-			if (event->flags & (EVENT_BUY_STORE)) vp[vn++] = "buy";
-			if (event->flags & (EVENT_SELL_STORE)) vp[vn++] = "sell";
-			if (event->flags & (EVENT_GET_ITEM)) vp[vn++] = "get";
-			if (event->race) vp[vn++] = "collect";
-			if (event->flags & (EVENT_GIVE_STORE | EVENT_GIVE_RACE)) vp[vn++] = "give";
-			if (event->flags & (EVENT_GET_STORE | EVENT_GET_RACE)) vp[vn++] = "be given";
-			if (event->flags & (EVENT_DEFEND_STORE)) vp[vn++] = "use";
-			if (event->flags & (EVENT_LOSE_ITEM)) vp[vn++] = "lose";
-			if (event->flags & (EVENT_DESTROY_ITEM)) vp[vn++] = "destroy";
-		}
-		else
-		{
-			if (event->flags & (EVENT_FIND_ITEM)) vp[vn++] = "found";
-			if (event->flags & (EVENT_BUY_STORE)) vp[vn++] = "bought";
-			if (event->flags & (EVENT_SELL_STORE)) vp[vn++] = "sold";
-			if (event->flags & (EVENT_GET_ITEM)) vp[vn++] = "kept";
-			if (event->race) vp[vn++] = "collected";
-			if (event->flags & (EVENT_GIVE_STORE | EVENT_GIVE_STORE)) vp[vn++] = "gave";
-			if (event->flags & (EVENT_GET_STORE | EVENT_GET_RACE)) vp[vn++] = "were given";
-			if (event->flags & (EVENT_DEFEND_STORE)) vp[vn++] = "used";
-			if (event->flags & (EVENT_LOSE_ITEM)) vp[vn++] = "lost";
-			if (event->flags & (EVENT_DESTROY_ITEM)) vp[vn++] = "destroyed";
-		}
-
-		if (vn)
-		{
-			output = TRUE;
-
-			if (event->flags & (EVENT_STOCK_STORE))
-			{
-				if (intro) text_out("he ");
-				else text_out("He ");
-
-				if (tense > 1) text_out("will stock ");
-				else if (tense < 0) text_out("stocked ");
-				else text_out("stocks ");
-
-				reflex_object = TRUE;
-			}
-
-			if (reflex_object)
-			{
-				text_out(o_name);
-
-				used_num = TRUE;
-
-				text_out(event_pronoun_text_which[pronoun]);
-				if ((event->flags & (EVENT_GET_STORE | EVENT_GET_ITEM)) && (tense > 1)) text_out("will ");
-				else text_out(event_tense_text[tense]);
-			}
-			else if (!intro)
-			{
-				if (prefix)
-				{
-					text_out(prefix);
-					text_out(event_pronoun_text[pronoun]);
-				}
-				else
-				{
-					text_out(event_pronoun_text_caps[pronoun]);
-				}
-				if ((event->flags & (EVENT_DEFEND_STORE)) && (tense > 1)) text_out("can ");
-				else if ((event->flags & (EVENT_GET_STORE)) && (tense > 1)) text_out("will ");
-				else text_out(event_tense_text[tense]);
-			}
-
-			intro = TRUE;
-
-			/* Scan */
-			for (n = 0; n < vn; n++)
-			{
-				/* Intro */
-				if (n == 0) ;
-				else if (n < vn-1) text_out(", ");
-				else text_out(" or ");
-
-				/* Dump */
-				text_out(vp[n]);
-			}
-
-			if (!(reflex_object))
-			{
-				text_out(" ");
-				text_out(o_name);
-			}
-		}
-	}
-
-	/* Collect rewards */
-	if ((event->gold) || (event->experience))
-	{
-		output = TRUE;
-
-		if (!intro)
-		{
-			if (prefix)
-			{
-				text_out(prefix);
-				text_out(event_pronoun_text[pronoun]);
-			}
-			else
-			{
-				text_out(event_pronoun_text_caps[pronoun]);
-			}
-		}
-		else
-		{
-			text_out(" and ");
-		}
-
-
-		if ((event->gold > 0) || (event->experience > 0))
-		{
-			text_out("gain ");
-
-			if (event->gold > 0)
-			{
-				text_out(format("%d gold",event->gold));
-				if (event->experience) text_out(" and ");
-			}
-
-			if (event->experience > 0)
-			{
-				text_out(format("%d experience",event->experience));
-				if (event->gold < 0) text_out(" and ");
-			}
-		}
-
-		if ((event->gold < 0) || (event->experience < 0))
-		{
-			text_out("cost ");
-
-			if (event->gold < 0)
-			{
-				text_out(format("%d gold",-event->gold));
-				if (event->experience < 0) text_out(" and ");
-			}
-
-			if (event->experience < 0)
-			{
-				text_out(format("%d experience",-event->experience));
-			}
-		}
-	}
-
-	return (output);
-
-}
-
 /*
  * Output all quests between certain stages
  *
@@ -5861,51 +5120,89 @@ bool print_quests(int min_stage, int max_stage)
 
 	cptr prefix = NULL;
 
-	for (i = 0; i < 5; i++)
+	for (i = 0; i < MAX_Q_IDX; i++)
 	{
 		newline = FALSE;
 
-		/* Quest not in range */
-		if ((q_list[i].stage >= min_stage) && (q_list[i].stage <= max_stage)) continue;
+		/* Quest doesn't exist */
+		if (!q_list[i].name) continue;
 
+		/* Quest not in range */
+		if ((q_list[i].stage < min_stage) && (q_list[i].stage > max_stage)) continue;
+
+		text_out(format("%s (Stage %d)\n", q_name + q_list[i].name, q_list[i].stage));
+
+#if 0
 		event_out = FALSE;
 
+		switch(q_list[i].stage) {
+		    case QUEST_ASSIGN:
+		        print_event(&q_info[i].event[QUEST_ASSIGN], 2, 6, NULL);
+		        break;
+		    case QUEST_ACTIVE:
+                event_out = print_event(&q_info[i].event[QUEST_ASSIGN], 2, 1, NULL);
+                if (event_out) text_out(".  ");
+                print_event(&q_info[i].event[QUEST_ACTIVE], 2, 3, NULL);
+                print_event(&q_info[i].event[QUEST_FAILED], 2, 5, ".  You will fail the quest if ");
+                break;
+		    case QUEST_REWARD:
+                print_event(&q_info[i].event[QUEST_ACTIVE], 2, 0, NULL);
+                print_event(&q_info[i].event[QUEST_REWARD], 2, 3, ".  To claim your reward, ");
+                break;
+		    case QUEST_PAYOUT:
+		    case QUEST_FINISH:
+                print_event(&q_info[i].event[QUEST_ACTIVE], 2, 0, NULL);
+                print_event(&q_info[i].event[QUEST_REWARD], 2, 0, ".  ");
+                print_event(&q_info[i].event[QUEST_PAYOUT], 2, 0, " and ");
+                print_event(&q_info[i].event[QUEST_FINISH], 2, 0, " and ");
+                break;
+		    case QUEST_FORFEIT:
+		    case QUEST_PENALTY:
+                print_event(&q_info[i].event[QUEST_ACTIVE], 2, 2, NULL);
+                print_event(&q_info[i].event[QUEST_FAILED], 2, 0, ".  ");
+                print_event(&q_info[i].event[QUEST_FORFEIT], 2, 0, "causing you to fail the quest and ");
+                print_event(&q_info[i].event[QUEST_PENALTY], 2, 0, " and ");
+                break;
+		    default:
+		        continue;
+		}
+		text_out(".\n\n");
+#endif
+
+#if 0
 		for (j = 0; j < MAX_QUEST_EVENTS; j++)
 		{
 			switch(j)
 			{
 				case QUEST_ASSIGN:
-					if (q_info[i].stage == QUEST_ASSIGN) { tense = 6; }
-					else if (q_info[i].stage == QUEST_ACTIVE) { tense = 1; }
-					else { tense = 0; }
+					if (q_info[i].stage == QUEST_ASSIGN) { tense = 6; } /* 'Possible' */
+					else if (q_info[i].stage == QUEST_ACTIVE) { tense = 1; } /* Perfect */
+					else { tense = 0; } /* Simple past */
 					break;
 				case QUEST_ACTIVE:
-					if (q_info[i].stage == QUEST_ACTIVE) { tense = 1; }
-					else if (q_info[i].stage == QUEST_ACTION) { tense = 1; }
-					else if (q_info[i].stage == QUEST_FAILED) { tense = 2; }
-					else if (q_info[i].stage == QUEST_PENALTY) { tense = 2; }
-					else continue;
+					if (q_info[i].stage == QUEST_ACTIVE) { tense = 3; } /* 'Mandatory' */
+					else if (q_info[i].stage == QUEST_FAILED) { tense = 2; } /* 'Mandatory' past */
+					else if (q_info[i].stage == QUEST_PENALTY) { tense = 2; } /* 'Mandatory' past */
+					else { tense = 0; } /* Simple past */
 					break;
 				case QUEST_ACTION:
-					if (q_info[i].stage < QUEST_ACTION) continue;
-					else if (q_info[i].stage == QUEST_ASSIGN) { tense = 3; }
-					else if (q_info[i].stage == QUEST_ACTIVE) { tense = 1; }
-					else if (q_info[i].stage == QUEST_FINISH) { tense = 2; }
-					else { tense = 0; }
+					if (q_info[i].stage < QUEST_ACTIVE) continue;
+					else if (q_info[i].stage == QUEST_ACTIVE) { tense = 1; } /* Perfect */
+					else { tense = 0; } /* Simple past */
 					break;
 				case QUEST_REWARD:
 					if (q_info[i].stage < QUEST_ACTION) continue;
-					else if (q_info[i].stage == QUEST_REWARD) { tense = 3; }
-					else if (q_info[i].stage == QUEST_FINISH) { tense = 0; }
+					else if (q_info[i].stage == QUEST_REWARD) { tense = 3; prefix = "To claim your reward, "; } /* 'Mandatory' */
+					else if (q_info[i].stage == QUEST_FINISH) { tense = 0; } /* Simple past */
 					else if (q_info[i].stage > QUEST_FINISH) continue;
 					else { tense = 3; prefix = "To claim your reward, "; }
 					break;
 				case QUEST_PAYOUT:
 					if (q_info[i].stage < QUEST_ACTION) continue;
-					else if (q_info[i].stage == QUEST_PAYOUT) { tense = 0; prefix = "and "; }
-					else if (q_info[i].stage == QUEST_FINISH) { tense = 0; prefix = "and "; }
+					else if (q_info[i].stage == QUEST_PAYOUT) { tense = 0; prefix = "and "; } /* Simple past */
+					else if (q_info[i].stage == QUEST_FINISH) { tense = 0; prefix = "and "; } /* Simple past */
 					else if (q_info[i].stage > QUEST_FINISH) continue;
-					else { tense = 4; prefix = "and ";}
+					else { tense = 4; prefix = "and ";} /* Future */
 					break;
 				case QUEST_FINISH:
 					if (q_info[i].stage < QUEST_ACTION) continue;
@@ -5958,7 +5255,7 @@ bool print_quests(int min_stage, int max_stage)
 		}
 
 		if (newline) text_out(".\n\n");
-
+#endif
 		output = TRUE;
 	}
 

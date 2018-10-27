@@ -13044,6 +13044,20 @@ bool project_t(int who, int what, int y, int x, int dam, int typ)
 		}
 		else
 		{
+		    quest_event event;
+
+			/* Use this to allow quests to succeed or fail */
+			WIPE(&event, quest_event);
+
+			/* Set up departure event */
+			event.flags = EVENT_BANISH_RACE;
+			event.dungeon = p_ptr->dungeon;
+			event.level = p_ptr->depth;
+			event.race = m_ptr->r_idx;
+			event.number = 1;
+
+			check_quest(&event, TRUE);
+
 			/* Message */
 			note = " disappears!";
 		}

@@ -1376,4 +1376,9 @@ int target_path_n;
 u16b target_path_g[512];
 s16b target_path_d[512];
 
-
+/*
+ * Hack for dealing with quest monster drops
+ */
+int q_drop_hack_art = 0;
+int q_drop_hack_ego = 0;
+int q_drop_hack_kind = 0;
