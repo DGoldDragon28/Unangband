@@ -2692,6 +2692,19 @@ static void store_purchase(int store_index)
 				/* Remove special inscription, if any */
 				o_ptr->feeling = 0;
 
+				/* Check quests */
+				quest_event event;
+				WIPE(&event, quest_event);
+				event.flags = EVENT_BUY_STORE;
+				event.dungeon = p_ptr->dungeon;
+				event.level = p_ptr->depth - min_depth(p_ptr->dungeon);
+				event.store = store_index;
+				event.kind = i_ptr->k_idx;
+				event.ego_item_type = i_ptr->name2;
+				event.artifact = i_ptr->name1;
+				event.number = i_ptr->number;
+				while(check_quest(&event, TRUE));
+
 				/* Give it to the player */
 				item_new = inven_carry(i_ptr);
 
@@ -3105,6 +3118,19 @@ static void store_sell(int store_index)
 
 			/* Handle stuff */
 			handle_stuff();
+
+            /* Check quests */
+            quest_event event;
+            WIPE(&event, quest_event);
+            event.flags = EVENT_SELL_STORE;
+            event.dungeon = p_ptr->dungeon;
+            event.level = p_ptr->depth - min_depth(p_ptr->dungeon);
+            event.store = store_index;
+            event.kind = i_ptr->k_idx;
+            event.ego_item_type = i_ptr->name2;
+            event.artifact = i_ptr->name1;
+            event.number = i_ptr->number;
+            while(check_quest(&event, TRUE));
 
 			/* The store gets that (known) object */
 			item_pos = store_carry(i_ptr, store_index);

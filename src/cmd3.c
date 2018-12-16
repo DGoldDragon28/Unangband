@@ -1632,31 +1632,9 @@ bool player_trade(int item2)
 		/* Gold earned based on value of trade */
 		value = amt = trade_value;
 	}
-	
-	/* Get the item (in the pack) */
-	else if (item2 >= 0)
-	{
-		j_ptr = &inventory[item2];
-		
-		/* Get value */
-		value = object_value_real(j_ptr);
 
-		/* Get max quantity */
-		if (value)
-		{
-			max = trade_value / value;
-		}
-		else
-		{
-			max = 99;
-		}
-		
-		/* Get a quantity */
-		amt = get_quantity(NULL, MIN(j_ptr->number, max));
-	}
-
-	/* Get the item (on the floor) */
-	else
+	/* Get the item (from the monster) */
+	else if (item2 < 0)
 	{
 		j_ptr = &o_list[0 - item2];
 		
@@ -1675,6 +1653,39 @@ bool player_trade(int item2)
 		
 		/* Get a quantity */
 		amt = get_quantity(NULL, MIN(j_ptr->number, max));
+		value *= amt;
+
+		if(amt > 0) {
+		    object_type object_type_body;
+		    object_type * o_ptr = &object_type_body;
+
+		    /* Split item stack */
+		    COPY(o_ptr, j_ptr, object_type);
+		    o_ptr->number = amt;
+		    j_ptr->number -= amt;
+
+		    /* Check quests */
+		    quest_event event;
+		    WIPE(&event, quest_event);
+		    event.flags = EVENT_GET_RACE;
+		    event.dungeon = p_ptr->dungeon;
+		    event.level = p_ptr->depth - min_depth(p_ptr->dungeon);
+		    event.race = m_ptr->r_idx;
+		    event.kind = o_ptr->k_idx;
+		    event.ego_item_type = o_ptr->name2;
+		    event.artifact = o_ptr->name1;
+		    event.number = o_ptr->number;
+		    while(check_quest(&event, TRUE));
+
+		    /* Get item */
+		    (void)inven_carry(o_ptr);
+		}
+	}
+	/* XXX Paranoia */
+	else
+	{
+	    /* Abort */
+	    return (FALSE);
 	}
 
 	/* Allow user abort */
@@ -1690,7 +1701,7 @@ bool player_trade(int item2)
 		value = 0;
 	}
 
-	/* Buying an item from the monster */
+	/* Selling an item to the monster */
 	else if (item2 == INVEN_GOLD)
 	{
 		/* Evil monsters betray the player 66% of the time */
@@ -1729,6 +1740,19 @@ bool player_trade(int item2)
 	}
 	else
 	{
+	    /* Check quests */
+	    quest_event event;
+	    WIPE(&event, quest_event);
+	    event.flags = EVENT_GIVE_RACE;
+	    event.dungeon = p_ptr->dungeon;
+	    event.level = p_ptr->depth - min_depth(p_ptr->dungeon);
+	    event.race = m_ptr->r_idx;
+	    event.kind = inventory[item].k_idx;
+	    event.ego_item_type = inventory[item].name2;
+	    event.artifact = inventory[item].name1;
+	    event.number = trade_amount;
+	    while(check_quest(&event, TRUE));
+
 		/* Take off (some of) the item */
 		inven_takeoff(item, trade_amount);
 	}

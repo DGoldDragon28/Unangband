@@ -57,37 +57,37 @@
 
 # For each stage, the quest flags define what events occur or are required.
 
-# TRAVEL:	Travel to location defined by dungeon and level. / *[NOT VALID AS LASTING EFFECT]
-# LEAVE:	Leave location defined by dungeon and level. /									[NOT VALID AS EFFECT]
+# TRAVEL:	Travel to location defined by dungeon and level. / *[NOT VALID AS LASTING EFFECT] ***EFFECT UNTESTED***
+# LEAVE:	Leave location defined by dungeon and level. /								[NOT VALID AS EFFECT]
 # OR:		Condition for stage completion is disjunction of flags, rather than conjunction [NOT VALID AS EFFECT]
-# PASS_QUEST:	Succeed quest defined by quest. *[NOT VALID AS LASTING EFFECT]
-# FAIL_QUEST:	Fail quest defined by quest. *[NOT VALID AS LASTING EFFECT]
+# PASS_QUEST:	Succeed quest defined by quest. *[NOT VALID AS LASTING EFFECT] ***EFFECT UNTESTED***
+# FAIL_QUEST:	Fail quest defined by quest. *[NOT VALID AS LASTING EFFECT] ***UNTESTED***
 # FIND_ROOM:	Find room defined by room adjective and room noun. [NOT VALID AS EFFECT] ***NEED***
 # FLAG_ROOM:	Add flags to room. [NOT VALID AS EFFECT]  ***NEED***
 # UNFLAG_ROOM:	Remove flags from room. [NOT VALID AS EFFECT]  ***NEED***
 # ALTER_FEAT:	Alter a feature using action. ***NEED***
 # DEFEND_FEAT:	Prevent a feature being altered using action. [NOT VALID AS EFFECT] ***NEED***
 # FIND_ITEM:	Find one or more objects defined by artifact, ego item and kind. [NOT VALID AS EFFECT] ***DEPRECATED***
-# GET_ITEM:	Get one or more objects defined by artifact, ego item and kind.\ *[NOT VALID AS LASTING EFFECT]
-# DESTROY_ITEM: Destroy one or more one or more objects defined by artifact, ego item and kind.\ 
-# LOSE_ITEM:	Lose one or more objects defined by artifact, ego item and kind.
+# GET_ITEM:	Get one or more objects defined by artifact, ego item and kind.\ *[NOT VALID AS LASTING EFFECT] ***EFFECT UNTESTED***
+# DESTROY_ITEM: Destroy one or more one or more objects defined by artifact, ego item and kind.\ ***REQ_UNTESTED*** 
+# LOSE_ITEM:	Lose one or more objects defined by artifact, ego item and kind. ***EFFECT UNTESTED***
 # TALK_STORE:	Talk to shop keepr defined by owner in store defined by store. [NOT VALID AS EFFECT] ***NEED***
-# BUY_STORE:	Buy one or more objects defined by artifact, ego item and kind from owner and store. [NOT VALID EFFECT] ***NEED***
-# SELL_STORE:	Sell one or more objects defined by artifact, ego item and kind to owner and store. [NOT VALID AS EFFECT] ***NEED***
+# BUY_STORE:	Buy one or more objects defined by artifact, ego item and kind from owner and store. [NOT VALID EFFECT] ***UNTESTED***
+# SELL_STORE:	Sell one or more objects defined by artifact, ego item and kind to owner and store. [NOT VALID AS EFFECT] ***UNTESTED***
 # GIVE_STORE:	Give one or more objects defined by artifact, ego item and kind to owner and store. ***DEPRECATED***
 # STOCK_STORE:	Stock one or more objects defined by artifact, ego item and kind in store. [NOT VALID AS INSTANT EFFECT] ***NEED***
 # GET_STORE:	Get one or more objects defined by artifact, ego item and kind from owner and store. ***DEPRECATED***
 # DEFEND_STORE:	Defend store. [NOT VALID AS EFFECT] ***NEED***
 # TALK_RACE:	Talk to monster or unique defined by race.\ [NOT VALID AS EFFECT]
-# GIVE_RACE:	Give one or more objects defined by artifact, ego item and kind to monster defined by race. [NOT VALID AS EFFECT] ***NEED***
-# GET_RACE:	Get one or more objects defined by artifact, ego item and kind from monster defined by race. [NOT VALID AS EFFECT] ***NEED***
-# FIND_RACE:	Find monster or unique defined by race. *[NOT VALID AS LASTING EFFECT]
+# GIVE_RACE:	Give one or more objects defined by artifact, ego item and kind to monster defined by race. [NOT VALID AS EFFECT] ***UNTESTED***
+# GET_RACE:	Get one or more objects defined by artifact, ego item and kind from monster defined by race. [NOT VALID AS EFFECT] ***UNTESTED***
+# FIND_RACE:	Find monster or unique defined by race. *[NOT VALID AS LASTING EFFECT] ***EFFECT UNTESTED***
 # KILL_RACE:	Kill monster or unique defined by race. If an object is defined, the monster will be drop it.\ *[NOT VALID AS LASTING EFFECT]
-# ALLY_RACE:	Befriend monster or unique defined by race./
-# HATE_RACE:	Offend monster or unique defined by race./
-# FEAR_RACE:	Terrify monster or unique defined by race./
-# HEAL_RACE:	Heal monster or unique defined by race./ *[NOT VALID AS LASTING EFFECT]
-# BANISH_RACE:	Teleport monster or unique defined by race.
+# ALLY_RACE:	Befriend monster or unique defined by race./ ***UNTESTED***
+# HATE_RACE:	Offend monster or unique defined by race./ ***UNTESTED***
+# FEAR_RACE:	Terrify monster or unique defined by race./ ***UNTESTED***
+# HEAL_RACE:	Heal monster or unique defined by race./ *[NOT VALID AS LASTING EFFECT] ***UNTESTED***
+# BANISH_RACE:	Teleport monster or unique defined by race. ***REQ UNTESTED***
 # DEFEND_RACE:	Defend a monster or unique defined by race. [NOT VALID AS EFFECT] ***NEED***
 
 
@@ -254,8 +254,5 @@ S:4
 W:1000:0:0
 S:6
 F:OR
-
-
-
 
 

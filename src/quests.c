@@ -25,7 +25,7 @@ bool check_quest(quest_event *qe1_ptr, bool advance) {
     int i, j;
     bool questor = FALSE;
 
-    msg_format("Checking quests (flags %#010x)", qe1_ptr->flags);
+    if (cheat_xtra) msg_format("Checking quests (flags %#010x)", qe1_ptr->flags);
     message_flush();
 
     for (i = 0; i < MAX_Q_IDX; i++) {
@@ -64,7 +64,7 @@ bool check_quest(quest_event *qe1_ptr, bool advance) {
             /* Hack -- disjunction of conditions */
             bool or = (qe2_ptr->flags & EVENT_OR) != 0;
 
-            msg_format("Checking quest %i stage %i (flags %#010x)", i, j,
+            if (cheat_xtra) msg_format("Checking quest %i stage %i (flags %#010x)", i, j,
                     qe2_ptr->flags);
             message_flush();
 
@@ -101,13 +101,14 @@ bool check_quest(quest_event *qe1_ptr, bool advance) {
                          * we only check if the number provided >= the number required.
                          */
                         if (flags & (EVENT_BANISH_RACE | EVENT_KILL_RACE)) {
-                            qe3_ptr->number +=  qe1_ptr->number;
+                            qe3_ptr->number += qe1_ptr->number;
                             if (qe3_ptr->number >= qe2_ptr->number) {
                                 /* Add flags */
                                 qe3_ptr->flags |= flags & EVENT_MASK_RACE;
 
-                                if ((flags & EVENT_KILL_RACE) && ((flags & EVENT_MASK_ITEM) == 0)) {
-                                   /* Hack -- quest drop items */
+                                if ((flags & EVENT_KILL_RACE)
+                                        && ((flags & EVENT_MASK_ITEM) == 0)) {
+                                    /* Hack -- quest drop items */
                                     q_drop_hack_art = qe2_ptr->artifact;
                                     q_drop_hack_ego = qe2_ptr->ego_item_type;
                                     q_drop_hack_kind = qe2_ptr->kind;
@@ -195,14 +196,14 @@ bool check_quest(quest_event *qe1_ptr, bool advance) {
                 }
 
                 /* Do we have to succeed at a quest? */
-                if ((flags & EVENT_PASS_QUEST)
-                        && (q_info[qe2_ptr->quest].stage == QUEST_FINISH)) {
+                if ((qe2_ptr->flags & EVENT_PASS_QUEST)
+                        && (q_list[qe2_ptr->quest].stage == QUEST_FINISH)) {
                     qe3_ptr->flags |= EVENT_PASS_QUEST;
                 }
 
                 /* Do we have to fail a quest? */
-                if ((flags & EVENT_FAIL_QUEST)
-                        && (q_info[qe2_ptr->quest].stage == QUEST_PENALTY)) {
+                if ((qe2_ptr->flags & EVENT_FAIL_QUEST)
+                        && (q_list[qe2_ptr->quest].stage == QUEST_PENALTY)) {
                     qe3_ptr->flags |= EVENT_FAIL_QUEST;
                 }
 
@@ -221,8 +222,7 @@ bool check_quest(quest_event *qe1_ptr, bool advance) {
                     (0 != qe3_ptr->flags) :
                     (qe2_ptr->flags == qe3_ptr->flags)) {
                 next_stage = (j == QUEST_ACTIVE ? QUEST_REWARD : j + 1);
-                msg_format("Quest %i advanced (%s) to stage %i", i,
-                        or ? "OR" : "AND", next_stage);
+                msg_format("Quest %i advanced to stage %i", i, next_stage);
                 message_flush();
                 anykey();
             }
@@ -250,9 +250,9 @@ bool check_quest(quest_event *qe1_ptr, bool advance) {
 
             /* Tell the player the next step of the quest. */
             if ((next_stage < QUEST_PAYOUT)
-                    && (q_info[i].event[next_stage].flags)) {
+                    && (q_list[i].event[next_stage].flags)) {
                 /* Display the event 'You must...' */
-                /* print_event(&q_info[i].event[next_stage], 2, 3, prefix); */
+                /* print_event(&q_list[i].event[next_stage], 2, 3, prefix); */
             }
             /* Tell the player they have succeeded */
             else if (next_stage == QUEST_PAYOUT) {
@@ -458,17 +458,17 @@ bool do_quest_resolution(void) {
                 i_ptr = &object_type_body;
 
                 /* Get base item */
-                if(q_drop_hack_kind) {
+                if (q_drop_hack_kind) {
                     k_idx = q_drop_hack_kind;
                 } else {
                     do {
                         tvidx = rand_int(3);
-                    } while(!e_ptr->tval[tvidx]);
+                    } while (!e_ptr->tval[tvidx]);
                     do {
                         k_idx = lookup_kind(e_ptr->tval[tvidx],
-                            rand_range(e_ptr->min_sval[tvidx],
-                                    e_ptr->max_sval[tvidx]));
-                    } while(!k_idx);
+                                rand_range(e_ptr->min_sval[tvidx],
+                                        e_ptr->max_sval[tvidx]));
+                    } while (!k_idx);
                 }
 
                 /* Prep the object */
@@ -558,7 +558,8 @@ bool do_quest_resolution(void) {
                 /* Place it (allow groups) */
                 if (place_monster_aux(y, x, qe_ptr->race, FALSE, TRUE, 0L)) break;
             }
-        } else if (flags & EVENT_KILL_RACE) {
+        }
+        if (flags & EVENT_KILL_RACE) {
             monster_race *r_ptr = &r_info[qe_ptr->race];
             int i, j;
 

@@ -2981,7 +2981,7 @@ void update_mon(int m_idx, bool full)
 			    WIPE(&event, quest_event);
 
 			    /* Set up departure event */
-			    event.flags = EVENT_LEAVE;
+			    event.flags = EVENT_FIND_RACE;
 			    event.dungeon = p_ptr->dungeon;
 			    event.level = p_ptr->depth;
 			    event.race = m_ptr->r_idx;

@@ -454,7 +454,7 @@ monlist_type *monlist_copy_object_to_screen(int idx, u16b *index_counts, u16b *i
 /*
  * Creates a list of sorted indexes
  */
-void *monlist_sort_index(int sort_by, int max, int idx_max, monlist_type **monlist_groups, bool *intro,
+void monlist_sort_index(int sort_by, int max, int idx_max, monlist_type **monlist_groups, bool *intro,
 		const char* index_name, int header_offset, int monlist_get_index(int idx), int monlist_get_count(int idx),
 		bool monlist_check_grouping(int idx, int group_by), bool monlist_check_secondary(int idx),
 		int monlist_get_order(int idx, int sort_by),
