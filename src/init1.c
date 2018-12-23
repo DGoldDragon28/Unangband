@@ -1253,7 +1253,7 @@ static cptr s_info_flags3[] =
 	"CURE_EXP",
 	"FREE_ACT",
 	"CURE_MEM",
-	"PFIX_CURSE",
+	"FLY",
 	"CURE_CURSE",
 	"PFIX_CUTS",
 	"CURE_CUTS",

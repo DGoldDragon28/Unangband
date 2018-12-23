@@ -2964,6 +2964,10 @@ static bool do_cmd_walk_test(int y, int x)
 			if (f_info[feat].flags1 & (FF1_OPEN)) return(TRUE);
 		}
 
+		if ((f_info[feat].flags2 & (FF2_CAN_FLY)) && p_ptr->timed[TMD_FLY]) {
+		    return (TRUE);
+		}
+
 		/* Message */
 		msg_format("There is %s %s in the way.",
 				(is_a_vowel(name[0]) ? "an" : "a"),name);

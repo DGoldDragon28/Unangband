@@ -1196,6 +1196,7 @@ extern bool set_slow_poison(int v);
 extern bool set_afraid(int v);
 extern bool set_stun(int v);
 extern bool set_cut(int v);
+extern bool set_fly(int v);
 extern bool set_food(int v);
 extern bool set_rest(int v);
 extern bool set_msleep(int v);

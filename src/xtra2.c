@@ -58,6 +58,9 @@ bool set_timed(int idx, int v, bool notify)
 
 		case TMD_STASTIS:
 			return set_stastis(v);
+
+		case TMD_FLY:
+		    return set_fly(v);
 	}
 
 
@@ -882,6 +885,71 @@ bool set_cut(int v)
 
 	/* Result */
 	return (TRUE);
+}
+
+/*
+ * Set "p_ptr->timed[TMD_FLY]", notice observable changes
+ */
+bool set_fly(int v)
+{
+    int x, y;
+    feature_type * f_ptr;
+
+    bool notice = FALSE;
+
+    x = p_ptr->px;
+    y = p_ptr->py;
+
+    /* Hack -- Force good values */
+    v = (v > 10000) ? 10000 : (v < 0) ? 0 : v;
+
+
+
+    /* Begin flying */
+    if (v && !p_ptr->timed[TMD_FLY])
+    {
+        msg_print("You rise into the air.");
+        notice = TRUE;
+    }
+    /* Cease flying */
+    else if (!v && p_ptr->timed[TMD_FLY])
+    {
+        msg_print("You descend to the ground once more.");
+        notice = TRUE;
+
+        f_ptr = &f_info[cave_feat[y][x]];
+
+        /* Get hit by terrain/traps which are only triggered when on the ground */
+        /* Except for chests which must be opened to hit */
+        if ((((f_ptr->flags1 & (FF1_HIT_TRAP)) && !(f_ptr->flags3 & (FF3_CHEST))) ||
+                (f_ptr->spell) || (f_ptr->blow.method)) &&
+                (!(f_ptr->flags1 & FF1_TRAP) || (f_ptr->d_attr == TERM_RED)))
+        {
+            /* Disturb the player */
+            disturb(0, 0);
+
+            /* Discharge the trap */
+            discharge_trap(y, x, y, x, 0);
+        }
+    }
+
+    /* Use the value */
+    p_ptr->timed[TMD_FLY] = v;
+
+    /* No change */
+    if (!notice) return (FALSE);
+
+    /* Disturb */
+    if (disturb_state) disturb(0, 0);
+
+    /* Recalculate bonuses */
+    p_ptr->update |= (PU_BONUS);
+
+    /* Handle stuff */
+    handle_stuff();
+
+    /* Result */
+    return (TRUE);
 }
 
 
