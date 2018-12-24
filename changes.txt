@@ -1,3 +1,36 @@
+Unangband 0.7.0-pre1 release
+
+### Game Play ###
+
+-ADDED QUESTS
+  - Carry the One Ring into the bowels of Orodruin to topple the Dark Lord Sauron
+  - Not all quest flags are yet implemented or fully tested
+  - PLEASE REPORT ANY BUGS
+
+-Added a 'Fly' spell effect and a spell that uses it.
+
+### UI Changes (thanks @dennis-roof) ###
+
+- Added 'emergent narrative' option 
+
+- Better surface colours 
+
+### Bug Fixes ###
+
+- Fixed wall-count bug in PCG
+
+- Fixed several compiler warnings
+
+- Fixed tmpnam compiler warning on linux (thanks @dennis-roof)
+
+- Fixed crash on 64-bit systems (thanks @dennis-roof)
+
+### Miscellaneous ###
+
+- Removed unnecessary hard-coding of svals
+
+- Removed many unused defines to reduce bloat
+
 Unangband 0.6.6 release
 
 ### Game Play ###

@@ -380,7 +380,7 @@
 # Version stamp (required)
 
 
-V:0.6.6
+V:0.7.0
 
 
 

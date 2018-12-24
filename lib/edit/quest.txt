@@ -91,7 +91,7 @@
 # DEFEND_RACE:	Defend a monster or unique defined by race. [NOT VALID AS EFFECT] ***NEED***
 
 
-V:0.6.6
+V:0.7.0
 
 
 # Completing quest 0 finishes the game.

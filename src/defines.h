@@ -53,7 +53,7 @@
 /*
  * Current version string
  */
-#define VERSION_STRING	"0.6.6"
+#define VERSION_STRING	"0.7.0-pre1"
 
 /*
  * Hack -- note use of new version name/string but old version
@@ -65,8 +65,8 @@
  * Current version numbers
  */
 #define VERSION_MAJOR	0
-#define VERSION_MINOR	6
-#define VERSION_PATCH	6
+#define VERSION_MINOR	7
+#define VERSION_PATCH	0
 #define VERSION_EXTRA	0
 
 /*

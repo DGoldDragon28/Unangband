@@ -3,12 +3,14 @@
              | | | |_ _   /_\  _ _  __ _| |__  __ _ _ _  __| |
              | |_| | ' \ / _ \| ' \/ _` | '_ \/ _` | ' \/ _` |
               \___/|_||_/_/ \_\_||_\__, |_.__/\__,_|_||_\__,_|
-           The Unnamed Angband      |___/              v0.6.6                  
+           The Unnamed Angband      |___/              v0.7.0-pre1                  
 
                    Earlier versions of Angband & Moria by:
       Alex Cutler, Andy Astrand, Sean Marsh, Geoff Hill, Charles Teague,
-             Charles Swiger, Ben Harrison, Robert Ruehlmann and others.
-                Unangband 0.6.5 - 0.6.6 by the Gold Dragon
+            Charles Swiger, Ben Harrison, Robert Ruehlmann and others.
+             Unangband 0.7.0 by Duncan Lowther and dennis-roof
+		 Unangband 0.6.5 - 0.6.6 by Duncan Lowther
+                    (under the alias "the Gold Dragon")
       Unangband 0.6.2-0.6.4 by Andrew Doull, Mikolaj Konarski and others.
         UnAngband 0.5.4a by Andrew Doull, Mogami, and Andrew Sidwell.
                Other versions of UnAngband by Andrew Doull.
@@ -16,8 +18,8 @@
             Sangband. The UnAngband source code is released under 
                  the traditional Angband license and GNU GPL.
 
-         Visit the UnAngband website at http://unangband.blogspot.com/
-     Send comments, bug reports and patches to unangband@yahoogroups.com
+     Visit the UnAngband website at http://dgolddragon28.github.io/Unangband
+     Send comments, bug reports and patches to dgolddragon28@gmail.com
      Read the Angband Usenet group at news:rec.games.roguelike.angband
 
              To access the help system, use the '?' key in-game.
