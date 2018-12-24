@@ -395,7 +395,7 @@ static void wr_lore(int r_idx)
 	/* Later (?) */
 	wr_byte(0);
 	wr_byte(0);
-	wr_byte(0);
+    wr_byte(0);
 }
 
 
@@ -1265,7 +1265,7 @@ static bool wr_savefile_new(void)
 			wr_event(i, j);
 		}
 
-		wr_byte(q_list[i].stage);
+		wr_byte(q_list[i].stage | (q_list[i].resolved ? 0x10 : 0));
 	}
 
 	/* Random artifact seed */

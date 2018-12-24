@@ -386,6 +386,11 @@ extern u16b target_path_g[512];
 extern s16b target_path_d[512];
 
 
+extern int q_drop_hack_art;
+extern int q_drop_hack_ego;
+extern int q_drop_hack_kind;
+
+
 /*
  * Automatically generated "function declarations"
  */
@@ -922,6 +927,12 @@ extern bool quiver_carry_okay(const object_type *o_ptr, int num, int item);
 extern byte quiver_get_group(const object_type *o_ptr);
 extern bool quiver_carry(object_type *o_ptr, int o_idx);
 
+/* quests.c */
+extern bool apply_quest_finish(void);
+extern void check_monster_quest(int m_idx, bool (*questor_test_hook)(int m_idx), u32b event);
+extern bool check_quest(quest_event *qe1_ptr, bool advance);
+extern bool do_quest_resolution(void);
+
 /* save.c */
 extern bool save_player(void);
 extern bool save_player_bkp(bool bkp);
@@ -954,7 +965,6 @@ extern bool dec_stat(int stat, int amount);
 extern bool res_stat(int stat);
 extern bool apply_disenchant(int mode);
 extern bool hates_fire(object_type *o_ptr);
-extern void check_monster_quest(int m_idx, bool (*questor_test_hook)(int m_idx), u32b event);
 extern bool temp_lite(int y, int x);
 extern u16b bolt_pict(int y, int x, int ny, int nx, int typ);
 #if 0
@@ -1061,6 +1071,7 @@ extern void do_cmd_store(void);
 extern void store_shuffle(int store_index);
 extern void store_maint(int store_index);
 extern int store_init(int feat);
+extern int store_carry(object_type *o_ptr, int store_index);
 
 /* util.c */
 extern errr path_parse(char *buf, int max, cptr file);
@@ -1185,6 +1196,7 @@ extern bool set_slow_poison(int v);
 extern bool set_afraid(int v);
 extern bool set_stun(int v);
 extern bool set_cut(int v);
+extern bool set_fly(int v);
 extern bool set_food(int v);
 extern bool set_rest(int v);
 extern bool set_msleep(int v);
@@ -1196,7 +1208,6 @@ extern void gain_exp(s32b amount);
 extern void lose_exp(s32b amount);
 extern int get_food_type(const monster_race *r_ptr);
 extern int get_coin_type(const monster_race *r_ptr);
-extern bool check_quest(quest_event *qe1_ptr, bool advance);
 extern bool monster_drop(int m_idx);
 extern bool monster_death(int m_idx);
 extern bool mon_take_hit(int m_idx, int dam, bool *fear, cptr note);

@@ -628,7 +628,7 @@ int print_room_narrative(int line_number, char* title, char* text, int max_line_
 	if (!character_dungeon) return line_number;
 	
 	/* Hack -- not a room */
-	//if (!(cave_info[p_ptr->py][p_ptr->px] & (CAVE_ROOM))) room = 0;
+	/* if (!(cave_info[p_ptr->py][p_ptr->px] & (CAVE_ROOM))) room = 0; */
 	
 	if (title && strlen(title) > 0 && strcmp(title, "empty room") != 0) {
 		title[0] = toupper(title[0]);
@@ -638,7 +638,7 @@ int print_room_narrative(int line_number, char* title, char* text, int max_line_
 			title, 
 			max_line_number, 
 			(bool) 0);
-		//if (Term->hgt > 40 || ! is_long_description) line_number++;
+		/* if (Term->hgt > 40 || ! is_long_description) line_number++; */
 	}
 	
 	if (text && strlen(text) > 0) {
@@ -674,7 +674,7 @@ int print_emergent_narrative(void)
 	char text_visible[1024];
 	char text_always[1024];
 	char text_empty[] = "";
-	//empty[0] = '\0';
+	/* empty[0] = '\0'; */
 	
 	bool is_long_description;
 	
@@ -1084,18 +1084,28 @@ static void prt_speed(void)
 	/* Hack -- Visually "undo" the Search Mode Slowdown */
 	if (p_ptr->searching) i += 10;
 
-	/* Fast */
-	if (i > 110)
-	{
-		attr = TERM_L_GREEN;
-		sprintf(buf, (show_sidebar ? "Fast (+%d)" : (p_ptr->timed[TMD_SLOW] || p_ptr->timed[TMD_FAST] || p_ptr->food >= PY_FOOD_MAX ? "Temp Fast +%-2d" : "Fast +%-2d")), (i - 110));
-	}
+	if(speed_as_factor) {
+	    if(i != 110) {
+	        int multiplier = 100 * extract_energy[i] / extract_energy[110];
+	        const char * type = (i > 110) ? "Fast" : "Slow";
+	        const char * tmp = (p_ptr->timed[TMD_SLOW] || p_ptr->timed[TMD_FAST] || p_ptr->food >= PY_FOOD_MAX) ? "Temp " : "";
+	        attr = (i > 110) ? TERM_L_GREEN : TERM_L_UMBER;
+	        strnfmt(buf, sizeof(buf), "%s%s (%d%%)", tmp, type, multiplier);
+	    }
+	} else {
+	    /* Fast */
+	    if (i > 110)
+	    {
+	        attr = TERM_L_GREEN;
+	        sprintf(buf, (show_sidebar ? "Fast (+%d)" : (p_ptr->timed[TMD_SLOW] || p_ptr->timed[TMD_FAST] || p_ptr->food >= PY_FOOD_MAX ? "Temp Fast +%-2d" : "Fast +%-2d")), (i - 110));
+	    }
 
-	/* Slow */
-	else if (i < 110)
-	{
-		attr = TERM_L_UMBER;
-		sprintf(buf, (show_sidebar ? "Slow (-%d)" : (p_ptr->timed[TMD_SLOW] || p_ptr->timed[TMD_FAST] || p_ptr->food >= PY_FOOD_MAX ?  "Temp Slow -%-2d" : "Slow -%-2d")), (110 - i));
+	    /* Slow */
+	    else if (i < 110)
+	    {
+	        attr = TERM_L_UMBER;
+	        sprintf(buf, (show_sidebar ? "Slow (-%d)" : (p_ptr->timed[TMD_SLOW] || p_ptr->timed[TMD_FAST] || p_ptr->food >= PY_FOOD_MAX ?  "Temp Slow -%-2d" : "Slow -%-2d")), (110 - i));
+	    }
 	}
 
 	/* Display the speed */

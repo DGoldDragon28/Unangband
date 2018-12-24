@@ -15788,7 +15788,8 @@ static bool town_gen(void)
 	if ((level_flag & (LF1_SURFACE)) != 0) town_illuminate((level_flag & (LF1_DAYLIGHT)) != 0);
 
 	/* Ensure guardian monsters */
-	if (((level_flag & (LF1_GUARDIAN)) != 0) && ((level_flag & (LF1_DAYLIGHT)) == 0))
+	if (((level_flag & (LF1_GUARDIAN)) != 0) && (((level_flag & (LF1_DAYLIGHT)) == 0)
+			|| ((r_info[zone->guard].flags3 & RF3_HURT_LITE) == 0)))
 	{
 		/* Place the guardian in the town */
 		place_guardian(3, 3, TOWN_HGT - 4, TOWN_WID -4);
@@ -15838,7 +15839,7 @@ void generate_cave(void)
 	/* Set up departure event */
 	event.flags = EVENT_TRAVEL;
 	event.dungeon = p_ptr->dungeon;
-	event.level = p_ptr->depth - min_depth(p_ptr->dungeon);
+	event.level = p_ptr->depth;
 
 	/* Reset the monster generation level; make level feeling interesting */
 	monster_level = p_ptr->depth >= 4 ? p_ptr->depth + 2 :
@@ -16003,7 +16004,8 @@ void generate_cave(void)
 		ensure_quest();
 
 		/* Extract the feeling */
-		if (rating > 100) feeling = 2;
+		if (good_item_flag) feeling = 1;
+		else if (rating > 100) feeling = 2;
 		else if (rating > 70) feeling = 3;
 		else if (rating > 40) feeling = 4;
 		else if (rating > 30) feeling = 5;

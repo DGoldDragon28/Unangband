@@ -637,6 +637,18 @@ bool player_wield(int item)
 			case INSCRIP_UNUSUAL: j_ptr->feeling = INSCRIP_UNCURSED; break;
 		}
 	}
+	if(item < 0) { /* Picking up item; check quests */
+		quest_event event;
+		WIPE(&event, quest_event);
+		event.flags = EVENT_GET_ITEM;
+		event.dungeon = p_ptr->dungeon;
+		event.level = p_ptr->depth - min_depth(p_ptr->dungeon);
+		event.kind = j_ptr->k_idx;
+		event.ego_item_type = j_ptr->name2;
+		event.artifact = j_ptr->name1;
+		event.number = j_ptr->number;
+		check_quest(&event, TRUE);
+	}
 
 	/* Recalculate bonuses */
 	p_ptr->update |= (PU_BONUS);
@@ -924,11 +936,31 @@ bool player_drop(int item)
 		return (FALSE);
 	}
 
+	quest_event event;
+
+	/* Use this to allow quests to succeed or fail */
+	WIPE(&event, quest_event);
+
+	/* Set up destruction event */
+	event.flags = EVENT_LOSE_ITEM;
+	event.dungeon = p_ptr->dungeon;
+	event.level = p_ptr->depth - min_depth(p_ptr->dungeon);
+	event.kind = o_ptr->k_idx;
+	event.ego_item_type = o_ptr->name2;
+	event.artifact = o_ptr->name1;
+	event.number = amt;
+
+	/* Check for quest failure. Abort if requested. */
+	if (check_quest(&event, FALSE)) return (FALSE);
+
 	/* Take a partial turn */
 	p_ptr->energy_use = 50;
 
 	/* Drop (some of) the item */
 	inven_drop(item, amt, 0);
+
+    /* Advance quests */
+    check_quest(&event, TRUE);
 
 	return (TRUE);
 }
@@ -1092,6 +1124,29 @@ bool player_offer(int item)
 	
 	char m_name[80];
 	
+	/* Get monster */
+	m_idx = get_monster_by_aim((TARGET_KILL | TARGET_ALLY));
+
+	/* Not a monster */
+	if (m_idx <= 0) return (FALSE);
+
+	/* Get monster */
+	m_ptr = &m_list[m_idx];
+	r_ptr = &r_info[m_ptr->r_idx];
+
+	/* Ensure projectable */
+	if (!player_can_fire_bold(m_ptr->fy, m_ptr->fx)) return (FALSE);
+
+	/* Check quests */
+	quest_event event;
+	WIPE(&event, quest_event);
+	event.flags = EVENT_TALK_RACE;
+	event.dungeon = p_ptr->dungeon;
+	event.level = p_ptr->depth - min_depth(p_ptr->dungeon);
+	event.race = m_ptr->r_idx;
+	event.number = 1;
+	if(check_quest(&event, TRUE)) return (FALSE);
+
 	/* Get gold */
 	if (item == INVEN_GOLD)
 	{
@@ -1126,19 +1181,6 @@ bool player_offer(int item)
 
 	/* Allow user abort */
 	if (amt <= 0) return (FALSE);
-
-	/* Get monster */
-	m_idx = get_monster_by_aim((TARGET_KILL | TARGET_ALLY));
-	
-	/* Not a monster */
-	if (m_idx <= 0) return (FALSE);
-
-	/* Get monster */
-	m_ptr = &m_list[m_idx];
-	r_ptr = &r_info[m_ptr->r_idx];
-	
-	/* Ensure projectable */
-	if (!player_can_fire_bold(m_ptr->fy, m_ptr->fx)) return (FALSE);
 
 	/* Set target */
 	p_ptr->target_who = m_idx;
@@ -1232,7 +1274,7 @@ bool player_offer(int item)
 		}
 
 		/* Guardians ignore you */
-		if (r_ptr->flags1 & (RF1_GUARDIAN))
+		if ((r_ptr->flags1 & (RF1_GUARDIAN)) && !(m_ptr->mflag & (MFLAG_TOWN)))
 		{
 			msg_format("%^s guards this place and cannot be bought.", m_name);
 			
@@ -1590,31 +1632,9 @@ bool player_trade(int item2)
 		/* Gold earned based on value of trade */
 		value = amt = trade_value;
 	}
-	
-	/* Get the item (in the pack) */
-	else if (item2 >= 0)
-	{
-		j_ptr = &inventory[item2];
-		
-		/* Get value */
-		value = object_value_real(j_ptr);
 
-		/* Get max quantity */
-		if (value)
-		{
-			max = trade_value / value;
-		}
-		else
-		{
-			max = 99;
-		}
-		
-		/* Get a quantity */
-		amt = get_quantity(NULL, MIN(j_ptr->number, max));
-	}
-
-	/* Get the item (on the floor) */
-	else
+	/* Get the item (from the monster) */
+	else if (item2 < 0)
 	{
 		j_ptr = &o_list[0 - item2];
 		
@@ -1633,6 +1653,39 @@ bool player_trade(int item2)
 		
 		/* Get a quantity */
 		amt = get_quantity(NULL, MIN(j_ptr->number, max));
+		value *= amt;
+
+		if(amt > 0) {
+		    object_type object_type_body;
+		    object_type * o_ptr = &object_type_body;
+
+		    /* Split item stack */
+		    COPY(o_ptr, j_ptr, object_type);
+		    o_ptr->number = amt;
+		    j_ptr->number -= amt;
+
+		    /* Check quests */
+		    quest_event event;
+		    WIPE(&event, quest_event);
+		    event.flags = EVENT_GET_RACE;
+		    event.dungeon = p_ptr->dungeon;
+		    event.level = p_ptr->depth - min_depth(p_ptr->dungeon);
+		    event.race = m_ptr->r_idx;
+		    event.kind = o_ptr->k_idx;
+		    event.ego_item_type = o_ptr->name2;
+		    event.artifact = o_ptr->name1;
+		    event.number = o_ptr->number;
+		    while(check_quest(&event, TRUE));
+
+		    /* Get item */
+		    (void)inven_carry(o_ptr);
+		}
+	}
+	/* XXX Paranoia */
+	else
+	{
+	    /* Abort */
+	    return (FALSE);
 	}
 
 	/* Allow user abort */
@@ -1648,7 +1701,7 @@ bool player_trade(int item2)
 		value = 0;
 	}
 
-	/* Buying an item from the monster */
+	/* Selling an item to the monster */
 	else if (item2 == INVEN_GOLD)
 	{
 		/* Evil monsters betray the player 66% of the time */
@@ -1687,6 +1740,19 @@ bool player_trade(int item2)
 	}
 	else
 	{
+	    /* Check quests */
+	    quest_event event;
+	    WIPE(&event, quest_event);
+	    event.flags = EVENT_GIVE_RACE;
+	    event.dungeon = p_ptr->dungeon;
+	    event.level = p_ptr->depth - min_depth(p_ptr->dungeon);
+	    event.race = m_ptr->r_idx;
+	    event.kind = inventory[item].k_idx;
+	    event.ego_item_type = inventory[item].name2;
+	    event.artifact = inventory[item].name1;
+	    event.number = trade_amount;
+	    while(check_quest(&event, TRUE));
+
 		/* Take off (some of) the item */
 		inven_takeoff(item, trade_amount);
 	}
@@ -1983,6 +2049,23 @@ bool player_destroy(int item)
 		if (!get_check(out_val)) return (FALSE);
 	}
 
+	quest_event event;
+
+	/* Use this to allow quests to succeed or fail */
+	WIPE(&event, quest_event);
+
+	/* Set up destruction event */
+	event.flags = EVENT_DESTROY_ITEM;
+	event.dungeon = p_ptr->dungeon;
+	event.level = p_ptr->depth - min_depth(p_ptr->dungeon);
+	event.kind = o_ptr->k_idx;
+	event.ego_item_type = o_ptr->name2;
+	event.artifact = o_ptr->name1;
+	event.number = amt;
+
+	/* Check for quest failure. Abort if requested. */
+	if (check_quest(&event, FALSE)) return (FALSE);
+
 	/* Take a turn */
 	p_ptr->energy_use = 100;
 
@@ -2073,6 +2156,9 @@ bool player_destroy(int item)
 		floor_item_optimize(0 - item);
 		if (get_feat && (scan_feat(p_ptr->py,p_ptr->px) < 0)) cave_alter_feat(p_ptr->py,p_ptr->px,FS_GET_FEAT);
 	}
+
+	/* Advance quests */
+	check_quest(&event, TRUE);
 
 	return (TRUE);
 }

@@ -1286,6 +1286,7 @@ struct quest_type
 	quest_event event[MAX_QUEST_EVENTS];	/* Quest events */
 
 	byte stage;
+	bool resolved;
 };
 
 

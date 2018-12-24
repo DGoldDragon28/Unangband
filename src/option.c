@@ -67,7 +67,7 @@ const byte option_page[OPT_PAGE_MAX][OPT_PAGE_PER] =
 		OPT_room_names,
 		OPT_room_descriptions,
 		OPT_show_tips,
-		OPT_NONE
+		OPT_speed_as_factor,
 	},
 
 	/* Warning */
@@ -261,7 +261,7 @@ static option_entry options[OPT_MAX] =
 { "view_fogged_grids",   "Show fog of war for unexplored areas",        TRUE }, /* 108 */
 { "ally_messages",       "Show detailed combat messages for allies",    FALSE }, /* 109 */
 { "show_narrative",      "Single-window narrative mode",                FALSE }, /* 110 */
-{ NULL,                  NULL,                                          FALSE }, /* 111 */
+{ "speed_as_factor",     "Show speed as a factor",                      TRUE }, /* 111 */
 { NULL,                  NULL,                                          FALSE }, /* 112 */
 { NULL,                  NULL,                                          FALSE }, /* 113 */
 { NULL,                  NULL,                                          FALSE }, /* 114 */

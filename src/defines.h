@@ -53,7 +53,7 @@
 /*
  * Current version string
  */
-#define VERSION_STRING	"0.6.6"
+#define VERSION_STRING	"0.7.0-pre1"
 
 /*
  * Hack -- note use of new version name/string but old version
@@ -65,8 +65,8 @@
  * Current version numbers
  */
 #define VERSION_MAJOR	0
-#define VERSION_MINOR	6
-#define VERSION_PATCH	6
+#define VERSION_MINOR	7
+#define VERSION_PATCH	0
 #define VERSION_EXTRA	0
 
 /*
@@ -680,7 +680,7 @@ enum
 	TMD_MSLEEP, TMD_PSLEEP, TMD_PROTEVIL, TMD_INVIS, TMD_HERO, TMD_BERSERK, TMD_SHIELD, TMD_BLESSED, TMD_SEE_INVIS,
 	TMD_INFRA, TMD_OPP_ACID, TMD_OPP_ELEC, TMD_OPP_FIRE, TMD_OPP_COLD, TMD_OPP_POIS, TMD_OPP_LAVA, TMD_OPP_WATER, TMD_OPP_CONF,
 	TMD_SLOW_POISON, TMD_SLOW_DIGEST, TMD_WORD_RECALL, TMD_WORD_RETURN, TMD_DELAY_SPELL,
-	TMD_FREE_ACT, TMD_TELEPATHY, TMD_STONESKIN, TMD_TERROR, TMD_SPRINT,
+	TMD_FREE_ACT, TMD_TELEPATHY, TMD_STONESKIN, TMD_TERROR, TMD_SPRINT, TMD_FLY,
 
 	TMD_MAX
 };
@@ -1618,7 +1618,7 @@ enum
 #define SF3_CURE_EXP     0x00002000
 #define SF3_FREE_ACT     0x00004000
 #define SF3_CURE_MEM     0x00008000
-#define SF3_PFIX_CURSE   0x00010000
+#define SF3_FLY          0x00010000
 #define SF3_CURE_CURSE   0x00020000
 #define SF3_PFIX_CUTS    0x00040000
 #define SF3_CURE_CUTS    0x00080000
@@ -2863,7 +2863,7 @@ enum
  */
 #define EVENT_TRAVEL		0x00000001L	/* Travels to a location */
 #define EVENT_LEAVE		0x00000002L	/* Leave a location */
-#define EVENT_STAY		0x00000004L	/* Stay in location a minimum amount of time */
+#define EVENT_OR		0x00000004L	/* This stage requires only one of the conditions to be fulfilled */
 #define EVENT_PASS_QUEST	0x00000008L	/* Valid after this quest completed */
 #define EVENT_FAIL_QUEST	0x00000010L	/* Valid after this quest failed */
 #define EVENT_FIND_ROOM		0x00000020L	/* Locate room */
@@ -2894,6 +2894,31 @@ enum
 #define EVENT_BANISH_RACE	0x40000000L	/* Banish a monster race */
 #define EVENT_DEFEND_RACE	0x80000000L	/* Defend a race */
 
+/*
+ * Consider grouping flags slightly? (bits needed, bits saved, entries wasted) [Slash indicates action/effect sharing same flag]
+ * TRAVEL : ARRIVE, LEAVE (2, 0, 1)
+ * OR (by itself because it is a modifier) (1, 0, 0)
+ * QUEST : PASS_, FAIL_ (2, 0, 1)
+ * ROOM : FIND_, FLAG_, UNFLAG_ (2, 1, 0)
+ * FEAT : ALTER_, DEFEND_, (2, 0, 1)
+ * ITEM : FIND_, GET_, LOSE_, DESTROY_, BUY_STORE, SELL_STORE (3, 3, 1)
+ * STORE : STOCK_, DEFEND_, TALK_ (2, 1, 0)
+ * RACE : TALK_, GIVE_, GET_,  FIND_, KILL_, ALLY_, HATE_, FEAR_, HEAL_, BANISH_, DEFEND_ (4, 7, 4)
+ * Total (18, 12, 8)
+ *
+ * Well lets do masks at least first.
+ */
+#define EVENT_MASK_TRAVEL (EVENT_TRAVEL | EVENT_LEAVE)                              /* 0x00000003 */
+#define EVENT_MASK_QUEST (EVENT_PASS_QUEST | EVENT_FAIL_QUEST)                      /* 0x00000018 */
+#define EVENT_MASK_ROOM (EVENT_FIND_ROOM | EVENT_FLAG_ROOM | EVENT_UNFLAG_ROOM)     /* 0x000000E0 */
+#define EVENT_MASK_FEAT (EVENT_ALTER_FEAT | EVENT_DEFEND_FEAT)                      /* 0x00000300 */
+#define EVENT_MASK_ITEM (EVENT_FIND_ITEM | EVENT_GET_ITEM | EVENT_LOSE_ITEM | \
+        EVENT_DESTROY_ITEM | EVENT_BUY_STORE | EVENT_SELL_STORE)                    /* 0x0001BC00 */
+#define EVENT_MASK_STORE (EVENT_STOCK_STORE | EVENT_DEFEND_STORE | EVENT_TALK_STORE)/* 0x00144000 */
+#define EVENT_MASK_RACE (EVENT_TALK_RACE | EVENT_GIVE_RACE | EVENT_GET_RACE | \
+        EVENT_FIND_RACE | EVENT_KILL_RACE | EVENT_ALLY_RACE | EVENT_HATE_RACE | \
+        EVENT_FEAR_RACE | EVENT_HEAL_RACE | EVENT_BANISH_RACE | EVENT_DEFEND_RACE)  /* 0xFFE00000 */
+
 /*** Quest event sequence ***/
 
 #define QUEST_ASSIGN	0	/* Event describes quest assignment */
@@ -2906,15 +2931,6 @@ enum
 #define	QUEST_FORFEIT	7	/* Event describes quest penalty at completion */
 #define	QUEST_PENALTY	8	/* Event describes quest penalty after completion */
 #define MAX_QUEST_EVENTS 9	/* Maximum events in a quest */
-
-/* When stage is 0, character has not been assigned quest.
-   When stage is 1, character has been assigned quest, but not completed any actions
-   When stage is 2, character has completed some actions
-   When stage is 3, character has completed all the required actions, but not collected the reward
-   When stage is 4, character has collected the reward
-   When stage is 5, character has failed the quest
-   When stage is 6, character has failed the quest, and the penalty has been applied */
-
 
 
 /*** Object flags ***/
@@ -5039,32 +5055,6 @@ enum
 
 
 /*
- * Maximum known sounds
- *
- * Should be the same as MSG_MAX for compatibility reasons.
- */
-#define SOUND_MAX MSG_MAX
-
-
-/*** Hack ***/
-
-
-/*
- * Hack -- attempt to reduce various values
- */
-#ifdef ANGBAND_LITE
-# undef MACRO_MAX
-# define MACRO_MAX	128
-# undef QUARK_MAX
-# define QUARK_MAX	256
-# undef MESSAGE_MAX
-# define MESSAGE_MAX	128
-# undef MESSAGE_BUF
-# define MESSAGE_BUF	4096
-#endif
-
-
-/*
  * Mega-Hack -- maximum known sounds
  *
  * Should be the same as MSG_MAX for compatibility reasons.
@@ -5133,10 +5123,6 @@ enum
 
 /* Returns TRUE if the given queue is full */
 #define GRID_QUEUE_FULL(Q) ((((Q)->tail + 1) % (Q)->max_size) == (Q)->head)
-
-/*Square a number*/
-#define GET_SQUARE(X) 	((X) * (X))
-
 
 /*
  * Maximum size around the player to consider in the pathfinder

@@ -2973,11 +2973,29 @@ void update_mon(int m_idx, bool full)
 			/* Update health bar as needed */
 			if (p_ptr->health_who == m_idx) p_ptr->redraw |= (PR_HEALTH);
 
-			/* Mega Hack -- If not seen before, disturb */
-			if (!l_ptr->sights) disturb(1, 0);
+			/* Mega Hack -- If not seen before, check quests and disturb */
+			if (!l_ptr->sights) {
+			    quest_event event;
+
+			    /* Use this to allow quests to succeed or fail */
+			    WIPE(&event, quest_event);
+
+			    /* Set up departure event */
+			    event.flags = EVENT_FIND_RACE;
+			    event.dungeon = p_ptr->dungeon;
+			    event.level = p_ptr->depth;
+			    event.race = m_ptr->r_idx;
+			    event.number = 1;
+
+	            check_quest(&event, TRUE);
+
+			    disturb(1, 0);
+			}
 
 			/* Hack -- Count "fresh" sightings */
-			if (l_ptr->sights < MAX_SHORT) l_ptr->sights++;
+			if (l_ptr->sights < MAX_SHORT) {
+			    l_ptr->sights++;
+			}
 
 			/* Disturb on visibility change */
 			if ((disturb_move)

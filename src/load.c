@@ -684,7 +684,7 @@ static void rd_lore(int r_idx)
 	/* Later (?) */
 	rd_byte(&tmp8u);
 	rd_byte(&tmp8u);
-	rd_byte(&tmp8u);
+    rd_byte(&tmp8u);
 
 
 	/* Repair the lore flags */
@@ -2545,7 +2545,7 @@ static void fix_bags(bool drop)
  */
 static errr rd_savefile_new_aux(void)
 {
-	int i, j;
+	int i, j, n;
 
 	byte tmp8u;
 	u16b tmp16u;
@@ -2681,6 +2681,13 @@ static errr rd_savefile_new_aux(void)
 		return (-1);
 	}
 
+	/* Quests */
+	for (n = 0; n < z_info->q_max; n++)
+	{
+		/* Copy the structure */
+		COPY(&q_list[n], &q_info[n], quest_type);
+	}
+
 	/* Load the Quests */
 	for (i = 0; i < tmp16u; i++)
 	{
@@ -2702,7 +2709,8 @@ static errr rd_savefile_new_aux(void)
 
 		rd_byte(&tmp8u);
 
-		q_list[i].stage = tmp8u;
+		q_list[i].stage = tmp8u & 0xF;
+		q_list[i].resolved = tmp8u & 0x10;
 	}
 
 	if (arg_fiddle) note("Loaded Quests");
@@ -3008,6 +3016,8 @@ static errr rd_savefile_new_aux(void)
 
 #endif
 
+	/* Hack -- make sure QUEST_FINISH and QUEST_PENALTY work after reload */
+	(void)apply_quest_finish();
 
 	/* Hack -- no ghosts */
 	r_info[z_info->r_max-1].max_num = 0;

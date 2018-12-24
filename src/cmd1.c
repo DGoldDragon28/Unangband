@@ -1845,6 +1845,7 @@ bool avoid_trap(int y, int x, int feat)
 		case TERM_SLATE:
 		{
 			/* Avoid by flying */
+		    if(p_ptr->timed[TMD_FLY]) return (TRUE);
 			break;
 		}
 		/* Strange rune */
@@ -1868,6 +1869,8 @@ bool avoid_trap(int y, int x, int feat)
 				equip_can_flags(0L, 0L, TR3_FEATHER, 0L);
 				return (TRUE);
 			}
+            /* Avoid by flying */
+            if(p_ptr->timed[TMD_FLY]) return (TRUE);
 			break;
 		}
 		/* Gas trap */
@@ -1933,6 +1936,8 @@ bool avoid_trap(int y, int x, int feat)
 				msg_format("You find the %s and carefully step over it.", name);
 				return (TRUE);
 			}
+            /* Avoid by flying */
+            if(p_ptr->timed[TMD_FLY]) return (TRUE);
 			break;
 		}
 		/* Murder hole */
@@ -1967,6 +1972,8 @@ bool avoid_trap(int y, int x, int feat)
 		/* Shallow pit */
 		case TERM_L_UMBER:
 		{
+            /* Avoid by flying */
+            if(p_ptr->timed[TMD_FLY]) return (TRUE);
 			break;
 		}
 		/* Surreal painting */
@@ -2811,6 +2818,8 @@ void hit_trap(int y, int x)
 
 	/* Avoid trap */
 	if ((f_ptr->flags1 & (FF1_TRAP)) && (avoid_trap(y, x, feat))) return;
+
+	if (!(f_ptr->flags1 & FF1_TRAP) && (f_ptr->flags2 & FF2_CAN_FLY) && p_ptr->timed[TMD_FLY]) return;
 
 	/* Hack -- fall onto trap if we can move */
 	if ((f_ptr->flags1 & (FF1_MOVE)) && ((p_ptr->py != y) || (p_ptr->px !=x)))
@@ -3684,7 +3693,7 @@ void move_player(int dir)
 	cptr name;
 
 	/* Move is a climb? -- force boolean */
-	bool climb = FALSE;
+	bool climb = FALSE, fly = FALSE;
 
 	/* Find the result of moving */
 	y = py + ddy[dir];
@@ -3692,10 +3701,12 @@ void move_player(int dir)
 
 	f_ptr = &f_info[cave_feat[y][x]];
 
-	climb = ((!(f_ptr->flags1 & (FF1_MOVE))
+	fly = p_ptr->timed[TMD_FLY] && (f_ptr->flags2 && FF2_CAN_FLY);
+
+	climb = !fly && ((!(f_ptr->flags1 & (FF1_MOVE))
 		&& (f_ptr->flags3 & (FF3_EASY_CLIMB)))
 		|| (!(f_ptr->flags3 & (FF3_MUST_CLIMB))
-		&& (f_info[cave_feat[py][px]].flags3 & (FF3_MUST_CLIMB)))) != 0;
+		&& (f_info[cave_feat[py][px]].flags3 & (FF3_MUST_CLIMB))));
 
 	/* Hack -- pickup objects from locations you can't move to but can see */
 	if (((cave_o_idx[y][x]) || (f_ptr->flags3 & (FF3_GET_FEAT))) && !(f_ptr->flags1 & (FF1_MOVE)) && !(f_ptr->flags3 & (FF3_EASY_CLIMB)) && (play_info[y][x] & (PLAY_MARK)))
@@ -3762,7 +3773,7 @@ void move_player(int dir)
 	/* Player can not walk through "walls" */
 	/* Also cannot climb over unknown "trees/rubble" */
 	else if (!(f_ptr->flags1 & (FF1_MOVE))
-				&& (!(f_ptr->flags3 & (FF3_EASY_CLIMB))
+				&& (!(climb || fly)
 					 || !(play_info[y][x] & (PLAY_MARK))))
 	{
 		if (disturb_detect && (play_info[p_ptr->py][p_ptr->px] & (PLAY_SAFE)) && !(play_info[y][x] & (PLAY_SAFE)))
@@ -4033,7 +4044,7 @@ void move_player(int dir)
 
 		}
 
-		else if (f_ptr->flags2 & (FF2_KILL_MOVE))
+		else if (!fly && (f_ptr->flags2 & (FF2_KILL_MOVE)))
 		{
 			cptr text;
 

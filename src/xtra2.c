@@ -58,6 +58,9 @@ bool set_timed(int idx, int v, bool notify)
 
 		case TMD_STASTIS:
 			return set_stastis(v);
+
+		case TMD_FLY:
+		    return set_fly(v);
 	}
 
 
@@ -882,6 +885,71 @@ bool set_cut(int v)
 
 	/* Result */
 	return (TRUE);
+}
+
+/*
+ * Set "p_ptr->timed[TMD_FLY]", notice observable changes
+ */
+bool set_fly(int v)
+{
+    int x, y;
+    feature_type * f_ptr;
+
+    bool notice = FALSE;
+
+    x = p_ptr->px;
+    y = p_ptr->py;
+
+    /* Hack -- Force good values */
+    v = (v > 10000) ? 10000 : (v < 0) ? 0 : v;
+
+
+
+    /* Begin flying */
+    if (v && !p_ptr->timed[TMD_FLY])
+    {
+        msg_print("You rise into the air.");
+        notice = TRUE;
+    }
+    /* Cease flying */
+    else if (!v && p_ptr->timed[TMD_FLY])
+    {
+        msg_print("You descend to the ground once more.");
+        notice = TRUE;
+
+        f_ptr = &f_info[cave_feat[y][x]];
+
+        /* Get hit by terrain/traps which are only triggered when on the ground */
+        /* Except for chests which must be opened to hit */
+        if ((((f_ptr->flags1 & (FF1_HIT_TRAP)) && !(f_ptr->flags3 & (FF3_CHEST))) ||
+                (f_ptr->spell) || (f_ptr->blow.method)) &&
+                (!(f_ptr->flags1 & FF1_TRAP) || (f_ptr->d_attr == TERM_RED)))
+        {
+            /* Disturb the player */
+            disturb(0, 0);
+
+            /* Discharge the trap */
+            discharge_trap(y, x, y, x, 0);
+        }
+    }
+
+    /* Use the value */
+    p_ptr->timed[TMD_FLY] = v;
+
+    /* No change */
+    if (!notice) return (FALSE);
+
+    /* Disturb */
+    if (disturb_state) disturb(0, 0);
+
+    /* Recalculate bonuses */
+    p_ptr->update |= (PU_BONUS);
+
+    /* Handle stuff */
+    handle_stuff();
+
+    /* Result */
+    return (TRUE);
 }
 
 
@@ -2159,235 +2227,6 @@ void scatter_objects_under_feat(int y, int x)
   lite_spot(y, x);
 }
 
-
-/*
- * Handle a quest event.
- */
-bool check_quest(quest_event *qe1_ptr, bool advance)
-{
-	int i, j;
-	bool questor = FALSE;
-
-	return (FALSE);
-
-	for (i = 0; i < MAX_Q_IDX; i++)
-	{
-		quest_type *q_ptr = &(q_list[i]);
-
-		int next_stage = 0;
-		bool partial = FALSE;
-
-		/* Check the next possible stages */
-		for (j = 0; j < MAX_QUEST_EVENTS ; j++)
-		{
-			quest_event *qe2_ptr = &(q_ptr->event[j]);
-			quest_event *qe3_ptr = &(q_ptr->event[QUEST_ACTION]);
-
-			/* Not all quests advance */
-			switch (q_ptr->stage)
-			{
-				/* We can succeed or fail quests at any time once the player has activated them. */
-				case QUEST_ACTIVE:
-					if (j == QUEST_ACTIVE) break;
-					if (j == QUEST_FAILED) break;
-					continue;
-				/* Track what the player has done / changed in the world */
-				case QUEST_ACTION: /* A quest should never get to this stage... */
-				case QUEST_FINISH:
-				case QUEST_PENALTY:
-				/* We don't do pay outs until the start of the next player turn */
-				case QUEST_PAYOUT:
-				case QUEST_FORFEIT:
-					continue;
-				/* We just advance otherwise */
-				default:
-					if (q_ptr->stage != j) continue;
-			}
-
-			/* We support quests with blank transitions */
-			if (qe2_ptr->flags)
-			{
-				/* Check for quest match */
-				if ((qe2_ptr->flags & (qe1_ptr->flags)) == 0) continue;
-
-				/* Check for level match */
-				if ((qe2_ptr->dungeon) && ((qe2_ptr->dungeon != qe1_ptr->dungeon) ||
-						(qe2_ptr->level != qe2_ptr->level))) continue;
-
-				/* Check for race match */
-				if (qe1_ptr->flags & (EVENT_GIVE_RACE | EVENT_GET_RACE | EVENT_FIND_RACE | EVENT_KILL_RACE |
-						EVENT_ALLY_RACE | EVENT_HATE_RACE | EVENT_FEAR_RACE | EVENT_HEAL_RACE |
-						EVENT_BANISH_RACE | EVENT_DEFEND_RACE | EVENT_DEFEND_STORE | EVENT_DEFEND_FEAT))
-				{
-					/* Match any monster or specific race */
-					if ((qe2_ptr->race) && (qe2_ptr->race != qe1_ptr->race)) continue;
-
-					/* Have to check monster states? */
-					if ((qe1_ptr->flags & (EVENT_GIVE_RACE | EVENT_GET_RACE | EVENT_DEFEND_FEAT)) == 0)
-					{
-						/* Add flags */
-						qe3_ptr->flags |= qe1_ptr->flags;
-
-						/* Hack -- we accumulate banishes and kills in the QUEST_ACTION. For others,
-						 * we only check if the number provided >= the number required.
-						 */
-						if (qe1_ptr->flags & (EVENT_BANISH_RACE | EVENT_KILL_RACE | EVENT_DEFEND_RACE |
-								EVENT_DEFEND_STORE))
-							qe3_ptr->number = qe1_ptr->number;
-						else if (qe1_ptr->number + qe3_ptr->number >= qe2_ptr->number)
-							qe3_ptr->number = qe2_ptr->number;
-					}
-				}
-
-				/* Check for store match */
-				if ((qe1_ptr->flags & (EVENT_BUY_STORE | EVENT_SELL_STORE | EVENT_GIVE_STORE |
-						EVENT_STOCK_STORE | EVENT_GET_STORE | EVENT_DEFEND_STORE)) &&
-						(qe2_ptr->store != qe1_ptr->store)) continue;
-
-				/* Check for item match */
-				if (qe1_ptr->flags & (EVENT_GIVE_RACE | EVENT_GET_RACE | EVENT_BUY_STORE |
-						EVENT_SELL_STORE | EVENT_GIVE_STORE | EVENT_STOCK_STORE | EVENT_GET_STORE |
-						EVENT_GET_ITEM | EVENT_FIND_ITEM | EVENT_DESTROY_ITEM | EVENT_LOSE_ITEM))
-				{
-					/* Match artifact, ego_item_type or kind of item or any item */
-					if (((qe2_ptr->artifact) && (qe2_ptr->artifact != qe1_ptr->artifact)) ||
-					 ((qe2_ptr->ego_item_type) && (qe2_ptr->ego_item_type != qe1_ptr->ego_item_type)) ||
-					 ((qe2_ptr->kind) && (qe2_ptr->kind != qe1_ptr->kind))) continue;
-
-					/* XXX Paranoia around artifacts */
-					if ((qe2_ptr->artifact) && (qe2_ptr->number)) qe2_ptr->number = 1;
-
-					/* Hack -- we accumulate item destructions in the QUEST_ACTION. For others,
-					   we only check if the number provided >= the number required.
-					 */
-					if (qe1_ptr->flags & (EVENT_DESTROY_ITEM))
-						qe3_ptr->number = qe1_ptr->number;
-					else if	(qe1_ptr->number >= qe2_ptr->number)
-						qe3_ptr->number = qe2_ptr->number;
-				}
-
-				/* Check for feature match */
-				if (qe1_ptr->flags & (EVENT_ALTER_FEAT | EVENT_DEFEND_FEAT))
-				{
-					/* Match feature or any feature */
-					if ((qe2_ptr->feat) && (qe2_ptr->feat != qe1_ptr->feat)) continue;
-
-					/* Accumulate features */
-					qe3_ptr->number = qe1_ptr->number;
-				}
-
-				/* Check for room type match */
-				if (((qe1_ptr->flags & (EVENT_FIND_ROOM | EVENT_FLAG_ROOM | EVENT_UNFLAG_ROOM))) &&
-					(((qe2_ptr->room_type_a) && (qe2_ptr->room_type_a != qe1_ptr->room_type_a)) ||
-					((qe2_ptr->room_type_b) && (qe2_ptr->room_type_b != qe1_ptr->room_type_b))))
-						continue;
-
-				/* Check for room flag match */
-				if (((qe1_ptr->flags & (EVENT_FLAG_ROOM | EVENT_UNFLAG_ROOM))) &&
-						((qe2_ptr->room_flags & (qe1_ptr->room_flags)) == 0))
-					continue;
-
-				/* Do we have to stay on this level a set amount of time? */
-				if (qe2_ptr->flags & (EVENT_STAY | EVENT_DEFEND_RACE | EVENT_DEFEND_FEAT | EVENT_DEFEND_STORE))
-				{
-					if (old_turn + qe2_ptr->time < turn) continue;
-				}
-
-				/* Do we have to succeed at a quest? */
-				if (qe2_ptr->flags & (EVENT_PASS_QUEST))
-				{
-					if (q_info[qe2_ptr->quest].stage != QUEST_FINISH) continue;
-				}
-
-				/* Check for defensive failure */
-				if (qe1_ptr->flags & (EVENT_DEFEND_RACE | EVENT_DEFEND_FEAT))
-				{
-					/* Hack - fail the quest */
-					if (!qe1_ptr->number)
-					{
-						next_stage = QUEST_FAILED;
-						break;
-					}
-				}
-
-				/* Check for completion */
-				else if ((qe3_ptr->number) && (qe3_ptr->number < qe2_ptr->number))
-				{
-					/* We at least have a partial match */
-					partial = TRUE;
-				}
-			}
-
-			/* We have qualified for the next stage of the quest */
-			next_stage = (j == QUEST_ACTIVE ? QUEST_REWARD : j + 1);
-		}
-
-		/* Advance the quest */
-		if (next_stage)
-		{
-			const char *prefix = ( next_stage == QUEST_REWARD ? "To claim your reward, " : NULL);
-
-			/* Not advancing */
-			if (!advance)
-			{
-				/* Voluntarily fail quest? */
-				if (next_stage == QUEST_FAILED)
-				{
-					return (get_check(format("Fail %s?", q_name + q_ptr->name)));
-				}
-				else
-				{
-					return (FALSE);
-				}
-			}
-
-			/* Describe the quest if assigned it */
-			if ((next_stage == QUEST_ACTIVE) &&
-					strlen(q_text + q_ptr->text)) msg_format("%s", q_text + q_ptr->text);
-
-			/* Tell the player the next step of the quest. */
-			if ((next_stage < QUEST_PAYOUT) &&
-				(q_info[i].event[next_stage].flags))
-			{
-				/* Display the event 'You must...' */
-				print_event(&q_info[i].event[next_stage], 2, 3, prefix);
-			}
-			/* Tell the player they have succeeded */
-			else if (next_stage == QUEST_FINISH)
-			{
-				msg_format("You have completed %s!", q_name + q_ptr->name);
-			}
-			/* Tell the player they have failed */
-			else if (next_stage == QUEST_PENALTY)
-			{
-				msg_format("You have failed %s.", q_name + q_ptr->name);
-			}
-
-			/* Advance quest to the next stage */
-			q_ptr->stage = next_stage;
-
-			/* Something done? */
-			questor = TRUE;
-		}
-		/* Tell the player they have partially advanced the quest */
-		else if (partial)
-		{
-			quest_event event;
-
-			COPY(&event, &q_ptr->event[q_ptr->stage], quest_event);
-
-			/* Tell the player the action they have completed */
-			print_event(qe1_ptr, 2, 1, NULL);
-
-			/* Tell the player the action(s) they must still do */
-			print_event(&event, 2, 3, NULL);
-		}
-	}
-
-	return(questor);
-}
-
-
 /*
  * Generate items which a monster carries into the monster's inventory.
  */
@@ -2809,6 +2648,84 @@ bool monster_death(int m_idx)
 	/* Check quest events */
 	check_quest(&quest_check, TRUE);
 
+	/* Check hacky quest drops */
+	if(q_drop_hack_art || q_drop_hack_ego || q_drop_hack_kind) {
+	    object_type object_type_body;
+	    object_type *i_ptr;
+	    int k_idx, tvidx;
+
+	    if(cheat_xtra) msg_format("Doing hacky quest drop: %d %d %d", q_drop_hack_art, q_drop_hack_ego, q_drop_hack_kind);
+
+	    /* Set pointer */
+	    i_ptr = &object_type_body;
+	    object_wipe(i_ptr);
+
+	    if (q_drop_hack_art) {
+	        artifact_type *a_ptr = &(a_info[q_drop_hack_art]);
+
+	        if (!a_ptr->cur_num) {
+
+	            /* Set pointer */
+	            i_ptr = &object_type_body;
+
+	            /* Get base item */
+	            k_idx = lookup_kind(a_ptr->tval, a_ptr->sval);
+
+	            /* Prep the object */
+	            object_prep(i_ptr, k_idx);
+
+	            /* Set as artifact */
+	            i_ptr->name1 = q_drop_hack_art;
+	        }
+        } else if (q_drop_hack_ego) {
+            ego_item_type *e_ptr = &(e_info[q_drop_hack_ego]);
+
+            /* Set pointer */
+            i_ptr = &object_type_body;
+
+            /* Get base item */
+            if(q_drop_hack_kind) {
+                k_idx = q_drop_hack_kind;
+            } else {
+                do {
+                    tvidx = rand_int(3);
+                } while(!e_ptr->tval[tvidx]);
+                do {
+                    k_idx = lookup_kind(e_ptr->tval[tvidx],
+                            rand_range(e_ptr->min_sval[tvidx],
+                                    e_ptr->max_sval[tvidx]));
+                } while(!k_idx);
+            }
+
+            if(cheat_xtra) msg_format("Picked item kind %d ", k_idx);
+
+            /* Prep the object */
+            object_prep(i_ptr, k_idx);
+
+            if(cheat_xtra) msg_format("Applied item kind %d ", i_ptr->k_idx);
+
+            /* Set as ego item */
+            i_ptr->name2 = q_drop_hack_ego;
+
+        } else if (q_drop_hack_kind ) {
+            /* Prep the object */
+            object_prep(i_ptr, q_drop_hack_kind);
+        }
+
+	    /* Apply magic attributes */
+	    apply_magic(i_ptr, p_ptr->lev + rand_int(p_ptr->lev), FALSE, TRUE, TRUE);
+
+	    /* Get origin */
+	    i_ptr->origin = ORIGIN_DROP;
+	    i_ptr->origin_depth = p_ptr->depth;
+	    i_ptr->origin_xtra = m_ptr->r_idx;
+
+	    /* Drop it */
+	    drop_near(i_ptr, -1, y, x, TRUE);
+
+	    q_drop_hack_art = q_drop_hack_ego = q_drop_hack_kind = 0;
+	}
+
 	/* Do we drop more treasure? */
 	if ((m_ptr->mflag & (MFLAG_MADE)) == 0)
 	{
@@ -2889,18 +2806,7 @@ bool monster_death(int m_idx)
 		/* Drop it in the dungeon */
 		drop_near(i_ptr, -1, y, x, TRUE);
 
-		/* Hack -- this is temporary */
-		/* Total winner */
-		p_ptr->total_winner = TRUE;
-
-		/* Redraw the "title" */
-		p_ptr->redraw |= (PR_TITLE);
-
-		/* Congratulations */
-		msg_print("*** CONGRATULATIONS ***");
-		msg_print("You have won the game!");
-		msg_print("You may retire (commit suicide) when you are ready.");
-
+		/* "Winner" now governed by quest code */
 	}
 
 	/* Hack -- only sometimes drop bodies */
@@ -3229,6 +3135,20 @@ bool mon_take_hit(int m_idx, int dam, bool *fear, cptr note)
 
 		/* Not afraid */
 		(*fear) = FALSE;
+
+		/* Handle quest effects */
+		quest_event event;
+
+		/* Use this to allow quests to succeed or fail */
+		WIPE(&event, quest_event);
+
+		/* Handle quests */
+		event.flags = EVENT_KILL_RACE;
+		event.dungeon = p_ptr->dungeon;
+		event.level = p_ptr->depth - min_depth(p_ptr->dungeon);
+		event.race = m_ptr->r_idx;
+		event.number = 1;
+		check_quest(&event, TRUE);
 
 		/* Monster is dead */
 		return (TRUE);

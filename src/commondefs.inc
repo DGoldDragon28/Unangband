@@ -21,6 +21,7 @@ COMMONOBJS = \
 	object1$(OBJEXT) \
 	object2$(OBJEXT) \
 	option$(OBJEXT) \
+	quests$(OBJEXT) \
 	randart$(OBJEXT) \
 	save$(OBJEXT) \
 	spells1$(OBJEXT) \
