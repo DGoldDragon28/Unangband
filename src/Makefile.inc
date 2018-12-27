@@ -73,8 +73,8 @@ option.o: option.c angband.h h-basic.h h-config.h h-system.h h-type.h \
 randart.o: randart.c angband.h h-basic.h h-config.h h-system.h h-type.h \
   h-define.h z-util.h z-virt.h z-form.h z-rand.h z-term.h config.h \
   defines.h option.h types.h externs.h init.h
-quests.o: quests.c anband.h h-basic.h h-config.h h-system.h h-type.h \
-  h-define.h z-util.h z-virt.h z-form.h z-rand.h z-term.h config.h
+quests.o: quests.c angband.h h-basic.h h-config.h h-system.h h-type.h \
+  h-define.h z-util.h z-virt.h z-form.h z-rand.h z-term.h config.h \
   defines.h option.h types.h externs.h
 save.o: save.c angband.h h-basic.h h-config.h h-system.h h-type.h \
   h-define.h z-util.h z-virt.h z-form.h z-rand.h z-term.h config.h \
