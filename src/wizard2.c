@@ -424,6 +424,12 @@ static void wiz_tweak_item(object_type *o_ptr)
 	if (!get_string(p, tmp_val, 6)) return;
 	o_ptr->to_d = atoi(tmp_val);
 	wiz_display_item(o_ptr);
+
+	p = "Enter new 'name3' setting: ";
+	sprintf(tmp_val, "%d", o_ptr->to_d);
+	if (!get_string(p, tmp_val, 6)) return;
+	o_ptr->name3 = atoi(tmp_val);
+	wiz_display_item(o_ptr);
 }
 
 

@@ -5934,7 +5934,7 @@ N:722:& completely assembled #~
 G:~:s
 I:12:15:3
 A:10\6:50/3
-W:10:0:100:0
+W:10:20:100:0
 P:0:1d1:0:0:0
 
 # The below items are for non-standard assembly order...
@@ -5942,7 +5942,7 @@ P:0:1d1:0:0:0
 N:723:& set~ of # Arms
 G:~:s
 I:12:16:0
-W:10:20:20:0
+W:10:0:20:0
 A:10\6:50/3
 P:0:1d1:0:0:0
 F:ACTIVATE |
@@ -5950,7 +5950,7 @@ F:ACTIVATE |
 N:724:& set~ of # Hands
 G:~:s
 I:12:17:0
-W:10:20:100:0
+W:10:0:100:0
 A:10\6:50/3
 P:0:1d1:0:0:0
 F:ACTIVATE |
@@ -5990,7 +5990,7 @@ D:The arms are attached. The left hand is missing.
 N:729:& set~ of # Legs
 G:~:s
 I:12:22:0
-W:10:20:30:0
+W:10:0:30:0
 A:10\6:50/3
 P:0:1d1:0:0:0
 F:ACTIVATE |

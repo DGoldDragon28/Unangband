@@ -6091,8 +6091,8 @@ bool make_body(object_type *j_ptr, int r_idx)
 		int sval = rand_int(SV_MAX_ASSEMBLY);
 
 		/* Hack -- ensure larger parts */
-		if ((sval < SV_ASSEMBLY_FULL) && !(sval % 2)) sval++;
-		else if (sval == SV_ASSEMBLY_HANDS) sval--;
+		if ((sval < SV_ASSEMBLY_HEAD) && !(sval % 2)) sval++;
+		else if ((sval == SV_ASSEMBLY_FULL) || (sval == SV_ASSEMBLY_HANDS)) sval--;
 
 		k_idx = lookup_kind(TV_ASSEMBLY, sval);
 	}
