@@ -314,12 +314,12 @@ static void describe_monster_spells(const monster_race *r_ptr, const monster_lor
 					{
 						text_out(" on average");
 					}
+
+					/* Note that breathes vary by monster hp */
+					text_out(" when at full health");
 				}
 			}
 		}
-		
-		/* Note that breathes vary by monster hp */
-		text_out(" when at full health");
 	}
 
 	/* End the sentence about innate spells */
