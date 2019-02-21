@@ -4124,7 +4124,7 @@ sint target_dir(char ch)
 	act = keymap_act[mode][(byte)(ch)];
 
 	/* Analyze */
-	if (act)
+	if (act && !isdigit(ch))
 	{
 		/* Convert to a direction */
 		for (s = act; *s; ++s)
