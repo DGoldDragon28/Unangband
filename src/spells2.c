@@ -5190,7 +5190,7 @@ void change_shape(int shape)
 	}
 
 	/* Update stuff */
-	p_ptr->update |= (PU_BONUS);
+	p_ptr->update |= (PU_BONUS | PU_MANA | PU_HP);
 
 	/* Window stuff */
 	p_ptr->window |= (PW_EQUIP | PW_PLAYER_0 | PW_PLAYER_1);

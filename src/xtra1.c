@@ -3828,7 +3828,7 @@ static void calc_bonuses(void)
 	    p_ptr->siz_penalty = (p_ptr->stat_ind[A_SIZ] - p_ptr->stat_ind[A_STR]) / 2;
 
 		/* Extract the new "stat_top" value for the stat */
-		top = modify_stat_value(p_ptr->stat_max[A_AGI], -p_ptr->siz_penalty);
+		top = modify_stat_value(p_ptr->stat_top[A_AGI], -p_ptr->siz_penalty);
 
 		/* Save the new value */
 		p_ptr->stat_top[A_AGI] = top;
