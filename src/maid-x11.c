@@ -93,6 +93,24 @@ u32b create_pixel(Display *dpy, byte red, byte green, byte blue)
 }
 
 
+bool has_env_font(int term_num)
+{
+	cptr font;
+	char buf[80];
+	
+	/* Window specific font name */
+	sprintf(buf, "ANGBAND_X11_FONT_%d", term_num);
+	
+	/* Check environment for that font */
+	font = getenv(buf);
+	
+	/* Check environment for "base" font */
+	if (!font) font = getenv("ANGBAND_X11_FONT");
+	
+	return (font ? (bool) 1 : (bool) 0);
+}
+
+
 /*
  * Get the name of the default font to use for the term.
  */
