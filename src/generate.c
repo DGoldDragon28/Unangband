@@ -152,7 +152,7 @@
 #define MAX_DUN_ROOMS	DUN_ROOMS
 
 /*
- * Dungeon streamer generation vaÄlues
+ * Dungeon streamer generation values
  */
 #define DUN_STR_WID          2  /* Width of streamers (can be higher) */
 #define DUN_STR_CHG          16 /* 1/(4 + chance) of altering direction */
@@ -2552,7 +2552,7 @@ int joinall(byte **mapin, byte **mapout, int size_y, int size_x)
 		else
 		{ /* there exist regions that can be moved toward 0,0 */ 
 			/* write rock to every square of new map that is either 
-				ærock or a region we can move; copy the map to all other squares. */ 
+				rock or a region we can move; copy the map to all other squares. */ 
 			for (y = 0; y < size_y; y++)
 				for (x = 0; x < size_x; x++) 
 				{ 
@@ -10268,7 +10268,7 @@ static bool build_tunnel(int row1, int col1, int row2, int col2, bool allow_over
 					}
 				}
 	
-				/* Allowed left hand side door */
+				/* Allowed right hand side door */
 				if (!(door_flag) || (--door_r > 0))
 				{
 					/* Add 'right-hand' door */
@@ -14499,25 +14499,43 @@ static bool place_tunnels()
 		if (finished) break;
 	}
 
-	/* Place intersection doors */
-	for (i = 0; i < dun->door_n; i++)
+	/* Place intersection doors by scanning the full map for 
+	/* tunnel spaces with wall on either side and at least three
+	/* non-wall spaces in the surrounding 8 spaces */
+	for (y = 0; y < DUNGEON_HGT; y++)
 	{
-		int dk = rand_int(100) < 50 ? 1 : -1;
-		int count = 0;
-
-		/* Extract junction location */
-		y = dun->door[i].y;
-		x = dun->door[i].x;
-
-		/* Try a door in one direction */
-		/* If the first created door is secret, stop */
-		for (j = 0, k = rand_int(4); j < 4; j++)
+		for (x = 0; x < DUNGEON_WID; x++)
 		{
-			if (try_door(y + ddy_ddd[k], x + ddx_ddd[k])) count++;
+			int dy, dx, open_count = 0;
 
-			if ((!count) && (f_info[cave_feat[y + ddy_ddd[k]][x + ddx_ddd[k]]].flags1 & (FF1_SECRET))) break;
+			if (!cave_floor_bold(y, x)) continue;
+			if (cave_info[y][x] & (CAVE_ROOM)) continue;
 
-			k = (4 + k + dk) % 4;
+			for (dy = -1; dy <= 1; dy++)
+			{
+				for (dx = -1; dx <= 1; dx++)
+				{
+					if ((dy == 0) && (dx == 0)) continue;
+					if (in_bounds(y + dy, x + dx) &&
+						!(f_info[cave_feat[y + dy][x + dx]].flags1 & (FF1_WALL)))
+					{
+						open_count++;
+					}
+				}
+			}
+			if (open_count < 3) continue;
+
+			if (rand_int(100) >= DUN_TUN_JCT) continue;
+
+			if ((in_bounds(y - 1, x) && in_bounds(y + 1, x) &&
+				 (f_info[cave_feat[y - 1][x]].flags1 & (FF1_WALL)) &&
+				 (f_info[cave_feat[y + 1][x]].flags1 & (FF1_WALL))) ||
+				(in_bounds(y, x - 1) && in_bounds(y, x + 1) &&
+				 (f_info[cave_feat[y][x - 1]].flags1 & (FF1_WALL)) &&
+				 (f_info[cave_feat[y][x + 1]].flags1 & (FF1_WALL))))
+			{
+				place_random_door(y, x);
+			}
 		}
 	}
 

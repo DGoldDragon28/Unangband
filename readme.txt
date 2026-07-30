@@ -179,6 +179,9 @@ This OS X version works on only for OS X versions 10.3 and later.
 For legacy OSX/Mac (QuickDraw), use main-crb.c or main-mac.c from Angband
 releases 3.0.x and earlier.
 
+There is also src/Makefile.curses-only if you don't have X11 libraries
+installed.
+
 Some archive generation programs refuse to handle empty directories,
 so special "fake" files with names like "DELETEME.TXT" may have been
 placed into certain directories to avoid this problem.  You may safely
